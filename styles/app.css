@@ -1,0 +1,106 @@
+/* @font-face {
+	font-family: 'eudoxus sans';
+	src: url('../assets/fonts/EudoxusSans-Regular.woff') format('woff'),
+		url('../assets/fonts/EudoxusSans-Bold.woff') format('woff');
+} */
+
+:root {
+	/* COLORS */
+	--bg-primary: #1f2028;
+	--bg-secondary: #2e3039;
+	--body-color: #a9adc1;
+	--cta-primary: #3b78ee;
+	--cta-secondary: #4b4c53;
+}
+
+body {
+	margin: 0 auto;
+	font-family: 'eudoxus sans';
+	font-size: 1rem;
+	line-height: 1.5;
+	color: white;
+	background-color: var(--bg-primary);
+}
+
+h1,
+h2,
+h3 {
+	font-weight: 700;
+	font-size: 3rem;
+}
+
+h2 {
+	font-size: 2rem;
+}
+
+h3 {
+	font-size: 1.75rem;
+}
+
+p {
+	color: var(--body-color);
+}
+
+.main-nav,
+.nav-nav,
+.nav-links,
+.nav-social {
+	display: flex;
+}
+
+.main-nav {
+	justify-content: space-between;
+	align-items: baseline;
+	padding-top: 1.5rem;
+	max-width: 1280px;
+	margin: 0 auto;
+}
+
+.logo {
+	font-weight: 700;
+	font-size: 1.5rem;
+}
+
+.nav-links {
+	margin-right: 5rem;
+}
+
+.nav-links li {
+	margin: 0 2rem;
+	font-weight: 700;
+}
+
+.nav-links a {
+	color: var(--body-color);
+	text-decoration: none;
+	transition: all 400ms;
+}
+
+.nav-links a:hover {
+	color: white;
+}
+
+.nav-social li {
+	margin: 0 1rem;
+}
+
+.nav-social svg {
+	fill: var(--body-color);
+}
+
+.nav-social svg:hover {
+	fill: white;
+	cursor: pointer;
+}
+
+.hero {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: linear-gradient(180deg, #1f2028 0%, #2c2d38 100%);
+}
+
+.col-6 {
+	width: 50%;
+	max-width: 640px;
+}
