@@ -204,6 +204,7 @@ header {
 
 .btn-secondary {
 	border: 2px solid var(--color-cta-secondary);
+	background-color: transparent;
 }
 
 .btn-secondary:hover {
@@ -237,6 +238,7 @@ section {
 }
 
 .section-title {
+	padding-top: 3rem;
 	position: relative;
 	margin-bottom: 1rem;
 	text-align: center;
@@ -261,7 +263,7 @@ section {
 }
 
 article {
-	margin: 3rem 0;
+	margin-top: 3rem;
 }
 
 article span {
@@ -350,4 +352,75 @@ article span {
 
 .project-cta {
 	margin-top: auto;
+}
+
+form {
+	display: flex;
+	flex-direction: column;
+}
+
+form div {
+	margin-bottom: 1.5rem;
+}
+
+form label,
+form input,
+textarea,
+.form-cta {
+	display: block;
+	width: 75%;
+	max-width: 75%;
+	min-width: 75%;
+	margin: 0 auto;
+}
+
+form input,
+textarea {
+	border: none;
+	border-radius: 10px;
+	padding: 0.8rem 1rem;
+	background-color: var(--color-bg-secondary);
+	color: white;
+	margin-top: 0.5rem;
+	line-height: 1.5;
+}
+
+textarea {
+	min-height: 8rem;
+}
+
+footer {
+	background-color: #1a1c24;
+	margin-top: 7rem;
+}
+
+.footer-content {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 4rem 0;
+}
+
+.copyright {
+	font-size: 0.8rem;
+}
+
+::placeholder {
+	color: var(--color-body);
+}
+
+::-webkit-scrollbar {
+	width: 0.7rem;
+	background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+	border-radius: 1rem;
+	background-color: var(--color-body);
+}
+
+::-webkit-scrollbar-track {
+	box-shadow: rgb(0 0 0 / 30%) 0px 0px 0.6rem inset;
+	border-radius: 1rem;
+	background-color: var(--color-cta-secondary);
 }
