@@ -13,8 +13,12 @@
 		<nav class="container nav-container">
 			<div class="logo">snystrom</div>
 
-			<button class="mobile-nav-toggle"
-			aria-label="toggle menu" aria-controls="nav-main" aria-expanded="false">
+			<button
+				class="mobile-nav-toggle"
+				aria-label="toggle menu"
+				aria-controls="nav-main"
+				aria-expanded="false"
+			>
 				<span class="bar"></span>
 				<span class="bar"></span>
 				<span class="bar"></span>
@@ -59,12 +63,14 @@
 				</ul>
 			</div>
 		</nav>
+
 		<header class="hero">
-			<div id="home" class="container row">
+			<div class="home container row">
 				<div class="col-6 header-content">
 					<h1>
 						Hi, I'm
-						<span>Simon</span>,
+						<span>Simon</span>
+						,
 					</h1>
 					<h2>a wannabe web developer</h2>
 					<p class="mt-1">
@@ -81,9 +87,11 @@
 				</div>
 			</div>
 		</header>
+
 		<main>
-			<article class="container">
-				<section id="about">
+			<div class="container">
+				<a class="anchor" id="about"></a>
+				<section>
 					<header class="section-header">
 						<h2 class="section-title">About Me</h2>
 						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
@@ -111,14 +119,16 @@
 								<li class="skill">MongoDB</li>
 							</ul>
 							<p>
-								💡 <span>Currently Learning</span>
-								 - React 
+								💡
+								<span>Currently Learning</span>
+								- React
 							</p>
 						</article>
 					</div>
 				</section>
 
-				<section id="projects">
+				<a class="anchor" id="projects"></a>
+				<section>
 					<header class="section-header">
 						<h2 class="section-title">Projects</h2>
 						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
@@ -224,7 +234,9 @@
 						</div>
 					</div>
 				</section>
-				<section id="contact">
+
+				<a class="anchor" id="contact"></a>
+				<section>
 					<header class="section-header">
 						<h2 class="section-title">Contact</h2>
 						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
@@ -233,15 +245,32 @@
 						<form action="POST">
 							<div>
 								<label for="email">Email *</label>
-								<input type="email" name="email" id="email" required placeholder="Enter your email">
+								<input
+									type="email"
+									name="email"
+									id="email"
+									required
+									placeholder="Enter your email"
+								/>
 							</div>
 							<div>
 								<label for="message">Message *</label>
-								<textarea name="" id="" cols="20" rows="8" required placeholder="What's on your mind?"></textarea>
+								<textarea
+									name=""
+									id=""
+									cols="20"
+									rows="8"
+									required
+									placeholder="What's on your mind?"
+								></textarea>
 							</div>
 							<div class="form-cta">
-								<button type="submit" class="btn-primary btn-small">Send</button>
-								<button type="reset" class="btn-secondary btn-small">Clear</button>
+								<button type="submit" class="btn-primary btn-small">
+									Send
+								</button>
+								<button type="reset" class="btn-secondary btn-small">
+									Clear
+								</button>
 							</div>
 						</form>
 					</article>
@@ -284,7 +313,16 @@
 						</li>
 						<li>
 							<a href="#mail">
-								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 12.713l-11.985-9.713h23.971l-11.986 9.713zm-5.425-1.822l-6.575-5.329v12.501l6.575-7.172zm10.85 0l6.575 7.172v-12.501l-6.575 5.329zm-1.557 1.261l-3.868 3.135-3.868-3.135-8.11 8.848h23.956l-8.11-8.848z"/></svg>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="24"
+									height="24"
+									viewBox="0 0 24 24"
+								>
+									<path
+										d="M12 12.713l-11.985-9.713h23.971l-11.986 9.713zm-5.425-1.822l-6.575-5.329v12.501l6.575-7.172zm10.85 0l6.575 7.172v-12.501l-6.575 5.329zm-1.557 1.261l-3.868 3.135-3.868-3.135-8.11 8.848h23.956l-8.11-8.848z"
+									/>
+								</svg>
 							</a>
 						</li>
 					</ul>
