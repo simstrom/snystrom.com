@@ -7,11 +7,20 @@
 		<title>Simon Nystrom</title>
 		<link rel="stylesheet" href="styles/reset.css" />
 		<link rel="stylesheet" href="styles/app.css" />
+		<script src="js/app.js" defer></script>
 	</head>
 	<body>
 		<nav class="container nav-container">
 			<div class="logo">snystrom</div>
-			<div class="nav-main">
+
+			<button class="mobile-nav-toggle"
+			aria-label="toggle menu" aria-controls="nav-main" aria-expanded="false">
+				<span class="bar"></span>
+				<span class="bar"></span>
+				<span class="bar"></span>
+			</button>
+
+			<div id="nav-main" data-visible="false" class="nav-main">
 				<ul class="nav-links">
 					<li><a href="#about">About</a></li>
 					<li><a href="#projects">Projects</a></li>
@@ -55,22 +64,20 @@
 				<div class="col-6 header-content">
 					<h1>
 						Hi, I'm
-						<span>Simon</span>
+						<span>Simon</span>,
 					</h1>
-					<h2>a Wannabe Web Developer</h2>
+					<h2>a wannabe web developer</h2>
 					<p class="mt-1">
 						Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere quos
-						temporibus est, atque non inventore quisquam incidunt. Ea corrupti
-						pariatur voluptates laborum reprehenderit corporis, et, quisquam
-						aliquid eos blanditiis eaque.
+						temporibus est, atque non inventore quisquam incidunt.
 					</p>
 					<div class="hero-cta">
-						<a href="#projects" class="btn-primary">See My Projects</a>
+						<a href="#projects" class="btn-primary">My Projects</a>
 						<a href="#" class="btn-secondary">View CV</a>
 					</div>
 				</div>
 				<div class="col-6 hero-image">
-					<img src="assets/images/hero-profile.png" alt="" />
+					<img src="assets/images/hero-rounded.png" alt="" />
 				</div>
 			</div>
 		</header>
@@ -104,8 +111,8 @@
 								<li class="skill">MongoDB</li>
 							</ul>
 							<p>
-								<span>Currently Learning</span>
-								React
+								💡 <span>Currently Learning</span>
+								 - React 
 							</p>
 						</article>
 					</div>
