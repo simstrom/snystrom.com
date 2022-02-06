@@ -49,17 +49,17 @@ textarea {
 html {
 	line-height: 1.15;
 	-webkit-text-size-adjust: 100%;
+	-webkit-font-smoothing: antialiased;
 	min-width: 300px;
 	overflow-x: hidden;
 	scroll-behavior: smooth;
-}
-body {
-	text-rendering: optimizeSpeed;
+	text-rendering: optimizeLegibility;
 }
 *,
 ::after,
 ::before {
 	box-sizing: border-box;
+	overflow-wrap: break-word;
 }
 img,
 video {
