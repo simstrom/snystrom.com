@@ -8,6 +8,16 @@
 		<link rel="stylesheet" href="styles/reset.css" />
 		<link rel="stylesheet" href="styles/app.css" />
 		<script src="js/app.js" defer></script>
+		<script
+			type="text/javascript"
+			src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"
+		></script>
+		<script type="text/javascript">
+			(function () {
+				emailjs.init('user_6KzBVwIeJ9EQGT63k7CjI');
+			})();
+		</script>
+		<script src="js/email.js" defer></script>
 	</head>
 	<body class="ui-dark">
 		<nav>
@@ -48,7 +58,11 @@
 						</ul>
 						<ul class="nav-social">
 							<li>
-								<a href="#github">
+								<a
+									href="https://github.com/simstrom"
+									target="_blank"
+									rel="noopener noreferrer"
+								>
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
 										width="24"
@@ -62,7 +76,11 @@
 								</a>
 							</li>
 							<li>
-								<a href="#linkedin">
+								<a
+									href="https://www.linkedin.com/in/simon-nystrom/"
+									target="_blank"
+									rel="noopener noreferrer"
+								>
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
 										width="24"
@@ -166,29 +184,34 @@
 						<div class="projects-list row">
 							<div class="project col-6">
 								<div class="project-image">
-									<img src="assets/images/arcturus.png" alt="" />
+									<img src="assets/images/camp-spotter.png" alt="" />
 								</div>
 								<div class="project-content">
-									<h3 class="project-title">Arcturus</h3>
+									<h3 class="project-title">CampSpotter</h3>
 									<ul class="skills-list">
 										<li class="skill">HTML</li>
-										<li class="skill">CSS</li>
-										<li class="skill">JavaScript</li>
-										<li class="skill">HTML</li>
-										<li class="skill">CSS</li>
-										<li class="skill">JavaScript</li>
+										<li class="skill">Bootstrap</li>
+										<li class="skill">JS</li>
+										<li class="skill">Express</li>
+										<li class="skill">MongoDB</li>
+										<li class="skill">Mapbox API</li>
 									</ul>
 									<p class="project-description mb-2">
 										In this course, you will learn how to create a flexible user
 										interface using Chakra UI. You will learn to use Chakra UI's
 										default style props and components to easily build out your
-										application, but you will also see how you can easily
-										override the defaults or even create custom components to
-										suit the needs of your application.
+										application.
 									</p>
 									<div class="project-cta">
 										<a href="#" class="btn-primary btn-small">Live</a>
-										<a href="#" class="btn-secondary btn-small">Source</a>
+										<a
+											href="https://github.com/simstrom/camp-spotter"
+											target="_blank"
+											rel="noopener noreferrer"
+											class="btn-secondary btn-small"
+										>
+											Source
+										</a>
 									</div>
 								</div>
 							</div>
@@ -199,9 +222,9 @@
 								<div class="project-content">
 									<h3 class="project-title">Arcturus</h3>
 									<ul class="skills-list">
-										<li class="skill">HTML</li>
+										<li class="skill">Java</li>
+										<li class="skill">JavaFX</li>
 										<li class="skill">CSS</li>
-										<li class="skill">JavaScript</li>
 									</ul>
 									<p class="project-description mb-2">
 										Lorem, ipsum dolor sit amet consectetur adipisicing elit.
@@ -210,54 +233,14 @@
 										impedit in necessitatibus inventore vel ex!
 									</p>
 									<div class="project-cta">
-										<a href="#" class="btn-primary btn-small">Live</a>
-										<a href="#" class="btn-secondary btn-small">Source</a>
-									</div>
-								</div>
-							</div>
-							<div class="project col-6">
-								<div class="project-image">
-									<img src="assets/images/arcturus.png" alt="" />
-								</div>
-								<div class="project-content">
-									<h3 class="project-title">Arcturus</h3>
-									<ul class="skills-list">
-										<li class="skill">HTML</li>
-										<li class="skill">CSS</li>
-										<li class="skill">JavaScript</li>
-									</ul>
-									<p class="project-description mb-2">
-										Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-										Deserunt nemo quae tempora in eum recusandae quo quisquam,
-										quasi aliquid! Excepturi molestiae ut soluta molestias
-										impedit in necessitatibus inventore vel ex!
-									</p>
-									<div class="project-cta">
-										<a href="#" class="btn-primary btn-small">Live</a>
-										<a href="#" class="btn-secondary btn-small">Source</a>
-									</div>
-								</div>
-							</div>
-							<div class="project col-6">
-								<div class="project-image">
-									<img src="assets/images/arcturus.png" alt="" />
-								</div>
-								<div class="project-content">
-									<h3 class="project-title">Arcturus</h3>
-									<ul class="skills-list">
-										<li class="skill">HTML</li>
-										<li class="skill">CSS</li>
-										<li class="skill">JavaScript</li>
-									</ul>
-									<p class="project-description mb-2">
-										Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-										Deserunt nemo quae tempora in eum recusandae quo quisquam,
-										quasi aliquid! Excepturi molestiae ut soluta molestias
-										impedit in necessitatibus inventore vel ex!
-									</p>
-									<div class="project-cta">
-										<a href="#" class="btn-primary btn-small">Live</a>
-										<a href="#" class="btn-secondary btn-small">Source</a>
+										<a
+											href="https://github.com/simstrom/arcturus"
+											target="_blank"
+											rel="noopener noreferrer"
+											class="btn-primary btn-small"
+										>
+											Source
+										</a>
 									</div>
 								</div>
 							</div>
@@ -273,7 +256,8 @@
 						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
 					</header>
 					<article class="section-content">
-						<form action="POST">
+						<form id="contact-form">
+							<input type="hidden" name="contact_number" />
 							<div>
 								<label for="email">Email *</label>
 								<input
@@ -287,8 +271,8 @@
 							<div>
 								<label for="message">Message *</label>
 								<textarea
-									name=""
-									id=""
+									name="message"
+									id="message"
 									cols="20"
 									rows="8"
 									required
@@ -309,13 +293,18 @@
 			</div>
 		</main>
 
+		<div id="snackbar">Message sent successfully!</div>
 		<footer>
 			<div class="container">
 				<section class="footer-content">
 					<div class="logo">snystrom</div>
 					<ul class="nav-social">
 						<li>
-							<a href="#github">
+							<a
+								href="https://github.com/simstrom"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
 									width="24"
@@ -329,7 +318,11 @@
 							</a>
 						</li>
 						<li>
-							<a href="#linkedin">
+							<a
+								href="https://www.linkedin.com/in/simon-nystrom/"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
 									width="24"
@@ -343,7 +336,7 @@
 							</a>
 						</li>
 						<li>
-							<a href="#mail">
+							<a href="mailto:simons.nystrom@gmail.com">
 								<svg
 									xmlns="http://www.w3.org/2000/svg"
 									width="24"

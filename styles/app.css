@@ -20,6 +20,11 @@
 }
 
 :root {
+	--color-cta-primary: #0078ff;
+	--color-cta-transparent: #0063d1;
+	--color-success: #41a07b;
+	--color-error: #b3524f;
+
 	--transition-standard: cubic-bezier(0, 0, 0.2, 1);
 }
 
@@ -31,9 +36,7 @@
 	--color-bg-transparent: #edf2f7a8;
 	--color-body-primary: #2d3748;
 	--color-body-secondary: #718096;
-	--color-cta-primary: #0078ff;
 	--color-cta-secondary: #bfc1d3;
-	--color-cta-transparent: #0063d1;
 }
 
 .ui-dark {
@@ -44,9 +47,7 @@
 	--color-bg-transparent: #1a202cc0;
 	--color-body-primary: rgba(255, 255, 255, 0.92);
 	--color-body-secondary: #a0aec0;
-	--color-cta-primary: #0078ff;
 	--color-cta-secondary: #4a5568;
-	--color-cta-transparent: #0063d1;
 }
 
 body {
@@ -123,7 +124,6 @@ nav {
 	margin-left: auto;
 	display: flex;
 	gap: 2.5rem;
-	font-size: 1rem;
 }
 
 .nav-social {
@@ -524,6 +524,7 @@ textarea {
 }
 
 footer {
+	position: relative;
 	background-color: var(--color-bg-contrast);
 	margin-top: 4rem;
 	padding: 2rem 0;
@@ -544,6 +545,30 @@ footer {
 
 .copyright {
 	font-size: 0.8rem;
+}
+
+#snackbar {
+	visibility: hidden;
+	background-color: var(--color-success);
+	color: white;
+	font-weight: bold;
+	text-align: center;
+	border-radius: 0.375rem;
+	padding: 1rem;
+	position: fixed;
+	z-index: 1;
+	right: 2rem;
+	bottom: 7rem;
+}
+
+#snackbar.error {
+	background-color: var(--color-error);
+}
+
+#snackbar.show {
+	visibility: visible;
+	-webkit-animation: fadein 0.5s, fadeout 1s 2.5s;
+	animation: fadein 0.5s, fadeout 1s 2.5s;
 }
 
 ::placeholder {
@@ -596,6 +621,7 @@ footer {
 
 	.hero {
 		background-color: var(--color-bg-contrast);
+		transition: inherit;
 	}
 
 	.home.row {
@@ -667,5 +693,49 @@ footer {
 
 	.header-content p {
 		font-size: 1rem;
+	}
+}
+
+@-webkit-keyframes fadein {
+	from {
+		bottom: 0;
+		opacity: 0;
+	}
+	to {
+		bottom: 7rem;
+		opacity: 1;
+	}
+}
+
+@keyframes fadein {
+	from {
+		bottom: 0;
+		opacity: 0;
+	}
+	to {
+		bottom: 7rem;
+		opacity: 1;
+	}
+}
+
+@-webkit-keyframes fadeout {
+	from {
+		bottom: 7rem;
+		opacity: 1;
+	}
+	to {
+		bottom: 0;
+		opacity: 0;
+	}
+}
+
+@keyframes fadeout {
+	from {
+		bottom: 7rem;
+		opacity: 1;
+	}
+	to {
+		bottom: 0;
+		opacity: 0;
 	}
 }
