@@ -82,7 +82,8 @@
 				<div class="col-6 header-content">
 					<h1>
 						Hi, I'm
-						<span>Simon</span>,
+						<span>Simon</span>
+						,
 					</h1>
 					<h2>a wannabe web developer</h2>
 					<p class="mt-1">
@@ -95,7 +96,18 @@
 					</div>
 				</div>
 				<div class="col-6 hero-image">
-					<img src="assets/images/hero_profile.png" alt="" />
+					<picture>
+						<source
+							media="(max-width:768px)"
+							srcset="assets/images/hero_profile.png"
+						/>
+						<source
+							media="(min-width:768px)"
+							srcset="assets/images/hero-profile.png"
+						/>
+						<img src="assets/images/hero-profile.png" alt="" />
+					</picture>
+					<!-- <img src="assets/images/hero_profile.png" alt="" /> -->
 				</div>
 			</div>
 		</header>
