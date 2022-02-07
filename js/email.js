@@ -22,9 +22,9 @@ const setSnackState = (res) => {
 form.addEventListener('submit', async function (e) {
 	e.preventDefault();
 	this.contact_number.value = (Math.random() * 100000) | 0;
-	// await emailjs
-	// 	.sendForm('service_9u8pleo', 'template_hqa0uaq', this)
-	// 	.then(() => setSnackState(true))
-	// 	.catch(() => setSnackState(false))
-	// 	.then(() => displaySnack());
+	await emailjs
+		.sendForm('service_9u8pleo', 'template_hqa0uaq', this)
+		.then(() => setSnackState(true))
+		.catch(() => setSnackState(false))
+		.then(() => displaySnack());
 });

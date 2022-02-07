@@ -556,9 +556,11 @@ footer {
 	border-radius: 0.375rem;
 	padding: 1rem;
 	position: fixed;
+	width: 250px;
+	top: 5rem;
+	left: 50%;
+	margin-left: -125px;
 	z-index: 1;
-	right: 2rem;
-	bottom: 7rem;
 }
 
 #snackbar.error {
@@ -567,8 +569,8 @@ footer {
 
 #snackbar.show {
 	visibility: visible;
-	-webkit-animation: fadein 0.5s, fadeout 1s 2.5s;
-	animation: fadein 0.5s, fadeout 1s 2.5s;
+	-webkit-animation: fadein-down 0.5s, fadeout-up 1s 2.5s;
+	animation: fadein-down 0.5s, fadeout-up 1s 2.5s;
 }
 
 ::placeholder {
@@ -684,6 +686,18 @@ footer {
 		margin-right: 0;
 		gap: 2rem;
 	}
+
+	#snackbar {
+		top: unset;
+		right: 2rem;
+		bottom: 7rem;
+		left: unset;
+	}
+
+	#snackbar.show {
+		-webkit-animation: fadein-up 0.5s, fadeout-down 1s 2.5s;
+		animation: fadein-up 0.5s, fadeout-down 1s 2.5s;
+	}
 }
 
 @media screen and (min-width: 992px) {
@@ -696,7 +710,7 @@ footer {
 	}
 }
 
-@-webkit-keyframes fadein {
+@keyframes fadein-up {
 	from {
 		bottom: 0;
 		opacity: 0;
@@ -707,18 +721,7 @@ footer {
 	}
 }
 
-@keyframes fadein {
-	from {
-		bottom: 0;
-		opacity: 0;
-	}
-	to {
-		bottom: 7rem;
-		opacity: 1;
-	}
-}
-
-@-webkit-keyframes fadeout {
+@keyframes fadeout-down {
 	from {
 		bottom: 7rem;
 		opacity: 1;
@@ -729,13 +732,24 @@ footer {
 	}
 }
 
-@keyframes fadeout {
+@keyframes fadein-down {
 	from {
-		bottom: 7rem;
+		top: 0;
+		opacity: 0;
+	}
+	to {
+		top: 5rem;
+		opacity: 1;
+	}
+}
+
+@keyframes fadeout-up {
+	from {
+		top: 5rem;
 		opacity: 1;
 	}
 	to {
-		bottom: 0;
+		top: 0;
 		opacity: 0;
 	}
 }
