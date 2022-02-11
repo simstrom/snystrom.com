@@ -287,6 +287,11 @@ header {
 	align-items: center;
 }
 
+.hero h2 {
+	font-size: 1.125rem;
+	margin-top: 0.5rem;
+}
+
 .hero span {
 	color: var(--color-cta-primary);
 }
@@ -393,7 +398,7 @@ section {
 	content: '';
 	display: block;
 	position: absolute;
-	bottom: -0.3rem;
+	bottom: -0.5rem;
 	left: 0px;
 	right: 0px;
 	height: 3px;
@@ -599,11 +604,6 @@ footer {
 }
 
 @media screen and (min-width: 768px) {
-	h1 {
-		font-size: 2rem;
-		line-height: 1;
-	}
-
 	nav .container,
 	header .container {
 		max-width: 992px;
@@ -619,6 +619,11 @@ footer {
 
 	.col-6 {
 		width: 50%;
+	}
+
+	h1 {
+		font-size: 2rem;
+		line-height: 1;
 	}
 
 	.hero {
