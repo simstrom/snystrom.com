@@ -1,4 +1,4 @@
-const form = document.getElementById('contact-form');
+export const form = document.getElementById('contact-form');
 const snack = document.getElementById('snackbar');
 
 const displaySnack = () => {
@@ -19,12 +19,12 @@ const setSnackState = (res) => {
 	}
 };
 
-form.addEventListener('submit', async function (e) {
+export const sendEmail = async (e) => {
 	e.preventDefault();
-	this.contact_number.value = (Math.random() * 100000) | 0;
+	form.contact_number.value = (Math.random() * 100000) | 0;
 	await emailjs
-		.sendForm('service_9u8pleo', 'template_hqa0uaq', this)
+		.sendForm('service_9u8pleo', 'template_hqa0uaq', form)
 		.then(() => setSnackState(true))
 		.catch(() => setSnackState(false))
 		.then(() => displaySnack());
-});
+};

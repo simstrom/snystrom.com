@@ -7,17 +7,13 @@
 		<title>Simon Nystrom</title>
 		<link rel="stylesheet" href="styles/reset.css" />
 		<link rel="stylesheet" href="styles/app.css" />
-		<script src="js/app.js" defer></script>
-		<script
-			type="text/javascript"
-			src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"
-		></script>
-		<script type="text/javascript">
+		<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+		<script>
 			(function () {
 				emailjs.init('user_6KzBVwIeJ9EQGT63k7CjI');
 			})();
 		</script>
-		<script src="js/email.js" defer></script>
+		<script src="js/app.js" type="module"></script>
 	</head>
 	<body class="ui-dark">
 		<nav>
@@ -269,7 +265,7 @@
 											href="https://github.com/simstrom/arcturus"
 											target="_blank"
 											rel="noopener noreferrer"
-											class="btn-primary btn-small"
+											class="btn-secondary btn-small"
 										>
 											Source
 										</a>

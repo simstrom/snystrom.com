@@ -1,3 +1,5 @@
+import { form, sendEmail } from './email.js';
+
 const nav = document.querySelector('.nav-main');
 const navToggle = document.querySelector('.mobile-nav-toggle');
 const bars = document.querySelectorAll('.bar');
@@ -12,6 +14,7 @@ document.addEventListener('keydown', (e) => {
 links.addEventListener('click', (e) => {
 	if (e.target.tagName.toLowerCase() === 'a') closeMenu();
 });
+form.addEventListener('submit', sendEmail);
 
 function toggleTheme() {
 	if (document.body.classList.contains('ui-dark')) {
