@@ -159,7 +159,8 @@ nav {
 	cursor: pointer;
 }
 
-.nav-links a {
+.nav-links a,
+.logo a {
 	position: relative;
 	color: var(--color-body-primary);
 	font-weight: bold;
@@ -184,7 +185,8 @@ nav {
 	transform: scaleX(1);
 }
 
-.nav-links a:hover {
+.nav-links a:hover,
+.logo a:hover {
 	color: var(--color-body-secondary);
 }
 
