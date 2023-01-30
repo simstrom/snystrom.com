@@ -1,7 +1,9 @@
 import { useTheme } from 'next-themes';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-// import NextLink from 'next/link';
+
+import Footer from './Footer';
+import Nav from './Nav';
 
 export default function Container(props) {
 	const { resolvedTheme, setTheme } = useTheme();
@@ -17,7 +19,7 @@ export default function Container(props) {
 	};
 
 	return (
-		<div className="bg-gray-50 dark:bg-gray-900">
+		<div>
 			<Head>
 				<title>{meta.title}</title>
 				<meta name="keywords" content="snystrom, simon nystrom, simstrom" />
@@ -32,7 +34,10 @@ export default function Container(props) {
 				<meta property="og:type" content={meta.type} />
 				{meta.date && <meta property="article:published_time" content={meta.date} />}
 			</Head>
-			{children}
+
+			<Nav />
+			<main className="flex flex-col justify-center px-8">{children}</main>
+			<Footer />
 		</div>
 	);
 }

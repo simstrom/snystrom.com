@@ -1,7 +1,7 @@
 const { fontFamily } = require('tailwindcss/defaultTheme');
 
 module.exports = {
-	content: ['./pages/**/*.{js, jsx}', './components/**/*.{js,jsx'],
+	content: ['./pages/**/*.{js, jsx}', './components/**/*.{js,jsx}'],
 	darkMode: 'class',
 	theme: {
 		extend: {
@@ -17,8 +17,8 @@ module.exports = {
 			},
 		},
 		fontFamily: {
-			sans: ['var(--font-satoshi)', ...fontFamily.sans],
-			body: ['Inter', ...fontFamily.sans],
+			// sans: ['var(--font-satoshi)', ...fontFamily.sans],
+			sans: ['Inter', ...fontFamily.sans],
 		},
 		typography: (theme) => ({
 			DEFAULT: {
