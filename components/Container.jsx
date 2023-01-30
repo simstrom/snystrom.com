@@ -2,9 +2,6 @@ import { useTheme } from 'next-themes';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
-import Footer from './Footer';
-import Nav from './Nav';
-
 export default function Container(props) {
 	const { resolvedTheme, setTheme } = useTheme();
 	const router = useRouter();
@@ -35,9 +32,7 @@ export default function Container(props) {
 				{meta.date && <meta property="article:published_time" content={meta.date} />}
 			</Head>
 
-			<Nav />
 			<main className="flex flex-col justify-center px-8">{children}</main>
-			<Footer />
 		</div>
 	);
 }

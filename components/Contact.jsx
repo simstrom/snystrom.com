@@ -1,8 +1,8 @@
-import { ArrowIcon, CvIcon, EmailIcon, GithubIcon, InstagramIcon, LinkedInIcon } from './Icons';
+import { CvIcon, EmailIcon, GithubIcon, InstagramIcon, LinkedInIcon, TopRightIcon } from './Icons';
 
 const LinkCard = ({ href, icon, children }) => (
 	<a
-		className="flex justify-between border border-black-opaque-100 dark:border-gray-opaque-100 p-4 rounded-lg group hover:bg-gray-100 dark:hover:bg-gray-800 transition duration-300"
+		className="flex justify-between border border-black-opaque-100 dark:border-gray-opaque-100 p-4 rounded-lg group hover:bg-gray-100 dark:hover:bg-gray-800 "
 		target="_blank"
 		rel="noopener noreferrer"
 		href={href}
@@ -11,8 +11,8 @@ const LinkCard = ({ href, icon, children }) => (
 			<div>{icon}</div>
 			{children}
 		</div>
-		<div className="group-hover:translate-x-1 group-hover:-translate-y-1 transition duration-300">
-			<ArrowIcon />
+		<div className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">
+			<TopRightIcon />
 		</div>
 	</a>
 );
@@ -22,7 +22,9 @@ export default function Contact() {
 		<div className="w-full">
 			<div className="my-8">
 				<h3 className="text-xl font-semibold tracking-tight mb-1">Get in Touch</h3>
-				<p>I&apos;m more than happy to connect! You can find me through the links below.</p>
+				<p className="text-gray-600 dark:text-gray-400">
+					I&apos;m more than happy to connect! You can find me through the links below.
+				</p>
 			</div>
 			<div className="grid gap-4 md:grid-cols-2 text-sm font-medium mb-4">
 				<LinkCard href="mailto:simons.nystrom@gmail.com" icon={<EmailIcon />}>
