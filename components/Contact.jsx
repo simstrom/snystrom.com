@@ -14,7 +14,7 @@ export default function Contact() {
 				<LinkCard href="mailto:simons.nystrom@gmail.com" icon={<EmailIcon />}>
 					Send Email
 				</LinkCard>
-				<LinkCard href="" icon={<CvIcon />}>
+				<LinkCard href="/static/cv.pdf" icon={<CvIcon />}>
 					View CV
 				</LinkCard>
 			</div>

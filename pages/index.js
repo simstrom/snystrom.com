@@ -1,6 +1,7 @@
 import Contact from '../components/Contact';
 import Container from '../components/Container';
 import FeaturedPost from '../components/FeaturedPost';
+import FeaturedProject from '../components/FeaturedProject';
 import SectionHeader from '../components/SectionHeader';
 
 export default function Home() {
@@ -48,6 +49,9 @@ export default function Home() {
 					optio consectetur assumenda officiis, dicta cumque tenetur quasi aliquam possimus nostrum
 					asperiores ad voluptatibus, rerum placeat quae ab perspiciatis laborum dolor!
 				</p>
+				<section className="w-full mb-20">
+					<FeaturedProject />
+				</section>
 
 				<section className="w-full mb-20">
 					<SectionHeader num="04" btnText="View All Articles" href="/blog">

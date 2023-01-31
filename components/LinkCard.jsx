@@ -9,7 +9,7 @@ export default function LinkCard({ href, icon, children }) {
 			rel="noopener noreferrer"
 			href={href}
 		>
-			<div className="flex gap-4">
+			<div className="flex items-center gap-4">
 				<div>{icon}</div>
 				{children}
 			</div>
