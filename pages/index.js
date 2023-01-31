@@ -1,5 +1,6 @@
 import Contact from '../components/Contact';
 import Container from '../components/Container';
+import SectionHeader from '../components/SectionHeader';
 
 export default function Home() {
 	return (
@@ -46,6 +47,9 @@ export default function Home() {
 					optio consectetur assumenda officiis, dicta cumque tenetur quasi aliquam possimus nostrum
 					asperiores ad voluptatibus, rerum placeat quae ab perspiciatis laborum dolor!
 				</p>
+				<SectionHeader num="05" btnText="View Gallery" href={'/'}>
+					Contact
+				</SectionHeader>
 				<Contact />
 			</div>
 		</Container>

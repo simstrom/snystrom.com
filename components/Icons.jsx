@@ -65,6 +65,36 @@ export const TopRightIcon = ({ w }) => {
 		</svg>
 	);
 };
+export const RightArrowIcon = ({ w }) => {
+	return (
+		<svg
+			version="1.1"
+			xmlns="http://www.w3.org/2000/svg"
+			width={20}
+			height={20}
+			viewBox="0 0 32 32"
+			enable-background="new 0 0 32 32"
+		>
+			<line
+				fill="none"
+				stroke="currentColor"
+				stroke-width="3"
+				stroke-miterlimit="10"
+				x1="26"
+				y1="16"
+				x2="4"
+				y2="16"
+			/>
+			<polyline
+				fill="none"
+				stroke="currentColor"
+				stroke-width="3"
+				stroke-miterlimit="10"
+				points="18,7.5 26.5,16 18,24.5 "
+			/>
+		</svg>
+	);
+};
 
 export const HamburgerIcon = (props) => {
 	return (

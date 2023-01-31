@@ -4,8 +4,8 @@ import LinkCard from './LinkCard';
 export default function Contact() {
 	return (
 		<div className="w-full">
-			<div className="my-8">
-				<h3 className="text-xl font-semibold tracking-tight mb-1">Get in Touch</h3>
+			<div className="mb-8">
+				<h3 className="text-lg sm:text-xl font-semibold tracking-tight mb-1">Get in Touch</h3>
 				<p className="text-gray-600 dark:text-gray-400">
 					I&apos;m more than happy to connect! You can find me through the links below.
 				</p>
