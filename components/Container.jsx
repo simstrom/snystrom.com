@@ -1,9 +1,7 @@
-import { useTheme } from 'next-themes';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
 export default function Container(props) {
-	const { resolvedTheme, setTheme } = useTheme();
 	const router = useRouter();
 
 	const { children, ...metaData } = props;

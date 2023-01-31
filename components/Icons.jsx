@@ -66,6 +66,48 @@ export const TopRightIcon = ({ w }) => {
 	);
 };
 
+export const HamburgerIcon = (props) => {
+	return (
+		<svg className="h-7 w-7" width="20" height="20" viewBox="0 0 20 20" fill="none" {...props}>
+			<path
+				d="M2.5 7.5H17.5"
+				stroke="currentColor"
+				strokeWidth="1.5"
+				strokeLinecap="butt"
+				strokeLinejoin="inherit"
+			/>
+			<path
+				d="M2.5 12.5H17.5"
+				stroke="currentColor"
+				strokeWidth="1.5"
+				strokeLinecap="butt"
+				strokeLinejoin="inherit"
+			/>
+		</svg>
+	);
+};
+
+export const CloseIcon = (props) => {
+	return (
+		<svg
+			className="h-7 w-7"
+			viewBox="0 0 20 20"
+			width="20"
+			height="20"
+			stroke="currentColor"
+			strokeWidth="1.5"
+			strokeLinecap="butt"
+			strokeLinejoin="inherit"
+			fill="none"
+			shapeRendering="geometricPrecision"
+			{...props}
+		>
+			<path d="M18 6L6 18" />
+			<path d="M6 6l12 12" />
+		</svg>
+	);
+};
+
 export const CvIcon = () => {
 	return (
 		<svg

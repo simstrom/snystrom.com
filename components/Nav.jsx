@@ -4,7 +4,8 @@ import { useEffect, useState } from 'react';
 
 import Link from 'next/link';
 import avatar from '../public/avatar.jpg';
-import { DarkModeIcon, LightModeIcon, TopRightIcon } from './Icons';
+import { DarkModeIcon, LightModeIcon } from './Icons';
+import MobileNav from './MobileNav';
 import NavItem from './NavItem';
 
 const links = [
@@ -29,8 +30,9 @@ export default function Nav() {
 	}
 
 	return (
-		<header className="sticky top-0 z-10 backdrop-blur-md flex flex-col justify-center items-center w-full px-8 bg-gray-50/80 dark:bg-gray-900/80 transition-colors duration-300">
+		<header className="sticky top-0 z-10 backdrop-blur-md flex flex-col justify-center items-center w-full px-8 bg-gray-100/70 dark:bg-gray-900/70 transition-colors duration-300">
 			<nav className="flex justify-between items-center max-w-3xl w-full py-2 font-medium">
+				<MobileNav links={links} />
 				<Link href="/" className="shrink-0">
 					<Image
 						src={avatar}
@@ -40,30 +42,20 @@ export default function Nav() {
 						className="rounded-full hover:scale-110 transition"
 					/>
 				</Link>
-				<ul className="flex items-center gap-1">
+				<ul className="hidden sm:flex items-center gap-1 text-sm">
 					{links.map((link) => (
 						<li key={link.href}>
 							<NavItem href={link.href} label={link.label} />
 						</li>
 					))}
 				</ul>
-				<div className="flex items-center gap-6">
-					<Link
-						href="static/cv.pdf"
-						target="_blank"
-						className="flex gap-2 text-gray-600 dark:text-gray-400 px-4 py-2 rounded-full text-sm hover:text-gray-900 dark:hover:text-gray-50"
-					>
-						<div>CV</div>
-						<TopRightIcon w={8} />
-					</Link>
 
-					<div
-						role="button"
-						className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-50 transition-colors duration-300"
-						onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-					>
-						{theme === 'dark' ? <DarkModeIcon /> : <LightModeIcon />}
-					</div>
+				<div
+					role="button"
+					className="rounded-full text-gray-600 dark:text-gray-400 hover:text-gray-900  dark:hover:text-gray-100 transition-colors duration-300"
+					onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+				>
+					{theme === 'dark' ? <DarkModeIcon /> : <LightModeIcon />}
 				</div>
 			</nav>
 		</header>
