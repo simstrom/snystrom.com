@@ -3,7 +3,7 @@ import LinkCard from './LinkCard';
 
 export default function Contact() {
 	return (
-		<div className="w-full">
+		<>
 			<div className="mb-8">
 				<h3 className="text-lg sm:text-xl font-semibold tracking-tight mb-1">Get in Touch</h3>
 				<p className="text-gray-600 dark:text-gray-400">
@@ -29,6 +29,6 @@ export default function Contact() {
 					Instagram
 				</LinkCard>
 			</div>
-		</div>
+		</>
 	);
 }
