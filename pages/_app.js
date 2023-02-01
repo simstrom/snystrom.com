@@ -13,7 +13,7 @@ const inter = Inter({ subsets: ['latin'] });
 
 export default function App({ Component, pageProps }) {
 	return (
-		<ThemeProvider attribute="class" defaultTheme="dark">
+		<ThemeProvider attribute="class" defaultTheme="dark" disableTransitionOnChange>
 			<div className={`${inter.className}`}>
 				<Nav />
 				<Component {...pageProps} />

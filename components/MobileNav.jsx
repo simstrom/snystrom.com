@@ -58,12 +58,12 @@ export default function MobileNav({ links }) {
 						</LinkCard>
 					</li>
 					<li>
-						<LinkCard href="" icon={<LinkedInIcon />}>
+						<LinkCard href="https://www.linkedin.com/in/simon-nystrom/" icon={<LinkedInIcon />}>
 							Connect on LinkedIn
 						</LinkCard>
 					</li>
 					<li>
-						<LinkCard href="" icon={<GithubIcon />}>
+						<LinkCard href="https://github.com/simstrom" icon={<GithubIcon />}>
 							Browse my Github
 						</LinkCard>
 					</li>

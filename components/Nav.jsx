@@ -30,7 +30,7 @@ export default function Nav() {
 	}
 
 	return (
-		<header className="sticky top-0 z-10 backdrop-blur-md flex flex-col justify-center items-center w-full px-8 bg-gray-100/70 dark:bg-gray-900/70 transition-colors duration-300">
+		<header className="sticky top-0 z-10 backdrop-blur-md flex flex-col justify-center items-center w-full px-8 bg-gray-100/70 dark:bg-gray-900/70">
 			<nav className="flex justify-between items-center max-w-3xl w-full py-2 font-medium">
 				<MobileNav links={links} />
 				<Link href="/" className="shrink-0">
@@ -39,7 +39,7 @@ export default function Nav() {
 						alt="Simon Nyström avatar"
 						width={36}
 						height={36}
-						className="rounded-full hover:scale-110 transition"
+						className="rounded-full hover:scale-110 transition:transform duration-300"
 					/>
 				</Link>
 				<ul className="hidden sm:flex items-center gap-1 text-sm">

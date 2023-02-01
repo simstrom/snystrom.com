@@ -19,13 +19,13 @@ export default function Contact() {
 				</LinkCard>
 			</div>
 			<div className="grid gap-4 md:grid-cols-3 text-sm font-medium">
-				<LinkCard href="" icon={<LinkedInIcon />}>
+				<LinkCard href="https://linkedin.com/in/simon-nystrom" icon={<LinkedInIcon />}>
 					LinkedIn
 				</LinkCard>
-				<LinkCard href="" icon={<GithubIcon />}>
+				<LinkCard href="https://github.com/simstrom" icon={<GithubIcon />}>
 					Github
 				</LinkCard>
-				<LinkCard href="" icon={<InstagramIcon />}>
+				<LinkCard href="https://www.instagram.com/simonnystrom" icon={<InstagramIcon />}>
 					Instagram
 				</LinkCard>
 			</div>

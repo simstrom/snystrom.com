@@ -1,3 +1,4 @@
+import SmallProject from '@/components/SmallProject';
 import Contact from '../components/Contact';
 import Container from '../components/Container';
 import FeaturedPost from '../components/FeaturedPost';
@@ -49,14 +50,26 @@ export default function Home() {
 					optio consectetur assumenda officiis, dicta cumque tenetur quasi aliquam possimus nostrum
 					asperiores ad voluptatibus, rerum placeat quae ab perspiciatis laborum dolor!
 				</p>
-				<section className="w-full mb-20">
+
+				<section className="w-full mb-28">
 					<SectionHeader num="02" btnText="Explore All Projects" href="/projects">
 						Selected Projects
 					</SectionHeader>
-					<FeaturedProject />
+					<div className="w-full flex flex-col gap-4 sm:grid md:gap-8 grid-cols-2 mb-12">
+						<FeaturedProject />
+						<FeaturedProject />
+					</div>
+
+					<div className="flex justify-center items-center mb-8">
+						<h3 className="text-2xl font-semibold tracking-tight">More Things I Have Built</h3>
+					</div>
+					<div className="w-full flex flex-col gap-4 sm:grid md:gap-8 grid-cols-2">
+						<SmallProject />
+						<SmallProject />
+					</div>
 				</section>
 
-				<section className="w-full mb-20">
+				<section className="w-full mb-28">
 					<SectionHeader num="03" btnText="View All Articles" href="/blog">
 						Latest Blog Posts
 					</SectionHeader>
@@ -67,7 +80,7 @@ export default function Home() {
 					</div>
 				</section>
 
-				<section className="w-full mb-20">
+				<section className="w-full mb-28">
 					<SectionHeader num="05">Contact</SectionHeader>
 					<Contact />
 				</section>
