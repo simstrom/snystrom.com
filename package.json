@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@next/font": "13.1.6",
+    "clsx": "^1.2.1",
     "contentful": "^9.3.0",
     "eslint": "8.33.0",
     "eslint-config-next": "13.1.6",

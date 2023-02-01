@@ -50,11 +50,14 @@ export default function Home() {
 					asperiores ad voluptatibus, rerum placeat quae ab perspiciatis laborum dolor!
 				</p>
 				<section className="w-full mb-20">
+					<SectionHeader num="02" btnText="Explore All Projects" href="/projects">
+						Selected Projects
+					</SectionHeader>
 					<FeaturedProject />
 				</section>
 
 				<section className="w-full mb-20">
-					<SectionHeader num="04" btnText="View All Articles" href="/blog">
+					<SectionHeader num="03" btnText="View All Articles" href="/blog">
 						Latest Blog Posts
 					</SectionHeader>
 					<div className="w-full flex flex-col gap-4 sm:grid md:gap-8 grid-cols-3">
