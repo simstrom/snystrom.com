@@ -35,7 +35,7 @@ export default function MobileNav({ links }) {
 			<div
 				className={cn(
 					styles.menu,
-					'flex flex-col bg-gray-100 dark:bg-gray-900 px-8',
+					'flex flex-col bg-gray-100 dark:bg-gray-900',
 					open ? styles.menuOpen : styles.menuClosed
 				)}
 			>

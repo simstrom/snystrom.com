@@ -6,7 +6,7 @@ export default function about() {
 	return (
 		<Container>
 			<div className="flex flex-col gap-6 sm:gap-8 max-w-2xl mx-auto">
-				<section>
+				<section className="mb-6">
 					<h1 className="font-semibold text-3xl sm:text-4xl tracking-tight mb-6 sm:mb-8">
 						About Me
 					</h1>

@@ -1,17 +1,44 @@
 import SmallProject from '@/components/SmallProject';
+import Image from 'next/image';
 import Link from 'next/link';
+
 import Contact from '../components/Contact';
 import Container from '../components/Container';
 import FeaturedPost from '../components/FeaturedPost';
 import FeaturedProject from '../components/FeaturedProject';
 import { ListIcon } from '../components/Icons';
 import SectionHeader from '../components/SectionHeader';
+import heroImg from '../public/hero.jpg';
 
 export default function Home() {
 	return (
 		<Container>
+			<section className="grid grid-cols-5 gap-10 items-center h-96">
+				<div className="col-span-3 flex flex-col gap-1">
+					<span className="font-medium text-emerald-500">Hi there, my name is</span>
+					<h1 className="text-5xl font-bold tracking-tight">Simon Nyström.</h1>
+					<h2 className="mb-4 text-2xl font-medium tracking-tight text-gray-400 dark:text-gray-600">
+						Passion for code, eager to develop.
+					</h2>
+					<p className="leading-relaxed text-gray-600 dark:text-gray-400">
+						I’m currently pursuing a Bachelor’s Degree in Systems Development while spending my
+						spare time self-teaching web development.{' '}
+					</p>
+				</div>
+				<div className="col-span-2">
+					<Image
+						src={heroImg}
+						alt=""
+						width={300}
+						height={300}
+						draggable="false"
+						className="rounded-xl"
+					/>
+				</div>
+			</section>
+
 			<section>
-				<SectionHeader num="02" btnText="Get to know more" href="/about">
+				<SectionHeader num="01" btnText="Get to know more" href="/about">
 					About Me
 				</SectionHeader>
 

@@ -31,7 +31,7 @@ export default function Nav() {
 
 	return (
 		<header className="sticky top-0 z-10 backdrop-blur-md bg-gray-100/70 dark:bg-gray-900/70">
-			<nav className="flex justify-between items-center py-2 font-medium">
+			<nav className="flex justify-between items-center py-2 font-medium w-full">
 				<MobileNav links={links} />
 				<Link href="/" className="shrink-0">
 					<Image
@@ -50,13 +50,13 @@ export default function Nav() {
 					))}
 				</ul>
 
-				<div
+				<button
 					role="button"
 					className="rounded-full text-gray-600 dark:text-gray-400 hover:text-gray-900  dark:hover:text-gray-100 transition-colors duration-300"
 					onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
 				>
 					{theme === 'dark' ? <DarkModeIcon /> : <LightModeIcon />}
-				</div>
+				</button>
 			</nav>
 		</header>
 	);
