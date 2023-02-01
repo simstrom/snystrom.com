@@ -1,4 +1,5 @@
 import '@/styles/globals.css';
+import cn from 'clsx';
 import Footer from '../components/Footer';
 import Nav from '../components/Nav';
 
@@ -14,7 +15,7 @@ const inter = Inter({ subsets: ['latin'] });
 export default function App({ Component, pageProps }) {
 	return (
 		<ThemeProvider attribute="class" defaultTheme="dark" disableTransitionOnChange>
-			<div className={`${inter.className}`}>
+			<div className={cn(inter.className, 'max-w-3xl mx-auto px-6 md:px-8')}>
 				<Nav />
 				<Component {...pageProps} />
 				<Footer />

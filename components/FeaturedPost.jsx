@@ -4,7 +4,7 @@ export default function FeaturedPost({ gradientFrom, gradientTo, post }) {
 	return (
 		<div
 			className={cn(
-				'w-full rounded-xl p-1 sm:hover:-translate-y-2 transition-transform',
+				'w-full rounded-xl p-1 hover:-translate-y-2 transition-transform',
 				'bg-gradient-to-r',
 				gradientFrom,
 				gradientTo
