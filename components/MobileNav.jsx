@@ -1,3 +1,4 @@
+import cn from 'clsx';
 import { useEffect, useState } from 'react';
 import styles from '../styles/mobile-nav.module.css';
 
@@ -13,6 +14,7 @@ export default function MobileNav({ links }) {
 		setOpen(!open);
 	};
 
+	//Delay render of Social Links
 	useEffect(() => {
 		setTimeout(() => {
 			setRendered(open);
@@ -23,7 +25,7 @@ export default function MobileNav({ links }) {
 		<>
 			<div
 				role="button"
-				className={`${styles.burger} sm:hidden z-10 ml-2 text-gray-600 dark:text-gray-400`}
+				className={cn(styles.burger, 'sm:hidden z-10 ml-2 text-gray-600 dark:text-gray-400')}
 				onClick={toggleMenu}
 			>
 				<HamburgerIcon data-hide={open} />
@@ -31,9 +33,11 @@ export default function MobileNav({ links }) {
 			</div>
 
 			<div
-				className={`${styles.menu} flex flex-col bg-gray-100 dark:bg-gray-900 px-8 ${
+				className={cn(
+					styles.menu,
+					'flex flex-col bg-gray-100 dark:bg-gray-900 px-8',
 					open ? styles.menuOpen : styles.menuClosed
-				}`}
+				)}
 			>
 				<ul className="mt-20 flex flex-col w-full mb-8">
 					{links.map((link) => (

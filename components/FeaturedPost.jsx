@@ -1,7 +1,14 @@
+import cn from 'clsx';
+
 export default function FeaturedPost({ gradientFrom, gradientTo, post }) {
 	return (
 		<div
-			className={`w-full rounded-xl bg-gradient-to-r ${gradientFrom} ${gradientTo} p-1 sm:hover:-translate-y-2 transition-transform`}
+			className={cn(
+				'w-full rounded-xl p-1 sm:hover:-translate-y-2 transition-transform',
+				'bg-gradient-to-r',
+				gradientFrom,
+				gradientTo
+			)}
 		>
 			<div className="flex flex-col gap-2 sm:gap-16 px-6 py-6 sm:py-8 w-full h-full rounded-lg bg-gray-100 dark:bg-gray-900">
 				<div className="flex flex-col gap-1">
