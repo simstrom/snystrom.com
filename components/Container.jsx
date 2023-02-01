@@ -30,7 +30,9 @@ export default function Container(props) {
 				{meta.date && <meta property="article:published_time" content={meta.date} />}
 			</Head>
 
-			<main className="pt-12 pb-12 md:pb-20 flex flex-col gap-20 md:gap-28">{children}</main>
+			<main className="pt-14 md:pt-20 pb-14 md:pb-20 flex flex-col gap-20 md:gap-28">
+				{children}
+			</main>
 		</div>
 	);
 }

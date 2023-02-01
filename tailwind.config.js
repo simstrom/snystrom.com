@@ -17,7 +17,6 @@ module.exports = {
 			},
 		},
 		fontFamily: {
-			// sans: ['var(--font-satoshi)', ...fontFamily.sans],
 			sans: ['Inter', ...fontFamily.sans],
 		},
 		typography: (theme) => ({

@@ -11,6 +11,8 @@ export default function FeaturedProject({ href }) {
 					src="/loop-agile.png"
 					alt=""
 					fill
+					sizes="(max-width: 640px) 100vw,
+							50vw"
 					className="object-cover overflow-hidden rounded-t-lg border-b border-black-opaque-200 dark:border-gray-opaque-200"
 				/>
 				<a
@@ -59,7 +61,7 @@ export default function FeaturedProject({ href }) {
 						</a>
 					</div>
 				</div>
-				<p className="text-sm text-gray-600 dark:text-gray-400 px-6">
+				<p className="text-sm text-gray-600 dark:text-gray-400 px-6 leading-relaxed">
 					Web-based communications platform acting as a forum for signed in users. Built for the
 					purpose to learn full-stack React development and its design patterns. Node, Express and
 					Sequelize ORM was used as middle layer to build the server and APIs.

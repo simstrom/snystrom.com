@@ -1,4 +1,5 @@
 import SmallProject from '@/components/SmallProject';
+import Link from 'next/link';
 import Contact from '../components/Contact';
 import Container from '../components/Container';
 import FeaturedPost from '../components/FeaturedPost';
@@ -15,7 +16,7 @@ export default function Home() {
 				</SectionHeader>
 
 				<div className="w-full flex flex-col gap-8 sm:grid md:gap-10 grid-cols-3">
-					<div className="col-span-2 text-sm">
+					<div className="col-span-2">
 						<h3 className="font-semibold text-xl tracking-tight mb-4">A Short Backstory</h3>
 						<p className="text-gray-600 dark:text-gray-400 mb-2 leading-relaxed">
 							I’m currently pursuing a Bachelor’s Degree in Systems Development while spending my
@@ -33,7 +34,7 @@ export default function Home() {
 					<div>
 						<h3 className="font-semibold text-lg tracking-tight mb-4">Technologies</h3>
 
-						<ul className="w-full gap-4 grid grid-cols-2 text-sm mb-4 text-gray-600 dark:text-gray-400">
+						<ul className="w-full gap-4 grid grid-cols-2 sm:text-sm mb-4 text-gray-600 dark:text-gray-400">
 							<li className="flex gap-2 items-center">
 								<ListIcon />
 								JavaScript
@@ -59,8 +60,8 @@ export default function Home() {
 								MongoDB
 							</li>
 						</ul>
-						<h4 className="font-semibold tracking-tight mb-2">Tools</h4>
-						<ul className="w-full gap-4 grid grid-cols-2 text-sm text-gray-600 dark:text-gray-400">
+						<h4 className="font-semibold text-lg tracking-tight mb-2">Tools</h4>
+						<ul className="w-full gap-4 grid grid-cols-2 sm:text-sm text-gray-600 dark:text-gray-400">
 							<li className="flex gap-2 items-center">
 								<ListIcon />
 								Git
@@ -93,9 +94,12 @@ export default function Home() {
 					<SmallProject />
 				</div>
 				<div className="flex justify-center items-center">
-					<button className="font-medium text-sm tracking-tight py-3 px-6 rounded-lg bg-gray-200/40 dark:bg-gray-800/40 hover:ring-2 ring-emerald-500 transition duration-300">
+					<Link
+						href="/projects"
+						className="font-medium text-sm tracking-tight py-3 px-6 rounded-lg bg-gray-200/40 dark:bg-gray-800/40 hover:ring-2 ring-emerald-500 transition duration-300"
+					>
 						See More Projects
-					</button>
+					</Link>
 				</div>
 			</section>
 
@@ -103,7 +107,7 @@ export default function Home() {
 				<SectionHeader num="03" btnText="View All Articles" href="/blog">
 					Latest Blog Posts
 				</SectionHeader>
-				<div className="w-full flex flex-col gap-4 sm:grid md:gap-8 grid-cols-3">
+				<div className="w-full flex flex-col gap-4 sm:grid md:gap-6 grid-cols-3">
 					<FeaturedPost gradientFrom={'from-emerald-300'} gradientTo={'to-blue-300'} />
 					<FeaturedPost gradientFrom={'from-pink-300'} gradientTo={'to-indigo-300'} />
 					<FeaturedPost gradientFrom={'from-orange-300'} gradientTo={'to-rose-300'} />

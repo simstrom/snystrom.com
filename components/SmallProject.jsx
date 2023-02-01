@@ -30,7 +30,7 @@ export default function SmallProject({ href }) {
 						</a>
 					</div>
 				</div>
-				<p className="text-sm text-gray-600 dark:text-gray-400 px-6">
+				<p className="text-sm text-gray-600 dark:text-gray-400 px-6 leading-relaxed">
 					Web-based communications platform acting as a forum for signed in users. Built for the
 					purpose to learn full-stack React development and its design patterns. Node, Express and
 					Sequelize ORM was used as middle layer to build the server and APIs.
