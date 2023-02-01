@@ -3,53 +3,77 @@ import Contact from '../components/Contact';
 import Container from '../components/Container';
 import FeaturedPost from '../components/FeaturedPost';
 import FeaturedProject from '../components/FeaturedProject';
+import { ListIcon } from '../components/Icons';
 import SectionHeader from '../components/SectionHeader';
 
 export default function Home() {
 	return (
 		<Container>
-			<daiv className="flex flex-col justify-center items-start max-w-3xl w-full mx-auto">
-				<h1 className="font-bold text-3xl md:text-5xl tracking-tight mb-1">Hello World</h1>
-				<p>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus odit sit voluptates
-					dolorum assumenda illo veniam ullam voluptas? Similique impedit quaerat dolore adipisci
-					optio id aliquam praesentium quis tempore. Modi? Lorem ipsum dolor sit amet consectetur
-					adipisicing elit. Sed impedit consectetur modi natus ad. Quos, quasi delectus. Asperiores
-					repellat doloribus ducimus, assumenda delectus explicabo dolore, laborum, facilis itaque
-					iusto reprehenderit? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore
-					optio consectetur assumenda officiis, dicta cumque tenetur quasi aliquam possimus nostrum
-					asperiores ad voluptatibus, rerum placeat quae ab perspiciatis laborum dolor!
-				</p>
-				<p>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus odit sit voluptates
-					dolorum assumenda illo veniam ullam voluptas? Similique impedit quaerat dolore adipisci
-					optio id aliquam praesentium quis tempore. Modi? Lorem ipsum dolor sit amet consectetur
-					adipisicing elit. Sed impedit consectetur modi natus ad. Quos, quasi delectus. Asperiores
-					repellat doloribus ducimus, assumenda delectus explicabo dolore, laborum, facilis itaque
-					iusto reprehenderit? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore
-					optio consectetur assumenda officiis, dicta cumque tenetur quasi aliquam possimus nostrum
-					asperiores ad voluptatibus, rerum placeat quae ab perspiciatis laborum dolor!
-				</p>
-				<p>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus odit sit voluptates
-					dolorum assumenda illo veniam ullam voluptas? Similique impedit quaerat dolore adipisci
-					optio id aliquam praesentium quis tempore. Modi? Lorem ipsum dolor sit amet consectetur
-					adipisicing elit. Sed impedit consectetur modi natus ad. Quos, quasi delectus. Asperiores
-					repellat doloribus ducimus, assumenda delectus explicabo dolore, laborum, facilis itaque
-					iusto reprehenderit? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore
-					optio consectetur assumenda officiis, dicta cumque tenetur quasi aliquam possimus nostrum
-					asperiores ad voluptatibus, rerum placeat quae ab perspiciatis laborum dolor!
-				</p>
-				<p>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus odit sit voluptates
-					dolorum assumenda illo veniam ullam voluptas? Similique impedit quaerat dolore adipisci
-					optio id aliquam praesentium quis tempore. Modi? Lorem ipsum dolor sit amet consectetur
-					adipisicing elit. Sed impedit consectetur modi natus ad. Quos, quasi delectus. Asperiores
-					repellat doloribus ducimus, assumenda delectus explicabo dolore, laborum, facilis itaque
-					iusto reprehenderit? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore
-					optio consectetur assumenda officiis, dicta cumque tenetur quasi aliquam possimus nostrum
-					asperiores ad voluptatibus, rerum placeat quae ab perspiciatis laborum dolor!
-				</p>
+			<div className="flex flex-col justify-center items-start max-w-3xl w-full mx-auto">
+				<section className="w-full mb-28">
+					<SectionHeader num="02" btnText="Get to know more" href="/about">
+						About Me
+					</SectionHeader>
+
+					<div className="w-full flex flex-col gap-8 sm:grid md:gap-10 grid-cols-3">
+						<div className="col-span-2 text-sm">
+							<h3 className="font-semibold text-xl tracking-tight mb-4">A Short Backstory</h3>
+							<p className="text-gray-600 dark:text-gray-400 mb-2 leading-relaxed">
+								I’m currently pursuing a Bachelor’s Degree in Systems Development while spending my
+								spare time self-teaching web development. I have become somewhat obsessed in
+								embracing new technologies and building things with code.
+							</p>
+							<p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+								Ever since my early days I’ve taken an interest in the world of digital creations.
+								However, I didn’t grasp the opportunities and the potential of learning how to code
+								until I met a Software Engineer while travelling in Indonesia. He told me about the
+								profession and the things he had created. As someone who has an itch for solving
+								problems and unleashing creativity, I was hooked.
+							</p>
+						</div>
+						<div>
+							<h3 className="font-semibold text-lg tracking-tight mb-4">Technologies</h3>
+
+							<ul className="w-full gap-4 grid grid-cols-2 text-sm mb-4 text-gray-600 dark:text-gray-400">
+								<li className="flex gap-2 items-center">
+									<ListIcon />
+									JavaScript
+								</li>
+								<li className="flex gap-2 items-center">
+									<ListIcon />
+									Java
+								</li>
+								<li className="flex gap-2 items-center">
+									<ListIcon />
+									React
+								</li>
+								<li className="flex gap-2 items-center">
+									<ListIcon />
+									SQL
+								</li>
+								<li className="flex gap-2 items-center">
+									<ListIcon />
+									Node.js
+								</li>
+								<li className="flex gap-2 items-center">
+									<ListIcon />
+									MongoDB
+								</li>
+							</ul>
+							<h4 className="font-semibold tracking-tight mb-2">Tools</h4>
+							<ul className="w-full gap-4 grid grid-cols-2 text-sm text-gray-600 dark:text-gray-400">
+								<li className="flex gap-2 items-center">
+									<ListIcon />
+									Git
+								</li>
+								<li className="flex gap-2 items-center">
+									<ListIcon />
+									Figma
+								</li>
+							</ul>
+						</div>
+					</div>
+				</section>
 
 				<section className="w-full mb-28">
 					<SectionHeader num="02" btnText="Explore All Projects" href="/projects">
@@ -60,12 +84,19 @@ export default function Home() {
 						<FeaturedProject />
 					</div>
 
-					<div className="flex justify-center items-center mb-8">
-						<h3 className="text-2xl font-semibold tracking-tight">More Things I Have Built</h3>
+					<div className="flex justify-center items-center mb-4">
+						<h3 className="text-xl sm:text-2xl font-semibold tracking-tight">
+							More Things I Have Built
+						</h3>
 					</div>
-					<div className="w-full flex flex-col gap-4 sm:grid md:gap-8 grid-cols-2">
+					<div className="w-full flex flex-col gap-4 sm:grid md:gap-8 grid-cols-2 mb-8">
 						<SmallProject />
 						<SmallProject />
+					</div>
+					<div className="flex justify-center items-center">
+						<button className="font-medium text-sm tracking-tight py-3 px-6 rounded-lg bg-gray-200/40 dark:bg-gray-800/40 hover:ring-2 ring-emerald-500 transition duration-300">
+							See More Projects
+						</button>
 					</div>
 				</section>
 
@@ -84,7 +115,7 @@ export default function Home() {
 					<SectionHeader num="05">Contact</SectionHeader>
 					<Contact />
 				</section>
-			</daiv>
+			</div>
 		</Container>
 	);
 }
