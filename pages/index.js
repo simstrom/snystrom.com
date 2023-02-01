@@ -13,11 +13,11 @@ import heroImg from '../public/hero.jpg';
 export default function Home() {
 	return (
 		<Container>
-			<section className="grid grid-cols-5 gap-10 items-center h-96">
-				<div className="col-span-3 flex flex-col gap-1">
+			<section className="flex flex-col sm:grid grid-cols-5 gap-10 items-center sm:h-96">
+				<div className="order-2 sm:order-1 flex flex-col gap-1 sm:col-span-3">
 					<span className="font-medium text-emerald-500">Hi there, my name is</span>
-					<h1 className="text-5xl font-bold tracking-tight">Simon Nyström.</h1>
-					<h2 className="mb-4 text-2xl font-medium tracking-tight text-gray-400 dark:text-gray-600">
+					<h1 className="text-5xl font-bold tracking-tight max-[440px]:text-4xl">Simon Nyström.</h1>
+					<h2 className="mb-4 text-2xl max-[440px]:text-xl font-medium tracking-tight text-gray-400 dark:text-gray-600">
 						Passion for code, eager to develop.
 					</h2>
 					<p className="leading-relaxed text-gray-600 dark:text-gray-400">
@@ -25,14 +25,13 @@ export default function Home() {
 						spare time self-teaching web development.{' '}
 					</p>
 				</div>
-				<div className="col-span-2">
+				<div className="order-1 sm:order-2 sm:col-span-2 w-60 sm:w-full">
 					<Image
 						src={heroImg}
 						alt=""
-						width={300}
-						height={300}
+						fill
 						draggable="false"
-						className="rounded-xl"
+						className="rounded-full sm:rounded-xl image-ring sm:ring-0 image-fluid"
 					/>
 				</div>
 			</section>
@@ -106,7 +105,7 @@ export default function Home() {
 				<SectionHeader num="02" btnText="Explore All Projects" href="/projects">
 					Selected Projects
 				</SectionHeader>
-				<div className="w-full flex flex-col gap-4 sm:grid md:gap-8 grid-cols-2 mb-12">
+				<div className="w-full flex flex-col gap-8 sm:grid grid-cols-2 mb-12">
 					<FeaturedProject />
 					<FeaturedProject />
 				</div>
@@ -116,7 +115,7 @@ export default function Home() {
 						More Things I Have Built
 					</h3>
 				</div>
-				<div className="w-full flex flex-col gap-4 sm:grid md:gap-8 grid-cols-2 mb-8">
+				<div className="w-full flex flex-col gap-8 sm:grid grid-cols-2 mb-8">
 					<SmallProject />
 					<SmallProject />
 				</div>
@@ -134,7 +133,7 @@ export default function Home() {
 				<SectionHeader num="03" btnText="View All Articles" href="/blog">
 					Latest Blog Posts
 				</SectionHeader>
-				<div className="w-full flex flex-col gap-4 sm:grid md:gap-6 grid-cols-3">
+				<div className="w-full flex flex-col gap-6 sm:grid grid-cols-3">
 					<FeaturedPost gradientFrom={'from-emerald-300'} gradientTo={'to-blue-300'} />
 					<FeaturedPost gradientFrom={'from-pink-300'} gradientTo={'to-indigo-300'} />
 					<FeaturedPost gradientFrom={'from-orange-300'} gradientTo={'to-rose-300'} />

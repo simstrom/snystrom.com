@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.image-ring {
+	@apply ring-4 ring-offset-8 ring-gray-200 dark:ring-gray-800 ring-offset-gray-100 dark:ring-offset-gray-900;
+}
+
+.image-fluid {
+	object-fit: contain;
+	width: 100% !important;
+	position: relative !important;
+	height: unset !important;
+}
