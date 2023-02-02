@@ -11,10 +11,12 @@ const inter = Inter({ subsets: ['latin'] });
 export default function App({ Component, pageProps }) {
 	return (
 		<ThemeProvider attribute="class" defaultTheme="dark" disableTransitionOnChange>
-			<div className={cn(inter.className, 'max-w-3xl mx-auto px-6 md:px-8')}>
+			<div className={cn(inter.className)}>
 				<Nav />
-				<Component {...pageProps} />
-				<Footer />
+				<div className="max-w-3xl mx-auto px-6 md:px-8">
+					<Component {...pageProps} />
+					<Footer />
+				</div>
 			</div>
 		</ThemeProvider>
 	);
