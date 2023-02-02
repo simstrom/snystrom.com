@@ -10,7 +10,7 @@ export default function Contact() {
 					I&apos;m more than happy to connect! You can find me through the links below.
 				</p>
 			</div>
-			<div className="grid gap-4 md:grid-cols-2 text-sm font-medium mb-4">
+			<div className="grid gap-4 sm:grid-cols-2 text-sm font-medium mb-4">
 				<LinkCard href="mailto:simons.nystrom@gmail.com" icon={<EmailIcon />}>
 					Send Email
 				</LinkCard>
@@ -18,7 +18,7 @@ export default function Contact() {
 					View CV
 				</LinkCard>
 			</div>
-			<div className="grid gap-4 md:grid-cols-3 text-sm font-medium">
+			<div className="grid gap-4 sm:grid-cols-3 text-sm font-medium">
 				<LinkCard href="https://linkedin.com/in/simon-nystrom" icon={<LinkedInIcon />}>
 					LinkedIn
 				</LinkCard>

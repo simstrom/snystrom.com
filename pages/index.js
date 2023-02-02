@@ -7,7 +7,9 @@ import Container from '../components/Container';
 import FeaturedPost from '../components/FeaturedPost';
 import FeaturedProject from '../components/FeaturedProject';
 import { ListIcon } from '../components/Icons';
+import LinkArrow from '../components/LinkArrow';
 import SectionHeader from '../components/SectionHeader';
+import gatta from '../public/gattaPost.jpg';
 import heroImg from '../public/hero.jpg';
 
 export default function Home() {
@@ -37,7 +39,7 @@ export default function Home() {
 			</section>
 
 			<section>
-				<SectionHeader num="01" btnText="Get to know more" href="/about">
+				<SectionHeader num="01" btnText="Get to Know me More" href="/about">
 					About Me
 				</SectionHeader>
 
@@ -57,6 +59,7 @@ export default function Home() {
 							problems and unleashing creativity, I was hooked.
 						</p>
 					</div>
+					<LinkArrow text="Get to Know me More" href="/about" sm />
 					<div>
 						<h3 className="font-semibold text-lg tracking-tight mb-4">Technologies</h3>
 
@@ -133,10 +136,63 @@ export default function Home() {
 				<SectionHeader num="03" btnText="View All Articles" href="/blog">
 					Latest Blog Posts
 				</SectionHeader>
-				<div className="w-full flex flex-col gap-6 sm:grid grid-cols-3">
+				<div className="w-full flex flex-col gap-6 sm:grid grid-cols-3 mb-8">
 					<FeaturedPost gradientFrom={'from-emerald-300'} gradientTo={'to-blue-300'} />
 					<FeaturedPost gradientFrom={'from-pink-300'} gradientTo={'to-indigo-300'} />
 					<FeaturedPost gradientFrom={'from-orange-300'} gradientTo={'to-rose-300'} />
+					<LinkArrow text="View All Articles" href="/blog" sm />
+				</div>
+			</section>
+
+			<section>
+				<SectionHeader num="04" btnText="View Gallery" href="/gallery">
+					Photography
+				</SectionHeader>
+				<div className="w-full flex flex-col gap-8 sm:grid md:gap-10 grid-cols-2 sm:h-96">
+					<div className="flex flex-col justify-center">
+						<h3 className="font-semibold text-xl tracking-tight mb-4">A Short Backstory</h3>
+						<p className="text-gray-600 dark:text-gray-400 mb-2 leading-relaxed">
+							I’m currently pursuing a Bachelor’s Degree in Systems Development while spending my
+							spare time self-teaching web development. I have become somewhat obsessed in embracing
+							new technologies and building things with code.
+						</p>
+					</div>
+
+					<div className="grid grid-cols-2 gap-2 relative">
+						<Image
+							src={gatta}
+							alt=""
+							height={100}
+							width={175}
+							draggable="false"
+							className="rounded-lg sm:absolute max-[639px]:w-full max-[639px]:h-auto"
+						/>
+						<Image
+							src={gatta}
+							alt=""
+							height={100}
+							width={175}
+							draggable="false"
+							className=" rounded-lg sm:absolute sm:z-10 bottom-28 right-0 max-[639px]:w-full max-[639px]:h-auto"
+						/>
+						<Image
+							src={gatta}
+							alt=""
+							height={100}
+							width={175}
+							draggable="false"
+							className="rounded-lg sm:absolute bottom-0 right-24 max-[639px]:hidden max-[450px]:block max-[450px]:w-full"
+						/>
+						<Image
+							src={gatta}
+							alt=""
+							height={100}
+							width={175}
+							draggable="false"
+							className="sm:hidden rounded-lg max-[639px]:hidden max-[450px]:block max-[450px]:w-full"
+						/>
+					</div>
+					<LinkArrow text="View Gallery" href="/gallery" sm />
 				</div>
 			</section>
 
