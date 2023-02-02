@@ -36,7 +36,7 @@ export default function FeaturedProject({ href }) {
 			</div>
 			<div className="flex flex-col gap-4">
 				<div className="flex w-full items-center gap-1 p-6 pb-0">
-					<h3 className="text-xl font-semibold tracking-tight">Loop Agile</h3>
+					<h3 className="text-lg sm:text-xl font-semibold tracking-tight">Loop Agile</h3>
 					<div className="flex ml-auto gap-6 text-sm font-medium h-full items-center">
 						{!href && (
 							<a

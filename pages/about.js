@@ -1,6 +1,10 @@
 import Image from 'next/image';
 import Contact from '../components/Contact';
 import Container from '../components/Container';
+import forest from '../public/forest.jpg';
+import gatta from '../public/gattaPost.jpg';
+import hopetoun from '../public/hopetoun.jpg';
+import moreton from '../public/moreton.jpg';
 
 export default function about() {
 	return (
@@ -13,7 +17,7 @@ export default function about() {
 					<div className="w-full grid gap-4 grid-cols-2 sm:grid-cols-4">
 						<div className="relative h-52">
 							<Image
-								src="/loop-agile.png"
+								src={moreton}
 								alt=""
 								fill
 								sizes="(max-width: 640px) 50vw,
@@ -23,7 +27,7 @@ export default function about() {
 						</div>
 						<div className="relative h-52">
 							<Image
-								src="/loop-agile.png"
+								src={hopetoun}
 								alt=""
 								fill
 								sizes="(max-width: 640px) 50vw,
@@ -33,7 +37,7 @@ export default function about() {
 						</div>
 						<div className="relative h-52 hidden sm:block">
 							<Image
-								src="/loop-agile.png"
+								src={gatta}
 								alt=""
 								fill
 								sizes="(max-width: 640px) 50vw,
@@ -43,7 +47,7 @@ export default function about() {
 						</div>
 						<div className="relative h-52 hidden sm:block">
 							<Image
-								src="/loop-agile.png"
+								src={forest}
 								alt=""
 								fill
 								sizes="(max-width: 640px) 50vw,

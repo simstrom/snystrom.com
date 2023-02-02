@@ -127,7 +127,7 @@ export const TopRightIcon = ({ w }) => {
 		</svg>
 	);
 };
-export const RightArrowIcon = ({ w }) => {
+export const RightArrowIcon = ({ color }) => {
 	return (
 		<svg
 			version="1.1"
@@ -139,7 +139,7 @@ export const RightArrowIcon = ({ w }) => {
 		>
 			<line
 				fill="none"
-				stroke="currentColor"
+				stroke={color || 'currentColor'}
 				strokeWidth="3"
 				strokeMiterlimit="10"
 				x1="26"
@@ -149,7 +149,7 @@ export const RightArrowIcon = ({ w }) => {
 			/>
 			<polyline
 				fill="none"
-				stroke="currentColor"
+				stroke={color || 'currentColor'}
 				strokeWidth="3"
 				strokeMiterlimit="10"
 				points="18,7.5 26.5,16 18,24.5 "

@@ -9,8 +9,11 @@ import FeaturedProject from '../components/FeaturedProject';
 import { ListIcon } from '../components/Icons';
 import LinkArrow from '../components/LinkArrow';
 import SectionHeader from '../components/SectionHeader';
+import forest from '../public/forest.jpg';
 import gatta from '../public/gattaPost.jpg';
 import heroImg from '../public/hero.jpg';
+import hopetoun from '../public/hopetoun.jpg';
+import moreton from '../public/moreton.jpg';
 
 export default function Home() {
 	return (
@@ -31,7 +34,9 @@ export default function Home() {
 					<Image
 						src={heroImg}
 						alt=""
-						fill
+						width={400}
+						height={400}
+						priority
 						draggable="false"
 						className="rounded-full sm:rounded-xl image-ring sm:ring-0 image-fluid"
 					/>
@@ -45,7 +50,9 @@ export default function Home() {
 
 				<div className="w-full flex flex-col gap-8 sm:grid md:gap-10 grid-cols-3">
 					<div className="col-span-2">
-						<h3 className="font-semibold text-xl tracking-tight mb-4">A Short Backstory</h3>
+						<h3 className="font-semibold text-lg sm:text-xl tracking-tight mb-4">
+							A Short Backstory
+						</h3>
 						<p className="text-gray-600 dark:text-gray-400 mb-2 leading-relaxed">
 							I’m currently pursuing a Bachelor’s Degree in Systems Development while spending my
 							spare time self-teaching web development. I have become somewhat obsessed in embracing
@@ -113,7 +120,7 @@ export default function Home() {
 					<FeaturedProject />
 				</div>
 
-				<div className="flex justify-center items-center mb-4">
+				<div className="flex justify-center items-center mb-8">
 					<h3 className="text-xl sm:text-2xl font-semibold tracking-tight">
 						More Things I Have Built
 					</h3>
@@ -150,7 +157,9 @@ export default function Home() {
 				</SectionHeader>
 				<div className="w-full flex flex-col gap-8 sm:grid md:gap-10 grid-cols-2 sm:h-96">
 					<div className="flex flex-col justify-center">
-						<h3 className="font-semibold text-xl tracking-tight mb-4">A Short Backstory</h3>
+						<h3 className="font-semibold text-lg sm:text-xl tracking-tight mb-4">
+							A Short Backstory
+						</h3>
 						<p className="text-gray-600 dark:text-gray-400 mb-2 leading-relaxed">
 							I’m currently pursuing a Bachelor’s Degree in Systems Development while spending my
 							spare time self-teaching web development. I have become somewhat obsessed in embracing
@@ -160,36 +169,36 @@ export default function Home() {
 
 					<div className="grid grid-cols-2 gap-2 relative">
 						<Image
-							src={gatta}
+							src={moreton}
 							alt=""
-							height={100}
-							width={175}
+							width={300}
+							height={375}
 							draggable="false"
-							className="rounded-lg sm:absolute max-[639px]:w-full max-[639px]:h-auto"
+							className="rounded-lg sm:absolute min-[639px]:w-44 min-[639px]:h-auto"
+						/>
+						<Image
+							src={hopetoun}
+							alt=""
+							width={300}
+							height={375}
+							draggable="false"
+							className=" rounded-lg sm:absolute sm:z-10 bottom-32 right-0 min-[639px]:w-44 min-[639px]:h-auto"
 						/>
 						<Image
 							src={gatta}
 							alt=""
-							height={100}
-							width={175}
+							width={300}
+							height={375}
 							draggable="false"
-							className=" rounded-lg sm:absolute sm:z-10 bottom-28 right-0 max-[639px]:w-full max-[639px]:h-auto"
+							className="rounded-lg sm:absolute bottom-0 right-24 max-[450px]:block max-[639px]:hidden min-[639px]:w-44 min-[639px]:h-auto"
 						/>
 						<Image
-							src={gatta}
+							src={forest}
 							alt=""
-							height={100}
-							width={175}
+							width={300}
+							height={375}
 							draggable="false"
-							className="rounded-lg sm:absolute bottom-0 right-24 max-[639px]:hidden max-[450px]:block max-[450px]:w-full"
-						/>
-						<Image
-							src={gatta}
-							alt=""
-							height={100}
-							width={175}
-							draggable="false"
-							className="sm:hidden rounded-lg max-[639px]:hidden max-[450px]:block max-[450px]:w-full"
+							className="sm:hidden rounded-lg max-[450px]:block max-[639px]:hidden"
 						/>
 					</div>
 					<LinkArrow text="View Gallery" href="/gallery" sm />
