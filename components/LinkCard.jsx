@@ -4,7 +4,7 @@ import { TopRightIcon } from './Icons';
 export default function LinkCard({ href, icon, children }) {
 	return (
 		<a
-			className="flex justify-between border border-black-opaque-100 dark:border-gray-opaque-100 p-4 rounded-lg group hover:bg-gray-200/30 dark:hover:bg-gray-800/30"
+			className="text-sm font-medium text-tertiary flex justify-between border border-primary sm:bg-secondary p-4 rounded-lg group drop-shadow-sm hover:text-brand hover:bg-brand/5 transition duration-300"
 			target="_blank"
 			rel="noopener noreferrer"
 			href={href}

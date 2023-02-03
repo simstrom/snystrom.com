@@ -11,9 +11,7 @@ export default function about() {
 		<Container>
 			<div className="flex flex-col gap-6 sm:gap-8 max-w-2xl mx-auto">
 				<section className="mb-6">
-					<h1 className="font-semibold text-3xl sm:text-4xl tracking-tight mb-6 sm:mb-8">
-						About Me
-					</h1>
+					<h1 className="text-3xl sm:text-4xl mb-6 sm:mb-8">About Me</h1>
 					<div className="w-full grid gap-4 grid-cols-2 sm:grid-cols-4">
 						<div className="relative h-52">
 							<Image
@@ -58,8 +56,8 @@ export default function about() {
 					</div>
 				</section>
 				<article className="mb-8 sm:mb-12">
-					<h2 className="text-xl font-semibold tracking-tight mb-2">A Longer Story</h2>
-					<div className="flex flex-col gap-4 text-gray-600 dark:text-gray-400">
+					<h2 className="text-lg sm:text-xl mb-2">A Longer Story</h2>
+					<div className="flex flex-col gap-4 text-secondary">
 						<p>
 							Hi there! I’m Simon, a designer/frontend developer hybrid that loves to build great
 							products with delightful interfaces. Currently working at Bitrefill, making living on

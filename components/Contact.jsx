@@ -5,12 +5,12 @@ export default function Contact() {
 	return (
 		<>
 			<div className="mb-8">
-				<h3 className="text-lg sm:text-xl font-semibold tracking-tight mb-1">Get in Touch</h3>
-				<p className="text-gray-600 dark:text-gray-400">
+				<h3 className="text-lg sm:text-xl mb-1">Get in Touch</h3>
+				<p className="text-secondary">
 					I&apos;m more than happy to connect! You can find me through the links below.
 				</p>
 			</div>
-			<div className="grid gap-4 sm:grid-cols-2 text-sm font-medium mb-4">
+			<div className="grid gap-4 sm:grid-cols-2 mb-4">
 				<LinkCard href="mailto:simons.nystrom@gmail.com" icon={<EmailIcon />}>
 					Send Email
 				</LinkCard>
@@ -18,7 +18,7 @@ export default function Contact() {
 					View CV
 				</LinkCard>
 			</div>
-			<div className="grid gap-4 sm:grid-cols-3 text-sm font-medium">
+			<div className="grid gap-4 sm:grid-cols-3">
 				<LinkCard href="https://linkedin.com/in/simon-nystrom" icon={<LinkedInIcon />}>
 					LinkedIn
 				</LinkCard>

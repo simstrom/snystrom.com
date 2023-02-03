@@ -2,6 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+	:root {
+		--brand: 222deg 89% 55%;
+		--bg: 210deg 20% 98%;
+		--bg-card: 223deg 15% 98%;
+		--foreground: 223deg 15% 95%;
+		--typeface-primary: 239deg 84% 10%;
+		--typeface-secondary: 223deg 15% 45%;
+		--typeface-tertiary: 223deg 15% 30%;
+		--border: 223deg 15% 90%;
+	}
+
+	.dark {
+		--brand: 222deg 89% 65%;
+		--bg: 223deg 14% 10%;
+		--bg-card: 223deg 15% 12%;
+		--foreground: 223deg 15% 20%;
+		--typeface-primary: 223deg 92% 95%;
+		--typeface-secondary: 223deg 15% 65%;
+		--typeface-tertiary: 223deg 15% 80%;
+		--border: 223deg 15% 20%;
+	}
+}
+
 .image-ring {
 	@apply ring-4 ring-offset-8 ring-gray-200 dark:ring-gray-800 ring-offset-gray-100 dark:ring-offset-gray-900;
 }

@@ -6,7 +6,7 @@ import Contact from '../components/Contact';
 import Container from '../components/Container';
 import FeaturedPost from '../components/FeaturedPost';
 import FeaturedProject from '../components/FeaturedProject';
-import { ListIcon } from '../components/Icons';
+import { ListIcon, RightArrowIcon } from '../components/Icons';
 import LinkArrow from '../components/LinkArrow';
 import SectionHeader from '../components/SectionHeader';
 import forest from '../public/forest.jpg';
@@ -20,12 +20,12 @@ export default function Home() {
 		<Container>
 			<section className="flex flex-col sm:grid grid-cols-5 gap-10 items-center sm:h-96">
 				<div className="order-2 sm:order-1 flex flex-col gap-1 sm:col-span-3">
-					<span className="font-medium text-emerald-500">Hi there, my name is</span>
-					<h1 className="text-5xl font-bold tracking-tight max-[440px]:text-4xl">Simon Nyström.</h1>
-					<h2 className="mb-4 text-2xl max-[440px]:text-xl font-medium tracking-tight text-gray-400 dark:text-gray-600">
+					<span className="font-medium text-brand">Hi there, my name is</span>
+					<h1 className="text-4xl max-[440px]:text-3xl">Simon Nyström.</h1>
+					<h2 className="mb-4 text-2xl max-[440px]:text-xl font-medium text-secondary">
 						Passion for code, eager to develop.
 					</h2>
-					<p className="leading-relaxed text-gray-600 dark:text-gray-400">
+					<p className="text-base text-secondary">
 						I’m currently pursuing a Bachelor’s Degree in Systems Development while spending my
 						spare time self-teaching web development.{' '}
 					</p>
@@ -38,7 +38,7 @@ export default function Home() {
 						height={400}
 						priority
 						draggable="false"
-						className="rounded-full sm:rounded-xl image-ring sm:ring-0 image-fluid"
+						className="rounded-full sm:rounded-xl drop-shadow-lg image-fluid"
 					/>
 				</div>
 			</section>
@@ -50,15 +50,13 @@ export default function Home() {
 
 				<div className="w-full flex flex-col gap-8 sm:grid md:gap-10 grid-cols-3">
 					<div className="col-span-2">
-						<h3 className="font-semibold text-lg sm:text-xl tracking-tight mb-4">
-							A Short Backstory
-						</h3>
-						<p className="text-gray-600 dark:text-gray-400 mb-2 leading-relaxed">
+						<h3 className="text-lg sm:text-xl mb-4">A Short Backstory</h3>
+						<p className="text-secondary text-base mb-2">
 							I’m currently pursuing a Bachelor’s Degree in Systems Development while spending my
 							spare time self-teaching web development. I have become somewhat obsessed in embracing
 							new technologies and building things with code.
 						</p>
-						<p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+						<p className="text-secondary text-base">
 							Ever since my early days I’ve taken an interest in the world of digital creations.
 							However, I didn’t grasp the opportunities and the potential of learning how to code
 							until I met a Software Engineer while travelling in Indonesia. He told me about the
@@ -68,9 +66,9 @@ export default function Home() {
 					</div>
 					<LinkArrow text="Get to Know me More" href="/about" sm />
 					<div>
-						<h3 className="font-semibold text-lg tracking-tight mb-4">Technologies</h3>
+						<h3 className="text-lg mb-4">Technologies</h3>
 
-						<ul className="w-full gap-4 grid grid-cols-2 sm:text-sm mb-4 text-gray-600 dark:text-gray-400">
+						<ul className="w-full gap-4 grid grid-cols-2 sm:text-sm mb-4 text-base text-secondary">
 							<li className="flex gap-2 items-center">
 								<ListIcon />
 								JavaScript
@@ -97,7 +95,7 @@ export default function Home() {
 							</li>
 						</ul>
 						<h4 className="font-semibold text-lg tracking-tight mb-2">Tools</h4>
-						<ul className="w-full gap-4 grid grid-cols-2 sm:text-sm text-gray-600 dark:text-gray-400">
+						<ul className="w-full gap-4 grid grid-cols-2 sm:text-sm text-base text-secondary">
 							<li className="flex gap-2 items-center">
 								<ListIcon />
 								Git
@@ -121,20 +119,21 @@ export default function Home() {
 				</div>
 
 				<div className="flex justify-center items-center mb-8">
-					<h3 className="text-xl sm:text-2xl font-semibold tracking-tight">
-						More Things I Have Built
-					</h3>
+					<h3 className="text-xl sm:text-2xl">More Things I Have Built</h3>
 				</div>
-				<div className="w-full flex flex-col gap-8 sm:grid grid-cols-2 mb-8">
+				<div className="w-full flex flex-col gap-8 sm:grid grid-cols-2">
 					<SmallProject />
 					<SmallProject />
 				</div>
 				<div className="flex justify-center items-center">
 					<Link
 						href="/projects"
-						className="font-medium text-sm tracking-tight py-3 px-6 rounded-lg bg-gray-200/40 dark:bg-gray-800/40 hover:ring-2 ring-emerald-500 transition duration-300"
+						className="flex items-center gap-1 group rounded-lg px-6 py-3 mt-12 text-sm text-brand bg-brand/5 hover:bg-brand/10 duration-300"
 					>
-						See More Projects
+						<div className="font-medium">See more Projects</div>
+						<div className="ml-auto group-hover:translate-x-2 duration-300">
+							<RightArrowIcon />
+						</div>
 					</Link>
 				</div>
 			</section>
@@ -157,10 +156,8 @@ export default function Home() {
 				</SectionHeader>
 				<div className="w-full flex flex-col gap-8 sm:grid md:gap-10 grid-cols-2 sm:h-96">
 					<div className="flex flex-col justify-center">
-						<h3 className="font-semibold text-lg sm:text-xl tracking-tight mb-4">
-							A Short Backstory
-						</h3>
-						<p className="text-gray-600 dark:text-gray-400 mb-2 leading-relaxed">
+						<h3 className="text-lg sm:text-xl mb-4">A Short Backstory</h3>
+						<p className="text-secondary text-base mb-2">
 							I’m currently pursuing a Bachelor’s Degree in Systems Development while spending my
 							spare time self-teaching web development. I have become somewhat obsessed in embracing
 							new technologies and building things with code.

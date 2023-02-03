@@ -25,7 +25,7 @@ export default function MobileNav({ links }) {
 		<>
 			<div
 				role="button"
-				className={cn(styles.burger, 'sm:hidden z-10 ml-2 text-gray-600 dark:text-gray-400')}
+				className={cn(styles.burger, 'sm:hidden z-10 ml-2 text-tertiary')}
 				onClick={toggleMenu}
 			>
 				<HamburgerIcon data-hide={open} />
@@ -35,23 +35,19 @@ export default function MobileNav({ links }) {
 			<div
 				className={cn(
 					styles.menu,
-					'flex flex-col px-6 bg-gray-100 dark:bg-gray-900',
+					'flex flex-col px-6 bg-primary',
 					open ? styles.menuOpen : styles.menuClosed
 				)}
 			>
 				<ul className="mt-20 flex flex-col w-full mb-8">
 					{links.map((link) => (
-						<li
-							key={link.href}
-							className="py-4 border-b border-black-opaque-100 dark:border-gray-opaque-100 text-base"
-							onClick={toggleMenu}
-						>
+						<li key={link.href} className="py-4 border-b border-primary" onClick={toggleMenu}>
 							<NavItem href={link.href} label={link.label} />
 						</li>
 					))}
 				</ul>
 
-				<ul className="mt-auto flex flex-col gap-4 text-sm font-medium mb-4">
+				<ul className="mt-auto flex flex-col gap-4 mb-4">
 					<li>
 						<LinkCard href="mailto:simons.nystrom@gmail.com" icon={<EmailIcon />}>
 							Send an Email

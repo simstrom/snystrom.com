@@ -11,10 +11,8 @@ export default function NavItem({ href, label }) {
 			<Link
 				href={href}
 				className={cn(
-					'px-4 py-2 rounded-full hover:text-gray-900 dark:hover:text-gray-100 transition-colors duration-300',
-					isActive
-						? 'bg-gray-200 dark:bg-gray-800 text-gray-900 dark:text-gray-100'
-						: 'text-gray-600 dark:text-gray-400'
+					'text-sm font-medium px-4 py-2 rounded-full hover:text-brand transition-colors duration-300',
+					isActive ? 'bg-brand/5 text-brand' : 'text-secondary'
 				)}
 			>
 				{label}

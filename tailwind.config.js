@@ -6,37 +6,86 @@ module.exports = {
 	theme: {
 		extend: {
 			colors: {
-				'gray-opaque-100': 'rgba(255, 255, 255, 0.08)',
-				'gray-opaque-200': 'rgba(255, 255, 255, 0.2)',
-				'black-opaque-100': 'rgba(0, 0, 0, 0.08)',
-				'black-opaque-200': 'rgba(0, 0, 0, 0.2)',
-				gray: {
-					800: '#27272A',
-					900: '#18181B',
-				},
+				brand: 'hsl(var(--brand) / 100)',
 			},
+			textColor: {
+				primary: 'hsl(var(--typeface-primary) / 100)',
+				secondary: 'hsl(var(--typeface-secondary) / 100)',
+				tertiary: 'hsl(var(--typeface-tertiary) / 100)',
+			},
+			backgroundColor: {
+				primary: 'hsl(var(--bg) / 100)',
+				secondary: 'hsl(var(--bg-card) / 100)',
+				tertiary: 'hsl(var(--foreground) / 60)',
+			},
+			borderColor: {
+				primary: 'hsl(var(--border) / 100)',
+			},
+		},
+		fontSize: {
+			xs: [
+				'0.75rem',
+				{
+					letterSpacing: '0.3px',
+					fontWeight: '400',
+				},
+			],
+			sm: [
+				'0.875rem',
+				{
+					lineHeight: '1.75',
+					letterSpacing: '0.3px',
+					fontWeight: '400',
+				},
+			],
+			base: [
+				'1rem',
+				{
+					lineHeight: '1.75',
+					letterSpacing: '0.3px',
+					fontWeight: '400',
+				},
+			],
+			lg: [
+				'1.125rem',
+				{
+					lineHeight: '1.75',
+					letterSpacing: '0px',
+					fontWeight: '600',
+				},
+			],
+			xl: [
+				'1.25rem',
+				{
+					letterSpacing: '0px',
+					fontWeight: '600',
+				},
+			],
+			'2xl': [
+				'1.5rem',
+				{
+					letterSpacing: '0px',
+					fontWeight: '600',
+				},
+			],
+			'3xl': [
+				'1.75rem',
+				{
+					letterSpacing: '0px',
+					fontWeight: '600',
+				},
+			],
+			'4xl': [
+				'2.25rem',
+				{
+					letterSpacing: '0px',
+					fontWeight: '600',
+				},
+			],
 		},
 		fontFamily: {
 			sans: ['Inter', ...fontFamily.sans],
 		},
-		typography: (theme) => ({
-			DEFAULT: {
-				css: {
-					color: theme('colors.gray.600'),
-					'h1,h2,h3,h4': {
-						color: theme('colors.gray.900'),
-					},
-				},
-			},
-			dark: {
-				css: {
-					color: theme('colors.gray.400'),
-					'h1,h2,h3,h4': {
-						color: theme('colors.gray.50'),
-					},
-				},
-			},
-		}),
 	},
 	future: {
 		hoverOnlyWhenSupported: true,

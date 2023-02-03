@@ -7,7 +7,7 @@ export default function LinkArrow({ text, href, sm }) {
 		<Link
 			href={href}
 			className={cn(
-				'text-gray-900 dark:text-gray-100 ml-auto flex items-center gap-1 group',
+				'text-tertiary ml-auto flex items-center gap-1 group hover:text-brand transition-colors duration-300',
 				sm ? 'min-[470px]:hidden' : 'sm:gap-3 max-[470px]:hidden'
 			)}
 		>

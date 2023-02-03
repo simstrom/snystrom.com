@@ -7,7 +7,7 @@ export default function Document() {
 				<link href="/static/favicon.ico" rel="shortcut icon" />
 				<meta content="#18181B" name="theme-color" />
 			</Head>
-			<body className="w-full bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+			<body className="w-full bg-primary text-primary text-base">
 				<Main />
 				<NextScript />
 			</body>

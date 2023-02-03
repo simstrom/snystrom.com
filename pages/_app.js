@@ -11,7 +11,7 @@ const inter = Inter({ subsets: ['latin'] });
 export default function App({ Component, pageProps }) {
 	return (
 		<ThemeProvider attribute="class" defaultTheme="dark" disableTransitionOnChange>
-			<div className={cn(inter.className, 'min-h-screen flex flex-col')}>
+			<div className={cn(inter.className, 'antialiased min-h-screen flex flex-col')}>
 				<Nav />
 				<div className="max-w-3xl mx-auto px-6 md:px-8 flex flex-col flex-grow">
 					<Component {...pageProps} />

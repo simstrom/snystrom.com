@@ -30,8 +30,8 @@ export default function Nav() {
 	}
 
 	return (
-		<header className="sticky top-0 z-20 backdrop-blur-md bg-gray-100/70 dark:bg-gray-900/70">
-			<nav className="max-w-3xl mx-auto px-6 md:px-8 flex justify-between items-center py-4 sm:py-2 font-medium">
+		<header className="sticky top-0 z-20 backdrop-blur bg-primary/70">
+			<nav className="max-w-3xl mx-auto px-6 md:px-8 flex justify-between items-center py-4 sm:py-2">
 				<MobileNav links={links} />
 				<Link href="/" className="shrink-0">
 					<Image
@@ -42,7 +42,7 @@ export default function Nav() {
 						className="hidden sm:block rounded-full hover:scale-110 transition:transform duration-300"
 					/>
 				</Link>
-				<ul className="hidden sm:flex items-center gap-1 text-sm">
+				<ul className="hidden sm:flex items-center gap-1">
 					{links.map((link) => (
 						<li key={link.href}>
 							<NavItem href={link.href} label={link.label} />
@@ -52,7 +52,7 @@ export default function Nav() {
 
 				<button
 					role="button"
-					className="rounded-full text-gray-600 dark:text-gray-400 hover:text-gray-900  dark:hover:text-gray-100 transition-colors duration-300"
+					className="p-2 text-tertiary hover:text-brand transition duration-300"
 					onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
 				>
 					{theme === 'dark' ? <DarkModeIcon /> : <LightModeIcon />}
