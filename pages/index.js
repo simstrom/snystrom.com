@@ -11,7 +11,7 @@ import LinkArrow from '../components/LinkArrow';
 import SectionHeader from '../components/SectionHeader';
 import forest from '../public/forest.jpg';
 import gatta from '../public/gattaPost.jpg';
-import heroImg from '../public/hero.jpg';
+import hero from '../public/hero.jpg';
 import hopetoun from '../public/hopetoun.jpg';
 import moreton from '../public/moreton.jpg';
 
@@ -20,19 +20,16 @@ export default function Home() {
 		<Container>
 			<section className="flex flex-col sm:grid grid-cols-5 gap-10 items-center sm:h-96">
 				<div className="order-2 sm:order-1 flex flex-col gap-1 sm:col-span-3">
-					<span className="font-medium text-brand">Hi there, my name is</span>
-					<h1 className="text-4xl max-[440px]:text-3xl">Simon Nyström.</h1>
-					<h2 className="mb-4 text-2xl max-[440px]:text-xl font-medium text-secondary">
-						Passion for code, eager to develop.
-					</h2>
-					<p className="text-base text-secondary">
+					<span className="text-2xl text-brand">👋🏼 Hi there, my name is</span>
+					<h1 className="text-4xl max-[440px]:text-3xl leading-normal">Simon Nyström.</h1>
+					<h2 className="text-xl max-[440px]:text-3xl text-secondary font-medium">
 						I’m currently pursuing a Bachelor’s Degree in Systems Development while spending my
-						spare time self-teaching web development.{' '}
-					</p>
+						spare time self-teaching web development.
+					</h2>
 				</div>
 				<div className="order-1 sm:order-2 sm:col-span-2 w-60 sm:w-full">
 					<Image
-						src={heroImg}
+						src={hero}
 						alt=""
 						width={400}
 						height={400}

@@ -1,8 +1,8 @@
 import { useTheme } from 'next-themes';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
-import Link from 'next/link';
 import avatar from '../public/avatar.jpg';
 import { DarkModeIcon, LightModeIcon } from './Icons';
 import MobileNav from './MobileNav';
@@ -52,7 +52,7 @@ export default function Nav() {
 
 				<button
 					role="button"
-					className="p-2 text-tertiary hover:text-brand transition duration-300"
+					className="p-2 text-tertiary rounded-lg hover:text-brand hover:bg-tertiary dark:hover:bg-tertiary/40 transition duration-300"
 					onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
 				>
 					{theme === 'dark' ? <DarkModeIcon /> : <LightModeIcon />}
