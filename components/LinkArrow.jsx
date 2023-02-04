@@ -8,7 +8,7 @@ export default function LinkArrow({ text, href, sm }) {
 			href={href}
 			className={cn(
 				'text-tertiary ml-auto flex items-center gap-1 group hover:text-brand transition-colors duration-300',
-				sm ? 'min-[470px]:hidden' : 'sm:gap-3 max-[470px]:hidden'
+				sm ? 'min-[640px]:hidden' : 'sm:gap-3 max-[640px]:hidden'
 			)}
 		>
 			<div className="text-sm font-medium">{text}</div>

@@ -50,11 +50,6 @@ export default function MobileNav({ links }) {
 			<AnimatePresence>
 				{open && (
 					<motion.div
-						// className={cn(
-						// 	styles.menu,
-						// 	'flex flex-col px-6 bg-primary',
-						// 	open ? styles.menuOpen : styles.menuClosed
-						// )}
 						className={cn('menu', 'flex flex-col px-6 bg-primary')}
 						initial={{ width: 0, opacity: 0 }}
 						animate={{ width: '100vw', opacity: 1 }}

@@ -45,3 +45,14 @@
 	left: 0;
 	overflow-x: hidden;
 }
+
+.item {
+	min-height: auto;
+	min-width: 50%;
+}
+
+@media screen and (min-width: 600px) {
+	.item {
+		min-width: 33%;
+	}
+}
