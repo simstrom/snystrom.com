@@ -6,9 +6,9 @@ import Carousel from '../components/Carousel';
 import Contact from '../components/Contact';
 import Container from '../components/Container';
 import FeaturedPost from '../components/FeaturedPost';
-import FeaturedProject from '../components/FeaturedProject';
-import { ListIcon, RightArrowIcon } from '../components/Icons';
+import { BulletIcon, RightArrowIcon } from '../components/Icons';
 import LinkArrow from '../components/LinkArrow';
+import ProjectCard from '../components/ProjectCard';
 import SectionHeader from '../components/SectionHeader';
 import InView from '../lib/InView';
 import hero from '../public/hero.jpg';
@@ -46,7 +46,7 @@ export default function Home() {
 						About Me
 					</SectionHeader>
 
-					<div className="w-full flex flex-col gap-8 sm:grid md:gap-10 grid-cols-3">
+					<div className="flex flex-col gap-8 sm:grid md:gap-10 grid-cols-3">
 						<div className="col-span-2">
 							<p className="text-secondary text-base mb-2">
 								I’m currently pursuing a Bachelor’s Degree in Systems Development while spending my
@@ -65,40 +65,40 @@ export default function Home() {
 						<div>
 							<h3 className="text-lg mb-4">Technologies</h3>
 
-							<ul className="w-full gap-4 grid grid-cols-2 sm:text-sm mb-4 text-base text-secondary">
+							<ul className="gap-4 grid grid-cols-2 sm:text-sm mb-4 text-base text-secondary">
 								<li className="flex gap-2 items-center">
-									<ListIcon />
+									<BulletIcon />
 									JavaScript
 								</li>
 								<li className="flex gap-2 items-center">
-									<ListIcon />
+									<BulletIcon />
 									Java
 								</li>
 								<li className="flex gap-2 items-center">
-									<ListIcon />
+									<BulletIcon />
 									React
 								</li>
 								<li className="flex gap-2 items-center">
-									<ListIcon />
+									<BulletIcon />
 									SQL
 								</li>
 								<li className="flex gap-2 items-center">
-									<ListIcon />
+									<BulletIcon />
 									Node.js
 								</li>
 								<li className="flex gap-2 items-center">
-									<ListIcon />
+									<BulletIcon />
 									MongoDB
 								</li>
 							</ul>
 							<h4 className="font-semibold text-lg tracking-tight mb-2">Tools</h4>
-							<ul className="w-full gap-4 grid grid-cols-2 sm:text-sm text-base text-secondary">
+							<ul className="gap-4 grid grid-cols-2 sm:text-sm text-base text-secondary">
 								<li className="flex gap-2 items-center">
-									<ListIcon />
+									<BulletIcon />
 									Git
 								</li>
 								<li className="flex gap-2 items-center">
-									<ListIcon />
+									<BulletIcon />
 									Figma
 								</li>
 							</ul>
@@ -113,15 +113,14 @@ export default function Home() {
 						Selected Projects
 					</SectionHeader>
 				</InView>
-				<InView>
-					<div className="flex flex-col gap-8 sm:grid grid-cols-2 mb-8">
-						<FeaturedProject />
-						<FeaturedProject />
-					</div>
-				</InView>
-				<InView>
-					<SmallProject />
-				</InView>
+
+				<div className="flex flex-col gap-8 sm:grid grid-cols-2 mb-8">
+					<ProjectCard />
+					<ProjectCard />
+				</div>
+
+				<SmallProject />
+
 				<InView>
 					<div className="flex justify-center items-center">
 						<Link
@@ -142,7 +141,7 @@ export default function Home() {
 					<SectionHeader num="03" btnText="View All Articles" href="/blog">
 						Latest Blog Posts
 					</SectionHeader>
-					<div className="w-full flex flex-col gap-6 sm:grid grid-cols-3 mb-8">
+					<div className="flex flex-col gap-6 sm:grid grid-cols-3 mb-8">
 						<FeaturedPost gradientFrom={'from-emerald-300'} gradientTo={'to-blue-300'} />
 						<FeaturedPost gradientFrom={'from-pink-300'} gradientTo={'to-indigo-300'} />
 						<FeaturedPost gradientFrom={'from-orange-300'} gradientTo={'to-rose-300'} />
@@ -156,18 +155,16 @@ export default function Home() {
 					<SectionHeader num="04" btnText="View Gallery" href="/gallery">
 						Photography
 					</SectionHeader>
-					<div className="w-full flex flex-col gap-8 ">
-						<div className="flex flex-col justify-center">
-							<p className="text-secondary text-base mb-2">
-								I’m currently pursuing a Bachelor’s Degree in Systems Development while spending my
-								spare time self-teaching web development. I have become somewhat obsessed in
-								embracing new technologies and building things with code.
-							</p>
-						</div>
+					<div className="flex flex-col gap-8 ">
+						<p className="text-secondary text-base mb-2">
+							I’m currently pursuing a Bachelor’s Degree in Systems Development while spending my
+							spare time self-teaching web development. I have become somewhat obsessed in embracing
+							new technologies and building things with code.
+						</p>
+
 						<Carousel />
 						<LinkArrow text="View Gallery" href="/gallery" sm />
 					</div>
-					<div className="flex flex-col"></div>
 				</InView>
 			</section>
 
