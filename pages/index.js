@@ -13,6 +13,27 @@ import SectionHeader from '../components/SectionHeader';
 import InView from '../lib/InView';
 import hero from '../public/hero.jpg';
 
+const projects = [
+	{
+		title: 'Loop Agile',
+		href: '',
+		skills: ['JavaScript', 'React', 'PostgreSQL', 'Firebase', 'Chakra UI'],
+		desc: 'Web-based communications platform acting as a forum for signed in users. Built for the purpose to learn full-stack React development and its design patterns. Node, Express and Sequelize ORM was used as middle layer to build the server and APIs.',
+	},
+	{
+		title: 'CampSpotter',
+		href: '',
+		skills: ['JavaScript', 'MongoDB', 'Bootstrap'],
+		desc: 'Web-based communications platform acting as a forum for signed in users. Built for the purpose to learn full-stack React development and its design patterns. Node, Express and Sequelize ORM was used as middle layer to build the server and APIs.',
+	},
+	{
+		title: 'Arcturus',
+		href: '',
+		skills: ['Java', 'JavaFX', 'CSS'],
+		desc: 'Arcade styled 2D space shooter game with unlimited levels and infinitely increasing difficulty. Has different enemy types and various power ups. Handles game saves locally to file. Built to solidify knowledge about object-oriented programming and learn to implement GUI for Java Apps.',
+	},
+];
+
 export default function Home() {
 	return (
 		<Container>
@@ -115,11 +136,11 @@ export default function Home() {
 				</InView>
 
 				<div className="flex flex-col gap-8 sm:grid grid-cols-2 mb-8">
-					<ProjectCard />
-					<ProjectCard />
+					<ProjectCard project={projects[0]} />
+					<ProjectCard project={projects[1]} />
 				</div>
 
-				<SmallProject />
+				<SmallProject project={projects[2]} />
 
 				<InView>
 					<div className="flex justify-center items-center">

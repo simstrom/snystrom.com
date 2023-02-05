@@ -1,31 +1,13 @@
-import { motion } from 'framer-motion';
 import Image from 'next/image';
 import InView from '../lib/InView';
 
 import { GithubIcon, TopRightIcon } from './Icons';
 import SkillTag from './SkillTag';
 
-const variants = {
-	hidden: {
-		opacity: 0,
-		y: 50,
-	},
-	show: {
-		opacity: 1,
-		y: 0,
-	},
-};
-
-export default function ProjectCard({ href }) {
+export default function ProjectCard({ project }) {
 	return (
 		<InView>
-			<motion.div
-				initial="hidden"
-				animate="show"
-				variants={variants}
-				transition={{ duration: 0.5 }}
-				className="flex flex-col rounded-lg border border-primary bg-secondary drop-shadow-sm"
-			>
+			<div className="h-full flex flex-col rounded-lg border border-primary bg-secondary drop-shadow-sm">
 				<div className="relative h-60 group">
 					<Image
 						src="/loop-agile.png"
@@ -36,12 +18,12 @@ export default function ProjectCard({ href }) {
 						className="object-cover overflow-hidden rounded-t-lg border-b border-primary"
 					/>
 					<a
-						href={href ? 'liveURL' : 'github.com'}
+						href={project.href ? 'liveURL' : 'github.com'}
 						target="_blank"
 						rel="noopener noreferrer"
 						className="absolute top-0 left-0 w-full h-full flex justify-center items-center gap-2 bg-primary/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
 					>
-						{href ? (
+						{project.href ? (
 							<>
 								View Live
 								<TopRightIcon w={10} />
@@ -54,11 +36,11 @@ export default function ProjectCard({ href }) {
 						)}
 					</a>
 				</div>
-				<div className="flex flex-col gap-4">
+				<div className="flex-grow flex flex-col gap-4">
 					<div className="flex w-full items-center gap-1 p-6 pb-0">
-						<h3 className="text-lg sm:text-xl">Loop Agile</h3>
+						<h3 className="text-lg sm:text-xl">{project.title}</h3>
 						<div className="flex ml-auto gap-4 h-full items-center">
-							{!href && (
+							{project.href && (
 								<a
 									href={''}
 									target="_blank"
@@ -78,23 +60,17 @@ export default function ProjectCard({ href }) {
 							</a>
 						</div>
 					</div>
-					<p className="text-sm text-secondary px-6">
-						Web-based communications platform acting as a forum for signed in users. Built for the
-						purpose to learn full-stack React development and its design patterns. Node, Express and
-						Sequelize ORM was used as middle layer to build the server and APIs.
-					</p>
+					<p className="text-sm text-secondary px-6">{project.desc}</p>
 
 					<div className="flex flex-wrap gap-2 mb-2 mt-auto px-6 pb-4">
-						<SkillTag skill={'React'} />
-						<SkillTag skill={'Node.js'} />
-						<SkillTag skill={'Express'} />
-						<SkillTag skill={'PostgreSQL'} />
-						<SkillTag skill={'Firebase'} />
-						<SkillTag skill={'Chakra UI'} />
-						<SkillTag skill={'Sequelize'} />
+						{project.skills.map((skill) => (
+							<span key={skill} className="text-xs text-secondary">
+								<SkillTag skill={skill} />
+							</span>
+						))}
 					</div>
 				</div>
-			</motion.div>
+			</div>
 		</InView>
 	);
 }

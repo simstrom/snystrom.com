@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
 
 import BlogListItem from '../components/BlogListItem';
@@ -48,20 +48,21 @@ export default function Blog() {
 						</div>
 					</div>
 					<div className="flex flex-col gap-2 sm:gap-4 mb-20 sm:mb-28">
-						{articles
-							.filter((obj) => obj.title.toLowerCase().includes(query.toLowerCase()))
-							.map((article) => (
-								<motion.div
-									layout
-									key={article.title}
-									initial={{ opacity: 0 }}
-									animate={{ opacity: 1 }}
-									exit={{ opacity: 0 }}
-									transition={{ duration: 0.5 }}
-								>
-									<BlogListItem href="/" title={article.title} />
-								</motion.div>
-							))}
+						<AnimatePresence>
+							{articles
+								.filter((obj) => obj.title.toLowerCase().includes(query.toLowerCase()))
+								.map((article) => (
+									<motion.div
+										layout
+										key={article.title}
+										initial={{ opacity: 0 }}
+										animate={{ opacity: 1 }}
+										exit={{ opacity: 0 }}
+									>
+										<BlogListItem href="/" title={article.title} />
+									</motion.div>
+								))}
+						</AnimatePresence>
 					</div>
 				</div>
 			</InView>

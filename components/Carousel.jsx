@@ -21,7 +21,7 @@ export default function Carousel() {
 		<motion.div ref={carousel} className="overflow-hidden">
 			<motion.div
 				animate={{ x: -width + 275 }}
-				transition={{ ease: 'linear', duration: 60, repeat: Infinity }}
+				transition={{ ease: 'linear', duration: 40, repeat: Infinity }}
 				className="flex gap-4"
 			>
 				{images.map((img) => {
