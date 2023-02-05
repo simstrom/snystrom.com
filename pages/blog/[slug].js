@@ -31,7 +31,7 @@ export default function Post({ post }) {
 						</h1>
 						<div className="flex flex-col sm:flex-row justify-between gap-1 sm:items-center text-sm text-secondary font-medium">
 							<p>January 20, 2022</p>
-							<div>
+							<div className="text-brand">
 								<p className="inline">2 min read</p>
 								<span> • </span>
 								<p className="inline">234 views</p>
@@ -61,8 +61,8 @@ export default function Post({ post }) {
 					<div className="flex gap-2 items-center">
 						<button
 							className={cn(
-								'rounded-lg p-2 hover:text-brand hover:bg-tertiary dark:hover:bg-tertiary/40 duration-300',
-								liked && 'text-brand'
+								'rounded-lg p-2 text-brand hover:text-brand hover:bg-tertiary dark:hover:bg-tertiary/40 duration-300',
+								!liked && 'text-tertiary'
 							)}
 							onClick={handleLike}
 						>

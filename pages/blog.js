@@ -42,7 +42,7 @@ export default function Blog() {
 								value={query}
 								onChange={handleChange}
 							/>
-							<div className="text-secondary absolute top-0 right-0 py-3 px-4">
+							<div className="text-secondary absolute top-0 right-0 py-4 px-4">
 								<SearchIcon />
 							</div>
 						</div>
