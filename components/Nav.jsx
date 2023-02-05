@@ -30,7 +30,7 @@ export default function Nav() {
 	}
 
 	return (
-		<header className="sticky top-0 z-20 backdrop-blur bg-primary/70">
+		<header className="sticky top-0 z-20 backdrop-blur bg-primary/70 border-b border-primary/50">
 			<nav className="max-w-3xl mx-auto px-6 md:px-8 flex justify-between items-center py-4 sm:py-2">
 				<MobileNav links={links} />
 				<Link href="/" className="shrink-0">

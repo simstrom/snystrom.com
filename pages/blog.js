@@ -28,13 +28,13 @@ export default function Blog() {
 	return (
 		<Container>
 			<InView>
-				<div className="flex flex-col gap-6 max-w-2xl mx-auto">
-					<div className="mb-4">
+				<div className="flex flex-col gap-8 max-w-2xl mx-auto">
+					<div>
 						<h1 className="text-4xl">Blog</h1>
 						<p className="text-base text-secondary mb-8">
 							This is where I share my writings on programming, tutorials, and my experiences.
 						</p>
-						<div className="relative">
+						<div className="relative mb-2">
 							<input
 								type="text"
 								placeholder="Search Articles"

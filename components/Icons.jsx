@@ -165,6 +165,17 @@ export const RightArrowIcon = ({ color }) => {
 	);
 };
 
+export const LeftArrowIcon = () => {
+	return (
+		<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<path
+				d="M10 6L11.4 7.45L7.85 11L20 11L20 13L7.85 13L11.4 16.55L10 18L4 12L10 6Z"
+				fill="currentColor"
+			/>
+		</svg>
+	);
+};
+
 export const HamburgerIcon = (props) => {
 	return (
 		<svg className="h-7 w-7" width="20" height="20" viewBox="0 0 20 20" fill="none" {...props}>
@@ -260,6 +271,25 @@ export const SearchIcon = () => {
 			<path
 				fill="currentColor"
 				d="m19.6 21l-6.3-6.3q-.75.6-1.725.95Q10.6 16 9.5 16q-2.725 0-4.612-1.887Q3 12.225 3 9.5q0-2.725 1.888-4.613Q6.775 3 9.5 3t4.613 1.887Q16 6.775 16 9.5q0 1.1-.35 2.075q-.35.975-.95 1.725l6.3 6.3ZM9.5 14q1.875 0 3.188-1.312Q14 11.375 14 9.5q0-1.875-1.312-3.188Q11.375 5 9.5 5Q7.625 5 6.312 6.312Q5 7.625 5 9.5q0 1.875 1.312 3.188Q7.625 14 9.5 14Z"
+			/>
+		</svg>
+	);
+};
+export const LikeIcon = ({ filled }) => {
+	return (
+		<svg
+			width="32"
+			height="32"
+			viewBox="0 0 32 32"
+			fill={filled ? 'currentColor' : 'none'}
+			xmlns="http://www.w3.org/2000/svg"
+		>
+			<path
+				d="M10.0001 5.33335C5.95008 5.33335 2.66675 8.61668 2.66675 12.6667C2.66675 20 11.3334 26.6667 16.0001 28.2173C20.6667 26.6667 29.3334 20 29.3334 12.6667C29.3334 8.61668 26.0501 5.33335 22.0001 5.33335C19.5201 5.33335 17.3267 6.56468 16.0001 8.44935C15.3239 7.48615 14.4255 6.70007 13.3811 6.15767C12.3367 5.61527 11.1769 5.33251 10.0001 5.33335Z"
+				stroke="currentColor"
+				strokeWidth="2"
+				strokeLinecap="round"
+				strokeLinejoin="round"
 			/>
 		</svg>
 	);
