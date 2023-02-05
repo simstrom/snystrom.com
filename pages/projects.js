@@ -14,8 +14,8 @@ export default function Projects() {
 		<Container>
 			<InView>
 				<div className="mb-4">
-					<h1 className="text-3xl sm:text-4xl">All Projects</h1>
-					<p className="text-sm sm:text-base text-secondary">
+					<h1 className="text-4xl">All Projects</h1>
+					<p className="text-base text-secondary">
 						I love building projects and practice my engineering skills. Here's an archive of things
 						that I've worked on.
 					</p>
@@ -60,7 +60,9 @@ export default function Projects() {
 					</div>
 				</div>
 
-				<div className={cn(!listView && 'sm:grid grid-cols-2', 'flex flex-col gap-4 mb-8')}>
+				<div
+					className={cn(!listView && 'sm:grid grid-cols-2', 'flex flex-col gap-4 mb-20 sm:mb-28')}
+				>
 					{listView ? (
 						<>
 							<ProjectListItem />

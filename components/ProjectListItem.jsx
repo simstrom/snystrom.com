@@ -24,11 +24,11 @@ export default function ProjectListItem({ href }) {
 			<div className="flex flex-col gap-2">
 				<h3 className="text-base font-semibold sm:text-lg">Loop Agile Now</h3>
 				<div className="max-[450px]:hidden flex gap-3 flex-wrap">
-					<div className="text-xs text-secondary">React</div>
-					<div className="text-xs text-secondary">Node.js</div>
-					<div className="text-xs text-secondary">Express</div>
-					<div className="text-xs text-secondary">Next.js</div>
-					<div className="text-xs text-secondary">MongoDB</div>
+					<span className="text-xs text-secondary">React</span>
+					<span className="text-xs text-secondary">Node.js</span>
+					<span className="text-xs text-secondary">Express</span>
+					<span className="text-xs text-secondary">Next.js</span>
+					<span className="text-xs text-secondary">MongoDB</span>
 				</div>
 			</div>
 			<div className="flex gap-2 items-center text-secondary">

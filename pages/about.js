@@ -7,13 +7,13 @@ import gatta from '../public/gattaPost.jpg';
 import hopetoun from '../public/hopetoun.jpg';
 import moreton from '../public/moreton.jpg';
 
-export default function about() {
+export default function About() {
 	return (
 		<Container>
 			<div className="flex flex-col gap-6 sm:gap-8 max-w-2xl mx-auto">
 				<section className="mb-6">
 					<InView>
-						<h1 className="text-3xl sm:text-4xl mb-6 sm:mb-8">About Me</h1>
+						<h1 className="text-4xl mb-6 sm:mb-8">About Me</h1>
 						<div className="w-full grid gap-4 grid-cols-2 sm:grid-cols-4">
 							<div className="relative h-52">
 								<Image
