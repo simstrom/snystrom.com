@@ -16,9 +16,9 @@ export default function ProjectListItem({ project }) {
 					</div>
 				</div>
 				<div className="flex gap-2 items-center text-secondary">
-					{project.href && (
+					{project.deployLink && (
 						<a
-							href={''}
+							href={project.deployLink}
 							target="_blank"
 							rel="noopener noreferrer"
 							className="p-2 hover:text-brand hover:translate-x-0.5 hover:-translate-y-0.5 hover:scale-110 duration-300"
@@ -27,7 +27,7 @@ export default function ProjectListItem({ project }) {
 						</a>
 					)}
 					<a
-						href=""
+						href={project.githubLink}
 						target="_blank"
 						rel="noopener noreferrer"
 						className="hover:text-brand hover:scale-110 transition duration-300"

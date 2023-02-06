@@ -1,41 +1,25 @@
-import SmallProject from '@/components/SmallProject';
 import Image from 'next/image';
-import Link from 'next/link';
+import { client } from '../lib/contentful-server';
 
+import Button from '@/components/Button';
+import SmallProject from '@/components/SmallProject';
 import Carousel from '../components/Carousel';
 import Contact from '../components/Contact';
 import Container from '../components/Container';
 import FeaturedPost from '../components/FeaturedPost';
-import { BulletIcon, RightArrowIcon } from '../components/Icons';
+import { BulletIcon } from '../components/Icons';
 import LinkArrow from '../components/LinkArrow';
 import ProjectCard from '../components/ProjectCard';
 import SectionHeader from '../components/SectionHeader';
 import InView from '../lib/InView';
 import hero from '../public/hero.jpg';
 
-const projects = [
-	{
-		title: 'Loop Agile',
-		href: '',
-		skills: ['JavaScript', 'React', 'PostgreSQL', 'Firebase', 'Chakra UI'],
-		desc: 'Web-based communications platform acting as a forum for signed in users. Built for the purpose to learn full-stack React development and its design patterns. Node, Express and Sequelize ORM was used as middle layer to build the server and APIs.',
-	},
-	{
-		title: 'CampSpotter',
-		href: '',
-		skills: ['JavaScript', 'MongoDB', 'Bootstrap'],
-		desc: 'Web-based communications platform acting as a forum for signed in users. Built for the purpose to learn full-stack React development and its design patterns. Node, Express and Sequelize ORM was used as middle layer to build the server and APIs.',
-	},
-	{
-		title: 'Arcturus',
-		href: '',
-		skills: ['Java', 'JavaFX', 'CSS'],
-		desc: 'Arcade styled 2D space shooter game with unlimited levels and infinitely increasing difficulty. Has different enemy types and various power ups. Handles game saves locally to file. Built to solidify knowledge about object-oriented programming and learn to implement GUI for Java Apps.',
-	},
-];
+const skills = {
+	technologies: ['JavaScript', 'Java', 'React', 'SQL', 'Node.js', 'MongoDB'],
+	tools: ['Git', 'Figma'],
+};
 
 export default function Home({ featuredProjects }) {
-	console.log(featuredProjects);
 	return (
 		<Container>
 			<InView>
@@ -64,7 +48,7 @@ export default function Home({ featuredProjects }) {
 
 			<section>
 				<InView>
-					<SectionHeader num="01" btnText="Get to Know me More" href="/about">
+					<SectionHeader btnText="Get to Know me More" href="/about">
 						About Me
 					</SectionHeader>
 
@@ -88,41 +72,21 @@ export default function Home({ featuredProjects }) {
 							<h3 className="text-lg mb-4">Technologies</h3>
 
 							<ul className="gap-4 grid grid-cols-2 sm:text-sm mb-4 text-base text-secondary">
-								<li className="flex gap-2 items-center">
-									<BulletIcon />
-									JavaScript
-								</li>
-								<li className="flex gap-2 items-center">
-									<BulletIcon />
-									Java
-								</li>
-								<li className="flex gap-2 items-center">
-									<BulletIcon />
-									React
-								</li>
-								<li className="flex gap-2 items-center">
-									<BulletIcon />
-									SQL
-								</li>
-								<li className="flex gap-2 items-center">
-									<BulletIcon />
-									Node.js
-								</li>
-								<li className="flex gap-2 items-center">
-									<BulletIcon />
-									MongoDB
-								</li>
+								{skills.technologies.map((skill) => (
+									<li key={skill} className="flex gap-2 items-center">
+										<BulletIcon />
+										{skill}
+									</li>
+								))}
 							</ul>
 							<h4 className="font-semibold text-lg tracking-tight mb-2">Tools</h4>
 							<ul className="gap-4 grid grid-cols-2 sm:text-sm text-base text-secondary">
-								<li className="flex gap-2 items-center">
-									<BulletIcon />
-									Git
-								</li>
-								<li className="flex gap-2 items-center">
-									<BulletIcon />
-									Figma
-								</li>
+								{skills.tools.map((skill) => (
+									<li key={skill} className="flex gap-2 items-center">
+										<BulletIcon />
+										{skill}
+									</li>
+								))}
 							</ul>
 						</div>
 					</div>
@@ -131,7 +95,7 @@ export default function Home({ featuredProjects }) {
 
 			<section>
 				<InView threshold={0.1}>
-					<SectionHeader num="02" btnText="Explore All Projects" href="/projects">
+					<SectionHeader btnText="Explore All Projects" href="/projects">
 						Selected Projects
 					</SectionHeader>
 				</InView>
@@ -140,29 +104,15 @@ export default function Home({ featuredProjects }) {
 					{featuredProjects.slice(0, 2).map((proj) => (
 						<ProjectCard key={proj.fields.title} project={proj.fields.project.fields} />
 					))}
-					{/* <ProjectCard project={projects[1]} /> */}
 				</div>
 
 				<SmallProject project={featuredProjects[2].fields.project.fields} />
-
-				<InView>
-					<div className="flex justify-center items-center">
-						<Link
-							href="/projects"
-							className="flex items-center gap-1 group rounded-lg px-6 py-3 mt-8 text-sm text-brand bg-brand/5 hover:bg-brand/10 duration-300"
-						>
-							<div className="font-medium">See more Projects</div>
-							<div className="ml-auto group-hover:translate-x-2 duration-300">
-								<RightArrowIcon />
-							</div>
-						</Link>
-					</div>
-				</InView>
+				<Button href="/projects">See more Projects</Button>
 			</section>
 
 			<section>
 				<InView>
-					<SectionHeader num="03" btnText="View All Articles" href="/blog">
+					<SectionHeader btnText="View All Articles" href="/blog">
 						Latest Blog Posts
 					</SectionHeader>
 					<div className="flex flex-col gap-6 sm:grid grid-cols-3 mb-8">
@@ -176,7 +126,7 @@ export default function Home({ featuredProjects }) {
 
 			<section>
 				<InView>
-					<SectionHeader num="04" btnText="View Gallery" href="/gallery">
+					<SectionHeader btnText="View Gallery" href="/gallery">
 						Photography
 					</SectionHeader>
 					<div className="flex flex-col gap-8 ">
@@ -194,7 +144,7 @@ export default function Home({ featuredProjects }) {
 
 			<section>
 				<InView>
-					<SectionHeader num="05">Contact</SectionHeader>
+					<SectionHeader>Contact</SectionHeader>
 					<Contact />
 				</InView>
 			</section>
@@ -202,19 +152,14 @@ export default function Home({ featuredProjects }) {
 	);
 }
 
-let client = require('contentful').createClient({
-	space: process.env.CONTENTFUL_SPACE_ID,
-	accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-});
-
 export async function getStaticProps() {
-	let data = await client.getEntries({
+	const projects = await client.getEntries({
 		content_type: 'featuredProject',
 	});
 
 	return {
 		props: {
-			featuredProjects: data.items,
+			featuredProjects: projects.items,
 		},
 	};
 }
