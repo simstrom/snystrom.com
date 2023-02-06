@@ -10,9 +10,9 @@ export default function SmallProject({ project }) {
 					<div className="flex w-full items-center gap-1 py-5 px-6 border-b border-primary/70">
 						<h3 className="text-lg">{project.title}</h3>
 						<div className="flex ml-auto gap-4 h-full items-center">
-							{!project.href && (
+							{project.deployLink && (
 								<a
-									href={''}
+									href={project.deployLink}
 									target="_blank"
 									rel="noopener noreferrer"
 									className="p-2 hover:text-brand hover:translate-x-0.5 hover:-translate-y-0.5 hover:scale-110 duration-300"
@@ -21,7 +21,7 @@ export default function SmallProject({ project }) {
 								</a>
 							)}
 							<a
-								href=""
+								href={project.githubLink}
 								target="_blank"
 								rel="noopener noreferrer"
 								className="hover:text-brand hover:scale-110 duration-300"
@@ -30,7 +30,7 @@ export default function SmallProject({ project }) {
 							</a>
 						</div>
 					</div>
-					<p className="text-sm text-secondary px-6">{project.desc}</p>
+					<p className="text-sm text-secondary px-6">{project.description}</p>
 
 					<div className="flex flex-wrap gap-2 mb-2 mt-auto px-6 pb-4">
 						{project.skills.map((skill) => (

@@ -34,7 +34,8 @@ const projects = [
 	},
 ];
 
-export default function Home() {
+export default function Home({ featuredProjects }) {
+	console.log(featuredProjects);
 	return (
 		<Container>
 			<InView>
@@ -136,11 +137,13 @@ export default function Home() {
 				</InView>
 
 				<div className="flex flex-col gap-8 sm:grid grid-cols-2 mb-8">
-					<ProjectCard project={projects[0]} />
-					<ProjectCard project={projects[1]} />
+					{featuredProjects.slice(0, 2).map((proj) => (
+						<ProjectCard key={proj.fields.title} project={proj.fields.project.fields} />
+					))}
+					{/* <ProjectCard project={projects[1]} /> */}
 				</div>
 
-				<SmallProject project={projects[2]} />
+				<SmallProject project={featuredProjects[2].fields.project.fields} />
 
 				<InView>
 					<div className="flex justify-center items-center">
@@ -197,4 +200,21 @@ export default function Home() {
 			</section>
 		</Container>
 	);
+}
+
+let client = require('contentful').createClient({
+	space: process.env.CONTENTFUL_SPACE_ID,
+	accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+});
+
+export async function getStaticProps() {
+	let data = await client.getEntries({
+		content_type: 'featuredProject',
+	});
+
+	return {
+		props: {
+			featuredProjects: data.items,
+		},
+	};
 }
