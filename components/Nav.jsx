@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
-import avatar from '../public/avatar.jpg';
+import avatar from '../public/images/avatar.jpg';
 import { DarkModeIcon, LightModeIcon } from './Icons';
 import MobileNav from './MobileNav';
 import NavItem from './NavItem';
@@ -44,7 +44,7 @@ export default function Nav() {
 				</Link>
 				<ul className="hidden sm:flex items-center gap-1">
 					{links.map((link) => (
-						<li key={link.href}>
+						<li key={link.label}>
 							<NavItem href={link.href} label={link.label} />
 						</li>
 					))}

@@ -1,11 +1,15 @@
+import cn from 'clsx';
 import Image from 'next/image';
+
 import Contact from '../components/Contact';
 import Container from '../components/Container';
 import InView from '../lib/InView';
-import forest from '../public/forest.jpg';
-import gatta from '../public/gattaPost.jpg';
-import hopetoun from '../public/hopetoun.jpg';
-import moreton from '../public/moreton.jpg';
+import imageBike from '../public/images/profileBike.jpg';
+import imageMilford from '../public/images/profileMilford.jpg';
+import imageSki from '../public/images/profileSki.jpg';
+import imageWinter from '../public/images/profileWinter.jpg';
+
+const images = [imageWinter, imageMilford, imageSki, imageBike];
 
 export default function About() {
 	return (
@@ -13,55 +17,27 @@ export default function About() {
 			<div className="flex flex-col gap-6 sm:gap-8">
 				<section className="mb-6">
 					<InView>
-						<h1 className="text-4xl mb-6 sm:mb-8">About Me</h1>
 						<div className="w-full grid gap-4 grid-cols-2 sm:grid-cols-4">
-							<div className="relative h-52">
-								<Image
-									src={moreton}
-									alt=""
-									fill
-									sizes="(max-width: 640px) 50vw,
-								25vw"
-									className="object-cover overflow-hidden rounded-lg"
-								/>
-							</div>
-							<div className="relative h-52">
-								<Image
-									src={hopetoun}
-									alt=""
-									fill
-									sizes="(max-width: 640px) 50vw,
-								25vw"
-									className="object-cover overflow-hidden rounded-lg"
-								/>
-							</div>
-							<div className="relative h-52 hidden sm:block">
-								<Image
-									src={gatta}
-									alt=""
-									fill
-									sizes="(max-width: 640px) 50vw,
-								25vw"
-									className="object-cover overflow-hidden rounded-lg"
-								/>
-							</div>
-							<div className="relative h-52 hidden sm:block">
-								<Image
-									src={forest}
-									alt=""
-									fill
-									sizes="(max-width: 640px) 50vw,
-								25vw"
-									className="object-cover overflow-hidden rounded-lg"
-								/>
-							</div>
+							{images.map((img, index) => (
+								<div key={index} className={cn('relative h-52', index >= 2 && 'hidden sm:block')}>
+									<Image
+										src={img.src}
+										alt={img.alt}
+										fill
+										sizes="(max-width: 640px) 50vw,
+							25vw"
+										draggable={false}
+										className="object-cover overflow-hidden rounded-lg"
+									/>
+								</div>
+							))}
 						</div>
 					</InView>
 				</section>
 				<article className="mb-8 sm:mb-12">
 					<InView>
-						<h2 className="text-lg sm:text-xl mb-2">A Longer Story</h2>
-						<div className="flex flex-col gap-4 text-secondary">
+						<h1 className="text-lg sm:text-xl mb-2">About me</h1>
+						<div className="flex flex-col gap-4 text-base text-secondary">
 							<p>
 								Hi there! I’m Simon, a designer/frontend developer hybrid that loves to build great
 								products with delightful interfaces. Currently working at Bitrefill, making living

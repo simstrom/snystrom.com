@@ -63,8 +63,8 @@ export default function ProjectCard({ project }) {
 					<p className="text-sm text-secondary px-6">{project.description}</p>
 
 					<div className="flex flex-wrap gap-2 mb-2 mt-auto px-6 pb-4">
-						{project.skills.map((skill) => (
-							<span key={skill} className="text-xs text-secondary">
+						{project.skills.map((skill, index) => (
+							<span key={index} className="text-xs text-secondary">
 								<SkillTag skill={skill} />
 							</span>
 						))}

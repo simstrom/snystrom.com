@@ -24,9 +24,9 @@ export default function Carousel() {
 				transition={{ ease: 'linear', duration: 40, repeat: Infinity }}
 				className="flex gap-4"
 			>
-				{images.map((img) => {
+				{images.map((img, index) => {
 					return (
-						<motion.div key={img} className="item rounded-lg">
+						<motion.div key={index} className="item rounded-lg">
 							<Image
 								src={img}
 								alt=""

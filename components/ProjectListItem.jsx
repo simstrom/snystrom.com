@@ -8,8 +8,8 @@ export default function ProjectListItem({ project }) {
 				<div className="flex flex-col gap-2">
 					<h3 className="text-base font-medium sm:text-lg">{project.title}</h3>
 					<div className="max-[450px]:hidden flex gap-3 flex-wrap">
-						{project.skills.map((skill) => (
-							<span key={skill} className="text-xs text-secondary">
+						{project.skills.map((skill, index) => (
+							<span key={index} className="text-xs text-secondary">
 								{skill}
 							</span>
 						))}

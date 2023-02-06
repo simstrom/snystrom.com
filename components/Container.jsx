@@ -8,7 +8,7 @@ export default function Container(props) {
 	const meta = {
 		title: 'Simon Nyström - Developer, designer, photographer.',
 		description: `Front-end developer with a passion for UI/UX design and photography.`,
-		image: 'https://snystrom.com/static/images/simon-banner.png',
+		image: 'https://snystrom.com/static/simon-banner.png',
 		type: 'website',
 		...metaData,
 	};

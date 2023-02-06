@@ -5,7 +5,7 @@ export default function Contact() {
 	return (
 		<>
 			<div className="mb-8">
-				<h3 className="text-lg sm:text-xl mb-1">Get in Touch</h3>
+				<h3 className="text-lg sm:text-xl mb-1">Get in touch</h3>
 				<p className="text-secondary">
 					I&apos;m more than happy to connect! You can find me through the links below.
 				</p>

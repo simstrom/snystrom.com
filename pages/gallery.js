@@ -61,7 +61,6 @@ export default function Gallery() {
 	const destinationRef = useRef(destinations);
 
 	const enterDestination = (destination) => {
-		// window.scrollTo(0, 0);
 		setActiveDestination(true);
 		setRedirected(false);
 		destinationRef.current = [destination];
@@ -180,8 +179,8 @@ export default function Gallery() {
 									variants={containerVariants}
 									className="grid max-[450px]:grid-cols-1 grid-cols-2 sm:grid-cols-3 gap-2 mb-4"
 								>
-									{destinationRef.current[0].images.map((image, idx) => (
-										<motion.div key={idx} variants={itemVariants}>
+									{destinationRef.current[0].images.map((image, index) => (
+										<motion.div key={index} variants={itemVariants}>
 											<Image src={image} alt="" draggable={false} className="rounded" />
 										</motion.div>
 									))}

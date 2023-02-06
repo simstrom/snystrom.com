@@ -12,14 +12,14 @@ import LinkArrow from '../components/LinkArrow';
 import ProjectCard from '../components/ProjectCard';
 import SectionHeader from '../components/SectionHeader';
 import InView from '../lib/InView';
-import hero from '../public/hero.jpg';
+import hero from '../public/images/hero.jpg';
 
 const skills = {
 	technologies: ['JavaScript', 'Java', 'React', 'SQL', 'Node.js', 'MongoDB'],
 	tools: ['Git', 'Figma'],
 };
 
-export default function Home({ featuredProjects }) {
+export default function Home({ featuredProjects, articles }) {
 	return (
 		<Container>
 			<InView>
@@ -72,8 +72,8 @@ export default function Home({ featuredProjects }) {
 							<h3 className="text-lg mb-4">Technologies</h3>
 
 							<ul className="gap-4 grid grid-cols-2 sm:text-sm mb-4 text-base text-secondary">
-								{skills.technologies.map((skill) => (
-									<li key={skill} className="flex gap-2 items-center">
+								{skills.technologies.map((skill, index) => (
+									<li key={index} className="flex gap-2 items-center">
 										<BulletIcon />
 										{skill}
 									</li>
@@ -81,8 +81,8 @@ export default function Home({ featuredProjects }) {
 							</ul>
 							<h4 className="font-semibold text-lg tracking-tight mb-2">Tools</h4>
 							<ul className="gap-4 grid grid-cols-2 sm:text-sm text-base text-secondary">
-								{skills.tools.map((skill) => (
-									<li key={skill} className="flex gap-2 items-center">
+								{skills.tools.map((skill, index) => (
+									<li key={index} className="flex gap-2 items-center">
 										<BulletIcon />
 										{skill}
 									</li>
@@ -116,9 +116,21 @@ export default function Home({ featuredProjects }) {
 						Latest Blog Posts
 					</SectionHeader>
 					<div className="flex flex-col gap-6 sm:grid grid-cols-3 mb-8">
-						<FeaturedPost gradientFrom={'from-emerald-300'} gradientTo={'to-blue-300'} />
-						<FeaturedPost gradientFrom={'from-pink-300'} gradientTo={'to-indigo-300'} />
-						<FeaturedPost gradientFrom={'from-orange-300'} gradientTo={'to-rose-300'} />
+						<FeaturedPost
+							article={articles[0]}
+							gradientFrom={'from-emerald-300'}
+							gradientTo={'to-blue-300'}
+						/>
+						<FeaturedPost
+							article={articles[1]}
+							gradientFrom={'from-pink-300'}
+							gradientTo={'to-indigo-300'}
+						/>
+						{/* <FeaturedPost
+							article={articles[2]}
+							gradientFrom={'from-orange-300'}
+							gradientTo={'to-rose-300'}
+						/> */}
 						<LinkArrow text="View All Articles" href="/blog" sm />
 					</div>
 				</InView>
@@ -153,13 +165,19 @@ export default function Home({ featuredProjects }) {
 }
 
 export async function getStaticProps() {
-	const projects = await client.getEntries({
+	const featuredProjects = await client.getEntries({
 		content_type: 'featuredProject',
+	});
+	const articles = await client.getEntries({
+		content_type: 'article',
+		limit: 3,
+		order: 'sys.createdAt',
 	});
 
 	return {
 		props: {
-			featuredProjects: projects.items,
+			featuredProjects: featuredProjects.items,
+			articles: articles.items.reverse(),
 		},
 	};
 }

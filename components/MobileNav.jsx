@@ -65,7 +65,7 @@ export default function MobileNav({ links }) {
 						>
 							{links.map((link) => (
 								<motion.li
-									key={link.href}
+									key={link.label}
 									className="py-4 border-b border-primary"
 									onClick={toggleMenu}
 									variants={itemVariants}

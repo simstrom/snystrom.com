@@ -52,13 +52,13 @@ export default function Projects({ projects }) {
 }
 
 export async function getStaticProps() {
-	const projects = await client.getEntries({
+	const data = await client.getEntries({
 		content_type: 'project',
 	});
 
 	return {
 		props: {
-			projects: projects.items,
+			projects: data.items,
 		},
 	};
 }
