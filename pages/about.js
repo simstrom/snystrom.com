@@ -10,7 +10,7 @@ import moreton from '../public/moreton.jpg';
 export default function About() {
 	return (
 		<Container>
-			<div className="flex flex-col gap-6 sm:gap-8 max-w-2xl mx-auto">
+			<div className="flex flex-col gap-6 sm:gap-8">
 				<section className="mb-6">
 					<InView>
 						<h1 className="text-4xl mb-6 sm:mb-8">About Me</h1>

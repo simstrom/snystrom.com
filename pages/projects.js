@@ -37,8 +37,8 @@ export default function Projects() {
 				<div className="mb-4">
 					<h1 className="text-4xl">All Projects</h1>
 					<p className="text-base text-secondary">
-						I love building projects and practice my engineering skills. Here's an archive of things
-						that I've worked on.
+						I love building projects and practice my engineering skills. Here&apos;s an archive of
+						things that I&apos;ve worked on.
 					</p>
 
 					<div className="flex gap-2 justify-end">

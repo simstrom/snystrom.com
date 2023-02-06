@@ -28,7 +28,7 @@ export default function Blog() {
 	return (
 		<Container>
 			<InView>
-				<div className="flex flex-col gap-8 max-w-2xl mx-auto">
+				<div className="flex flex-col gap-8">
 					<div>
 						<h1 className="text-4xl">Blog</h1>
 						<p className="text-base text-secondary mb-8">

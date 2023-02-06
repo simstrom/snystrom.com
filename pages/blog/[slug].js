@@ -21,7 +21,7 @@ export default function Post({ post }) {
 	return (
 		<Container>
 			<InView>
-				<article className="flex flex-col gap-12 max-w-2xl mx-auto mt-12">
+				<article className="flex flex-col gap-12 mt-12">
 					<div className="flex flex-col gap-1">
 						<span className="text-secondary font-medium text-sm tracking-widest uppercase">
 							Productivity

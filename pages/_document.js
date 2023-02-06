@@ -2,7 +2,7 @@ import { Head, Html, Main, NextScript } from 'next/document';
 
 export default function Document() {
 	return (
-		<Html lang="en">
+		<Html lang="en" style={{ scrollBehavior: 'smooth' }}>
 			<Head>
 				<link href="/static/favicon.ico" rel="shortcut icon" />
 				<meta content="#18181B" name="theme-color" />
