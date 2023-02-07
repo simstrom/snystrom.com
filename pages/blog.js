@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
+import readingTime from 'reading-time';
 import { client } from '../lib/contentful-server';
 
 import BlogListItem from '../components/BlogListItem';
@@ -61,6 +62,10 @@ export async function getStaticProps() {
 		content_type: 'article',
 		order: 'sys.createdAt',
 	});
+
+	for (let article of data.items) {
+		article.fields.readingTime = readingTime(article.fields.body).text;
+	}
 
 	return {
 		props: {

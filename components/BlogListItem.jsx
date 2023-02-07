@@ -11,7 +11,7 @@ export default function BlogListItem({ article }) {
 			</div>
 			<h2 className="font-medium group-hover:text-brand duration-300">{article.title}</h2>
 			<div className="text-sm text-secondary">
-				<span>2 min read</span>
+				<span>{article.readingTime}</span>
 				<span> • </span>
 				<span>234 views</span>
 			</div>

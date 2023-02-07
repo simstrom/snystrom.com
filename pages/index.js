@@ -18,6 +18,11 @@ const skills = {
 	technologies: ['JavaScript', 'Java', 'React', 'SQL', 'Node.js', 'MongoDB'],
 	tools: ['Git', 'Figma'],
 };
+const gradients = [
+	{ from: 'from-emerald-400', to: 'to-blue-400' },
+	{ from: 'from-pink-400', to: 'to-indigo-400' },
+	{ from: 'from-orange-300', to: 'to-rose-400' },
+];
 
 export default function Home({ featuredProjects, articles }) {
 	return (
@@ -94,7 +99,7 @@ export default function Home({ featuredProjects, articles }) {
 			</section>
 
 			<section>
-				<InView threshold={0.1}>
+				<InView>
 					<SectionHeader btnText="Explore All Projects" href="/projects">
 						Selected Projects
 					</SectionHeader>
@@ -116,21 +121,14 @@ export default function Home({ featuredProjects, articles }) {
 						Latest Blog Posts
 					</SectionHeader>
 					<div className="flex flex-col gap-6 sm:grid grid-cols-3 mb-8">
-						<FeaturedPost
-							article={articles[0]}
-							gradientFrom={'from-emerald-300'}
-							gradientTo={'to-blue-300'}
-						/>
-						<FeaturedPost
-							article={articles[1]}
-							gradientFrom={'from-pink-300'}
-							gradientTo={'to-indigo-300'}
-						/>
-						{/* <FeaturedPost
-							article={articles[2]}
-							gradientFrom={'from-orange-300'}
-							gradientTo={'to-rose-300'}
-						/> */}
+						{articles.map((article, index) => (
+							<FeaturedPost
+								key={article.sys.id}
+								article={article}
+								gradientFrom={gradients[index].from}
+								gradientTo={gradients[index].to}
+							/>
+						))}
 						<LinkArrow text="View All Articles" href="/blog" sm />
 					</div>
 				</InView>
