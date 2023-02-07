@@ -26,6 +26,18 @@
 	}
 }
 
+@layer utilities {
+	.animation-delay-1 {
+		animation-delay: 130ms;
+	}
+	.animation-delay-2 {
+		animation-delay: 260ms;
+	}
+	.animation-delay-3 {
+		animation-delay: 390ms;
+	}
+}
+
 .image-fluid {
 	object-fit: contain;
 	width: 100% !important;

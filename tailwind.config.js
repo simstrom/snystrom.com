@@ -21,6 +21,15 @@ module.exports = {
 			borderColor: {
 				primary: 'hsl(var(--border) / 100)',
 			},
+			keyframes: {
+				in: {
+					'0%': { transform: 'translateY(30px)', opacity: 0 },
+					'100%': { transform: 'translateY(0)', opacity: 1 },
+				},
+			},
+			animation: {
+				in: 'in .6s both',
+			},
 		},
 		fontSize: {
 			xs: [

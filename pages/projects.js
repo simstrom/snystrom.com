@@ -7,22 +7,21 @@ import Container from '../components/Container';
 import { GridIcon, ListIcon } from '../components/Icons';
 import ProjectCard from '../components/ProjectCard';
 import ProjectListItem from '../components/ProjectListItem';
-import InView from '../lib/InView';
 
 export default function Projects({ projects }) {
 	const [gridView, setGridView] = useState(true);
 
 	return (
 		<Container>
-			<InView>
+			<div>
 				<div className="mb-4">
-					<h1 className="text-4xl">All Projects</h1>
-					<p className="text-base text-secondary">
+					<h1 className="text-4xl animate-in">All Projects</h1>
+					<p className="text-base text-secondary animate-in animation-delay-1">
 						I love building projects and practice my engineering skills. Here&apos;s an archive of
 						things that I&apos;ve worked on.
 					</p>
 
-					<div className="flex gap-2 justify-end">
+					<div className="flex gap-2 justify-end animate-in animation-delay-2">
 						<ChangeViewButton currentlyActive={gridView} handleViewChange={() => setGridView(true)}>
 							<GridIcon />
 						</ChangeViewButton>
@@ -46,7 +45,7 @@ export default function Projects({ projects }) {
 								<ProjectCard key={project.fields.title} project={project.fields} />
 						  ))}
 				</div>
-			</InView>
+			</div>
 		</Container>
 	);
 }

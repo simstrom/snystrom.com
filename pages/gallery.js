@@ -4,7 +4,6 @@ import { useRef, useState } from 'react';
 import Container from '../components/Container';
 import DestinationCard from '../components/DestinationCard';
 import { InstagramIcon, LeftArrowIcon, RightArrowIcon } from '../components/Icons';
-import InView from '../lib/InView';
 
 import forest from '../public/forest.jpg';
 import gatta from '../public/gattaPost.jpg';
@@ -92,15 +91,15 @@ export default function Gallery() {
 
 	return (
 		<Container>
-			<InView>
+			<div>
 				<div className="mb-8">
 					<div className="flex items-baseline">
-						<h1 className="text-4xl">Gallery</h1>
+						<h1 className="text-4xl animate-in">Gallery</h1>
 						<a
 							href="https://www.instagram.com/simonnystrom"
 							target="_blank"
 							rel="noopener noreferrer"
-							className="ml-auto text-sm text-tertiary flex items-center gap-2 group hover:text-brand duration-300"
+							className="ml-auto text-sm text-tertiary flex items-center gap-2 group hover:text-brand duration-300 animate-in"
 						>
 							<span className="max-[450px]:hidden">Find me on Instagram</span>
 							<div className="group-hover:scale-110 transition-transform">
@@ -108,14 +107,14 @@ export default function Gallery() {
 							</div>
 						</a>
 					</div>
-					<div className="sm:grid grid-cols-3">
+					<div className="sm:grid grid-cols-3 animate-in animation-delay-1">
 						<p className="text-base text-secondary col-span-2">
 							This is where I share my writings on programming, tutorials, and my experiences.
 						</p>
 					</div>
 				</div>
 
-				<div className="mb-4 h-10 flex items-center">
+				<div className="mb-4 h-10 flex items-center animate-in animation-delay-2">
 					<AnimatePresence>
 						{activeDestination ? (
 							<motion.button
@@ -145,7 +144,7 @@ export default function Gallery() {
 					</AnimatePresence>
 				</div>
 
-				<div className="flex flex-col gap-2">
+				<div className="flex flex-col gap-2 animate-in animation-delay-3">
 					{!redirected && (
 						<AnimatePresence>
 							{destinationRef.current.map((destination) => (
@@ -219,7 +218,7 @@ export default function Gallery() {
 						</>
 					)}
 				</div>
-			</InView>
+			</div>
 		</Container>
 	);
 }

@@ -23,7 +23,7 @@ export default function Article({ article }) {
 	return (
 		<Container>
 			<article className="flex flex-col gap-12 mt-12">
-				<div className="flex flex-col gap-1">
+				<div className="flex flex-col gap-1 animate-in">
 					<span className="text-secondary font-medium text-sm tracking-widest uppercase">
 						{article.fields.category}
 					</span>
@@ -39,7 +39,7 @@ export default function Article({ article }) {
 						</div>
 					</div>
 				</div>
-				<div className="text-base text-tertiary">
+				<div className="text-base text-tertiary animate-in animation-delay-1">
 					<p>{article.fields.body}</p>
 				</div>
 				<div className="flex gap-2 items-center">
