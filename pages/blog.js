@@ -18,7 +18,7 @@ export default function Blog({ articles, interactions }) {
 				<div>
 					<h1 className="text-4xl animate-in">Blog</h1>
 					<p className="text-base text-secondary mb-8 animate-in animation-delay-1">
-						This is where I share my writings on programming, tutorials, and my experiences.
+						This is where I share my thoughts and experiences on all things code and design.
 					</p>
 					<div className="relative mb-2 animate-in animation-delay-2">
 						<input
@@ -68,7 +68,7 @@ export async function getStaticProps() {
 		article.fields.readingTime = readingTime(article.fields.body).text;
 	}
 
-	const interactions = await fetcher(`${process.env.NEXT_PUBLIC_BASE_URL}/api/views`);
+	const interactions = await fetcher(`${process.env.NEXT_PUBLIC_VERCEL_URL}/api/views`);
 
 	return {
 		props: {

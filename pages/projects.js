@@ -17,8 +17,8 @@ export default function Projects({ projects }) {
 				<div className="mb-4">
 					<h1 className="text-4xl animate-in">All Projects</h1>
 					<p className="text-base text-secondary animate-in animation-delay-1">
-						I love building projects and practice my engineering skills. Here&apos;s an archive of
-						things that I&apos;ve worked on.
+						I&apos;m constantly striving to elevate my development skills through new and engaging
+						projects. Here&apos;s a selection of things I&apos;ve worked on.
 					</p>
 
 					<div className="flex gap-2 justify-end animate-in animation-delay-2">

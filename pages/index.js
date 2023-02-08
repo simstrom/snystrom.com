@@ -16,8 +16,8 @@ import InView from '../lib/InView';
 import hero from '../public/images/hero.jpg';
 
 const skills = {
-	technologies: ['JavaScript', 'Java', 'React', 'SQL', 'Node.js', 'MongoDB'],
-	tools: ['Git', 'Figma'],
+	technologies: ['React', 'Java', 'JavaScript', 'SQL', 'Node.js', 'MongoDB', 'Express', 'Tailwind'],
+	tools: ['Git', 'Figma', 'Trello', 'Notion'],
 };
 const gradients = [
 	{ from: 'from-emerald-400', to: 'to-blue-400' },
@@ -29,14 +29,14 @@ export default function Home({ featuredProjects, articles }) {
 	return (
 		<Container>
 			<section className="flex flex-col sm:grid grid-cols-5 gap-10 items-center sm:h-96">
-				<div className="order-2 sm:order-1 flex flex-col gap-1 sm:col-span-3">
-					<span className="text-2xl text-brand animate-in">👋🏼 Hi there, my name is</span>
-					<h1 className="text-4xl max-[440px]:text-3xl leading-normal animate-in animation-delay-1">
-						Simon Nyström.
-					</h1>
-					<h2 className="text-xl max-[440px]:text-3xl text-secondary font-medium animate-in animation-delay-2">
-						I’m currently pursuing a Bachelor’s Degree in Systems Development while spending my
-						spare time self-teaching web development.
+				<div className="text-center sm:text-left order-2 sm:order-1 flex flex-col gap-1 sm:col-span-3">
+					<span className="text-2xl max-[440px]:text-xl text-brand animate-in">
+						👋🏼 Hi there, my name is
+					</span>
+					<h1 className="text-4xl leading-normal animate-in animation-delay-1">Simon Nyström.</h1>
+					<h2 className=" text-base mt-4 sm:text-xl sm:font-medium sm:mt-0 text-secondary animate-in animation-delay-2">
+						I&apos;m a Software Developer Student with a passion for combining code and design to
+						build engaging user interfaces.
 					</h2>
 				</div>
 				<div className="order-1 sm:order-2 sm:col-span-2 w-60 sm:w-full animate-in">
@@ -59,17 +59,15 @@ export default function Home({ featuredProjects, articles }) {
 
 				<div className="flex flex-col gap-8 sm:grid md:gap-10 grid-cols-3">
 					<div className="col-span-2">
-						<p className="text-secondary text-base mb-2">
-							I’m currently pursuing a Bachelor’s Degree in Systems Development while spending my
-							spare time self-teaching web development. I have become somewhat obsessed in embracing
-							new technologies and building things with code.
-						</p>
 						<p className="text-secondary text-base">
-							Ever since my early days I’ve taken an interest in the world of digital creations.
-							However, I didn’t grasp the opportunities and the potential of learning how to code
-							until I met a Software Engineer while travelling in Indonesia. He told me about the
-							profession and the things he had created. As someone who has an itch for solving
-							problems and unleashing creativity, I was hooked.
+							Welcome to my digital playground! I&apos;m currently pursuing a degree in Software
+							Development, but that hasn&apos;t stopped me from devoting my free time to improving
+							my expertise in web development. I have always found myself drawn to more artistic
+							endeavours such as design and photography. However, when I first entered the world of
+							programming I discovered an outlet to combine my problem solving skills with the
+							unleashing of creativity. Needless to say, something just clicked. This portfolio is a
+							reflection of my ongoing journey where I highlight projects I&apos;ve built and share
+							insights on lessons learned. So, grab a cup of coffee and let&apos;s go!
 						</p>
 					</div>
 					<LinkArrow text="Get to Know me More" href="/about" sm />
@@ -140,9 +138,9 @@ export default function Home({ featuredProjects, articles }) {
 					</SectionHeader>
 					<div className="flex flex-col gap-8 ">
 						<p className="text-secondary text-base mb-2">
-							I’m currently pursuing a Bachelor’s Degree in Systems Development while spending my
-							spare time self-teaching web development. I have become somewhat obsessed in embracing
-							new technologies and building things with code.
+							When I&apos;m not behind the computer writing code, you&apos;ll find me on the hunt
+							for my next adventure. Over the years, I&apos;ve captured countless memories from my
+							travels all around the world. Take a look and see for yourself!
 						</p>
 
 						<Carousel />

@@ -109,7 +109,8 @@ export default function Gallery() {
 					</div>
 					<div className="sm:grid grid-cols-3 animate-in animation-delay-1">
 						<p className="text-base text-secondary col-span-2">
-							This is where I share my writings on programming, tutorials, and my experiences.
+							Welcome to my travel photography showcase. Here you&apos;ll find my favorite images
+							captured during my journeys.
 						</p>
 					</div>
 				</div>
@@ -151,11 +152,10 @@ export default function Gallery() {
 								<motion.div
 									layout
 									key={destination.title}
-									initial={{ opacity: 0, x: -20 }}
-									exit={{ opacity: 0, x: -20 }}
+									initial={{ opacity: 0 }}
+									exit={{ opacity: 0 }}
 									animate={{
 										opacity: 1,
-										x: 0,
 									}}
 									transition={{ duration: 0.3 }}
 								>

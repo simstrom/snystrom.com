@@ -81,10 +81,8 @@ export async function getStaticProps({ params }) {
 	const content = await serialize(article.fields.body);
 
 	const interactions = await fetcher(
-		`${process.env.NEXT_PUBLIC_BASE_URL}/api/views/${params.slug}`
+		`${process.env.NEXT_PUBLIC_VERCEL_URL}/api/views/${params.slug}`
 	);
-
-	// Fetch likes here...
 
 	return {
 		props: {

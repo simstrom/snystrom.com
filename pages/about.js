@@ -42,21 +42,21 @@ export default function About() {
 					<h1 className="text-lg sm:text-xl mb-2">About me</h1>
 					<div className="flex flex-col gap-4 text-base text-secondary">
 						<p>
-							Hi there! I’m Simon, a designer/frontend developer hybrid that loves to build great
-							products with delightful interfaces. Currently working at Bitrefill, making living on
-							crypto possible. Before that I worked at music startup Tracklib, the record store for
-							sampling.
+							Hi there! I&apos;m Simon, a Software Development student at Linköping University with
+							a passion for combining code and design to build engaging user interfaces. I&apos;ve
+							found programming to be the perfect outlet for my combination of logical thinking,
+							problem solving, and artistic creativity.{' '}
 						</p>
 						<p>
-							I love working in the realm between design and code. Some things that makes me excited
-							are CSS, Design Systems, Animation, crafting excellent component apis and making
-							interfaces feel fun and human.
+							In addition to my studies, I am always exploring new projects and expanding my
+							knowledge through courses, reading documentation, and experimentation. I am driven by
+							a love of technology and the boundless possibilities of the web.
 						</p>
 						<p>
-							I grew up in Nacka just outside of Stockholm, Sweden and come from a background of
-							studying Photography.
+							When I&apos;m not coding however, you can find me chasing adventure through
+							photography, travel, and skiing while blasting indie rock on full volume. Invite me on
+							a roadtrip and we&apos;ll forever be friends.
 						</p>
-						<p>Outside of work I’m obsessed with endurance sports and travelling with my family.</p>
 					</div>
 				</article>
 				<section>
