@@ -1,6 +1,9 @@
 import Link from 'next/link';
 
-export default function BlogListItem({ article }) {
+export default function BlogListItem({ article, interactions }) {
+	const views = !interactions ? 0 : interactions.data.views || 0;
+	const likes = !interactions ? 0 : interactions.data.likes || 0;
+
 	return (
 		<Link
 			href={`/blog/${article.slug}`}
@@ -13,7 +16,9 @@ export default function BlogListItem({ article }) {
 			<div className="text-sm text-secondary">
 				<span>{article.readingTime}</span>
 				<span> • </span>
-				<span>234 views</span>
+				<span>{views} views</span>
+				<span> • </span>
+				<span>{likes} likes</span>
 			</div>
 		</Link>
 	);

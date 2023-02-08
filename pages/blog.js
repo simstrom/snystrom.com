@@ -2,12 +2,13 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
 import readingTime from 'reading-time';
 import { client } from '../lib/contentful-server';
+import fetcher from '../lib/fetcher';
 
 import BlogListItem from '../components/BlogListItem';
 import Container from '../components/Container';
 import { SearchIcon } from '../components/Icons';
 
-export default function Blog({ articles }) {
+export default function Blog({ articles, interactions }) {
 	const [query, setQuery] = useState('');
 	const handleChange = (e) => setQuery(e.target.value);
 
@@ -44,7 +45,10 @@ export default function Blog({ articles }) {
 									animate={{ opacity: 1 }}
 									exit={{ opacity: 0 }}
 								>
-									<BlogListItem article={article.fields} />
+									<BlogListItem
+										article={article.fields}
+										interactions={interactions.find((obj) => obj.id === article.fields.slug)}
+									/>
 								</motion.div>
 							))}
 					</AnimatePresence>
@@ -64,9 +68,12 @@ export async function getStaticProps() {
 		article.fields.readingTime = readingTime(article.fields.body).text;
 	}
 
+	const interactions = await fetcher(`${process.env.NEXT_PUBLIC_BASE_URL}/api/views`);
+
 	return {
 		props: {
 			articles: data.items.reverse(),
+			interactions,
 		},
 	};
 }

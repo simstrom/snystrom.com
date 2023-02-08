@@ -1,26 +1,19 @@
-import cn from 'clsx';
 import { MDXRemote } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
 import Link from 'next/link';
-import { useState } from 'react';
 import readingTime from 'reading-time';
 import { client } from '../../lib/contentful-server';
+import fetcher from '../../lib/fetcher';
 import { formatDate } from '../../lib/formatDate';
 
+import { useState } from 'react';
 import Container from '../../components/Container';
-import { LeftArrowIcon, LikeIcon } from '../../components/Icons';
+import { LeftArrowIcon } from '../../components/Icons';
+import LikeButton from '../../components/LikeButton';
 
-export default function Article({ meta, content }) {
-	const [liked, setLiked] = useState(false);
-	const [likes, setLikes] = useState(80);
-
-	const handleLike = () => {
-		if (!liked) {
-			setLikes((prev) => prev + 1);
-			setLiked(true);
-			// Save to db.
-		}
-	};
+export default function Article({ meta, content, interactions }) {
+	const [likes, setLikes] = useState(!interactions ? 0 : interactions.likes || 0);
+	const views = !interactions ? 0 : interactions.views || 0;
 
 	return (
 		<Container>
@@ -35,7 +28,7 @@ export default function Article({ meta, content }) {
 						<div className="text-brand">
 							<p className="inline">{meta.fields.readingTime}</p>
 							<span> • </span>
-							<p className="inline">234 views</p>
+							<p className="inline">{views} views</p>
 							<span> • </span>
 							<p className="inline">{likes} likes</p>
 						</div>
@@ -44,18 +37,9 @@ export default function Article({ meta, content }) {
 				<div className="prose prose-p:text-base prose-h2:text-2xl prose-h3:text-xl prose-h4:text-lg dark:prose-code:bg-tertiary/60 animate-in animation-delay-1">
 					<MDXRemote {...content} />
 				</div>
-				<div className="flex gap-2 items-center">
-					<button
-						className={cn(
-							'rounded-lg p-2 hover:text-brand hover:bg-tertiary dark:hover:bg-tertiary/40 duration-300',
-							liked ? 'text-brand' : 'text-tertiary'
-						)}
-						onClick={handleLike}
-					>
-						<LikeIcon filled={liked && true} />
-					</button>
-					<span className="font-medium">{likes}</span>
-				</div>
+
+				<LikeButton slug={meta.fields.slug} likes={likes} setLikes={setLikes} />
+
 				<Link
 					href="/blog"
 					className="flex gap-2 text-sm font-medium text-tertiary group hover:text-brand duration-300"
@@ -63,7 +47,7 @@ export default function Article({ meta, content }) {
 					<div className="group-hover:-translate-x-1 transition-transform">
 						<LeftArrowIcon />
 					</div>
-					<span>Back to All Posts</span>
+					<span>Back to Blog</span>
 				</Link>
 			</article>
 		</Container>
@@ -95,15 +79,18 @@ export async function getStaticProps({ params }) {
 	const article = data.items[0];
 	article.fields.readingTime = readingTime(article.fields.body).text;
 	const content = await serialize(article.fields.body);
-	console.log(content);
-	// Convert to MDX here...
-	// Fetch views here...
+
+	const interactions = await fetcher(
+		`${process.env.NEXT_PUBLIC_BASE_URL}/api/views/${params.slug}`
+	);
+
 	// Fetch likes here...
 
 	return {
 		props: {
 			meta: article,
 			content,
+			interactions,
 		},
 	};
 }

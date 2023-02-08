@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import readingTime from 'reading-time';
 import { client } from '../lib/contentful-server';
 
 import Button from '@/components/Button';
@@ -169,6 +170,9 @@ export async function getStaticProps() {
 		limit: 3,
 		order: 'sys.createdAt',
 	});
+	for (let article of articles.items) {
+		article.fields.readingTime = readingTime(article.fields.body).text;
+	}
 
 	return {
 		props: {

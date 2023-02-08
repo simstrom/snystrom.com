@@ -24,7 +24,9 @@ export default function FeaturedPost({ article, gradientFrom, gradientTo }) {
 					<div className="order-2 sm:order-1 text-secondary">
 						{formatDate(article.sys.createdAt)}
 					</div>
-					<div className="order-1 sm:order-2 font-medium text-tertiary">2 min read</div>
+					<div className="order-1 sm:order-2 font-medium text-tertiary">
+						{article.fields.readingTime}
+					</div>
 				</div>
 			</div>
 		</Link>
