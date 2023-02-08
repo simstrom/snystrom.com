@@ -13,9 +13,7 @@ export default function App({ Component, pageProps }) {
 		<ThemeProvider attribute="class" defaultTheme="dark" disableTransitionOnChange>
 			<div className={cn(inter.className, 'antialiased min-h-screen flex flex-col')}>
 				<Nav />
-				<div className="max-w-3xl w-full mx-auto px-6 md:px-8">
-					<Component {...pageProps} />
-				</div>
+				<Component {...pageProps} />
 				<Footer />
 			</div>
 		</ThemeProvider>

@@ -7,6 +7,7 @@ module.exports = {
 		extend: {
 			colors: {
 				brand: 'hsl(var(--brand) / 100)',
+				brandLight: 'hsl(var(--brand-light) / 100)',
 			},
 			textColor: {
 				primary: 'hsl(var(--typeface-primary) / 100)',
@@ -30,6 +31,51 @@ module.exports = {
 			animation: {
 				in: 'in .6s both',
 			},
+			typography: (theme) => ({
+				DEFAULT: {
+					css: {
+						color: theme('textColor.secondary'),
+						'h2, h3, h4': {
+							color: theme('textColor.primary'),
+						},
+						a: {
+							color: theme('colors.brand'),
+							textDecoration: 'none',
+							borderBottom: '1px solid transparent',
+							transition: 'all 0.3s',
+							'&:hover': {
+								color: theme('colors.brandLight'),
+								borderColor: theme('colors.brandLight'),
+								transition: 'all 0.3s',
+							},
+						},
+						hr: { borderColor: theme('borderColor.primary') },
+						li: {
+							'&::marker': { color: theme('colors.brand') },
+						},
+						strong: { color: theme('textColor.primary') },
+						em: { color: theme('textColor.tertiary') },
+						code: {
+							color: theme('colors.brandLight'),
+							fontWeight: '500',
+							backgroundColor: theme('backgroundColor.tertiary'),
+							padding: '.3rem',
+							borderRadius: '.5rem',
+							border: '1px solid',
+							borderColor: theme('borderColor.primary'),
+							boxShadow: '0 1px 2px 0 rgb(0 0 0 / 0.05)',
+						},
+						'code::before': false,
+						'code::after': false,
+						blockquote: {
+							borderLeftColor: theme('colors.brand'),
+							color: theme('textColor.secondary'),
+						},
+						'blockquote p:first-of-type::before': false,
+						'blockquote p:last-of-type::after': false,
+					},
+				},
+			}),
 		},
 		fontSize: {
 			xs: [

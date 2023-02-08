@@ -14,7 +14,7 @@ export default function Container(props) {
 	};
 
 	return (
-		<div>
+		<>
 			<Head>
 				<title>{meta.title}</title>
 				<meta name="keywords" content="snystrom, simon nystrom, simstrom" />
@@ -30,9 +30,9 @@ export default function Container(props) {
 				{meta.date && <meta property="article:published_time" content={meta.date} />}
 			</Head>
 
-			<main className="pt-14 md:pt-20 pb-14 md:pb-20 flex flex-col gap-20 md:gap-28">
+			<main className="pt-14 md:pt-20 pb-14 md:pb-20 flex flex-col gap-20 md:gap-28 max-w-3xl mx-auto w-full px-6 md:px-8">
 				{children}
 			</main>
-		</div>
+		</>
 	);
 }

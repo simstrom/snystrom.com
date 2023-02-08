@@ -39,6 +39,7 @@ export default function Nav() {
 						alt="Simon Nyström avatar"
 						width={36}
 						height={36}
+						priority
 						className="hidden sm:block rounded-full hover:scale-110 transition:transform duration-300"
 					/>
 				</Link>

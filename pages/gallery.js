@@ -146,7 +146,7 @@ export default function Gallery() {
 
 				<div className="flex flex-col gap-2 animate-in animation-delay-3">
 					{!redirected && (
-						<AnimatePresence>
+						<AnimatePresence initial={false} mode="popLayout">
 							{destinationRef.current.map((destination) => (
 								<motion.div
 									layout

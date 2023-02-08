@@ -5,6 +5,7 @@
 @layer base {
 	:root {
 		--brand: 222deg 89% 55%;
+		--brand-light: 222deg 89% 60%;
 		--bg: 210deg 20% 98%;
 		--bg-card: 223deg 15% 98%;
 		--foreground: 223deg 15% 95%;
@@ -16,6 +17,7 @@
 
 	.dark {
 		--brand: 222deg 89% 65%;
+		--brand-light: 222deg 89% 70%;
 		--bg: 223deg 14% 10%;
 		--bg-card: 223deg 15% 12%;
 		--foreground: 223deg 15% 20%;

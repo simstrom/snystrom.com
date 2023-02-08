@@ -7,7 +7,7 @@ export default function DestinationCard({ destination, enterDestination, active 
 	return (
 		<div
 			className={cn(
-				'py-8 px-8 flex items-center justify-between drop-shadow text-[#e7edfe] group',
+				'py-8 px-8 flex items-center justify-between drop-shadow text-[#e7edfe] group relative',
 				!active && 'cursor-pointer'
 			)}
 			onClick={() => enterDestination(destination)}

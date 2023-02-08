@@ -1,4 +1,6 @@
 import cn from 'clsx';
+import { MDXRemote } from 'next-mdx-remote';
+import { serialize } from 'next-mdx-remote/serialize';
 import Link from 'next/link';
 import { useState } from 'react';
 import readingTime from 'reading-time';
@@ -8,7 +10,7 @@ import { formatDate } from '../../lib/formatDate';
 import Container from '../../components/Container';
 import { LeftArrowIcon, LikeIcon } from '../../components/Icons';
 
-export default function Article({ article }) {
+export default function Article({ meta, content }) {
 	const [liked, setLiked] = useState(false);
 	const [likes, setLikes] = useState(80);
 
@@ -25,13 +27,13 @@ export default function Article({ article }) {
 			<article className="flex flex-col gap-12 mt-12">
 				<div className="flex flex-col gap-1 animate-in">
 					<span className="text-secondary font-medium text-sm tracking-widest uppercase">
-						{article.fields.category}
+						{meta.fields.category}
 					</span>
-					<h1 className="text-3xl sm:text-4xl leading-normal">{article.fields.title}</h1>
+					<h1 className="text-3xl sm:text-4xl leading-normal">{meta.fields.title}</h1>
 					<div className="flex flex-col sm:flex-row justify-between gap-1 sm:items-center text-sm text-secondary font-medium">
-						<p>{formatDate(article.sys.updatedAt)}</p>
+						<p>{formatDate(meta.sys.updatedAt)}</p>
 						<div className="text-brand">
-							<p className="inline">{article.fields.readingTime}</p>
+							<p className="inline">{meta.fields.readingTime}</p>
 							<span> • </span>
 							<p className="inline">234 views</p>
 							<span> • </span>
@@ -39,8 +41,8 @@ export default function Article({ article }) {
 						</div>
 					</div>
 				</div>
-				<div className="text-base text-tertiary animate-in animation-delay-1">
-					<p>{article.fields.body}</p>
+				<div className="prose prose-p:text-base prose-h2:text-2xl prose-h3:text-xl prose-h4:text-lg dark:prose-code:bg-tertiary/60 animate-in animation-delay-1">
+					<MDXRemote {...content} />
 				</div>
 				<div className="flex gap-2 items-center">
 					<button
@@ -92,14 +94,16 @@ export async function getStaticProps({ params }) {
 	});
 	const article = data.items[0];
 	article.fields.readingTime = readingTime(article.fields.body).text;
+	const content = await serialize(article.fields.body);
+	console.log(content);
 	// Convert to MDX here...
 	// Fetch views here...
 	// Fetch likes here...
 
 	return {
 		props: {
-			article,
+			meta: article,
+			content,
 		},
-		revalidate: 30,
 	};
 }
