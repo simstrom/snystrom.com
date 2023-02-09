@@ -2,40 +2,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
 import { useRef, useState } from 'react';
 import Container from '../components/Container';
-import DestinationCard from '../components/DestinationCard';
 import { InstagramIcon, LeftArrowIcon, RightArrowIcon } from '../components/Icons';
-
-import forest from '../public/forest.jpg';
-import gatta from '../public/gattaPost.jpg';
-import hopetoun from '../public/hopetoun.jpg';
-import moreton from '../public/moreton.jpg';
-
-const destinations = [
-	{
-		title: 'Australia',
-		images: [forest, gatta, hopetoun, moreton],
-	},
-	{
-		title: 'New Zealand',
-		images: [gatta, hopetoun, moreton, forest],
-	},
-	{
-		title: 'Norway',
-		images: [hopetoun, moreton, forest, gatta],
-	},
-	{
-		title: 'Scotland',
-		images: [hopetoun, moreton, forest, gatta],
-	},
-	{
-		title: 'Indonesia',
-		images: [hopetoun, moreton, forest, gatta],
-	},
-	{
-		title: 'Italy',
-		images: [hopetoun, moreton, forest, gatta],
-	},
-];
 
 const containerVariants = {
 	hidden: { opacity: 0 },
@@ -52,7 +19,7 @@ const itemVariants = {
 	show: { opacity: 1 },
 };
 
-export default function Gallery() {
+export default function Gallery({ destinations }) {
 	const [activeDestination, setActiveDestination] = useState(false);
 	const [redirected, setRedirected] = useState(false);
 	const [nextDestination, setNextDestination] = useState();
@@ -139,7 +106,7 @@ export default function Gallery() {
 								transition={{ duration: 0.3 }}
 								className="text-xl font-medium"
 							>
-								All Destinations
+								Under Construction...
 							</motion.h3>
 						)}
 					</AnimatePresence>
@@ -148,7 +115,7 @@ export default function Gallery() {
 				<div className="flex flex-col gap-2 animate-in animation-delay-3">
 					{!redirected && (
 						<AnimatePresence initial={false} mode="popLayout">
-							{destinationRef.current.map((destination) => (
+							{/* {destinationRef.current.map((destination) => (
 								<motion.div
 									layout
 									key={destination.title}
@@ -165,7 +132,7 @@ export default function Gallery() {
 										active={activeDestination}
 									/>
 								</motion.div>
-							))}
+							))} */}
 						</AnimatePresence>
 					)}
 					{activeDestination && (

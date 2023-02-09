@@ -35,6 +35,16 @@ export default function Blog({ articles, interactions }) {
 				</div>
 				<div className="flex flex-col gap-2 sm:gap-4 mb-20 sm:mb-28 animate-in animation-delay-3">
 					<AnimatePresence>
+						{!articles.length && (
+							<>
+								<p className="text-center text-lg text-secondary font-normal leading-none">
+									There is nothing here yet...
+								</p>
+								<p className="text-center text-base text-secondary">
+									I just finished the site. Content will soon follow.
+								</p>
+							</>
+						)}
 						{articles
 							.filter((obj) => obj.fields.title.toLowerCase().includes(query.toLowerCase()))
 							.map((article) => (

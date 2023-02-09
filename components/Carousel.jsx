@@ -2,12 +2,12 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 
-import forest from '../public/forest.jpg';
-import gatta from '../public/gattaPost.jpg';
-import hopetoun from '../public/hopetoun.jpg';
-import moreton from '../public/moreton.jpg';
+import gatta from '../public/images/gallery/gatta.jpg';
+import manarola from '../public/images/gallery/manarola.jpg';
+import preike from '../public/images/gallery/preikestolen.jpg';
+import treCime from '../public/images/gallery/trecime.jpg';
 
-const images = [forest, gatta, hopetoun, moreton, forest, gatta, hopetoun, moreton];
+const images = [treCime, manarola, gatta, preike, treCime, manarola, gatta, preike];
 
 export default function Carousel() {
 	const [width, setWidth] = useState(0);
@@ -20,7 +20,7 @@ export default function Carousel() {
 	return (
 		<motion.div ref={carousel} className="overflow-hidden">
 			<motion.div
-				animate={{ x: -width + 275 }}
+				animate={{ x: -width + 280 }}
 				transition={{ ease: 'linear', duration: 40, repeat: Infinity }}
 				className="flex gap-4"
 			>

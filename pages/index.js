@@ -7,7 +7,6 @@ import SmallProject from '@/components/SmallProject';
 import Carousel from '../components/Carousel';
 import Contact from '../components/Contact';
 import Container from '../components/Container';
-import FeaturedPost from '../components/FeaturedPost';
 import { BulletIcon } from '../components/Icons';
 import LinkArrow from '../components/LinkArrow';
 import ProjectCard from '../components/ProjectCard';
@@ -112,7 +111,7 @@ export default function Home({ featuredProjects, articles }) {
 				<Button href="/projects">See more Projects</Button>
 			</section>
 
-			<section>
+			{/* <section>
 				<InView>
 					<SectionHeader btnText="View All Articles" href="/blog">
 						Latest Blog Posts
@@ -129,11 +128,11 @@ export default function Home({ featuredProjects, articles }) {
 						<LinkArrow text="View All Articles" href="/blog" sm />
 					</div>
 				</InView>
-			</section>
+			</section> */}
 
 			<section>
 				<InView>
-					<SectionHeader btnText="View Gallery" href="/gallery">
+					<SectionHeader btnText="Gallery Coming Soon..." href="#">
 						Photography
 					</SectionHeader>
 					<div className="flex flex-col gap-8 ">
@@ -166,7 +165,6 @@ export async function getStaticProps() {
 	const articles = await client.getEntries({
 		content_type: 'article',
 		limit: 3,
-		order: 'sys.createdAt',
 	});
 	for (let article of articles.items) {
 		article.fields.readingTime = readingTime(article.fields.body).text;
@@ -175,7 +173,7 @@ export async function getStaticProps() {
 	return {
 		props: {
 			featuredProjects: featuredProjects.items,
-			articles: articles.items.reverse(),
+			articles: articles.items,
 		},
 	};
 }

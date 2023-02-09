@@ -13,7 +13,7 @@ const links = [
 	{ label: 'About', href: '/about' },
 	{ label: 'Projects', href: '/projects' },
 	{ label: 'Blog', href: '/blog' },
-	{ label: 'Gallery', href: '/gallery' },
+	// { label: 'Gallery', href: '/gallery' },
 ];
 
 export default function Nav() {
