@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	:root {
+		--brand: 222deg 89% 55%;
+		--brand-light: 222deg 89% 60%;
+		--bg: 210deg 20% 98%;
+		--bg-card: 223deg 15% 98%;
+		--foreground: 223deg 15% 95%;
+		--typeface-primary: 239deg 84% 10%;
+		--typeface-secondary: 223deg 15% 45%;
+		--typeface-tertiary: 223deg 15% 30%;
+		--border: 223deg 15% 90%;
+	}
+
+	.dark {
+		--brand: 222deg 89% 65%;
+		--brand-light: 222deg 89% 70%;
+		--bg: 223deg 14% 10%;
+		--bg-card: 223deg 15% 12%;
+		--foreground: 223deg 15% 20%;
+		--typeface-primary: 223deg 92% 95%;
+		--typeface-secondary: 223deg 15% 65%;
+		--typeface-tertiary: 223deg 15% 80%;
+		--border: 223deg 15% 20%;
+	}
+}
+
+@layer utilities {
+	.animation-delay-1 {
+		animation-delay: 130ms;
+	}
+	.animation-delay-2 {
+		animation-delay: 260ms;
+	}
+	.animation-delay-3 {
+		animation-delay: 390ms;
+	}
+}
+
+.image-fluid {
+	object-fit: contain;
+	width: 100% !important;
+	position: relative !important;
+	height: unset !important;
+}
+
+.menu {
+	z-index: 1;
+	height: 100vh;
+	position: fixed;
+	top: 0;
+	left: 0;
+	overflow-x: hidden;
+}
+
+.item {
+	min-width: 50%;
+}
+
+@media screen and (min-width: 600px) {
+	.item {
+		min-width: 33%;
+	}
+}
