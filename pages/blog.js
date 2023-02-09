@@ -2,7 +2,6 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
 import readingTime from 'reading-time';
 import { client } from '../lib/contentful-server';
-import fetcher from '../lib/fetcher';
 
 import BlogListItem from '../components/BlogListItem';
 import Container from '../components/Container';
@@ -78,12 +77,12 @@ export async function getStaticProps() {
 		article.fields.readingTime = readingTime(article.fields.body).text;
 	}
 
-	const interactions = await fetcher(`https://${process.env.NEXT_PUBLIC_VERCEL_URL}/api/views`);
+	// const interactions = await fetcher(`https://${process.env.NEXT_PUBLIC_VERCEL_URL}/api/views`);
 
 	return {
 		props: {
 			articles: data.items.reverse(),
-			interactions,
+			// interactions,
 		},
 	};
 }
