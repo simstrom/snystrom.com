@@ -13,7 +13,7 @@ export default function LikeButton({ slug, likes, setLikes }) {
 		setToStorage(slug, true);
 		setLiked(true);
 		setLikes((prev) => prev + 1);
-		await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL}/api/likes/${slug}`, {
+		await fetch(`https://${process.env.NEXT_PUBLIC_VERCEL_URL}/api/likes/${slug}`, {
 			method: 'POST',
 		});
 	};

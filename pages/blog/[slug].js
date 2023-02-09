@@ -81,7 +81,7 @@ export async function getStaticProps({ params }) {
 	const content = await serialize(article.fields.body);
 
 	const interactions = await fetcher(
-		`${process.env.NEXT_PUBLIC_VERCEL_URL}/api/views/${params.slug}`
+		`https://${process.env.NEXT_PUBLIC_VERCEL_URL}/api/views/${params.slug}`
 	);
 
 	return {

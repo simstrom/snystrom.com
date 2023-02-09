@@ -78,7 +78,7 @@ export async function getStaticProps() {
 		article.fields.readingTime = readingTime(article.fields.body).text;
 	}
 
-	const interactions = await fetcher(`${process.env.NEXT_PUBLIC_VERCEL_URL}/api/views`);
+	const interactions = await fetcher(`https://${process.env.NEXT_PUBLIC_VERCEL_URL}/api/views`);
 
 	return {
 		props: {
