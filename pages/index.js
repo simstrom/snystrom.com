@@ -52,24 +52,30 @@ export default function Home({ featuredProjects, articles }) {
 			</section>
 
 			<section className="animate-in animation-delay-3">
-				<SectionHeader btnText="Get to Know me More" href="/about">
+				<SectionHeader btnText="Get to know me more" href="/about">
 					About Me
 				</SectionHeader>
 
 				<div className="flex flex-col gap-8 sm:grid md:gap-10 grid-cols-3">
-					<div className="col-span-2">
-						<p className="text-secondary text-base">
+					<div className="col-span-2 text-secondary text-base">
+						<p>
 							Welcome to my digital playground! I&apos;m currently pursuing a degree in Software
 							Development, but that hasn&apos;t stopped me from devoting my free time to improving
-							my expertise in web development. I have always found myself drawn to more artistic
-							endeavours such as design and photography. However, when I first entered the world of
-							programming I discovered an outlet to combine my problem solving skills with the
-							unleashing of creativity. Needless to say, something just clicked. This portfolio is a
-							reflection of my ongoing journey where I highlight projects I&apos;ve built and share
-							insights on lessons learned. So, grab a cup of coffee and let&apos;s go!
+							my expertise in web development.
+						</p>
+						<p className="my-2">
+							I have always found myself drawn to more artistic endeavours such as design and
+							photography. However, when I first entered the world of programming I discovered an
+							outlet to combine my problem solving skills with the unleashing of creativity.
+							Needless to say, something just clicked.
+						</p>
+						<p>
+							This portfolio is a reflection of my ongoing journey where I highlight projects
+							I&apos;ve built and share insights on lessons learned. So, grab a cup of coffee and
+							let&apos;s go!
 						</p>
 					</div>
-					<LinkArrow text="Get to Know me More" href="/about" sm />
+					<LinkArrow text="Get to know me more" href="/about" sm />
 					<div>
 						<h3 className="text-lg mb-4">Technologies</h3>
 
@@ -96,7 +102,7 @@ export default function Home({ featuredProjects, articles }) {
 
 			<section>
 				<InView>
-					<SectionHeader btnText="Explore All Projects" href="/projects">
+					<SectionHeader btnText="Explore all Projects" href="/projects">
 						Selected Projects
 					</SectionHeader>
 				</InView>
@@ -125,14 +131,14 @@ export default function Home({ featuredProjects, articles }) {
 								gradientTo={gradients[index].to}
 							/>
 						))}
-						<LinkArrow text="View All Articles" href="/blog" sm />
+						<LinkArrow text="View all Articles" href="/blog" sm />
 					</div>
 				</InView>
 			</section> */}
 
 			<section>
 				<InView>
-					<SectionHeader btnText="Gallery Coming Soon..." href="#">
+					<SectionHeader btnText="Gallery coming soon..." href="#">
 						Photography
 					</SectionHeader>
 					<div className="flex flex-col gap-8 ">
@@ -143,7 +149,7 @@ export default function Home({ featuredProjects, articles }) {
 						</p>
 
 						<Carousel />
-						<LinkArrow text="View Gallery" href="/gallery" sm />
+						<LinkArrow text="Gallery coming soon..." href="#" sm />
 					</div>
 				</InView>
 			</section>

@@ -4,6 +4,8 @@ export default function ChangeViewButton({ children, currentlyActive, handleView
 	return (
 		<div className="group relative flex justify-center">
 			<button
+				type="button"
+				title="Toggle view"
 				className={cn(
 					'p-2 rounded-lg flex text-sm gap-2',
 					currentlyActive

@@ -12,6 +12,7 @@ export default function SmallProject({ project }) {
 						<div className="flex ml-auto gap-4 h-full items-center">
 							{project.deployLink && (
 								<a
+									title="link to live demo"
 									href={project.deployLink}
 									target="_blank"
 									rel="noopener noreferrer"
@@ -21,6 +22,7 @@ export default function SmallProject({ project }) {
 								</a>
 							)}
 							<a
+								title="link to github repository"
 								href={project.githubLink}
 								target="_blank"
 								rel="noopener noreferrer"

@@ -11,18 +11,20 @@ const images = [treCime, manarola, gatta, preike, treCime, manarola, gatta, prei
 
 export default function Carousel() {
 	const [width, setWidth] = useState(0);
-	const carousel = useRef();
+	const carouselRef = useRef();
 
 	useEffect(() => {
-		setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth);
+		setWidth(carouselRef.current.scrollWidth - carouselRef.current.offsetWidth);
 	}, []);
 
 	return (
-		<motion.div ref={carousel} className="overflow-hidden">
+		<motion.div ref={carouselRef} className="overflow-hidden cursor-grab">
 			<motion.div
-				animate={{ x: -width + 280 }}
-				transition={{ ease: 'linear', duration: 40, repeat: Infinity }}
-				className="flex gap-4"
+				className="flex w-full gap-4"
+				animate={{ x: -width }}
+				transition={{ ease: 'linear', duration: 30, repeat: Infinity, repeatType: 'reverse' }}
+				drag="x"
+				dragConstraints={{ right: 0, left: -width }}
 			>
 				{images.map((img, index) => {
 					return (

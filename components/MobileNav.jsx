@@ -39,6 +39,8 @@ export default function MobileNav({ links }) {
 	return (
 		<>
 			<motion.button
+				type="button"
+				title="toggle menu"
 				className="sm:hidden z-10 ml-2 text-tertiary"
 				onClick={toggleMenu}
 				whileHover={{ scale: 1.1 }}
@@ -66,7 +68,7 @@ export default function MobileNav({ links }) {
 							{links.map((link) => (
 								<motion.li
 									key={link.label}
-									className="py-4 border-b border-primary"
+									className="py-4 border-b border-primary flex"
 									onClick={toggleMenu}
 									variants={itemVariants}
 								>

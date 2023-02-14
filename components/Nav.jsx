@@ -30,7 +30,7 @@ export default function Nav() {
 	}
 
 	return (
-		<header className="sticky top-0 z-20 backdrop-blur bg-primary/70 border-b border-primary/50">
+		<header className="fixed w-full mx-auto top-0 z-20 backdrop-blur bg-primary/70 border-b border-primary/50">
 			<nav className="max-w-3xl mx-auto px-4 md:px-6 flex justify-between items-center py-3 sm:py-2">
 				<MobileNav links={links} />
 				<Link href="/" className="shrink-0">
@@ -52,7 +52,8 @@ export default function Nav() {
 				</ul>
 
 				<button
-					role="button"
+					type="button"
+					title="toggle theme"
 					className="p-2 text-tertiary rounded-lg hover:text-brand hover:bg-tertiary dark:hover:bg-tertiary/40 transition duration-300"
 					onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
 				>
