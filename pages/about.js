@@ -9,7 +9,12 @@ import imageMilford from '../public/images/profileMilford.jpg';
 import imageSki from '../public/images/profileSki.jpg';
 import imageWinter from '../public/images/profileWinter.jpg';
 
-const images = [imageWinter, imageMilford, imageSki, imageBike];
+const images = [
+	{ url: imageWinter, alt: 'Test' },
+	{ url: imageMilford, alt: 'Test2' },
+	{ url: imageSki, alt: '' },
+	{ url: imageBike, alt: '' },
+];
 
 export default function About() {
 	return (
@@ -26,7 +31,7 @@ export default function About() {
 							)}
 						>
 							<Image
-								src={img.src}
+								src={img.url}
 								alt={img.alt}
 								fill
 								sizes="(max-width: 640px) 50vw,

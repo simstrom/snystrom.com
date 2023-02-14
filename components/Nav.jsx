@@ -52,7 +52,8 @@ export default function Nav() {
 				</ul>
 
 				<button
-					role="button"
+					type="button"
+					title="toggle theme"
 					className="p-2 text-tertiary rounded-lg hover:text-brand hover:bg-tertiary dark:hover:bg-tertiary/40 transition duration-300"
 					onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
 				>
