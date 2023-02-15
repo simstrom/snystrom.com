@@ -1,38 +1,52 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# snystrom.com
+ 
+My personal website/portfolio/blog. Built with dynamic content management through Contentful headless CMS to add projects and blog posts. Using Firebase to enable engagement on published content, such as views and likes.<br>
+ 
+## Stack
+- **Framework:** Next.js
+- **Styling:** Tailwind CSS
+- **CMS:** Contentful
+- **Database:** Firebase
+- **Deployment:** Vercel
+ 
+## Running Locally
+1. Install dependencies with `npm install`
+2. Create a `.env.local` file similar to `.env.example`
+3. Start project with `npm run dev`
+ 
+### Getting API Keys
+<details>
+<summary>Contentful</summary>
+<br>
+1. Setup a Contentful account. <br>
+2. Create content models. <br>
 
-## Getting Started
+> This repository uses the following content models:
+> 1. blog
+> 2. featuredProject
+> 3. project
+> 4. galleryDestinations (for photography)
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+3. Copy your Space ID and Content Delivery API access token  <br>
+4. Save your API keys to your `.env.local` <br>
+</details>
+ 
+<details>
+<summary>Firebase</summary>
+  <br>
+1. Setup a new Firebase project <br>
+2. Copy the API keys. <br>
+3. Go to Build and create a Firestore Database <br>
+4. Add a collection named <code>articles</code> <br>
+5. Save your API keys to your <code>.env.local</code><br>
+</details>
+ 
+## Sitemap Overview
+`pages/index.js` : Homepage <br>
+`pages/about.js` : About page <br>
+`pages/gallery.js` : Photography Gallery page <br>
+`pages/projects.js` : All projects <br>
+`pages/blog.js` : All blog posts <br>
+`pages/blog/[slug].js` : Individual blog post <br>
+`pages/api/views` : API to fetch blog post interactions from Firebase <br>
+`pages/api/likes` : API to write blog post likes to Firebase <br>
