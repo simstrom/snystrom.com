@@ -4,64 +4,71 @@
 
 @layer base {
 	:root {
-		--brand: 222deg 89% 55%;
-		--brand-light: 222deg 89% 60%;
-		--bg: 210deg 20% 98%;
-		--bg-card: 223deg 15% 98%;
-		--foreground: 223deg 15% 95%;
-		--typeface-primary: 239deg 84% 10%;
-		--typeface-secondary: 223deg 15% 45%;
-		--typeface-tertiary: 223deg 15% 30%;
-		--border: 223deg 15% 90%;
+		--background: 0 0% 100%;
+		--foreground: 224 71.4% 4.1%;
+
+		--card: 0 0% 100%;
+		--card-foreground: 224 71.4% 4.1%;
+
+		--popover: 0 0% 100%;
+		--popover-foreground: 224 71.4% 4.1%;
+
+		--primary: 220.9 39.3% 11%;
+		--primary-foreground: 210 20% 98%;
+
+		--secondary: 220 14.3% 95.9%;
+		--secondary-foreground: 220.9 39.3% 11%;
+
+		--muted: 220 14.3% 95.9%;
+		--muted-foreground: 220 8.9% 46.1%;
+
+		--accent: 220 14.3% 95.9%;
+		--accent-foreground: 220.9 39.3% 11%;
+
+		--destructive: 0 84.2% 60.2%;
+		--destructive-foreground: 210 20% 98%;
+
+		--border: 220 13% 91%;
+		--input: 220 13% 91%;
+		--ring: 224 71.4% 4.1%;
+
+		--radius: 0.5rem;
 	}
 
 	.dark {
-		--brand: 222deg 89% 65%;
-		--brand-light: 222deg 89% 70%;
-		--bg: 223deg 14% 10%;
-		--bg-card: 223deg 15% 12%;
-		--foreground: 223deg 15% 20%;
-		--typeface-primary: 223deg 92% 95%;
-		--typeface-secondary: 223deg 15% 65%;
-		--typeface-tertiary: 223deg 15% 80%;
-		--border: 223deg 15% 20%;
+		--background: 210 40% 4%;
+		--foreground: 43 100% 95%;
+
+		--popover: 224 71.4% 4.1%;
+		--popover-foreground: 210 20% 98%;
+
+		--primary: 23 100% 69%;
+		--primary-foreground: 23 31% 89%;
+
+		--secondary: 215 27.9% 16.9%;
+		--secondary-foreground: 210 20% 98%;
+
+		--muted: 23 27% 69%;
+		--muted-foreground: 217.9 10.6% 64.9%;
+
+		--accent: 191 43% 56%;
+		--accent-foreground: 197 63% 34%;
+
+		--destructive: 0 62.8% 30.6%;
+		--destructive-foreground: 210 20% 98%;
+
+		--border: 23 27% 69%;
+		--input: 215 27.9% 16.9%;
+		--ring: 216 12.2% 83.9%;
 	}
 }
 
-@layer utilities {
-	.animation-delay-1 {
-		animation-delay: 130ms;
+@layer base {
+	* {
+		@apply border-border scroll-smooth;
+		text-rendering: optimizeLegibility;
 	}
-	.animation-delay-2 {
-		animation-delay: 260ms;
-	}
-	.animation-delay-3 {
-		animation-delay: 390ms;
-	}
-}
-
-.image-fluid {
-	object-fit: contain;
-	width: 100% !important;
-	position: relative !important;
-	height: unset !important;
-}
-
-.menu {
-	z-index: 1;
-	height: 100vh;
-	position: fixed;
-	top: 0;
-	left: 0;
-	overflow-x: hidden;
-}
-
-.item {
-	min-width: 50%;
-}
-
-@media screen and (min-width: 600px) {
-	.item {
-		min-width: 33%;
+	body {
+		@apply bg-background text-foreground;
 	}
 }
