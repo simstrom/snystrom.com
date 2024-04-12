@@ -14,6 +14,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
+import ThemeSwitcher from './ui/themeSwitcher';
+
 export default function Navbar({ className }: { className?: string }) {
 	const [visible, setVisible] = useState(true);
 	const [menuOpen, setMenuOpen] = useState(false);
@@ -145,6 +147,7 @@ export default function Navbar({ className }: { className?: string }) {
 								>
 									<IconCommand />
 								</button>
+								<ThemeSwitcher />
 							</div>
 						</div>
 

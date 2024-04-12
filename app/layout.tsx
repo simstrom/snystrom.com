@@ -1,4 +1,3 @@
-import Navbar from '@/components/navbar';
 import { cn } from '@/lib/utils';
 import '@/styles/globals.css';
 import type { Metadata } from 'next';
@@ -7,6 +6,9 @@ import {
 	Inter as FontSans,
 	Playfair_Display as FontSerif,
 } from 'next/font/google';
+
+import Navbar from '@/components/navbar';
+import Providers from './providers';
 
 const fontSans = FontSans({
 	subsets: ['latin'],
@@ -66,8 +68,10 @@ export default function RootLayout({
 					fontSerif
 				)}
 			>
-				<Navbar />
-				{children}
+				<Providers>
+					<Navbar />
+					{children}
+				</Providers>
 			</body>
 		</html>
 	);
