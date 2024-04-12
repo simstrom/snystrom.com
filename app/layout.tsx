@@ -1,3 +1,4 @@
+import Navbar from '@/components/navbar';
 import { cn } from '@/lib/utils';
 import '@/styles/globals.css';
 import type { Metadata } from 'next';
@@ -65,6 +66,7 @@ export default function RootLayout({
 					fontSerif
 				)}
 			>
+				<Navbar />
 				{children}
 			</body>
 		</html>
