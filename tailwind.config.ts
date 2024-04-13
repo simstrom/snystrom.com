@@ -66,19 +66,21 @@ const config = {
 				shadow: '2px 4px 30px rgba(0, 0, 0, 0.1)',
 				glow: '0px 0px 80.4px rgba(235, 225, 217, 0.3), 0px 0px 55.2px rgba(235, 225, 217, 0.7), 0px 0px 0px #EBE1D9, 0px 0px 22.1px #EBE1D9, 0px 0px 3.3px #EBE1D9, 0px 0px 7.8px #EBE1D9',
 			},
+			backgroundImage: {
+				rainbow: "url('/rainbow.svg')",
+			},
 			keyframes: {
-				'accordion-down': {
-					from: { height: '0' },
-					to: { height: 'var(--radix-accordion-content-height)' },
-				},
-				'accordion-up': {
-					from: { height: 'var(--radix-accordion-content-height)' },
-					to: { height: '0' },
+				shimmer: {
+					from: {
+						backgroundPosition: '0 0',
+					},
+					to: {
+						backgroundPosition: '-200% 0',
+					},
 				},
 			},
 			animation: {
-				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out',
+				shimmer: 'shimmer 2s linear infinite',
 			},
 		},
 	},

@@ -141,7 +141,8 @@ export default function Navbar({ className }: { className?: string }) {
 									className={cn(
 										'p-2 text-primary-foreground bg-black/5 border border-border/20 rounded-xl shadow-shadow backdrop-blur transition duration-300 active:scale-90',
 										'hover:text-black/20 hover:border-transparent hover:bg-primary-foreground hover:shadow-glow',
-										menuOpen && 'focus-visible:outline-none'
+										menuOpen &&
+											'focus-visible:outline-none text-black/20 border-transparent bg-primary-foreground shadow-glow'
 									)}
 									onClick={() => setMenuOpen(!menuOpen)}
 								>

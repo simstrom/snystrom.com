@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+    <rect width="100%" height="100%" filter="url(#noise)" />
+    <defs>
+        <filter id='noise'>
+        <feTurbulence 
+            type='fractalNoise' 
+            baseFrequency='6.29' 
+            numOctaves='6' 
+            stitchTiles='stitch'/>
+        </filter>
+    </defs>
+</svg>

@@ -63,6 +63,7 @@ export default function RootLayout({
 			<body
 				className={cn(
 					'max-w-4xl container min-h-screen font-sans antialiased bg-background transition-colors duration-300 ease-in-out',
+					"bg-[url('/rainbow.svg')] bg-no-repeat bg-top",
 					fontSans.variable,
 					fontMono.variable,
 					fontSerif
