@@ -21,7 +21,7 @@ export default function ThemeSwitcher() {
 				'relative overflow-hidden'
 			)}
 		>
-			{mounted ? theme == 'dark' ? <IconMoon /> : <IconSun /> : <div className="w-6 h-6" />}
+			{mounted ? theme == 'dark' ? <IconMoon /> : <IconSun /> : <div className="w-5 h-5" />}
 		</motion.button>
 	);
 }

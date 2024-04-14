@@ -1,12 +1,6 @@
 'use client';
 import { NavItem, navItems } from '@/lib/data';
-import {
-	IconArrowNarrowDown,
-	IconArrowNarrowUp,
-	IconArrowReturn,
-	IconArrowRight,
-	IconCommand,
-} from '@/lib/icons';
+import { IconArrowDown, IconArrowRight, IconArrowUp, IconCommand, IconEnter } from '@/lib/icons';
 import { cn } from '@/lib/utils';
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-motion';
 import Image from 'next/image';
@@ -191,7 +185,7 @@ export default function Navbar({ className }: { className?: string }) {
 
 															{idx === activeLinkIndex && (
 																<div className="ml-auto px-0.5 shadow-sm bg-primary/10 text-primary rounded">
-																	<IconArrowReturn width={16} />
+																	<IconEnter width={16} />
 																</div>
 															)}
 														</Link>
@@ -226,7 +220,7 @@ export default function Navbar({ className }: { className?: string }) {
 
 															{idx + navItems.navigation.length === activeLinkIndex && (
 																<div className="ml-auto px-0.5 shadow-sm bg-primary/10 text-primary rounded">
-																	<IconArrowReturn width={16} />
+																	<IconEnter width={16} />
 																</div>
 															)}
 														</Link>
@@ -258,7 +252,7 @@ export default function Navbar({ className }: { className?: string }) {
 															{idx + navItems.navigation.length + navItems.other.length ===
 																activeLinkIndex && (
 																<div className="ml-auto px-0.5 shadow-sm bg-primary/10 text-primary rounded">
-																	<IconArrowReturn width={16} />
+																	<IconEnter width={16} />
 																</div>
 															)}
 														</Link>
@@ -292,17 +286,17 @@ export default function Navbar({ className }: { className?: string }) {
 										<div className="flex items-center gap-x-2">
 											Navigate
 											<kbd className="px-1 py-0.5 inline-flex space-x-1.5 items-center text-center text-sm font-sans font-normal shadow-sm bg-primary/10 text-primary rounded">
-												<IconArrowNarrowUp width={18} />
+												<IconArrowUp width={14} />
 											</kbd>
 											<span>/</span>
 											<kbd className="px-1 py-0.5 inline-flex space-x-1.5 items-center text-center text-sm font-sans font-normal shadow-sm bg-primary/10 text-primary rounded">
-												<IconArrowNarrowDown width={18} />
+												<IconArrowDown width={14} />
 											</kbd>
 										</div>
 										<div className="flex items-center gap-x-2">
 											Open
 											<kbd className="px-1 py-0.5 inline-flex space-x-1.5 items-center text-center text-sm font-sans font-normal shadow-sm bg-primary/10 text-primary rounded">
-												<IconArrowReturn width={18} />
+												<IconEnter width={16} />
 											</kbd>
 										</div>
 									</motion.div>
