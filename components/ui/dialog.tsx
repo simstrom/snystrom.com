@@ -1,6 +1,6 @@
 import { cn } from '@/lib/utils';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Dispatch, ReactNode, SetStateAction, useEffect } from 'react';
+import { useEffect } from 'react';
 
 export default function Dialog({
 	children,
@@ -8,9 +8,9 @@ export default function Dialog({
 	setIsOpen,
 	className,
 }: {
-	children: ReactNode;
+	children: React.ReactNode;
 	isOpen: boolean;
-	setIsOpen: Dispatch<SetStateAction<boolean>>;
+	setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 	className?: string;
 }) {
 	const handleEscapeKey = (e: any) => {

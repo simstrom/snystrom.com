@@ -1,8 +1,7 @@
 import { IconMoon, IconSun } from '@/lib/icons';
-import { cn } from '@/lib/utils';
-import { motion } from 'framer-motion';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
+import Button from './button';
 import Tooltip from './tooltip';
 
 export default function ThemeSwitcher() {
@@ -25,17 +24,14 @@ export default function ThemeSwitcher() {
 
 	return (
 		<Tooltip label={`Change to ${theme == 'dark' ? 'light' : 'dark'} mode`}>
-			<motion.button
-				aria-label="Toggle theme"
+			<Button
+				size="icon"
 				onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-				className={cn(
-					'p-2 text-primary-foreground bg-black/5 border border-border/20 rounded-xl shadow-shadow backdrop-blur transition active:scale-90',
-					'hover:text-black/20 hover:border-transparent hover:bg-primary-foreground hover:shadow-glow',
-					'relative overflow-hidden'
-				)}
+				className="active:scale-90"
+				aria-label="Toggle theme"
 			>
 				{mounted ? theme == 'dark' ? <IconMoon /> : <IconSun /> : <div className="w-5 h-5" />}
-			</motion.button>
+			</Button>
 		</Tooltip>
 	);
 }

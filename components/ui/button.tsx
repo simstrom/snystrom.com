@@ -3,7 +3,7 @@ import { cn } from '@/lib/utils';
 type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'link';
 type ButtonSize = 'default' | 'small' | 'icon';
 
-interface ButtonProps {
+interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
 	children?: React.ReactNode;
 	variant?: ButtonVariant;
 	size?: ButtonSize;
