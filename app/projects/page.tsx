@@ -1,4 +1,4 @@
-import { IconPerson } from '@/lib/icons';
+import PageHeader from '@/components/ui/pageHeader';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -7,11 +7,11 @@ export const metadata: Metadata = {
 
 export default function Projects() {
 	return (
-		<main className="flex min-h-screen h-[2000px] flex-col items-center justify-center p-24">
-			<div className="flex flex-col gap-2 font-serif">
-				<IconPerson />
-				Projects Page
-			</div>
+		<main className="flex min-h-screen flex-col items-center mt-40">
+			<PageHeader
+				title="All Projects"
+				content="I love building projects and practice my engineering skills, There's an archive of things that I've worked on."
+			/>
 		</main>
 	);
 }
