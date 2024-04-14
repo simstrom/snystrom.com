@@ -21,8 +21,8 @@
 	},
 	"devDependencies": {
 		"@types/node": "^20",
-		"@types/react": "^18",
-		"@types/react-dom": "^18",
+		"@types/react": "^18.2.78",
+		"@types/react-dom": "^18.2.25",
 		"@typescript-eslint/parser": "^7.6.0",
 		"autoprefixer": "^10.0.1",
 		"eslint": "^8",
