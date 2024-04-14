@@ -129,7 +129,7 @@ export default function Navbar({ className }: { className?: string }) {
 				>
 					<div
 						ref={menuRef}
-						className="max-w-xl w-full flex flex-col mx-4 border border-border/10 bg-white/5 rounded-2xl backdrop-blur shadow-shadow"
+						className="max-w-xl w-full flex flex-col mx-4 border border-border/10 bg-white/5 rounded-2xl backdrop-blur-md shadow-shadow"
 					>
 						<div className="flex justify-between items-center w-full py-3 px-4 sm:px-6">
 							<Link href="/" onClick={() => pathName != '/' && setMenuOpen(false)}>
@@ -320,6 +320,18 @@ export default function Navbar({ className }: { className?: string }) {
 						</AnimatePresence>
 					</div>
 				</motion.header>
+
+				<AnimatePresence>
+					{menuOpen && (
+						<motion.div
+							variants={containerVariant}
+							initial="hidden"
+							animate="show"
+							exit="hidden"
+							className="fixed top-0 left-0 w-screen min-h-screen bg-background/20 backdrop-blur-sm z-10"
+						/>
+					)}
+				</AnimatePresence>
 			</AnimatePresence>
 		</>
 	);

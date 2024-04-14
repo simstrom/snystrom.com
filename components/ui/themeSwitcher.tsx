@@ -12,6 +12,17 @@ export default function ThemeSwitcher() {
 	// Make sure theme is loaded
 	useEffect(() => setMounted(true), []);
 
+	useEffect(() => {
+		const handleKeys = (e: KeyboardEvent) => {
+			if (e.key === 'b' && e.metaKey) {
+				setTheme(theme === 'dark' ? 'light' : 'dark');
+			}
+		};
+		window.addEventListener('keydown', handleKeys);
+
+		return () => window.removeEventListener('keydown', handleKeys);
+	}, [theme]);
+
 	return (
 		<Tooltip label={`Change to ${theme == 'dark' ? 'light' : 'dark'} mode`}>
 			<motion.button
