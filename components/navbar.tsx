@@ -5,16 +5,19 @@ import { cn } from '@/lib/utils';
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+import { useEffect, useRef, useState } from 'react';
 
 import ThemeSwitcher from './ui/themeSwitcher';
+import Tooltip from './ui/tooltip';
 
 export default function Navbar({ className }: { className?: string }) {
 	const [visible, setVisible] = useState(true);
 	const [menuOpen, setMenuOpen] = useState(false);
 	const [activeLinkIndex, setActiveLinkIndex] = useState<number | null>(0);
+	const menuRef = useRef<HTMLDivElement>(null);
 	const router = useRouter();
+	const pathName = usePathname();
 
 	const { scrollY } = useScroll();
 	const [prevScrollY, setPrevScrollY] = useState(0);
@@ -82,7 +85,14 @@ export default function Navbar({ className }: { className?: string }) {
 			}
 		};
 
+		const handleClickOutside = (e: MouseEvent) => {
+			if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
+				setMenuOpen(false);
+			}
+		};
+
 		window.addEventListener('keydown', handleKeys);
+		document.addEventListener('mousedown', handleClickOutside);
 
 		return () => window.removeEventListener('keydown', handleKeys);
 	}, [menuOpen, navItems.navigation, activeLinkIndex]);
@@ -117,9 +127,12 @@ export default function Navbar({ className }: { className?: string }) {
 					)}
 					role="banner"
 				>
-					<div className="max-w-xl w-full flex flex-col mx-4 border border-border/10 bg-white/5 rounded-2xl backdrop-blur shadow-shadow">
+					<div
+						ref={menuRef}
+						className="max-w-xl w-full flex flex-col mx-4 border border-border/10 bg-white/5 rounded-2xl backdrop-blur shadow-shadow"
+					>
 						<div className="flex justify-between items-center w-full py-3 px-4 sm:px-6">
-							<Link href="/" className="">
+							<Link href="/" onClick={() => pathName != '/' && setMenuOpen(false)}>
 								<Image
 									src="/images/avatar.jpg"
 									alt="Simon Nyström avatar"
@@ -130,19 +143,21 @@ export default function Navbar({ className }: { className?: string }) {
 								/>
 							</Link>
 							<div className="flex gap-x-4">
-								<button
-									aria-label="Toggle menu"
-									className={cn(
-										'p-2 text-primary-foreground bg-black/5 border border-border/20 rounded-xl shadow-shadow backdrop-blur transition duration-300 active:scale-90',
-										'hover:text-black/20 hover:border-transparent hover:bg-primary-foreground hover:shadow-glow',
-										menuOpen &&
-											'focus-visible:outline-none text-black/20 border-transparent bg-primary-foreground shadow-glow'
-									)}
-									onClick={() => setMenuOpen(!menuOpen)}
-								>
-									<IconCommand />
-								</button>
 								<ThemeSwitcher />
+								<Tooltip label={`${menuOpen ? 'Hide' : 'Show'} command center`}>
+									<button
+										aria-label="Toggle menu"
+										className={cn(
+											'p-2 text-primary-foreground bg-black/5 border border-border/20 rounded-xl shadow-shadow backdrop-blur transition duration-300 active:scale-90',
+											'hover:text-black/20 hover:border-transparent hover:bg-primary-foreground hover:shadow-glow',
+											menuOpen &&
+												'focus-visible:outline-none text-black/20 border-transparent bg-primary-foreground shadow-glow'
+										)}
+										onClick={() => setMenuOpen(!menuOpen)}
+									>
+										<IconCommand />
+									</button>
+								</Tooltip>
 							</div>
 						</div>
 
