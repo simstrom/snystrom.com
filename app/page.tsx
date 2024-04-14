@@ -1,3 +1,4 @@
+import Button from '@/components/ui/button';
 import { IconGithub } from '@/lib/icons';
 
 export default function Home() {
@@ -6,6 +7,7 @@ export default function Home() {
 			<div className="flex gap-2">
 				<IconGithub />
 				Find me on Github
+				<Button>Click here</Button>
 			</div>
 		</main>
 	);
