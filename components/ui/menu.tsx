@@ -56,12 +56,11 @@ export default function Menu({ ...props }: MenuProps) {
 			initial="hidden"
 			animate="show"
 			exit="hidden"
-			aria-hidden={!props.isOpen}
+			aria-expanded={props.isOpen}
 		>
 			<nav
 				className="max-h-[80vh] overflow-y-auto pt-6 pb-3 sm:pb-2 px-2 sm:px-4 space-y-4 border-t border-border/20"
 				aria-label="Main navigation"
-				aria-expanded={props.isOpen}
 			>
 				<div>
 					<motion.h5 variants={itemVariant} className="font-medium text-sm tracking px-2 mb-2">
@@ -93,10 +92,26 @@ export default function Menu({ ...props }: MenuProps) {
 				variants={itemVariant}
 				className="hidden sm:flex py-3 px-4 sm:px-6 gap-8 items-center text-sm font-sans font-normal text-foreground/70 border-t border-border/20 select-none"
 			>
-				<Kbd label="Menu" icons={[<IconCommand width={14} />]} iconTitle="Command" letter="K" />
-				<Kbd label="Theme" icons={[<IconCommand width={14} />]} iconTitle="Command" letter="B" />
-				<Kbd label="Navigate" icons={[<IconArrowUp width={12} />, <IconArrowDown width={12} />]} />
-				<Kbd label="Open" icons={[<IconEnter width={15} />]} />
+				<Kbd
+					label="Menu"
+					icons={[<IconCommand key={'menu'} width={14} />]}
+					iconTitle="Command"
+					letter="K"
+				/>
+				<Kbd
+					label="Theme"
+					icons={[<IconCommand key={'theme'} width={14} />]}
+					iconTitle="Command"
+					letter="B"
+				/>
+				<Kbd
+					label="Navigate"
+					icons={[
+						<IconArrowUp key={'navigate-up'} width={12} />,
+						<IconArrowDown key={'navigate-down'} width={12} />,
+					]}
+				/>
+				<Kbd label="Open" icons={[<IconEnter key={'open'} width={15} />]} />
 			</motion.div>
 		</motion.div>
 	);

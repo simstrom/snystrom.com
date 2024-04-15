@@ -65,6 +65,7 @@ export default function Navbar({ className }: { className?: string }) {
 					break;
 				case 'Enter':
 					if (activeLinkIndex !== null) {
+						setMenuOpen(false);
 						router.push(links[activeLinkIndex].path);
 					}
 					break;
@@ -83,7 +84,7 @@ export default function Navbar({ className }: { className?: string }) {
 		document.addEventListener('mousedown', handleClickOutside);
 
 		return () => window.removeEventListener('keydown', handleKeys);
-	}, [menuOpen, activeLinkIndex]);
+	}, [menuOpen, activeLinkIndex, router]);
 
 	useEffect(() => {
 		// Close menu when navbar is hidden
@@ -100,7 +101,7 @@ export default function Navbar({ className }: { className?: string }) {
 					exit={{ y: -100 }}
 					animate={{ y: visible ? 0 : -100 }}
 					transition={{ duration: 0.2 }}
-					role="banner"
+					role="menubar"
 					className={cn(
 						'flex justify-center fixed top-4 sm:top-6 inset-x-0 mx-auto z-[99]',
 						className

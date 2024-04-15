@@ -20,7 +20,7 @@ export default function ThemeSwitcher() {
 		window.addEventListener('keydown', handleKeys);
 
 		return () => window.removeEventListener('keydown', handleKeys);
-	}, [theme]);
+	}, [theme, setTheme]);
 
 	return (
 		<Tooltip label={`Change to ${theme == 'dark' ? 'light' : 'dark'} mode`}>
