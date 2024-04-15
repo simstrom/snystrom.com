@@ -65,11 +65,11 @@
 
 @layer base {
 	* {
-		@apply border-border scroll-smooth;
+		@apply box-border border-border/20 scroll-smooth;
 		text-rendering: optimizeLegibility;
 	}
 	body {
-		@apply bg-background text-foreground;
+		@apply bg-background text-foreground font-sans antialiased;
 	}
 
 	.noise {

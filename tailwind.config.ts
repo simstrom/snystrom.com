@@ -14,13 +14,15 @@ const config = {
 		container: {
 			center: true,
 			padding: {
-				DEFAULT: '1rem',
+				DEFAULT: '.75rem',
 				sm: '2rem',
 			},
 		},
 		extend: {
 			fontFamily: {
 				sans: ['var(--font-sans)', ...fontFamily.sans],
+				serif: ['var(--font-serif)', ...fontFamily.serif],
+				mono: ['var(--font-mono)', ...fontFamily.mono],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
@@ -70,7 +72,14 @@ const config = {
 				rainbow: "url('/rainbow.svg')",
 			},
 			animation: {
-				shimmer: 'shimmer 2s linear infinite',
+				scroll: 'scroll 30s forwards linear infinite',
+			},
+			keyframes: {
+				scroll: {
+					to: {
+						transform: 'translate(calc(-50% - 0.5rem))',
+					},
+				},
 			},
 		},
 	},

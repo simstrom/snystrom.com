@@ -14,10 +14,10 @@ export default function PageHeader({ title, content, className }: PageHeaderProp
 				className
 			)}
 		>
-			<h1 className="text-5xl sm:text-7xl font-serif w-fit sm:border-r border-border/10 sm:pr-5 tracking-tight">
+			<h1 className="text-5xl sm:text-7xl font-serif w-fit sm:border-r sm:pr-5 tracking-tight">
 				{title}
 			</h1>
-			<p className="flex-1 text-primary-foreground">{content}</p>
+			<p className="flex-1 text-foreground/80 text-pretty">{content}</p>
 		</section>
 	);
 }
