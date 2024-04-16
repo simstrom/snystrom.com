@@ -20,7 +20,7 @@ export default function Button({
 }: ButtonProps) {
 	const variantClasses = {
 		primary:
-			'text-primary-foreground bg-black/10 border rounded-xl shadow-shadow backdrop-blur-md hover:text-black/40 hover:border-transparent hover:bg-primary-foreground hover:shadow-glow',
+			'bg-background/30 border rounded-xl shadow-shadow backdrop-blur-md hover:text-background/50 hover:border-transparent hover:bg-foreground hover:shadow-glow',
 		secondary: '',
 		ghost: '',
 		link: '',

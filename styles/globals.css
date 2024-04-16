@@ -72,6 +72,18 @@
 		@apply bg-background text-foreground font-sans antialiased;
 	}
 
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		@apply font-semibold tracking-tight;
+	}
+	p {
+		@apply text-[0.875rem] sm:text-[1rem] leading-relaxed;
+	}
+
 	.noise {
 		position: relative;
 	}

@@ -59,17 +59,23 @@ export default function Menu({ ...props }: MenuProps) {
 			aria-expanded={props.isOpen}
 		>
 			<nav
-				className="max-h-[80vh] overflow-y-auto pt-6 pb-3 sm:pb-2 px-2 sm:px-4 space-y-4 border-t border-border/20"
+				className="max-h-[80vh] overflow-y-auto pt-6 pb-3 sm:pb-2 px-2 sm:px-4 space-y-4 border-t"
 				aria-label="Main navigation"
 			>
 				<div>
-					<motion.h5 variants={itemVariant} className="font-medium text-sm tracking px-2 mb-2">
+					<motion.h5
+						variants={itemVariant}
+						className="font-semibold tracking-widest text-xs uppercase text-foreground/80 px-2 mb-2"
+					>
 						Navigation
 					</motion.h5>
 					<ul>{renderMenuItems(props.navItems.navigationLinks, props)}</ul>
 				</div>
 				<div>
-					<motion.h5 variants={itemVariant} className="font-medium text-sm tracking px-2 mb-2">
+					<motion.h5
+						variants={itemVariant}
+						className="font-semibold tracking-widest text-xs uppercase text-foreground/80 px-2 mb-2"
+					>
 						Links
 					</motion.h5>
 					<ul>
@@ -90,7 +96,7 @@ export default function Menu({ ...props }: MenuProps) {
 			{/*  MenuFooter */}
 			<motion.div
 				variants={itemVariant}
-				className="hidden sm:flex py-3 px-4 sm:px-6 gap-8 items-center text-sm font-sans font-normal text-foreground/70 border-t border-border/20 select-none"
+				className="hidden sm:flex py-3 px-4 sm:px-6 gap-8 items-center text-xs tracking-wide uppercase text-foreground/80 border-t select-none"
 			>
 				<Kbd
 					label="Menu"

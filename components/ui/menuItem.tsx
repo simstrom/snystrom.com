@@ -1,5 +1,5 @@
 import { NavItem } from '@/lib/data';
-import { IconArrowRight, IconEnter } from '@/lib/icons';
+import { IconEnter } from '@/lib/icons';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 
@@ -26,18 +26,18 @@ export default function MenuItem({
 			target={isExternalLink ? '_blank' : ''}
 			rel={isExternalLink ? 'noopener noreferrer' : ''}
 			className={cn(
-				'text-sm flex items-center gap-x-3 px-2 py-3 rounded-lg hover:bg-gray-800',
-				idx === activeLinkIndex && 'bg-gray-800'
+				'text-sm flex items-center gap-x-3 px-2 py-3 rounded-lg h-12',
+				idx === activeLinkIndex && 'bg-background/20 text-primary'
 			)}
 			onMouseEnter={() => setActiveLinkIndex(idx)}
 			onMouseLeave={() => setActiveLinkIndex(null)}
 			onClick={() => setIsOpen(false)}
 		>
-			{navItem.icon ? navItem.icon : <IconArrowRight width={16} />}
+			{navItem.icon ? navItem.icon : <span className="text-lg pb-1.5">‣</span>}
 			<span>{navItem.name}</span>
 
 			{idx === activeLinkIndex && (
-				<div className="ml-auto px-0.5 shadow-sm bg-primary/10 text-primary rounded">
+				<div className="hidden sm:block ml-auto px-0.5 shadow-sm bg-background/20 text-primary rounded">
 					<IconEnter width={16} />
 				</div>
 			)}

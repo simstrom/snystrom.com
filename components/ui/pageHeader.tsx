@@ -10,14 +10,16 @@ export default function PageHeader({ title, content, className }: PageHeaderProp
 	return (
 		<section
 			className={cn(
-				'w-full flex flex-col sm:flex-row sm:items-end sm:space-x-5 gap-y-3',
+				'flex flex-col px-3 w-full md:flex-row md:items-end md:space-x-5 gap-y-3',
 				className
 			)}
 		>
-			<h1 className="text-5xl sm:text-7xl font-serif w-fit sm:border-r sm:pr-5 tracking-tight">
+			<h1 className="text-5xl sm:text-6xl lg:text-8xl font-semibold tracking-tight w-fit md:border-r-2 md:pr-5">
 				{title}
 			</h1>
-			<p className="flex-1 text-foreground/80 text-pretty">{content}</p>
+			<p className="flex-1 text-foreground/80 text-pretty lg:text-balance sm:text-lg lg:text-xl">
+				{content}
+			</p>
 		</section>
 	);
 }

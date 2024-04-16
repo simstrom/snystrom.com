@@ -1,30 +1,14 @@
 import { cn } from '@/lib/utils';
 import '@/styles/globals.css';
 import type { Metadata } from 'next';
-import {
-	PT_Mono as FontMono,
-	Inter as FontSans,
-	Playfair_Display as FontSerif,
-} from 'next/font/google';
+import localFont from 'next/font/local';
 
 import Navbar from '@/components/navbar';
 import Providers from './providers';
 
-const fontSans = FontSans({
-	subsets: ['latin'],
-	display: 'swap',
+const fontSans = localFont({
+	src: '../public/fonts/GeneralSans-Variable.woff2',
 	variable: '--font-sans',
-});
-const fontSerif = FontSerif({
-	subsets: ['latin'],
-	display: 'swap',
-	variable: '--font-serif',
-});
-const fontMono = FontMono({
-	subsets: ['latin'],
-	display: 'swap',
-	weight: ['400'],
-	variable: '--font-mono',
 });
 
 export const metadata: Metadata = {
@@ -62,11 +46,9 @@ export default function RootLayout({
 		<html lang="en" suppressHydrationWarning>
 			<body
 				className={cn(
-					'max-w-5xl container min-h-screen transition-colors ease-in-out',
+					'container max-w-screen-xl min-h-screen transition-colors ease-in-out duration-300',
 					"bg-[url('/rainbow.svg')] bg-no-repeat bg-top",
-					fontSans.variable,
-					fontMono.variable,
-					fontSerif.variable
+					fontSans.variable
 				)}
 			>
 				<Providers>

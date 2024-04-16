@@ -28,9 +28,9 @@ export default function Navbar({ className }: { className?: string }) {
 	useMotionValueEvent(scrollY, 'change', (latest) => {
 		if (latest <= 0) {
 			setVisible(true);
-		} else if (latest > prevScrollY) {
+		} else if (latest > prevScrollY && latest > 50) {
 			setVisible(false);
-		} else {
+		} else if (prevScrollY - latest > 10) {
 			setVisible(true);
 		}
 		setPrevScrollY(latest);
@@ -83,7 +83,10 @@ export default function Navbar({ className }: { className?: string }) {
 		window.addEventListener('keydown', handleKeys);
 		document.addEventListener('mousedown', handleClickOutside);
 
-		return () => window.removeEventListener('keydown', handleKeys);
+		return () => {
+			window.removeEventListener('keydown', handleKeys);
+			document.removeEventListener('mousedown', handleClickOutside);
+		};
 	}, [menuOpen, activeLinkIndex, router]);
 
 	useEffect(() => {
@@ -103,13 +106,13 @@ export default function Navbar({ className }: { className?: string }) {
 					transition={{ duration: 0.2 }}
 					role="menubar"
 					className={cn(
-						'flex justify-center fixed top-4 sm:top-6 inset-x-0 mx-auto z-[99]',
+						'flex justify-center fixed top-0 sm:top-6 inset-x-0 mx-auto z-[99]',
 						className
 					)}
 				>
 					<div
 						ref={menuRef}
-						className="max-w-xl w-full flex flex-col mx-4 border border-border/10 bg-white/5 rounded-2xl backdrop-blur-md shadow-shadow"
+						className="max-w-screen-sm w-full flex flex-col sm:mx-3 border-b sm:border bg-background/50 sm:bg-background/30 sm:rounded-2xl backdrop-blur-md shadow-shadow"
 					>
 						<div className="flex justify-between items-center w-full py-3 px-4 sm:px-6">
 							<Link href="/" onClick={() => pathName != '/' && setMenuOpen(false)}>
@@ -122,7 +125,7 @@ export default function Navbar({ className }: { className?: string }) {
 									className="rounded-full active:scale-90 transition"
 								/>
 							</Link>
-							<div className="flex gap-x-4">
+							<div className="flex gap-x-3">
 								<ThemeSwitcher />
 								<Tooltip label={`${menuOpen ? 'Hide' : 'Show'} command center`}>
 									<Button
@@ -132,7 +135,7 @@ export default function Navbar({ className }: { className?: string }) {
 										className={cn(
 											'active:scale-90',
 											menuOpen &&
-												'focus-visible:outline-none text-black/40 border-transparent bg-primary-foreground shadow-glow'
+												'focus-visible:outline-none text-background/50 border-transparent bg-foreground shadow-glow'
 										)}
 									>
 										<IconCommand />
@@ -162,7 +165,7 @@ export default function Navbar({ className }: { className?: string }) {
 							initial={{ opacity: 0 }}
 							animate={{ opacity: 1 }}
 							exit={{ opacity: 0 }}
-							className="fixed top-0 left-0 w-screen min-h-screen bg-background/20 backdrop-blur-sm z-10"
+							className="fixed top-0 left-0 w-screen min-h-screen bg-background/30 backdrop-blur-sm z-10"
 						/>
 					)}
 				</AnimatePresence>
