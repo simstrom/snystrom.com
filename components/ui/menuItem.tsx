@@ -26,15 +26,15 @@ export default function MenuItem({
 			target={isExternalLink ? '_blank' : ''}
 			rel={isExternalLink ? 'noopener noreferrer' : ''}
 			className={cn(
-				'text-sm flex items-center gap-x-3 px-2 py-3 rounded-lg h-12',
+				'text-sm tracking-wide flex items-center gap-x-3 px-2 py-3 rounded-lg h-12',
 				idx === activeLinkIndex && 'bg-background/20 text-primary'
 			)}
 			onMouseEnter={() => setActiveLinkIndex(idx)}
 			onMouseLeave={() => setActiveLinkIndex(null)}
 			onClick={() => setIsOpen(false)}
 		>
-			{navItem.icon ? navItem.icon : <span className="text-lg pb-1.5">‣</span>}
-			<span>{navItem.name}</span>
+			{navItem.icon ? navItem.icon : <span className="text-lg pb-1">‣</span>}
+			{navItem.name}
 
 			{idx === activeLinkIndex && (
 				<div className="hidden sm:block ml-auto px-0.5 shadow-sm bg-background/20 text-primary rounded">

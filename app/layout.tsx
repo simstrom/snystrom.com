@@ -8,6 +8,8 @@ import Providers from './providers';
 
 const fontSans = localFont({
 	src: '../public/fonts/GeneralSans-Variable.woff2',
+	display: 'swap',
+	weight: '300 800',
 	variable: '--font-sans',
 });
 

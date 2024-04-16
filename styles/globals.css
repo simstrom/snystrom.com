@@ -78,7 +78,7 @@
 	h4,
 	h5,
 	h6 {
-		@apply font-semibold tracking-tight;
+		@apply font-medium tracking-wide;
 	}
 	p {
 		@apply text-[0.875rem] sm:text-[1rem] leading-relaxed;

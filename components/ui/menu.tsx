@@ -65,7 +65,7 @@ export default function Menu({ ...props }: MenuProps) {
 				<div>
 					<motion.h5
 						variants={itemVariant}
-						className="font-semibold tracking-widest text-xs uppercase text-foreground/80 px-2 mb-2"
+						className="tracking-wider text-xs uppercase text-foreground/80 px-2 mb-2"
 					>
 						Navigation
 					</motion.h5>
@@ -74,7 +74,7 @@ export default function Menu({ ...props }: MenuProps) {
 				<div>
 					<motion.h5
 						variants={itemVariant}
-						className="font-semibold tracking-widest text-xs uppercase text-foreground/80 px-2 mb-2"
+						className="tracking-wider text-xs uppercase text-foreground/80 px-2 mb-2"
 					>
 						Links
 					</motion.h5>
@@ -96,7 +96,7 @@ export default function Menu({ ...props }: MenuProps) {
 			{/*  MenuFooter */}
 			<motion.div
 				variants={itemVariant}
-				className="hidden sm:flex py-3 px-4 sm:px-6 gap-8 items-center text-xs tracking-wide uppercase text-foreground/80 border-t select-none"
+				className="hidden sm:flex py-3 px-4 sm:px-6 gap-8 items-center text-sm tracking-wide text-foreground/80 border-t select-none"
 			>
 				<Kbd
 					label="Menu"

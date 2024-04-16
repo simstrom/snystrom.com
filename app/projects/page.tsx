@@ -23,12 +23,12 @@ export default function Projects() {
 	const [isHovered, setIsHovered] = useState(false);
 
 	return (
-		<main className="flex flex-col items-center mt-32 gap-8 sm:mt-40 sm:gap-20">
+		<main className="min-h-[6000px] flex flex-col items-center mt-32 gap-8 sm:mt-40 sm:gap-20">
 			<PageHeader
 				title="All Projects"
 				content="I love building projects and practice my engineering skills, There's an archive of things that I've worked on."
 			/>
-			<div className="grid grid-cols-1 md:grid-cols-12 gap-4">
+			<div className="grid grid-cols-1 md:grid-cols-12 gap-4 h-fit">
 				{/* LARGE */}
 				<div
 					onMouseEnter={() => setIsHovered(true)}
@@ -60,7 +60,7 @@ export default function Projects() {
 						</div>
 					</div>
 					<div className="border-t">
-						<div className="relative overflow-hidden py-4 text-xs uppercase tracking-wider font-medium text-foreground/80 bg-background/30 rounded-b-2xl select-none">
+						<div className="relative overflow-hidden py-4 text-xs uppercase font-medium tracking-wide text-foreground/80 bg-background/30 rounded-b-2xl select-none">
 							<HorizontalScroller
 								items={items}
 								separator="•"
@@ -83,10 +83,10 @@ export default function Projects() {
 				{/* SIDE CONTENT */}
 				<Link
 					href="/about"
-					className="relative overflow-hidden hidden lg:flex lg:col-span-3 p-5 flex-col h-full justify-center rounded-2xl w-full lg:min-h-[360px] border bg-background/30 shadow-shadow backdrop-blur-md group"
+					className="relative overflow-hidden hidden lg:flex lg:col-span-3 p-5 flex-col justify-center rounded-2xl w-full lg:min-h-[360px] border bg-background/30 shadow-shadow backdrop-blur-md group"
 				>
 					<div className="flex-1 flex flex-col justify-center">
-						<h3 className="text-sm uppercase tracking-widest">
+						<h3 className="text-sm uppercase tracking-wider">
 							<span className="text-primary text-lg mr-2">‣</span>
 							My Expertise
 						</h3>
@@ -97,7 +97,7 @@ export default function Projects() {
 						</p>
 					</div>
 					{/* LINK START */}
-					<div className="inline-flex w-fit gap-2 items-center ml-auto text-sm tracking-wide pr-2">
+					<div className="inline-flex w-fit gap-2 items-center ml-auto text-xs uppercase font-medium tracking-wide pr-2">
 						<IconArrowUpRight
 							width={14}
 							height={14}
@@ -150,7 +150,7 @@ export default function Projects() {
 						</p>
 					</div>
 					<div className="border-t">
-						<div className="relative overflow-hidden py-4 text-xs uppercase tracking-wider font-medium text-foreground/80 bg-background/30 rounded-b-2xl select-none">
+						<div className="relative overflow-hidden py-4 text-xs uppercase font-medium tracking-wide text-foreground/80 bg-background/30 rounded-b-2xl select-none">
 							<HorizontalScroller items={items} separator="•" />
 						</div>
 					</div>
@@ -191,7 +191,7 @@ export default function Projects() {
 						</div>
 					</div>
 					<div className="border-t">
-						<div className="relative overflow-hidden py-4 text-xs uppercase tracking-wider font-medium text-foreground/80 bg-background/30 rounded-b-2xl select-none">
+						<div className="relative overflow-hidden py-4 text-xs uppercase font-medium tracking-wide text-foreground/80 bg-background/30 rounded-b-2xl select-none">
 							<HorizontalScroller items={items} separator="•" />
 						</div>
 					</div>
