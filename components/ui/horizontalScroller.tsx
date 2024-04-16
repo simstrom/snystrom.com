@@ -7,6 +7,8 @@ interface ScrollerProps {
 	items: any;
 	separator?: string;
 	pauseOnHover?: boolean;
+	startOnHover?: boolean;
+	isHovered?: boolean;
 	children?: React.ReactNode;
 	className?: string;
 }
@@ -15,6 +17,8 @@ export default function HorizontalScroller({
 	items,
 	separator,
 	pauseOnHover = true,
+	startOnHover = false,
+	isHovered,
 	children,
 	className,
 }: ScrollerProps) {
@@ -25,6 +29,14 @@ export default function HorizontalScroller({
 	useEffect(() => {
 		addAnimation();
 	}, []);
+
+	// useEffect(() => {
+	// 	if (startOnHover && isHovered && !start) {
+	// 		setStart(true);
+	// 	} else if (startOnHover && !isHovered && start) {
+	// 		setStart(false);
+	// 	}
+	// }, [isHovered]);
 
 	const addAnimation = () => {
 		if (containerRef.current && scrollerRef.current) {
@@ -52,9 +64,10 @@ export default function HorizontalScroller({
 			<ul
 				ref={scrollerRef}
 				className={cn(
-					'flex gap-4 w-max items-center',
+					'flex gap-3 w-max items-center',
 					start && 'animate-scroll ',
-					pauseOnHover && 'hover:[animation-play-state:paused]'
+					pauseOnHover && 'hover:[animation-play-state:paused]',
+					startOnHover && !isHovered && '[animation-play-state:paused]'
 				)}
 			>
 				{items.map((item: any, idx: number) => (
