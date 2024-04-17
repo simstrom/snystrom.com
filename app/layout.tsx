@@ -6,7 +6,7 @@ import localFont from 'next/font/local';
 import Navbar from '@/components/navbar';
 import Providers from './providers';
 
-const fontSans = localFont({
+const GeneralSans = localFont({
 	src: '../public/fonts/GeneralSans-Variable.woff2',
 	display: 'swap',
 	weight: '300 800',
@@ -50,7 +50,7 @@ export default function RootLayout({
 				className={cn(
 					'container max-w-screen-xl min-h-screen transition-colors ease-in-out duration-300',
 					"bg-[url('/rainbow.svg')] bg-no-repeat bg-top",
-					fontSans.variable
+					GeneralSans.variable
 				)}
 			>
 				<Providers>

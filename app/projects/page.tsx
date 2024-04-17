@@ -1,12 +1,13 @@
 'use client';
 
 import Button from '@/components/ui/button';
+import Cursor from '@/components/ui/cursor';
 import HorizontalScroller from '@/components/ui/horizontalScroller';
 import PageHeader from '@/components/ui/pageHeader';
 import { IconArrowUpRight, IconCompass, IconGithub } from '@/lib/icons';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useRef } from 'react';
 
 // export const metadata: Metadata = {
 // 	title: 'Simon Nyström - Projects',
@@ -14,13 +15,8 @@ import { useState } from 'react';
 
 const items = ['React', 'Node', 'Express', 'Postgres', 'Chakra', 'Sequelize', 'JavaScript'];
 
-interface CursorPosition {
-	x: number;
-	y: number;
-}
-
 export default function Projects() {
-	const [isHovered, setIsHovered] = useState(false);
+	const containerRef = useRef<HTMLDivElement>(null);
 
 	return (
 		<main className="min-h-[6000px] flex flex-col items-center mt-32 gap-8 sm:mt-40 sm:gap-20">
@@ -30,14 +26,13 @@ export default function Projects() {
 			/>
 			<div className="grid grid-cols-1 md:grid-cols-12 gap-4 h-fit">
 				{/* LARGE */}
-				<div
-					onMouseEnter={() => setIsHovered(true)}
-					onMouseLeave={() => setIsHovered(false)}
-					className="col-span-12 lg:col-span-9 relative rounded-2xl w-full flex flex-col justify-between lg:min-h-[360px] border bg-background/10 shadow-shadow backdrop-blur-md"
-				>
+				<div className="col-span-12 lg:col-span-9 relative rounded-2xl w-full flex flex-col justify-between lg:min-h-[360px] border bg-background/10 shadow-shadow backdrop-blur-md">
 					<div className="grid grid-cols-6 gap-2">
 						<div className="relative col-span-2 lg:col-span-3 py-4 flex items-center">
 							<div className="relative rounded-r-xl h-full">
+								<Cursor containerClass="rounded-r-xl">
+									<IconArrowUpRight />
+								</Cursor>
 								<Image
 									src="/images/webpic.png"
 									alt=""
@@ -61,13 +56,7 @@ export default function Projects() {
 					</div>
 					<div className="border-t">
 						<div className="relative overflow-hidden py-4 text-xs uppercase font-medium tracking-wide text-foreground/80 bg-background/30 rounded-b-2xl select-none">
-							<HorizontalScroller
-								items={items}
-								separator="•"
-								pauseOnHover={false}
-								startOnHover={true}
-								isHovered={isHovered}
-							/>
+							<HorizontalScroller items={items} separator="•" />
 						</div>
 					</div>
 					<div className="flex space-x-2 absolute top-5 right-3 sm:right-5">
@@ -109,7 +98,7 @@ export default function Projects() {
 						</span>
 					</div>
 
-					<div className="absolute -z-10 -top-10 -right-14 dark:text-background/50 text-foreground/5 -rotate-12 animate-spinner [animation-play-state:paused] group-hover:[animation-play-state:running]">
+					<div className="absolute -z-10 -top-10 -right-14 text-foreground/5 -rotate-12 animate-spinner [animation-play-state:paused] group-hover:[animation-play-state:running]">
 						<IconCompass width={200} height={200} />
 					</div>
 				</Link>
