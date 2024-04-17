@@ -4,16 +4,16 @@
         <filter id='noise'>
             <feTurbulence
 				type="fractalNoise"
-				baseFrequency='6.29' 
+				baseFrequency='1.29' 
                 numOctaves='6' 
-                seed="15"
+                seed="10"
                 stitchTiles='stitch'
 				result="turbulence"
 			/>
 			<feComposite operator="in" in="turbulence" in2="SourceAlpha" result="composite"/>
 			<feColorMatrix in="composite" type="luminanceToAlpha" />
             <feComponentTransfer in="composite" result="adjustedOpacity">
-                <feFuncA type="linear" slope="0.5" />
+                <feFuncA type="linear" slope="0.2" />
             </feComponentTransfer>
         </filter>
     </defs>

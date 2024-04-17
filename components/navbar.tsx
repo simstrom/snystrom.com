@@ -1,12 +1,11 @@
 'use client';
 
-import { links, navItems } from '@/lib/data';
-import { IconCommand } from '@/lib/icons';
+import { IconCommand, IconSearch } from '@/lib/icons';
 import { cn } from '@/lib/utils';
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 
 import Button from './ui/button';
@@ -17,9 +16,8 @@ import Tooltip from './ui/tooltip';
 export default function Navbar({ className }: { className?: string }) {
 	const [visible, setVisible] = useState(true);
 	const [menuOpen, setMenuOpen] = useState(false);
-	const [activeLinkIndex, setActiveLinkIndex] = useState<number | null>(0);
 	const menuRef = useRef<HTMLDivElement>(null);
-	const router = useRouter();
+	const inputRef = useRef<HTMLInputElement>(null);
 	const pathName = usePathname();
 
 	const { scrollY } = useScroll();
@@ -30,47 +28,20 @@ export default function Navbar({ className }: { className?: string }) {
 			setVisible(true);
 		} else if (latest > prevScrollY && latest > 50) {
 			setVisible(false);
-		} else if (prevScrollY - latest > 10) {
+		} else if (prevScrollY - latest > 1) {
 			setVisible(true);
 		}
 		setPrevScrollY(latest);
 	});
 
 	useEffect(() => {
-		const handleKeys = (e: KeyboardEvent) => {
+		const handleToggleMenu = (e: KeyboardEvent) => {
 			const { key, metaKey } = e;
 			const isMetaKey = key === 'k' && metaKey;
 
 			if (isMetaKey) {
 				setMenuOpen((prev) => !prev);
 				return;
-			}
-			if (!menuOpen) return;
-
-			switch (key) {
-				case 'Escape':
-					setMenuOpen(false);
-					break;
-				case 'ArrowUp':
-					e.preventDefault();
-					setActiveLinkIndex((prevIndex) =>
-						prevIndex === null || prevIndex === 0 ? links.length - 1 : prevIndex - 1
-					);
-					break;
-				case 'ArrowDown':
-					e.preventDefault();
-					setActiveLinkIndex((prevIndex) =>
-						prevIndex === null || prevIndex === links.length - 1 ? 0 : prevIndex + 1
-					);
-					break;
-				case 'Enter':
-					if (activeLinkIndex !== null) {
-						setMenuOpen(false);
-						router.push(links[activeLinkIndex].path);
-					}
-					break;
-				default:
-					break;
 			}
 		};
 
@@ -80,20 +51,21 @@ export default function Navbar({ className }: { className?: string }) {
 			}
 		};
 
-		window.addEventListener('keydown', handleKeys);
+		window.addEventListener('keydown', handleToggleMenu);
 		document.addEventListener('mousedown', handleClickOutside);
 
 		return () => {
-			window.removeEventListener('keydown', handleKeys);
+			window.removeEventListener('keydown', handleToggleMenu);
 			document.removeEventListener('mousedown', handleClickOutside);
 		};
-	}, [menuOpen, activeLinkIndex, router]);
+	}, [menuOpen]);
 
 	useEffect(() => {
-		// Close menu when navbar is hidden
 		if (!visible) setMenuOpen(false);
-		// Reset arrow navigated linkIndex when menu is closed
-		if (!menuOpen) setActiveLinkIndex(null);
+
+		if (menuOpen && inputRef.current) {
+			inputRef.current.focus();
+		}
 	}, [visible, menuOpen]);
 
 	return (
@@ -115,16 +87,39 @@ export default function Navbar({ className }: { className?: string }) {
 						className="max-w-screen-sm w-full flex flex-col sm:mx-3 border-b sm:border bg-background/50 sm:bg-background/30 sm:rounded-2xl backdrop-blur-md shadow-shadow"
 					>
 						<div className="flex justify-between items-center w-full py-3 px-4 sm:px-6">
-							<Link href="/" onClick={() => pathName != '/' && setMenuOpen(false)}>
-								<Image
-									src="/images/avatar.jpg"
-									alt="Simon Nyström avatar"
-									width={32}
-									height={32}
-									priority
-									className="rounded-full active:scale-90 transition"
-								/>
-							</Link>
+							{!menuOpen ? (
+								<Link href="/" onClick={() => pathName != '/' && setMenuOpen(false)}>
+									<Image
+										src="/images/avatar.jpg"
+										alt="Simon Nyström avatar"
+										width={32}
+										height={32}
+										priority
+										className="rounded-full active:scale-90 transition"
+									/>
+								</Link>
+							) : (
+								<motion.div
+									initial={{ opacity: 0 }}
+									exit={{ opacity: 0 }}
+									animate={{ opacity: 1 }}
+									transition={{ duration: 0.3 }}
+									className="inline-flex items-center flex-1"
+								>
+									<label htmlFor="search" className="w-8 h-8 pr-1 flex items-center justify-center">
+										<IconSearch />
+									</label>
+									<input
+										ref={inputRef}
+										autoComplete="off"
+										id="search"
+										type="text"
+										placeholder="Type some keywords to start searching..."
+										className="px-5 w-full h-full bg-transparent focus-visible:outline-none"
+									></input>
+								</motion.div>
+							)}
+
 							<div className="flex gap-x-3">
 								<ThemeSwitcher />
 								<Tooltip label={`${menuOpen ? 'Hide' : 'Show'} command center`}>
@@ -146,13 +141,7 @@ export default function Navbar({ className }: { className?: string }) {
 
 						<AnimatePresence>
 							{menuOpen && (
-								<Menu
-									isOpen={menuOpen}
-									setIsOpen={setMenuOpen}
-									activeLinkIndex={activeLinkIndex}
-									setActiveLinkIndex={setActiveLinkIndex}
-									navItems={navItems}
-								/>
+								<Menu isOpen={menuOpen} setIsOpen={setMenuOpen} currentPath={pathName} />
 							)}
 						</AnimatePresence>
 					</div>

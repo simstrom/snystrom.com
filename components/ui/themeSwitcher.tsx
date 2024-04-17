@@ -1,4 +1,4 @@
-import { IconMoon, IconSun } from '@/lib/icons';
+import { IconTheme } from '@/lib/icons';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 import Button from './button';
@@ -30,7 +30,7 @@ export default function ThemeSwitcher() {
 				className="active:scale-90"
 				aria-label="Toggle theme"
 			>
-				{mounted ? theme == 'dark' ? <IconMoon /> : <IconSun /> : <div className="w-5 h-5" />}
+				<IconTheme />
 			</Button>
 		</Tooltip>
 	);

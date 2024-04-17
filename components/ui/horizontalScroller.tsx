@@ -30,14 +30,6 @@ export default function HorizontalScroller({
 		addAnimation();
 	}, []);
 
-	// useEffect(() => {
-	// 	if (startOnHover && isHovered && !start) {
-	// 		setStart(true);
-	// 	} else if (startOnHover && !isHovered && start) {
-	// 		setStart(false);
-	// 	}
-	// }, [isHovered]);
-
 	const addAnimation = () => {
 		if (containerRef.current && scrollerRef.current) {
 			const scrollerContent = Array.from(scrollerRef.current.children);

@@ -75,7 +75,7 @@ const config = {
 				rainbow: "url('/rainbow.svg')",
 			},
 			animation: {
-				scroll: 'scroll 30s forwards linear infinite',
+				scroll: 'scroll 40s forwards linear infinite',
 				spinner: 'wiggle 3s forwards linear infinite',
 			},
 			keyframes: {
