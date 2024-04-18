@@ -64,8 +64,8 @@ export default function HorizontalScroller({
 			>
 				{items.map((item: any, idx: number) => (
 					<Fragment key={idx}>
-						<li className="marker:text-primary">{item}</li>
-						{separator && <span className="text-primary">•</span>}
+						<li>{item}</li>
+						{separator && <span className="text-brand">{separator}</span>}
 					</Fragment>
 				))}
 			</ul>

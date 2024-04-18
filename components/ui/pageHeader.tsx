@@ -17,7 +17,7 @@ export default function PageHeader({ title, content, className }: PageHeaderProp
 			<h1 className="text-5xl sm:text-6xl lg:text-8xl tracking-tight w-fit md:border-r-2 md:pr-5">
 				{title}
 			</h1>
-			<p className="flex-1 text-foreground/80 text-pretty lg:text-balance sm:text-lg lg:text-xl">
+			<p className="flex-1 text-foreground-secondary text-pretty lg:text-balance sm:text-lg lg:text-xl">
 				{content}
 			</p>
 		</section>

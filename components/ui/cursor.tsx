@@ -21,8 +21,8 @@ export default function Cursor({ children, containerClass, cursorClass }: Cursor
 			opacity: 1,
 			height: 60,
 			width: 60,
-			translateX: -30,
-			translateY: -30,
+			translateX: -35,
+			translateY: -25,
 		},
 	};
 
@@ -53,14 +53,14 @@ export default function Cursor({ children, containerClass, cursorClass }: Cursor
 						initial={'hidden'}
 						animate={'show'}
 						exit={'hidden'}
-						transition={{ type: 'spring', stiffness: 500, damping: 25, mass: 1.5 }}
+						transition={{ type: 'tween', ease: 'easeInOut', duration: 0.2 }}
 						whileTap={{ scale: 0.8 }}
 						style={{
 							left: mousePosition.x,
 							top: mousePosition.y,
 						}}
 						className={cn(
-							'absolute flex items-center justify-center rounded-full bg-foreground text-background',
+							'absolute flex items-center justify-center rounded-full bg-brand dark:text-foreground-inverse',
 							cursorClass
 						)}
 					>
