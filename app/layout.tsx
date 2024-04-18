@@ -48,11 +48,12 @@ export default function RootLayout({
 		<html lang="en" suppressHydrationWarning>
 			<body
 				className={cn(
-					'container max-w-screen-xl min-h-screen transition-colors ease-in-out duration-300',
-					"bg-[url('/rainbow.svg')] bg-no-repeat bg-top",
+					'container max-w-screen-xl min-h-screen transition-colors ease-in-out duration-300 bg-background',
+					// "bg-[url('/rainbow.svg')] bg-no-repeat bg-top",
 					GeneralSans.variable
 				)}
 			>
+				<div className="fixed opacity-[0.04] dark:opacity-[0.03] -z-10 w-full h-full bg-[url('/grain.gif')] top-0 left-0 pointer-events-none" />
 				<Providers>
 					<Navbar />
 					{children}

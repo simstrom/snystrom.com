@@ -1,3 +1,5 @@
+const { default: flattenColorPalette } = require('tailwindcss/lib/util/flattenColorPalette');
+
 import type { Config } from 'tailwindcss';
 const { fontFamily } = require('tailwindcss/defaultTheme');
 
@@ -21,62 +23,40 @@ const config = {
 		extend: {
 			fontFamily: {
 				sans: ['var(--font-sans)', ...fontFamily.sans],
-				serif: ['var(--font-serif)', ...fontFamily.serif],
-				mono: ['var(--font-mono)', ...fontFamily.mono],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
-				input: 'hsl(var(--input))',
-				ring: 'hsl(var(--ring))',
-				background: 'hsl(var(--background))',
-				foreground: 'hsl(var(--foreground))',
-				primary: {
-					DEFAULT: 'hsl(var(--primary))',
-					foreground: 'hsl(var(--primary-foreground))',
+				background: {
+					DEFAULT: 'hsl(var(--background))',
+					secondary: 'hsl(var(--background-secondary))',
+					tertiary: 'hsl(var(--background-tertiary))',
 				},
-				secondary: {
-					DEFAULT: 'hsl(var(--secondary))',
-					foreground: 'hsl(var(--secondary-foreground))',
+				foreground: {
+					DEFAULT: 'hsl(var(--foreground))',
+					secondary: 'hsl(var(--foreground-secondary))',
+					inverse: 'hsl(var(--foreground-inverse))',
 				},
-				destructive: {
-					DEFAULT: 'hsl(var(--destructive))',
-					foreground: 'hsl(var(--destructive-foreground))',
+				brand: {
+					DEFAULT: 'hsl(var(--brand))',
+					secondary: 'hsl(var(--brand-secondary))',
 				},
-				muted: {
-					DEFAULT: 'hsl(var(--muted))',
-					foreground: 'hsl(var(--muted-foreground))',
-				},
-				accent: {
-					DEFAULT: 'hsl(var(--accent))',
-					foreground: 'hsl(var(--accent-foreground))',
-				},
-				popover: {
-					DEFAULT: 'hsl(var(--popover))',
-					foreground: 'hsl(var(--popover-foreground))',
-				},
-				card: {
-					DEFAULT: 'hsl(var(--card))',
-					foreground: 'hsl(var(--card-foreground))',
-				},
-			},
-			borderRadius: {
-				lg: 'var(--radius)',
-				md: 'calc(var(--radius) - 2px)',
-				sm: 'calc(var(--radius) - 4px)',
+				success: 'hsl(var(--success))',
+				danger: 'hsl(var(--danger))',
 			},
 			letterSpacing: {
 				widest: '.15em',
 			},
 			boxShadow: {
 				shadow: '2px 4px 30px rgba(0, 0, 0, 0.1)',
-				glow: '0px 0px 80.4px rgba(235, 225, 217, 0.3), 0px 0px 55.2px rgba(235, 225, 217, 0.7), 0px 0px 0px #EBE1D9, 0px 0px 22.1px #EBE1D9, 0px 0px 3.3px #EBE1D9, 0px 0px 7.8px #EBE1D9',
+				glow: '0px 0px 10.6706px #CDA24C, 0px 0px 6.0975px #CDA24C, 0px 0px 3.55687px #CDA24C, 0px 0px 1.77844px #CDA24C, 0px 0px 0.508125px #CDA24C, 0px 0px 0.254063px #CDA24C',
 			},
 			backgroundImage: {
 				rainbow: "url('/rainbow.svg')",
 			},
 			animation: {
 				scroll: 'scroll 40s forwards linear infinite',
-				spinner: 'wiggle 3s forwards linear infinite',
+				wiggle: 'wiggle 3s forwards linear infinite',
+				aurora: 'aurora 50s forwards linear infinite',
 			},
 			keyframes: {
 				scroll: {
@@ -89,11 +69,30 @@ const config = {
 					'50%': { transform: 'rotate(24deg)' },
 					'100%': { transform: 'rotate(-24deg)' },
 				},
+				aurora: {
+					from: {
+						backgroundPosition: '50% 50%, 50% 50%',
+					},
+					to: {
+						backgroundPosition: '350% 50%, 350% 50%',
+					},
+				},
 			},
 		},
 	},
-	plugins: [],
+	plugins: [addVariablesForColors],
 	// require('@tailwindcss/typography') - https://github.com/tailwindlabs/tailwindcss-typography
 } satisfies Config;
+
+function addVariablesForColors({ addBase, theme }: any) {
+	let allColors = flattenColorPalette(theme('colors'));
+	let newVars = Object.fromEntries(
+		Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
+	);
+
+	addBase({
+		':root': newVars,
+	});
+}
 
 export default config;
