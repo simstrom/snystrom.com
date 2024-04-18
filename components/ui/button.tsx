@@ -20,7 +20,7 @@ export default function Button({
 }: ButtonProps) {
 	const variantClasses = {
 		primary:
-			'bg-background/30 border rounded-xl shadow-shadow backdrop-blur-md hover:text-background/50 hover:border-transparent hover:bg-foreground hover:shadow-glow',
+			'btn bg-background-secondary/5 dark:bg-background-secondary/50 border rounded-xl backdrop-blur-md hover:text-foreground-inverse after:bg-brand',
 		secondary: '',
 		ghost: '',
 		link: '',
@@ -32,18 +32,21 @@ export default function Button({
 	};
 	const variantClass = variantClasses[variant];
 	const sizeClass = sizeClasses[size];
-
+	/* <button class="button-57" role="button"><span class="text">Button 57</span><span>Alternate text</span></button> */
 	return (
 		<button
 			onClick={onClick}
 			className={cn(
-				'inline-flex items-center justify-center gap-x-2 transition duration-300',
+				'relative overflow-hidden inline-flex items-center justify-center',
 				variantClass,
 				sizeClass,
 				className
 			)}
 		>
-			{children}
+			<span className="inline-flex items-center justify-center gap-x-2">{children}</span>
+			{variantClasses[variant] == variantClasses.primary && (
+				<span className="inline-flex items-center justify-center gap-x-2">{children}</span>
+			)}
 		</button>
 	);
 }
