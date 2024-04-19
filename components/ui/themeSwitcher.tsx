@@ -1,5 +1,7 @@
+'use client';
+
 import { IconMoon, IconSun } from '@/lib/icons';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 
@@ -29,31 +31,36 @@ export default function ThemeSwitcher() {
 			<Button
 				size="icon"
 				onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-				className="active:scale-90 relative overflow-hidden"
+				className="active:scale-95 relative overflow-hidden"
 				aria-label="Toggle theme"
+				title="Theme toggle"
 			>
-				{mounted ? (
-					<>
-						<motion.div
-							className="absolute"
-							initial={{ x: theme == 'dark' ? 50 : 0 }}
-							animate={{ x: theme == 'dark' ? 50 : 0, y: theme == 'dark' ? 20 : 0 }}
-							transition={{ type: 'spring', stiffness: 200, damping: 30 }}
-						>
-							<IconSun />
-						</motion.div>
-						<motion.div
-							className="absolute"
-							initial={{ x: theme == 'light' ? -50 : 0 }}
-							animate={{ x: theme == 'light' ? -50 : 0, y: theme == 'light' ? 20 : 0 }}
-							transition={{ type: 'spring', stiffness: 200, damping: 30 }}
-						>
-							<IconMoon />
-						</motion.div>
-					</>
-				) : (
-					<div className="h-10 w-10" />
-				)}
+				<AnimatePresence mode="wait">
+					{mounted &&
+						(theme == 'light' ? (
+							<motion.div
+								key="light"
+								className="absolute"
+								initial={{ x: 30, opacity: 0 }}
+								exit={{ x: 30, opacity: 0 }}
+								animate={{ x: 0, opacity: 1 }}
+								transition={{ type: 'tween', duration: 0.1, ease: 'easeInOut' }}
+							>
+								<IconSun />
+							</motion.div>
+						) : (
+							<motion.div
+								key="dark"
+								className="absolute"
+								initial={{ x: -30, opacity: 0 }}
+								exit={{ x: -30, opacity: 0 }}
+								animate={{ x: 0, opacity: 1 }}
+								transition={{ type: 'tween', duration: 0.1, ease: 'easeInOut' }}
+							>
+								<IconMoon />
+							</motion.div>
+						))}
+				</AnimatePresence>
 			</Button>
 		</Tooltip>
 	);

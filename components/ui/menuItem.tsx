@@ -23,8 +23,8 @@ const MenuItem: React.FC<MenuItemProps> = memo(
 				target={isExternalLink ? '_blank' : ''}
 				rel={isExternalLink ? 'noopener noreferrer' : ''}
 				className={cn(
-					'text-sm tracking-wide flex items-center gap-x-3 px-2 py-3 rounded-lg h-12',
-					isFocused && 'bg-background/20 text-primary'
+					'text-sm font-medium flex items-center gap-x-3 px-2 py-3 rounded-lg h-12',
+					isFocused && 'bg-brand/5 text-brand'
 				)}
 				onMouseEnter={() => setFocusedIndex(idx)}
 				onMouseLeave={() => setFocusedIndex(null)}
@@ -33,12 +33,12 @@ const MenuItem: React.FC<MenuItemProps> = memo(
 				{navItem.icon ? (
 					navItem.icon
 				) : (
-					<span className={cn('text-lg pb-1', isCurrentPath && 'text-primary')}>‣</span>
+					<span className={cn('text-lg pb-1', isCurrentPath && 'text-brand')}>‣</span>
 				)}
 				{navItem.name}
 
 				{isFocused && (
-					<div className="hidden sm:block ml-auto px-0.5 shadow-sm bg-background/20 text-primary rounded">
+					<div className="hidden sm:block ml-auto px-0.5 text-primary">
 						<IconEnter width={16} />
 					</div>
 				)}

@@ -13,7 +13,7 @@ export default function Kbd({ label, letter, icons, iconTitle }: KbdProps) {
 			{label}
 			{icons.map((icon, idx) => (
 				<Fragment key={idx}>
-					<kbd className="px-1.5 py-0.5 inline-flex space-x-1 items-center text-center uppercase font-sans text-sm shadow-sm bg-background/20 text-primary rounded">
+					<kbd className="px-1.5 py-0.5 inline-flex space-x-1 items-center text-center uppercase font-sans text-sm shadow-sm bg-brand/10 text-brand rounded">
 						{iconTitle && (
 							<abbr title={iconTitle} className="font-sans no-underline leading-none">
 								{icon}

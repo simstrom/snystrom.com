@@ -10,7 +10,7 @@ export default function PageHeader({ title, content, className }: PageHeaderProp
 	return (
 		<section
 			className={cn(
-				'flex flex-col px-3 w-full md:flex-row md:items-end md:space-x-5 gap-y-3',
+				'flex flex-col px-2 w-full md:flex-row md:items-end md:space-x-5 gap-y-3',
 				className
 			)}
 		>
