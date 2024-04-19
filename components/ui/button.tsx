@@ -1,12 +1,17 @@
+import { IconArrowUpRight } from '@/lib/icons';
 import { cn } from '@/lib/utils';
+import { Url } from 'next/dist/shared/lib/router/router';
+import Link from 'next/link';
 
 type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'link';
 type ButtonSize = 'default' | 'small' | 'icon';
 
-interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
-	children?: React.ReactNode;
+interface ButtonProps {
+	children: React.ReactNode;
 	variant?: ButtonVariant;
 	size?: ButtonSize;
+	isExternalLink?: boolean;
+	href?: string;
 	onClick?: React.MouseEventHandler<HTMLButtonElement>;
 	className?: string;
 }
@@ -15,6 +20,8 @@ export default function Button({
 	children,
 	variant = 'primary',
 	size = 'default',
+	isExternalLink,
+	href,
 	onClick,
 	className,
 }: ButtonProps) {
@@ -23,8 +30,9 @@ export default function Button({
 			'button bg-transparent rounded-lg backdrop-blur-sm hover:text-brand transition duration-300 ease-in-out',
 		secondary: '',
 		ghost: '',
-		link: '',
+		link: 'w-fit h-fit text-xs uppercase font-medium tracking-wide group/link',
 	};
+
 	const sizeClasses = {
 		default: 'h-14 px-12',
 		small: 'h-10 px-8',
@@ -32,18 +40,38 @@ export default function Button({
 	};
 	const variantClass = variantClasses[variant];
 	const sizeClass = sizeClasses[size];
+	const commonClass = 'relative inline-flex items-center justify-center gap-x-2';
 
-	return (
-		<button
-			onClick={onClick}
-			className={cn(
-				'relative overflow-hidden inline-flex items-center justify-center gap-x-2',
-				variantClass,
-				sizeClass,
-				className
-			)}
-		>
-			{children}
-		</button>
-	);
+	if (isExternalLink) {
+		return (
+			<a
+				href={href}
+				target="_blank"
+				rel="noopener noreferrer"
+				className={cn(commonClass, variantClass, sizeClass, className)}
+			>
+				{children}
+			</a>
+		);
+	} else if (variant === 'link') {
+		return (
+			<Link href={href as Url} className={cn(commonClass, variantClass, className)}>
+				<IconArrowUpRight
+					width={14}
+					height={14}
+					className="text-foreground-secondary group-hover/link:text-foreground group-hover/link:translate-x-1.5 group-hover/link:-translate-y-0.5 group-hover/link:scale-110 transition-transform duration-500"
+				/>
+				<span className="relative group-hover/link:translate-x-1.5 transition-transform duration-500">
+					{children}
+					<span className="absolute -bottom-1 left-0 w-full h-0.5 bg-brand transition scale-x-0 origin-left group-hover/link:scale-x-100 duration-500" />
+				</span>
+			</Link>
+		);
+	} else {
+		return (
+			<button onClick={onClick} className={cn(commonClass, variantClass, sizeClass, className)}>
+				{children}
+			</button>
+		);
+	}
 }

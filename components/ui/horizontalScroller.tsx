@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils';
 import { Fragment, useEffect, useRef, useState } from 'react';
 
 interface ScrollerProps {
-	items: any;
+	items: Array<any>;
 	separator?: string;
 	pauseOnHover?: boolean;
 	startOnHover?: boolean;
