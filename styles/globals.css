@@ -4,36 +4,39 @@
 
 @layer base {
 	:root {
-		--background: 35 49% 93%;
-		--background-secondary: 40 10% 12%; /* 5% */
-		--background-tertiary: 0 0% 100%; /* 10% */
+		--background: 225 27% 97%;
+		--background-secondary: 225 10% 92%; /* 50% */
+		--background-tertiary: 223 40% 96%; /* 50% */
 
-		--foreground: 40 10% 12%;
-		--foreground-secondary: 40 11% 32%;
+		--foreground: 232 12% 8%;
+		--foreground-secondary: 228 14% 37%;
 		--foreground-inverse: var(--background);
 
-		--brand: 39 71% 61%;
-		--brand-secondary: 40 100% 70%;
+		--brand: 232 78% 60%;
+		--brand-secondary: 232 100% 72%;
 
-		--border: 37 8% 30%; /* 20% */
-
-		--success: #bae67e;
-		--danger: #ef6b73;
+		--border: 220 18% 57%; /* 20% */
+		--border-hue: 220;
+		--border-saturation: 18%;
+		--border-lightness: 57%;
 	}
 
 	.dark {
-		--background: 220 43% 8%;
-		--background-secondary: 217 45% 6%; /* 50% */
-		--background-tertiary: 222 24% 16%; /* 50% */
+		--background: 225 20% 8%;
+		--background-secondary: 223 17% 8%; /* 50% */
+		--background-tertiary: 223 24% 15%; /* 50% */
 
-		--foreground: 35 49% 93%;
-		--foreground-secondary: 40 12% 69%;
+		--foreground: 220 23% 95%;
+		--foreground-secondary: 226 12% 66%;
 		--foreground-inverse: var(--background);
 
-		--brand: 40 100% 70%;
-		--brand-secondary: 39 71% 61%;
+		--brand: 232 100% 72%;
+		--brand-secondary: 232 78% 60%;
 
-		--border: 23 27% 69%; /* 20% */
+		--border: 228 20% 44%; /* 20% */
+		--border-hue: 228;
+		--border-saturation: 20%;
+		--border-lightness: 44%;
 	}
 }
 
@@ -57,69 +60,49 @@
 	p {
 		@apply text-[0.875rem] sm:text-[1rem] leading-relaxed;
 	}
-
-	.noise {
-		position: relative;
-	}
-	.noise::before {
-		position: absolute;
-		left: 0;
-		top: 0;
-		content: '';
-		width: 100%;
-		height: 100%;
-		z-index: -1;
-		mix-blend-mode: difference;
-		overflow: hidden;
-		border-radius: 1rem;
-	}
-	.noise::before {
-		background-image: url(/noise.svg);
-	}
-	.dark .noise::before {
-		mix-blend-mode: luminosity;
-		opacity: 0.5;
-	}
 }
 
-.btn span:first-child {
+.noise {
 	position: relative;
-	transition: color 400ms cubic-bezier(0.48, 0, 0.12, 1);
-	z-index: 10;
 }
-
-.btn span:last-child {
+.noise::before {
 	position: absolute;
-	bottom: 0;
-	transition: all 200ms cubic-bezier(0.48, 0, 0.12, 1);
-	z-index: 100;
-	opacity: 0;
-	top: 50%;
-	left: 50%;
-	height: 100%;
-	transform: translateY(225%) translateX(-50%);
-}
-
-.btn:after {
-	content: '';
-	position: absolute;
-	bottom: -50%;
 	left: 0;
+	top: 0;
+	content: '';
 	width: 100%;
 	height: 100%;
-	transform-origin: bottom center;
-	transition: transform 400ms cubic-bezier(0.48, 0, 0.12, 1);
-	transform: skewY(9.3deg) scaleY(0);
-	z-index: 50;
+	z-index: -1;
+	mix-blend-mode: difference;
+	overflow: hidden;
+	border-radius: 1rem;
+}
+.noise::before {
+	background-image: url(/noise.svg);
+}
+.dark .noise::before {
+	mix-blend-mode: luminosity;
+	opacity: 0.5;
 }
 
-.btn:hover:after {
-	transform-origin: bottom center;
-	transform: skewY(9.3deg) scaleY(2);
+.button::after {
+	z-index: 0;
+	overflow: hidden;
+	position: absolute;
+	content: '';
+	display: block;
+	width: 100%;
+	height: 100%;
+	border-radius: 8px;
+	transition: border-color 0.2s ease 0s, background 0.3s ease 0s,
+		transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0s;
+	border: 1px solid hsla(var(--border-hue), var(--border-saturation), var(--border-lightness), 0.2);
 }
 
-.btn:hover span:last-child {
-	transform: translateX(-50%) translateY(-50%);
-	opacity: 1;
-	transition: all 600ms cubic-bezier(0.48, 0, 0.12, 1);
+.button:hover::after {
+	border-radius: 10px;
+	border: 2px solid hsl(var(--brand));
+	transform: scale(0.92) translateZ(0);
+	transition: border-color 0.2s ease 0s, background 0.3s ease 0s,
+		transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0s;
 }
