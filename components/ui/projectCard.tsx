@@ -14,12 +14,12 @@ interface ProjectCardProps {
 const renderButtons = (project: Project) => (
 	<>
 		{project.deployLink && (
-			<Button size="icon" isExternalLink href={project.deployLink}>
+			<Button aria-label="Visit deployed site" size="icon" isExternalLink href={project.deployLink}>
 				<IconArrowUpRight />
 			</Button>
 		)}
 		{project.githubLink && (
-			<Button size="icon" isExternalLink href={project.githubLink}>
+			<Button aria-label="View source code" size="icon" isExternalLink href={project.githubLink}>
 				<IconGithub />
 			</Button>
 		)}
@@ -42,6 +42,7 @@ export default function ProjectCard({ project, variant = 'standard' }: ProjectCa
 					<div className="relative rounded-r-xl h-full">
 						<a
 							href={project.deployLink || project.githubLink}
+							aria-label={project.deployLink ? 'Visit deployed site' : 'View source code'}
 							className="relative rounded-r-xl h-full"
 						>
 							<Cursor containerClass="rounded-r-xl">
@@ -85,6 +86,7 @@ export default function ProjectCard({ project, variant = 'standard' }: ProjectCa
 				>
 					<a
 						href={project.deployLink || project.githubLink}
+						aria-label={project.deployLink ? 'Visit deployed site' : 'View source code'}
 						className={cn(
 							'relative h-full',
 							variant == 'reversed' ? 'rounded-l-xl' : 'rounded-r-xl'

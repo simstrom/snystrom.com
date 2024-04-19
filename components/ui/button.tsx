@@ -2,11 +2,12 @@ import { IconArrowUpRight } from '@/lib/icons';
 import { cn } from '@/lib/utils';
 import { Url } from 'next/dist/shared/lib/router/router';
 import Link from 'next/link';
+import { HTMLAttributes } from 'react';
 
 type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'link';
 type ButtonSize = 'default' | 'small' | 'icon';
 
-interface ButtonProps {
+interface ButtonProps extends HTMLAttributes<HTMLButtonElement | HTMLAnchorElement> {
 	children: React.ReactNode;
 	variant?: ButtonVariant;
 	size?: ButtonSize;
@@ -24,6 +25,7 @@ export default function Button({
 	href,
 	onClick,
 	className,
+	...props
 }: ButtonProps) {
 	const variantClasses = {
 		primary:
@@ -48,6 +50,7 @@ export default function Button({
 				href={href}
 				target="_blank"
 				rel="noopener noreferrer"
+				{...props}
 				className={cn(commonClass, variantClass, sizeClass, className)}
 			>
 				{children}
@@ -55,7 +58,7 @@ export default function Button({
 		);
 	} else if (variant === 'link') {
 		return (
-			<Link href={href as Url} className={cn(commonClass, variantClass, className)}>
+			<Link href={href as Url} {...props} className={cn(commonClass, variantClass, className)}>
 				<IconArrowUpRight
 					width={14}
 					height={14}
@@ -69,7 +72,11 @@ export default function Button({
 		);
 	} else {
 		return (
-			<button onClick={onClick} className={cn(commonClass, variantClass, sizeClass, className)}>
+			<button
+				{...props}
+				onClick={onClick}
+				className={cn(commonClass, variantClass, sizeClass, className)}
+			>
 				{children}
 			</button>
 		);

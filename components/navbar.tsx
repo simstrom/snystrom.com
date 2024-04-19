@@ -139,8 +139,8 @@ export default function Navbar({ className }: { className?: string }) {
 										id="search-input"
 										name="search"
 										type="search"
-										placeholder="Type some keywords to start searching..."
-										className="px-2 w-full h-full bg-transparent focus-visible:outline-none placeholder:text-foreground-secondary"
+										placeholder="What are you looking for?"
+										className="px-2 w-full h-full bg-transparent focus-visible:outline-none placeholder:text-sm placeholder:text-foreground-secondary"
 									></input>
 								</motion.div>
 							)}

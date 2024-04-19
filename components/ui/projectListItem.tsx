@@ -21,12 +21,22 @@ export default function ProjectListItem({ project }: { project: Project }) {
 			</div>
 			<div className="flex space-x-2">
 				{project.deployLink && (
-					<Button size="icon" isExternalLink href={project.deployLink}>
+					<Button
+						aria-label="Visit deployed site"
+						size="icon"
+						isExternalLink
+						href={project.deployLink}
+					>
 						<IconArrowUpRight />
 					</Button>
 				)}
 				{project.githubLink && (
-					<Button size="icon" isExternalLink href={project.githubLink}>
+					<Button
+						aria-label="View source code"
+						size="icon"
+						isExternalLink
+						href={project.githubLink}
+					>
 						<IconGithub />
 					</Button>
 				)}
