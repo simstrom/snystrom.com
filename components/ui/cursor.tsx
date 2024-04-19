@@ -3,26 +3,27 @@ import { motion } from 'framer-motion';
 import { useRef, useState } from 'react';
 
 interface CursorProps {
-	children?: React.ReactNode;
+	size?: number;
 	containerClass?: string;
 	cursorClass?: string;
+	children?: React.ReactNode;
 }
 
-export default function Cursor({ children, containerClass, cursorClass }: CursorProps) {
+export default function Cursor({ size = 80, containerClass, cursorClass, children }: CursorProps) {
 	const containerRef = useRef<HTMLDivElement>(null);
 	const [isVisible, setIsVisible] = useState(false);
 	const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
-	const variants = {
+	const animationStates = {
 		hidden: {
 			opacity: 0,
 		},
 		show: {
 			opacity: 1,
-			height: 60,
-			width: 60,
-			translateX: -35,
-			translateY: -25,
+			height: size,
+			width: size,
+			translateX: -size / 2,
+			translateY: -size / 2,
 		},
 	};
 
@@ -49,7 +50,7 @@ export default function Cursor({ children, containerClass, cursorClass }: Cursor
 			{isVisible && (
 				<>
 					<motion.div
-						variants={variants}
+						variants={animationStates}
 						initial={'hidden'}
 						animate={'show'}
 						exit={'hidden'}
@@ -60,7 +61,7 @@ export default function Cursor({ children, containerClass, cursorClass }: Cursor
 							top: mousePosition.y,
 						}}
 						className={cn(
-							'absolute flex items-center justify-center rounded-full bg-brand dark:text-foreground-inverse',
+							'absolute flex items-center justify-center rounded-full bg-brand-secondary dark:bg-brand text-foreground-inverse',
 							cursorClass
 						)}
 					>

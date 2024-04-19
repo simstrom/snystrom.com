@@ -3,7 +3,6 @@
 import { IconCommand, IconSearch } from '@/lib/icons';
 import { cn } from '@/lib/utils';
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from 'framer-motion';
-import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
@@ -84,20 +83,42 @@ export default function Navbar({ className }: { className?: string }) {
 				>
 					<div
 						ref={menuRef}
-						className="max-w-screen-sm w-full flex flex-col sm:mx-3 border-b sm:border bg-background/50 sm:bg-background/30 sm:rounded-2xl backdrop-blur-md shadow-shadow"
+						className="max-w-screen-sm w-full flex flex-col sm:mx-3 border-b sm:border bg-background-tertiary/50 sm:rounded-xl backdrop-blur shadow-shadow"
 					>
 						<div className="flex justify-between items-center w-full py-3 px-4 sm:px-6">
 							{!menuOpen ? (
-								<Link href="/" onClick={() => pathName != '/' && setMenuOpen(false)}>
-									<Image
-										src="/images/avatar.jpg"
-										alt="Simon Nyström avatar"
-										width={32}
-										height={32}
-										priority
-										className="rounded-full active:scale-90 transition"
-									/>
-								</Link>
+								<Tooltip label="Home">
+									<Link
+										href="/"
+										onClick={() => pathName != '/' && setMenuOpen(false)}
+										aria-label="Home"
+									>
+										<svg
+											width="32"
+											height="32"
+											viewBox="0 0 44 44"
+											fill="none"
+											aria-label="Logo"
+											className="w-7 h-7 hover:text-brand active:scale-95 transition"
+										>
+											<motion.path
+												key="logo"
+												initial={{ pathLength: 0 }}
+												animate={{ pathLength: 1 }}
+												transition={{
+													type: 'spring',
+													stiffness: 50,
+													damping: 20,
+												}}
+												strokeDasharray="0, 1"
+												d="M34.845 6.86401C24.2671 -4.26593 -1.32035 4.50812 2.35873 25.0049C2.8661 27.8315 6.33052 28.5367 8.33831 26.4834L15.0279 19.6422C16.1408 18.5041 17.9487 18.4333 19.1472 19.4808L24.9259 24.5317C26.035 25.5011 27.6838 25.5219 28.8169 24.5808L36.4377 18.2515C38.4871 16.5494 41.6121 17.3302 41.8982 19.9788C43.539 35.168 25.037 50.0697 9.01668 36.964"
+												stroke="currentColor"
+												strokeWidth="4"
+												strokeLinecap="round"
+											/>
+										</svg>
+									</Link>
+								</Tooltip>
 							) : (
 								<motion.div
 									initial={{ opacity: 0 }}
@@ -106,31 +127,36 @@ export default function Navbar({ className }: { className?: string }) {
 									transition={{ duration: 0.3 }}
 									className="inline-flex items-center flex-1"
 								>
-									<label htmlFor="search" className="w-8 h-8 pr-1 flex items-center justify-center">
+									<label
+										htmlFor="search-input"
+										className="w-8 h-8 pr-1 flex items-center justify-center"
+									>
 										<IconSearch />
 									</label>
 									<input
 										ref={inputRef}
 										autoComplete="off"
-										id="search"
-										type="text"
+										id="search-input"
+										name="search"
+										type="search"
 										placeholder="Type some keywords to start searching..."
-										className="px-5 w-full h-full bg-transparent focus-visible:outline-none"
+										className="px-2 w-full h-full bg-transparent focus-visible:outline-none placeholder:text-foreground-secondary"
 									></input>
 								</motion.div>
 							)}
 
-							<div className="flex gap-x-3">
+							<div className="flex gap-x-2">
 								<ThemeSwitcher />
 								<Tooltip label={`${menuOpen ? 'Hide' : 'Show'} command center`}>
 									<Button
 										size="icon"
 										onClick={() => setMenuOpen(!menuOpen)}
+										title="Menu"
 										aria-label="Toggle menu"
 										className={cn(
-											'active:scale-90',
+											'active:scale-95',
 											menuOpen &&
-												'focus-visible:outline-none text-background/50 border-transparent bg-foreground shadow-glow'
+												'focus-visible:outline-none text-brand after:border-brand after:border-2'
 										)}
 									>
 										<IconCommand />
@@ -154,7 +180,7 @@ export default function Navbar({ className }: { className?: string }) {
 							initial={{ opacity: 0 }}
 							animate={{ opacity: 1 }}
 							exit={{ opacity: 0 }}
-							className="fixed top-0 left-0 w-screen min-h-screen bg-background/30 backdrop-blur-sm z-10"
+							className="fixed top-0 left-0 w-screen min-h-screen bg-background-secondary/50 backdrop-blur-sm z-10"
 						/>
 					)}
 				</AnimatePresence>
