@@ -1,3 +1,4 @@
+import { IconExternal } from '@/lib/icons';
 import Link from 'next/link';
 import React from 'react';
 
@@ -20,5 +21,15 @@ export default function CustomLink(props: CustomLinkProps) {
 	if (href.startsWith('#')) {
 		return <a {...props}>{props.children}</a>;
 	}
-	return <a target="_blank" rel="noopener noreferrer" {...props} />;
+	return (
+		<a
+			target="_blank"
+			rel="noopener noreferrer"
+			className="inline-flex items-baseline gap-x-1"
+			{...props}
+		>
+			{props.children}
+			<IconExternal className="w-[15px] h-[15px]" />
+		</a>
+	);
 }

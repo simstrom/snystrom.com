@@ -6,7 +6,6 @@ import Script from 'next/script';
 
 import Navbar from '@/components/navbar';
 import Providers from './providers';
-import Transition from './template';
 
 const GeneralSans = localFont({
 	src: '../public/fonts/GeneralSans-Variable.woff2',
@@ -58,7 +57,7 @@ export default function RootLayout({
 				<div className="fixed opacity-[0.04] dark:opacity-[0.03] -z-10 w-full h-full bg-[url('/grain.gif')] top-0 left-0 pointer-events-none" />
 				<Providers>
 					<Navbar />
-					<Transition>{children}</Transition>
+					{children}
 				</Providers>
 				<Script
 					src="https://analytics.eu.umami.is/script.js"

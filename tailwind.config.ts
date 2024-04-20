@@ -16,8 +16,7 @@ const config = {
 		container: {
 			center: true,
 			padding: {
-				DEFAULT: '.75rem',
-				lg: '1rem',
+				DEFAULT: '1rem',
 			},
 		},
 		extend: {
@@ -40,17 +39,10 @@ const config = {
 					DEFAULT: 'hsl(var(--brand))',
 					secondary: 'hsl(var(--brand-secondary))',
 				},
-				success: 'hsl(var(--success))',
-				danger: 'hsl(var(--danger))',
-			},
-			letterSpacing: {
-				widest: '.15em',
 			},
 			boxShadow: {
-				shadow: 'var(--shadow)',
-			},
-			backgroundImage: {
-				rainbow: "url('/rainbow.svg')",
+				shadow:
+					'0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.15), 1px 1.5px 2px -0.8px hsl(var(--shadow-color) / 0.15), 2.5px 3.7px 5px -1.7px hsl(var(--shadow-color) / 0.15), 6.1px 9.1px 12.3px -2.5px hsl(var(--shadow-color) / 0.15)',
 			},
 			animation: {
 				scroll: 'scroll 40s forwards linear infinite',

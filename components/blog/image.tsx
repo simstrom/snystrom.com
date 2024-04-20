@@ -27,6 +27,7 @@ export default function CustomImage({
 				alt={alt}
 				className="w-full h-auto rounded-xl"
 				priority={priority}
+				draggable={false}
 			/>
 			{caption && <figcaption className={cn('text-sm text-secondary')}>{caption}</figcaption>}
 		</figure>

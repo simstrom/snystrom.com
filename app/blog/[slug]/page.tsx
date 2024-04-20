@@ -1,6 +1,10 @@
 import MDXComponents from '@/components/MDXComponents';
 import { getBlogPost, getBlogPosts } from '@/lib/blog';
+import { IconArrowRight } from '@/lib/icons';
+import { formatDate } from '@/lib/utils';
 import { MDXRemote } from 'next-mdx-remote/rsc';
+import Image from 'next/image';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
 interface Props {
@@ -25,17 +29,31 @@ export default function BlogPost({ params }: Props) {
 	if (!post) return notFound();
 
 	return (
-		<section className="flex flex-col justify-center mt-32 sm:mt-40 max-w-2xl container">
-			<h1 className="title font-medium text-2xl tracking-tighter max-w-[650px]">
-				{post.data.title}
-			</h1>
+		<main className="flex flex-col justify-center max-w-2xl mx-auto mt-32 sm:mt-40">
+			<Link href="/blog" className="inline-flex gap-x-2 text-sm tracking-tight font-medium">
+				<IconArrowRight />
+				Back to Blog
+			</Link>
+			<h1 className="text-3xl sm:text-4xl tracking-tight">{post.data.title}</h1>
 			<div className="flex justify-between items-center mt-2 mb-8 text-sm max-w-[650px]">
-				<p className="text-sm text-neutral-600 dark:text-neutral-400">{post.data.publishedAt}</p>
+				<p className="text-sm text-neutral-600 dark:text-neutral-400">
+					{formatDate(post.data.publishedAt, true)}
+				</p>
 			</div>
-			<article className="prose prose-quoteless dark:prose-invert">
+			{post.data.image && (
+				<Image
+					src={post.data.image}
+					alt={`${post.data.title} post image`}
+					width={672}
+					height={378}
+					className="w-[672px] h-[378px] rounded-xl object-cover border shadow-shadow"
+					priority
+				/>
+			)}
+			<article className="prose dark:prose-invert max-w-none prose-headings:font-medium prose-headings:text-foreground">
 				<MDXRemote source={post.content} components={MDXComponents} />
 			</article>
-		</section>
+		</main>
 	);
 }
 
