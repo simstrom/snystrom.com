@@ -69,7 +69,7 @@ export default function ProjectView() {
 						<ProjectCard project={projects[0]} variant="featured" />
 
 						{/* SIDE CONTENT */}
-						<div className="relative overflow-hidden hidden lg:flex lg:col-span-3 flex-col justify-center rounded-2xl w-full lg:min-h-[360px] border bg-background-tertiary/50 shadow-shadow backdrop-blur-md group/card">
+						<div className="relative overflow-hidden hidden lg:flex lg:col-span-3 flex-col justify-center rounded-2xl w-full lg:min-h-[360px] border bg-background-tertiary shadow-shadow group/card">
 							<div className="flex-1 flex flex-col justify-center px-5 py-10">
 								<h3 className="text-lg tracking-tight">
 									<span className="text-brand text-lg mr-2">‣</span>
@@ -81,13 +81,13 @@ export default function ProjectView() {
 									itaque unde optio soluta, nostrum placeat sed ab quasi!
 								</p>
 							</div>
-							<div className="border-t py-4 bg-background-secondary/50 flex">
+							<div className="border-t py-4 bg-background-secondary flex">
 								<Button variant="link" href="/about" className="ml-auto pr-7 h-fit">
 									Get to know me more
 								</Button>
 							</div>
 
-							<div className="absolute -z-10 -top-10 -right-14 text-background-secondary/50 -rotate-12 animate-wiggle [animation-play-state:paused] group-hover/card:[animation-play-state:running]">
+							<div className="absolute -z-10 -top-10 -right-14 text-background-secondary -rotate-12 animate-wiggle [animation-play-state:paused] group-hover/card:[animation-play-state:running]">
 								<IconCompass width={200} height={200} />
 							</div>
 						</div>

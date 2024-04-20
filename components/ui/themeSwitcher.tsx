@@ -33,7 +33,6 @@ export default function ThemeSwitcher() {
 				onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
 				className="active:scale-95 relative overflow-hidden"
 				aria-label="Toggle theme"
-				title="Theme toggle"
 			>
 				<AnimatePresence mode="wait">
 					{mounted &&

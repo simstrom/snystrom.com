@@ -1,22 +1,8 @@
-import { ReactNode } from 'react';
 import { IconEmail, IconGithub, IconInstagram, IconLinkedin, IconPerson } from './icons';
+import { Navigation } from './types';
 
 //
-// TYPES & INTERFACES
-//
-export interface NavItem {
-	name: string;
-	path: string;
-	icon?: ReactNode;
-}
-export interface Navigation {
-	navigationLinks: NavItem[];
-	socialLinks: NavItem[];
-	otherLinks: NavItem[];
-}
-
-//
-// DATA
+// NAVIGAITON
 //
 const navigationLinks = [
 	{
@@ -77,6 +63,9 @@ export const navItems: Navigation = {
 } as const;
 export const links = [...navigationLinks, ...otherLinks, ...socialLinks];
 
+//
+// SKILLS
+//
 export const skillsData = [
 	'HTML',
 	'CSS',

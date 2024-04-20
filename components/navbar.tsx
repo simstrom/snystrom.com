@@ -83,7 +83,7 @@ export default function Navbar({ className }: { className?: string }) {
 				>
 					<div
 						ref={menuRef}
-						className="max-w-screen-sm w-full flex flex-col sm:mx-3 border-b sm:border bg-background-tertiary/50 sm:rounded-xl backdrop-blur shadow-shadow"
+						className="max-w-2xl w-full flex flex-col sm:mx-3 border-b sm:border bg-background-tertiary/50 sm:rounded-xl backdrop-blur shadow-shadow"
 					>
 						<div className="flex justify-between items-center w-full py-3 px-4 sm:px-6">
 							{!menuOpen ? (
@@ -94,12 +94,12 @@ export default function Navbar({ className }: { className?: string }) {
 										aria-label="Home"
 									>
 										<svg
-											width="32"
-											height="32"
+											width="28"
+											height="28"
 											viewBox="0 0 44 44"
 											fill="none"
 											aria-label="Logo"
-											className="w-7 h-7 hover:text-brand active:scale-95 transition"
+											className="hover:text-brand active:scale-95 transition"
 										>
 											<motion.path
 												key="logo"
@@ -151,7 +151,6 @@ export default function Navbar({ className }: { className?: string }) {
 									<Button
 										size="icon"
 										onClick={() => setMenuOpen(!menuOpen)}
-										title="Menu"
 										aria-label="Toggle menu"
 										className={cn(
 											'active:scale-95',

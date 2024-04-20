@@ -29,14 +29,14 @@ const renderButtons = (project: Project) => (
 export default function ProjectCard({ project, variant = 'standard' }: ProjectCardProps) {
 	const CardFooter: React.FC<ProjectCardProps> = ({ project }) => (
 		<div className="border-t">
-			<div className="relative overflow-hidden py-4 text-xs uppercase font-medium tracking-wide text-foreground-secondary bg-background-secondary/50 rounded-b-2xl select-none">
+			<div className="relative overflow-hidden py-4 text-xs uppercase font-medium tracking-wide text-foreground-secondary bg-background-secondary rounded-b-2xl select-none">
 				<HorizontalScroller items={project.skills} separator="•" />
 			</div>
 		</div>
 	);
 
 	const CardFeatured: React.FC<ProjectCardProps> = ({ project }) => (
-		<div className="col-span-12 lg:col-span-9 relative rounded-2xl w-full flex flex-col justify-between lg:min-h-[360px] border bg-background-tertiary/50 shadow-shadow backdrop-blur-md">
+		<div className="col-span-12 lg:col-span-9 relative rounded-2xl w-full flex flex-col justify-between lg:min-h-[360px] border bg-background-tertiary shadow-shadow">
 			<div className="grid grid-cols-6 gap-2 h-full">
 				<div className="relative col-span-2 lg:col-span-3 py-4 flex items-center">
 					<div className="relative rounded-r-xl h-full">
@@ -50,7 +50,7 @@ export default function ProjectCard({ project, variant = 'standard' }: ProjectCa
 							</Cursor>
 							<Image
 								priority
-								src={project.image}
+								src={project.image as string}
 								alt=""
 								width={600}
 								height={450}
@@ -76,7 +76,7 @@ export default function ProjectCard({ project, variant = 'standard' }: ProjectCa
 	);
 
 	const CardStandard: React.FC<ProjectCardProps> = ({ project }) => (
-		<div className="col-span-12 md:col-span-7 lg:col-span-8 relative rounded-2xl w-full flex flex-col justify-between lg:min-h-[360px] border bg-background-tertiary/50 shadow-shadow backdrop-blur-md">
+		<div className="col-span-12 md:col-span-7 lg:col-span-8 relative rounded-2xl w-full flex flex-col justify-between lg:min-h-[360px] border bg-background-tertiary shadow-shadow">
 			<div className="grid grid-cols-6 gap-2 h-full">
 				<div
 					className={cn(
@@ -96,7 +96,7 @@ export default function ProjectCard({ project, variant = 'standard' }: ProjectCa
 							<IconArrowUpRight className="w-6 h-6" />
 						</Cursor>
 						<Image
-							src={project.image}
+							src={project.image as string}
 							alt=""
 							width={600}
 							height={450}
@@ -143,7 +143,7 @@ export default function ProjectCard({ project, variant = 'standard' }: ProjectCa
 	);
 
 	const CardSmall: React.FC<ProjectCardProps> = ({ project }) => (
-		<div className="col-span-12 md:col-span-5 lg:col-span-4 relative rounded-2xl w-full flex flex-col justify-between min-h-[300px] border bg-background-tertiary/50 shadow-shadow backdrop-blur-md">
+		<div className="col-span-12 md:col-span-5 lg:col-span-4 relative rounded-2xl w-full flex flex-col justify-between min-h-[300px] border bg-background-tertiary shadow-shadow">
 			<div className="py-5 px-3 sm:px-6 flex flex-col h-full gap-y-2 pt-16 lg:pt-16 justify-center">
 				<h3 className="text-xl sm:text-2xl lg:text-3xl tracking-tight text-balance">
 					{project.title}

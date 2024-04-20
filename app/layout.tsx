@@ -2,6 +2,7 @@ import { cn } from '@/lib/utils';
 import '@/styles/globals.css';
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
+import Script from 'next/script';
 
 import Navbar from '@/components/navbar';
 import Providers from './providers';
@@ -59,6 +60,10 @@ export default function RootLayout({
 					<Navbar />
 					<Transition>{children}</Transition>
 				</Providers>
+				<Script
+					src="https://analytics.eu.umami.is/script.js"
+					data-website-id="0ab801df-b78b-462a-80b5-4630493addc6"
+				/>
 			</body>
 		</html>
 	);

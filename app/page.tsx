@@ -19,7 +19,7 @@ export default function Home() {
 						Background lights are cool you know.
 					</h1>
 					<div className="md:text-4xl py-4">And this, is chemical burn.</div>
-					<button className="bg-background/10 border backdrop-blur-md shadow-sm rounded-xl w-fit px-10 py-3 uppercase text-sm tracking-wide font-medium">
+					<button className="bg-background border backdrop-blur-md shadow-sm rounded-xl w-fit px-10 py-3 uppercase text-sm tracking-wide font-medium">
 						Debug now
 					</button>
 				</motion.div>

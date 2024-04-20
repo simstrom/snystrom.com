@@ -47,8 +47,7 @@ const config = {
 				widest: '.15em',
 			},
 			boxShadow: {
-				shadow: '2px 4px 30px rgba(0, 0, 0, 0.1)',
-				glow: '0px 0px 10.6706px #CDA24C, 0px 0px 6.0975px #CDA24C, 0px 0px 3.55687px #CDA24C, 0px 0px 1.77844px #CDA24C, 0px 0px 0.508125px #CDA24C, 0px 0px 0.254063px #CDA24C',
+				shadow: 'var(--shadow)',
 			},
 			backgroundImage: {
 				rainbow: "url('/rainbow.svg')",
@@ -80,8 +79,7 @@ const config = {
 			},
 		},
 	},
-	plugins: [addVariablesForColors],
-	// require('@tailwindcss/typography') - https://github.com/tailwindlabs/tailwindcss-typography
+	plugins: [require('@tailwindcss/typography'), addVariablesForColors],
 } satisfies Config;
 
 function addVariablesForColors({ addBase, theme }: any) {
