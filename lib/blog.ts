@@ -20,6 +20,15 @@ export const getBlogPosts = cache(() => {
 	return posts;
 });
 
+export const getRelatedPosts = (post: Post) => {
+	const posts = getBlogPosts();
+	const related = posts
+		.filter((p) => p.slug !== post.slug)
+		.filter((p) => p.data.tags?.some((tag: string) => post.data.tags?.includes(tag)))
+		.slice(0, 3);
+	return related;
+};
+
 export const getBlogPost = (slug: string) => {
 	const posts = getBlogPosts();
 	return posts.find((post) => post.slug === slug);

@@ -90,6 +90,18 @@ export function IconArrowRight(props: React.SVGAttributes<any>) {
 		</svg>
 	);
 }
+export function IconArrowLeft(props: React.SVGAttributes<any>) {
+	return (
+		<svg fill="none" viewBox="0 0 15 15" height="20" width="20" {...props}>
+			<path
+				fill="currentColor"
+				fillRule="evenodd"
+				d="M6.854 3.146a.5.5 0 010 .708L3.707 7H12.5a.5.5 0 010 1H3.707l3.147 3.146a.5.5 0 01-.708.708l-4-4a.5.5 0 010-.708l4-4a.5.5 0 01.708 0z"
+				clipRule="evenodd"
+			/>
+		</svg>
+	);
+}
 
 export function IconArrowUp(props: React.SVGAttributes<any>) {
 	return (

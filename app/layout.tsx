@@ -1,6 +1,7 @@
 import { cn } from '@/lib/utils';
 import '@/styles/globals.css';
 import type { Metadata } from 'next';
+import { Source_Code_Pro as FontMono } from 'next/font/google';
 import localFont from 'next/font/local';
 import Script from 'next/script';
 
@@ -12,6 +13,12 @@ const GeneralSans = localFont({
 	display: 'swap',
 	weight: '300 800',
 	variable: '--font-sans',
+});
+const fontMono = FontMono({
+	subsets: ['latin'],
+	display: 'swap',
+	weight: '400',
+	variable: '--font-mono',
 });
 
 export const metadata: Metadata = {
@@ -61,7 +68,8 @@ export default function RootLayout({
 			<body
 				className={cn(
 					'container max-w-screen-xl min-h-screen transition-colors ease-in-out duration-300 bg-background',
-					GeneralSans.variable
+					GeneralSans.variable,
+					fontMono.variable
 				)}
 			>
 				{/* <div className="fixed opacity-[0.04] dark:opacity-[0.02] -z-10 w-full h-full bg-[url('/grain.gif')] top-0 left-0 pointer-events-none" /> */}

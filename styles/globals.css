@@ -4,9 +4,9 @@
 
 @layer base {
 	:root {
-		--background: 220 20% 96%;
-		--background-secondary: 220 22% 95%;
-		--background-tertiary: 222 23% 97%;
+		--background: 230 15% 98%;
+		--background-secondary: 230 2% 95%;
+		--background-tertiary: 230 2% 97%;
 
 		--foreground: 218 80% 10%;
 		--foreground-secondary: 220 18% 45%;
@@ -77,7 +77,7 @@
 	BLOG STYLES
 	-----------	*/
 .prose {
-	@apply text-foreground-secondary leading-[1.9];
+	@apply text-foreground-secondary leading-[1.9] tracking-[0.02em];
 }
 .prose strong {
 	@apply font-medium text-foreground;
@@ -104,30 +104,30 @@
 
 /* Code blocks */
 .prose pre {
-	@apply rounded-xl overflow-x-auto border bg-background-tertiary shadow-sm px-0 leading-loose;
+	@apply rounded-xl overflow-x-auto border bg-background-tertiary shadow-sm px-0 leading-loose tracking-normal;
 	-ms-overflow-style: none; /* IE and Edge */
 	scrollbar-width: none; /* Firefox */
 
 	--sh-class: #cc0e87;
-	--sh-identifier: #6069a5;
-	--sh-sign: #9ea8dc;
-	--sh-property: #495fe9;
+	--sh-identifier: #556791;
+	--sh-sign: #8c9dc5;
+	--sh-property: rgb(165, 91, 7);
 	--sh-entity: #cc0e87;
-	--sh-jsxliterals: #495fe9;
-	--sh-string: #666c8e;
-	--sh-comment: #777e9d;
-	--sh-keyword: #495fe9;
+	--sh-jsxliterals: hsl(var(--brand));
+	--sh-string: #66728e;
+	--sh-comment: #77839d;
+	--sh-keyword: hsl(var(--brand));
 }
 .dark .prose pre {
 	--sh-class: #fc92c2;
-	--sh-identifier: #afb5d4;
-	--sh-sign: #9ea8dc;
+	--sh-identifier: #afb7d4;
+	--sh-sign: #9eb0dc;
 	--sh-property: #d8cb88;
 	--sh-entity: #fc92c2;
-	--sh-jsxliterals: #8196ff;
-	--sh-string: #afb5d4;
-	--sh-comment: #777e9d;
-	--sh-keyword: #6f87ff;
+	--sh-jsxliterals: hsl(var(--brand));
+	--sh-string: #afbad4;
+	--sh-comment: #77829d;
+	--sh-keyword: hsl(var(--brand));
 }
 .prose pre::-webkit-scrollbar {
 	display: none;
@@ -145,12 +145,12 @@ pre .sh__line {
 	@apply border-l-[3px] border-transparent inline-block w-full;
 }
 pre .sh__line:hover {
-	@apply bg-brand/5;
+	@apply bg-brand/5 border-brand/30;
 }
 
 /* Inline code */
 .prose :not(pre) > code {
-	@apply px-2 py-0.5 rounded-lg bg-background-tertiary border font-medium shadow-sm text-[#495fe9] dark:text-[#8196ff];
+	@apply px-2 py-0.5 rounded-lg bg-background-tertiary border font-medium shadow-sm text-brand-secondary;
 }
 .prose :not(pre) > code::after,
 .prose :not(pre) > code::before {
@@ -160,7 +160,6 @@ pre .sh__line:hover {
 /* Callouts */
 .callout {
 	background-color: rgba(var(--callout), 0.1);
-	/* background-color: hsl(var(--background-secondary)); */
 	border-color: rgba(var(--callout), 0.25);
 }
 .callout[data-callout='info'] {
