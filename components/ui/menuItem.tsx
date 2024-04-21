@@ -1,5 +1,5 @@
-import { NavItem } from '@/lib/data';
 import { IconEnter } from '@/lib/icons';
+import { NavItem } from '@/lib/types';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import { memo } from 'react';

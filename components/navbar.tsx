@@ -74,16 +74,13 @@ export default function Navbar({ className }: { className?: string }) {
 					initial={{ y: 0 }}
 					exit={{ y: -100 }}
 					animate={{ y: visible ? 0 : -100 }}
-					transition={{ duration: 0.2 }}
+					transition={{ type: 'tween', ease: 'easeInOut', duration: 0.5 }}
 					role="menubar"
-					className={cn(
-						'flex justify-center fixed top-0 sm:top-6 inset-x-0 mx-auto z-[99]',
-						className
-					)}
+					className={cn('flex justify-center fixed top-0 sm:top-6 inset-x-0 z-[99]', className)}
 				>
 					<div
 						ref={menuRef}
-						className="max-w-2xl w-full flex flex-col sm:mx-3 md:mx-0 border-b sm:border bg-background-tertiary/50 sm:rounded-xl backdrop-blur shadow-shadow"
+						className="max-w-[700px] w-full flex flex-col sm:mx-3 md:mx-0 border-b sm:border bg-background-tertiary/50 sm:rounded-xl backdrop-blur shadow-shadow"
 					>
 						<div className="flex justify-between items-center w-full py-3 px-4 sm:px-6">
 							{!menuOpen ? (
@@ -113,7 +110,7 @@ export default function Navbar({ className }: { className?: string }) {
 												strokeDasharray="0, 1"
 												d="M34.845 6.86401C24.2671 -4.26593 -1.32035 4.50812 2.35873 25.0049C2.8661 27.8315 6.33052 28.5367 8.33831 26.4834L15.0279 19.6422C16.1408 18.5041 17.9487 18.4333 19.1472 19.4808L24.9259 24.5317C26.035 25.5011 27.6838 25.5219 28.8169 24.5808L36.4377 18.2515C38.4871 16.5494 41.6121 17.3302 41.8982 19.9788C43.539 35.168 25.037 50.0697 9.01668 36.964"
 												stroke="currentColor"
-												strokeWidth="4"
+												strokeWidth="3"
 												strokeLinecap="round"
 											/>
 										</svg>

@@ -3,7 +3,8 @@ import PageHeader from '@/components/ui/pageHeader';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-	title: 'Simon Nyström - Projects',
+	title: 'Projects',
+	description: 'A collection of my web projects and engineering work.',
 };
 
 export default function Projects() {

@@ -131,7 +131,7 @@ export default function Menu({ currentPath, isOpen, setIsOpen, className }: Menu
 			{/*  MenuFooter */}
 			<motion.div
 				variants={itemVariant}
-				className="hidden sm:flex py-3 px-4 sm:px-6 gap-8 items-center text-sm bg-background-secondary/50 tracking-wide text-foreground-secondary border-t select-none"
+				className="hidden sm:flex py-3 px-4 sm:px-6 gap-8 items-center text-sm tracking-wide text-foreground-secondary border-t select-none"
 			>
 				<Kbd
 					label="Menu"

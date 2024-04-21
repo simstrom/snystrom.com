@@ -2,6 +2,7 @@ import MDXComponents from '@/components/MDXComponents';
 import { getBlogPost, getBlogPosts } from '@/lib/blog';
 import { IconArrowRight } from '@/lib/icons';
 import { formatDate } from '@/lib/utils';
+import { Metadata } from 'next';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -13,14 +14,31 @@ interface Props {
 	};
 }
 
-export async function generateMetadata({ params }: Props) {
+export async function generateMetadata({ params }: Props): Promise<Metadata | undefined> {
 	const post = getBlogPost(params.slug);
 	if (!post) {
 		return;
 	}
+	const { title, summary, publishedAt, image } = post.data;
+	const seoImage = image ? `https://snystrom.com${image}` : `https://snystrom.com/og.png`;
 
 	return {
-		title: post.data.title,
+		title,
+		description: summary,
+		openGraph: {
+			title,
+			description: summary,
+			type: 'article',
+			publishedTime: publishedAt,
+			url: `https://snystrom.com/blog/${post.slug}`,
+			images: seoImage,
+		},
+		twitter: {
+			title,
+			description: summary,
+			images: seoImage,
+			card: 'summary_large_image',
+		},
 	};
 }
 
@@ -50,7 +68,7 @@ export default function BlogPost({ params }: Props) {
 					priority
 				/>
 			)}
-			<article className="prose dark:prose-invert max-w-none prose-headings:font-medium prose-headings:text-foreground">
+			<article className="prose dark:prose-invert max-w-none prose-headings:font-medium prose-headings:text-foreground prose-headings:relative">
 				<MDXRemote source={post.content} components={MDXComponents} />
 			</article>
 		</main>

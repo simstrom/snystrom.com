@@ -29,7 +29,7 @@ export default function Button({
 }: ButtonProps) {
 	const variantClasses = {
 		primary:
-			'button bg-transparent rounded-lg backdrop-blur-sm hover:text-brand transition duration-300 ease-in-out',
+			'button rounded-lg backdrop-blur-sm hover:text-brand transition duration-300 ease-in-out',
 		secondary: '',
 		ghost: '',
 		link: 'w-fit h-fit text-xs uppercase font-medium tracking-wide group/link',

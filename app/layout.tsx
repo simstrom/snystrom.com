@@ -16,28 +16,39 @@ const GeneralSans = localFont({
 
 export const metadata: Metadata = {
 	metadataBase: new URL('https://snystrom.com'),
-	title: 'Simon Nyström - Frontend Engineer and Photographer',
-	description: 'Frontend developer with a passion for UI/UX design and photography.',
-	keywords: 'snystrom, simon nyström, simstrom',
-	robots: 'index, follow',
-	referrer: 'origin',
-	icons: '/favicon.ico',
+	title: {
+		default: 'Simon Nyström | Web developer and Photographer',
+		template: '%s | Simon Nyström',
+	},
+	description: 'Frontend engineer with a passion for UI/UX design and photography.',
+	keywords:
+		'snystrom, simon nyström, simstrom, web developer, frontend, ui design, adventure photography',
 	openGraph: {
 		type: 'website',
 		siteName: 'Simon Nyström',
 		locale: 'en_US',
 		alternateLocale: 'en_SE',
-		title: 'Simon Nyström - Frontend Engineer and Photographer',
-		description: 'Frontend developer with a passion for UI/UX design and photography.',
+		title: 'Simon Nyström | Web developer and Photographer',
+		description: 'Frontend engineer with a passion for UI/UX design and photography.',
 		url: 'https://snystrom.com',
 		// images:
 	},
 	twitter: {
 		card: 'summary_large_image',
-		title: 'Simon Nyström - Frontend Engineer and Photographer',
-		description: 'Frontend developer with a passion for UI/UX design and photography.',
+		title: 'Simon Nyström | Web developer and Photographer',
+		description: 'Frontend engineer with a passion for UI/UX design and photography.',
 		// images:
 	},
+	robots: {
+		index: true,
+		follow: true,
+		googleBot: {
+			index: true,
+			follow: true,
+		},
+	},
+	referrer: 'origin',
+	icons: '/favicon.ico',
 };
 
 export default function RootLayout({
@@ -50,11 +61,10 @@ export default function RootLayout({
 			<body
 				className={cn(
 					'container max-w-screen-xl min-h-screen transition-colors ease-in-out duration-300 bg-background',
-					// "bg-[url('/rainbow.svg')] bg-no-repeat bg-top",
 					GeneralSans.variable
 				)}
 			>
-				<div className="fixed opacity-[0.04] dark:opacity-[0.03] -z-10 w-full h-full bg-[url('/grain.gif')] top-0 left-0 pointer-events-none" />
+				{/* <div className="fixed opacity-[0.04] dark:opacity-[0.02] -z-10 w-full h-full bg-[url('/grain.gif')] top-0 left-0 pointer-events-none" /> */}
 				<Providers>
 					<Navbar />
 					{children}
