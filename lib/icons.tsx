@@ -185,3 +185,51 @@ export function IconExternal(props: React.SVGAttributes<any>) {
 		</svg>
 	);
 }
+export function IconInfo(props: React.SVGAttributes<any>) {
+	return (
+		<svg fill="none" viewBox="0 0 15 15" height="20" width="20" {...props}>
+			<path
+				fill="currentColor"
+				fillRule="evenodd"
+				d="M7.5.877a6.623 6.623 0 100 13.246A6.623 6.623 0 007.5.877zM1.827 7.5a5.673 5.673 0 1111.346 0 5.673 5.673 0 01-11.346 0zm6.423-3a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM6 6h1.5a.5.5 0 01.5.5V10h1v1H6v-1h1V7H6V6z"
+				clipRule="evenodd"
+			/>
+		</svg>
+	);
+}
+export function IconCheck(props: React.SVGAttributes<any>) {
+	return (
+		<svg fill="none" viewBox="0 0 15 15" height="20" width="20" {...props}>
+			<path
+				fill="currentColor"
+				fillRule="evenodd"
+				d="M11.467 3.727c.289.189.37.576.181.865l-4.25 6.5a.625.625 0 01-.944.12l-2.75-2.5a.625.625 0 01.841-.925l2.208 2.007 3.849-5.886a.625.625 0 01.865-.181z"
+				clipRule="evenodd"
+			/>
+		</svg>
+	);
+}
+export function IconCross(props: React.SVGAttributes<any>) {
+	return (
+		<svg fill="none" viewBox="0 0 15 15" height="20" width="20" {...props}>
+			<path
+				fill="currentColor"
+				fillRule="evenodd"
+				d="M11.782 4.032a.575.575 0 10-.813-.814L7.5 6.687 4.032 3.218a.575.575 0 00-.814.814L6.687 7.5l-3.469 3.468a.575.575 0 00.814.814L7.5 8.313l3.469 3.469a.575.575 0 00.813-.814L8.313 7.5l3.469-3.468z"
+				clipRule="evenodd"
+			/>
+		</svg>
+	);
+}
+export function IconWarning(props: React.SVGAttributes<any>) {
+	return (
+		<svg fill="none" viewBox="0 0 15 15" height="20" width="20" {...props}>
+			<path
+				fill="currentColor"
+				fillRule="evenodd"
+				d="M8.445.609a1.1 1.1 0 00-1.89 0L.161 11.337A1.1 1.1 0 001.106 13h12.788a1.1 1.1 0 00.945-1.663L8.445.609zm-1.03.512a.1.1 0 01.17 0l6.395 10.728a.1.1 0 01-.086.151H1.106a.1.1 0 01-.086-.151L7.414 1.12zm-.588 3.365a.674.674 0 111.346 0L8.02 8.487a.52.52 0 01-1.038 0l-.154-4zm1.423 5.99a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
+				clipRule="evenodd"
+			/>
+		</svg>
+	);
+}

@@ -1,5 +1,6 @@
 import React from 'react';
 import { highlight } from 'sugar-high';
+import Callout from './blog/callout';
 import CustomImage from './blog/image';
 import CustomLink from './blog/link';
 
@@ -22,7 +23,7 @@ function slugify(str: string) {
 
 // Creates anchor links for all headings
 const createHeading = (level: number) => {
-	return ({ children }: any) => {
+	const HeadingComponent = ({ children }: any) => {
 		let slug = slugify(children);
 		return React.createElement(
 			`h${level}`,
@@ -37,6 +38,8 @@ const createHeading = (level: number) => {
 			children
 		);
 	};
+	HeadingComponent.displayName = `Heading${level}`;
+	return HeadingComponent;
 };
 
 const MDXComponents = {
@@ -49,7 +52,6 @@ const MDXComponents = {
 	Image: CustomImage,
 	a: CustomLink,
 	code: Code,
-	//Callout
+	Callout: Callout,
 };
-
 export default MDXComponents;
