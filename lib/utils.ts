@@ -7,9 +7,9 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 // Dates
-export const formatDate = (dateString: string | Date, asRelative?: boolean) => {
+export const formatDate = (dateString: string | Date, asRelative?: boolean, short?: boolean) => {
 	const date = new Date(dateString).toLocaleString('en-US', {
-		month: 'long',
+		month: short ? 'short' : 'long',
 		day: '2-digit',
 		year: 'numeric',
 	});
@@ -24,6 +24,7 @@ export const formatDate = (dateString: string | Date, asRelative?: boolean) => {
 export const formatDateAsRelative = (date: string | Date) => {
 	const postDate = new Date(date);
 	const currentDate = new Date();
+
 	const timeDifference = Math.abs(currentDate.getTime() - postDate.getTime());
 	const daysAgo = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
 
@@ -35,15 +36,27 @@ export const formatDateAsRelative = (date: string | Date) => {
 };
 
 // Safe access to localStorage
-export const useLocalStorage = (key: string, value?: string) => {
-	if (typeof window !== 'undefined') {
-		let storage = window.localStorage.getItem(key);
-		if (!storage && value) setToStorage(key, value);
-		return storage;
+export const safeLocalStorageSetItem = (key: string, item: string): void => {
+	let storageAccessible = false;
+	try {
+		localStorage.setItem('testkey', 'testvalue');
+		localStorage.removeItem('testkey');
+		storageAccessible = true;
+	} catch (e) {
+		storageAccessible = false;
+	}
+	if (storageAccessible) {
+		localStorage.setItem(key, item);
 	}
 };
-export const setToStorage = (key: string, value: string) => {
-	if (typeof window !== 'undefined') {
-		window.localStorage.setItem(key, value);
+
+export const safeLocalStorageGetItem = (key: string): string => {
+	if (typeof Storage !== 'undefined') {
+		try {
+			return localStorage.getItem(key) || '';
+		} catch (e) {
+			return '';
+		}
 	}
+	return '';
 };

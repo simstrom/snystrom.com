@@ -60,7 +60,7 @@
 		text-rendering: optimizeLegibility;
 	}
 	body {
-		@apply bg-background text-foreground font-sans font-[450] last:antialiased;
+		@apply bg-background text-foreground font-sans font-[450] tracking-[0.02em] last:antialiased;
 	}
 
 	h1,
@@ -214,6 +214,29 @@ pre .sh__line:hover {
 		transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0s;
 }
 
+.like-btn {
+	animation: shadow 3s infinite alternate ease-out;
+}
+
+@keyframes shadow {
+	0% {
+		box-shadow: 0px 0px 30px #7aa2ff, 0px 0px 20px #7aa2ff, 0px 0px 5px #6488da, 0px 0px 5px #ffffff;
+	}
+	100% {
+		box-shadow: 0px 0px 80px #7aa2ff, 0px 0px 60px #7aa2ff, 0px 0px 20px #6488da,
+			0px 0px 5px #ffffff;
+	}
+}
+
+.opacity-list:hover li,
+.opacity-list:hover a {
+	opacity: 0.5;
+}
+.opacity-list li:hover,
+.opacity-list a:hover {
+	opacity: 1;
+}
+
 /* 	------------
 	OTHER
 	-----------	*/
@@ -238,4 +261,10 @@ pre .sh__line:hover {
 .dark .noise::before {
 	mix-blend-mode: luminosity;
 	opacity: 0.5;
+}
+
+@media print {
+	.navbar {
+		display: none;
+	}
 }
