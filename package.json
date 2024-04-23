@@ -9,6 +9,7 @@
 		"lint": "next lint"
 	},
 	"dependencies": {
+		"@supabase/supabase-js": "^2.42.5",
 		"clsx": "^2.1.0",
 		"framer-motion": "^11.0.27",
 		"gray-matter": "^4.0.3",
@@ -20,7 +21,8 @@
 		"reading-time": "^1.5.0",
 		"resend": "^3.2.0",
 		"sugar-high": "^0.6.0",
-		"tailwind-merge": "^2.2.2"
+		"tailwind-merge": "^2.2.2",
+		"use-debounce": "^10.0.0"
 	},
 	"devDependencies": {
 		"@tailwindcss/typography": "^0.5.12",
