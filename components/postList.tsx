@@ -1,20 +1,21 @@
+'use client';
+
 import { IconStar } from '@/lib/icons';
 import { Interactions, Post } from '@/lib/types';
 import { formatDate } from '@/lib/utils';
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
-import readingTime from 'reading-time';
 import ViewCounter from './blog/viewCounter';
 
 type PostListProps = {
 	posts: Post[];
-	includeSummary?: boolean;
-	views?: Interactions;
+	views: Interactions;
 	query?: string;
 };
 
-export default function PostList({ posts, includeSummary = false, views, query }: PostListProps) {
+export default function PostList({ posts, views, query }: PostListProps) {
 	const determineMatch = (post: Post, query: string): string => {
+		console.log('calculating');
 		const { title, summary, tags } = post.data;
 
 		if (title.toLowerCase().includes(query.toLowerCase())) {
@@ -72,20 +73,13 @@ export default function PostList({ posts, includeSummary = false, views, query }
 									<time className="text-foreground-secondary">
 										{formatDate(post.data.updatedAt ?? post.data.publishedAt, false, true)}
 									</time>
-									{views ? (
-										<>
-											<span className="text-brand font-bold">/</span>
-											<ViewCounter
-												className="text-foreground-secondary"
-												views={views.find((view) => view.slug === post.slug)?.views as number}
-											/>
-										</>
-									) : (
-										<>
-											<span className="text-brand font-bold">/</span>
-											<p className="text-foreground-secondary">{readingTime(post.content).text}</p>
-										</>
-									)}
+
+									<span className="text-brand font-bold">/</span>
+
+									<ViewCounter
+										className="text-foreground-secondary"
+										views={views?.find((view) => view.slug === post.slug)?.views as number}
+									/>
 									{query && (
 										<motion.div
 											initial={{ opacity: 0 }}
@@ -100,9 +94,7 @@ export default function PostList({ posts, includeSummary = false, views, query }
 								<h4 className="text-lg group-hover:text-brand transition-colors text-pretty">
 									{post.data.title}
 								</h4>
-								{includeSummary && post.data.summary && (
-									<p className="text-foreground-secondary line-clamp-2">{post.data.summary}</p>
-								)}
+								<p className="text-foreground-secondary line-clamp-2">{post.data.summary}</p>
 							</Link>
 						</motion.li>
 					))}

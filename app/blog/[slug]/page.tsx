@@ -1,7 +1,7 @@
 import MDXComponents from '@/components/blog/MDXComponents';
 import LikeButton from '@/components/blog/likeButton';
 import ViewCounter from '@/components/blog/viewCounter';
-import PostList from '@/components/postList';
+import PostListRelated from '@/components/postListRelated';
 import { incrementViews } from '@/lib/actions';
 import { getBlogPost, getBlogPosts, getRelatedPosts } from '@/lib/blog';
 import { IconArrowLeft } from '@/lib/icons';
@@ -107,7 +107,7 @@ export default async function BlogPost({ params }: Props) {
 			{related.length > 0 && (
 				<section className="space-y-3 mb-10">
 					<h3 className="text-3xl">Related posts</h3>
-					<PostList posts={related} />
+					<PostListRelated posts={related} />
 				</section>
 			)}
 			<Link

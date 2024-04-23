@@ -11,7 +11,7 @@ import PostList from '../postList';
 
 type PostViewProps = {
 	posts: Post[];
-	views?: Interactions;
+	views: Interactions;
 };
 
 export default function PostView({ posts, views }: PostViewProps) {
@@ -87,12 +87,7 @@ export default function PostView({ posts, views }: PostViewProps) {
 							<p className="text-sm text-foreground-secondary">Try searching for something else</p> */}
 					</motion.div>
 				) : (
-					<PostList
-						posts={filteredPosts}
-						query={debouncedQuery}
-						includeSummary={true}
-						views={views}
-					/>
+					<PostList posts={filteredPosts} query={debouncedQuery} views={views} />
 				)}
 			</section>
 		</>
