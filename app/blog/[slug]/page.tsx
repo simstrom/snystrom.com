@@ -1,6 +1,11 @@
-import MDXComponents from '@/components/MDXComponents';
+import MDXComponents from '@/components/blog/MDXComponents';
+import LikeButton from '@/components/blog/likeButton';
+import ViewCounter from '@/components/blog/viewCounter';
+import PostList from '@/components/postList';
+import { incrementViews } from '@/lib/actions';
 import { getBlogPost, getBlogPosts, getRelatedPosts } from '@/lib/blog';
 import { IconArrowLeft } from '@/lib/icons';
+import { getPostInteractions } from '@/lib/queries';
 import { formatDate, formatDateAsRelative } from '@/lib/utils';
 import { Metadata } from 'next';
 import { MDXRemote } from 'next-mdx-remote/rsc';
@@ -44,14 +49,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata | un
 	};
 }
 
-export default function BlogPost({ params }: Props) {
+export default async function BlogPost({ params }: Props) {
 	const post = getBlogPost(params.slug);
 	if (!post) return notFound();
 
+	incrementViews(post.slug);
+	const postInteractions = await getPostInteractions(post.slug);
 	const related = getRelatedPosts(post);
 
 	return (
-		<main className="flex flex-col gap-3 justify-center max-w-2xl mx-auto mt-32 sm:mt-40">
+		<main className="flex flex-col gap-3 max-w-2xl mx-auto pt-32 sm:pt-40 pb-20">
 			{post.data.image && (
 				<Image
 					src={post.data.image}
@@ -62,71 +69,58 @@ export default function BlogPost({ params }: Props) {
 					priority
 				/>
 			)}
-			<div className="flex flex-col gap-10 pb-20">
-				<div className="article-header flex flex-col gap-2 sm:gap-4">
-					<div className="font-medium flex items-center gap-1 flex-wrap tracking-[0.02em] text-sm">
-						{post.data.tags?.map((tag, idx) => (
-							<Link
-								href={`/blog/tag/${tag.toLowerCase()}`}
-								className="px-2 py-0.5 rounded-lg hover:bg-brand-secondary/10 hover:text-brand-secondary cursor-pointer transition duration-300 ease-in-out"
-							>
-								#{tag.toLowerCase()}
-							</Link>
-						))}
+
+			<header className="article-header flex flex-col gap-2 sm:gap-4">
+				<ul className="opacity-list font-medium flex items-center gap-1 flex-wrap tracking-[0.02em] text-sm">
+					{post.data.tags?.map((tag, idx) => (
+						<Link
+							key={tag}
+							href={`/blog/tag/${tag.toLowerCase()}`}
+							className="px-2 py-0.5 rounded-lg hover:bg-brand-secondary/10 hover:text-brand cursor-pointer transition duration-300 ease-in-out"
+						>
+							#{tag.toLowerCase()}
+						</Link>
+					))}
+				</ul>
+				<h1 className="text-3xl tracking-tight">{post.data.title}</h1>
+				<div className="font-medium tracking-[0.02em] flex flex-wrap justify-between items-center gap-y-3 text-sm text-foreground/80">
+					<div className="flex items-center gap-2">
+						<time>{formatDate(post.data.publishedAt)}</time>
+						<span className="text-brand font-bold">/</span>
+						<ViewCounter views={postInteractions?.views} />
+						<span className="text-brand font-bold">/</span>
+						<p>{readingTime(post.content).text}</p>
 					</div>
-					<h1 className="text-3xl tracking-tight">{post.data.title}</h1>
-					<div className="font-medium tracking-[0.02em] flex flex-wrap justify-between items-center gap-y-3 text-sm text-foreground/80">
-						<div className="flex items-center gap-2">
-							<time>{formatDate(post.data.publishedAt)}</time>
-							<span className="text-brand font-bold">/</span>
-							<div>123 views</div>
-							<span className="text-brand font-bold">/</span>
-							<p>{readingTime(post.content).text}</p>
-						</div>
-						<div className="px-2 py-0.5 bg-brand-secondary/10 text-brand text-sm rounded-lg">
-							<span>Updated </span>
-							<time>{formatDateAsRelative(post.data.updatedAt ?? post.data.publishedAt)}</time>
-						</div>
+					<div className="px-2 py-0.5 bg-brand-secondary/10 text-brand text-sm rounded-lg">
+						<span>Updated </span>
+						<time>{formatDateAsRelative(post.data.updatedAt ?? post.data.publishedAt)}</time>
 					</div>
 				</div>
-				<article className="prose dark:prose-invert max-w-none prose-headings:font-medium prose-headings:text-foreground prose-headings:relative">
-					<MDXRemote source={post.content} components={MDXComponents} />
-					<hr className="border-border/20" />
-				</article>
-
-				{related.length > 0 && (
-					<div className="flex flex-col gap-10">
-						<h3 className="text-3xl">Related posts</h3>
-						<div className="will-change-transform">
-							<ul className="flex flex-col animated-list">
-								{related.map((post) => (
-									<Link
-										key={post.slug}
-										className="flex flex-col space-y-1 mb-4"
-										href={`/blog/${post.slug}`}
-									>
-										<div className="w-full flex flex-col">
-											<p className="text-neutral-900 dark:text-neutral-100 tracking-tight">
-												{post.data.title}
-											</p>
-											<time className="text-sm text-foreground-secondary">
-												{formatDateAsRelative(post.data.publishedAt)}
-											</time>
-										</div>
-									</Link>
-								))}
-							</ul>
-						</div>
-					</div>
-				)}
-				<Link
-					href="/blog"
-					className="inline-flex items-center gap-x-2 text-sm tracking-wide font-medium mb-5 hover:text-brand-secondary transition"
-				>
-					<IconArrowLeft width={18} height={18} />
-					Back to all
-				</Link>
+			</header>
+			<article className="mt-10 mb-10 sm:mb-20 prose dark:prose-invert max-w-none prose-headings:font-medium prose-headings:text-foreground prose-headings:relative">
+				<MDXRemote source={post.content} components={MDXComponents} />
+			</article>
+			<div className="mb-20 flex items-center justify-center">
+				<LikeButton likes={postInteractions?.likes} slug={post.slug} />
 			</div>
+
+			{related.length > 0 && (
+				<section className="space-y-3 mb-10">
+					<h3 className="text-3xl">Related posts</h3>
+					<PostList posts={related} />
+				</section>
+			)}
+			<Link
+				href="/blog"
+				className="inline-flex items-center gap-x-2 text-sm tracking-wide font-medium mb-5 hover:text-brand-secondary transition group"
+			>
+				<IconArrowLeft
+					width={18}
+					height={18}
+					className="group-hover:-translate-x-1 transition-transform duration-300"
+				/>
+				Back to all
+			</Link>
 		</main>
 	);
 }

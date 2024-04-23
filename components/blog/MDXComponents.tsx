@@ -1,8 +1,8 @@
 import React from 'react';
 import { highlight } from 'sugar-high';
-import Callout from './blog/callout';
-import CustomImage from './blog/image';
-import CustomLink from './blog/link';
+import Callout from './callout';
+import CustomImage from './image';
+import CustomLink from './link';
 
 function Code({ children, ...props }: any) {
 	let codeHTML = highlight(children);
