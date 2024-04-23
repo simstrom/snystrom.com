@@ -22,6 +22,13 @@ export type Post = {
 	};
 };
 
+export type Interactions =
+	| {
+			slug: string;
+			views: number;
+	  }[]
+	| null;
+
 export type Gallery = {
 	title: string;
 	slug: string;

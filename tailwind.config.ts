@@ -1,7 +1,7 @@
 const { default: flattenColorPalette } = require('tailwindcss/lib/util/flattenColorPalette');
 
 import type { Config } from 'tailwindcss';
-const { fontFamily } = require('tailwindcss/defaultTheme');
+const { fontFamily, screens } = require('tailwindcss/defaultTheme');
 
 const config = {
 	darkMode: ['class'],
@@ -18,6 +18,10 @@ const config = {
 			padding: {
 				DEFAULT: '1rem',
 			},
+		},
+		screens: {
+			xs: '475px',
+			...screens,
 		},
 		extend: {
 			fontFamily: {
@@ -44,6 +48,9 @@ const config = {
 			boxShadow: {
 				shadow:
 					'0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.15), 1px 1.5px 2px -0.8px hsl(var(--shadow-color) / 0.15), 2.5px 3.7px 5px -1.7px hsl(var(--shadow-color) / 0.15), 6.1px 9.1px 12.3px -2.5px hsl(var(--shadow-color) / 0.15)',
+				glow: '0px 0px 17.1124px hsl(var(--brand-secondary)),0px 0px 9.7785px hsl(var(--brand-secondary)), 0px 0px 5.70412px hsl(var(--brand-secondary)),0px 0px 2.85206px hsl(var(--brand-secondary)), 0px 0px 0.814875px hsl(var(--brand-secondary)),0px 0px 0.407438px hsl(var(--brand-secondary))',
+				'glow-lg':
+					'0px 0px 238.417px hsl(var(--brand-secondary)),0px 0px 136.238px hsl(var(--brand-secondary)), 0px 0px 79.4724px hsl(var(--brand-secondary)),0px 0px 39.7362px hsl(var(--brand-secondary)), 0px 0px 11.3532px hsl(var(--brand-secondary)),0px 0px 5.6766px hsl(var(--brand-secondary))',
 			},
 			animation: {
 				scroll: 'scroll 40s forwards linear infinite',

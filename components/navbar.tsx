@@ -70,7 +70,10 @@ export default function Navbar({ className }: { className?: string }) {
 					animate={{ y: visible ? 0 : -100 }}
 					transition={{ type: 'tween', ease: 'easeInOut', duration: 0.5 }}
 					role="menubar"
-					className={cn('flex justify-center fixed top-0 sm:top-6 inset-x-0 z-[99]', className)}
+					className={cn(
+						'navbar flex justify-center fixed top-0 sm:top-6 inset-x-0 z-[99]',
+						className
+					)}
 				>
 					<div
 						ref={menuRef}
@@ -140,7 +143,7 @@ export default function Navbar({ className }: { className?: string }) {
 							initial={{ opacity: 0 }}
 							animate={{ opacity: 1 }}
 							exit={{ opacity: 0 }}
-							className="fixed top-0 left-0 w-screen min-h-screen bg-background-secondary/50 backdrop-blur-sm z-10"
+							className="fixed block top-0 left-0 w-screen min-h-screen bg-background-secondary/50 backdrop-blur-sm z-10"
 						/>
 					)}
 				</AnimatePresence>
