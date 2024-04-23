@@ -6,9 +6,9 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
 
 import { Project } from '@/lib/types';
-import Button from './ui/button';
-import ProjectCard from './ui/projectCard';
-import ProjectListItem from './ui/projectListItem';
+import Button from '../ui/button';
+import ProjectCard from '../ui/projectCard';
+import ProjectListItem from '../ui/projectListItem';
 
 // TEMP DATA
 const items = ['React', 'Node', 'Express', 'Postgres', 'Chakra', 'Sequelize', 'JavaScript'];
@@ -53,16 +53,16 @@ export default function ProjectView() {
 				</button>
 			</div>
 
-			<AnimatePresence mode="wait">
+			<AnimatePresence mode="popLayout">
 				{isGridView ? (
 					<motion.div
 						key="grid-view"
 						initial={{ opacity: 0, y: 50 }}
 						exit={{ opacity: 0, y: 50 }}
-						whileInView={{ opacity: 1, y: 0 }}
+						animate={{ opacity: 1, y: 0 }}
 						transition={{
 							duration: 0.5,
-							ease: 'easeOut',
+							ease: 'easeInOut',
 						}}
 						className="grid grid-cols-1 md:grid-cols-12 gap-4 h-fit"
 					>
@@ -100,10 +100,10 @@ export default function ProjectView() {
 						key="list-view"
 						initial={{ opacity: 0, y: 50 }}
 						exit={{ opacity: 0, y: 50 }}
-						whileInView={{ opacity: 1, y: 0 }}
+						animate={{ opacity: 1, y: 0 }}
 						transition={{
 							duration: 0.5,
-							ease: 'easeOut',
+							ease: 'easeInOut',
 						}}
 						className="flex flex-col gap-6 h-fit px-3"
 					>

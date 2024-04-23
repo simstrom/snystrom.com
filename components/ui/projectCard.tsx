@@ -3,7 +3,7 @@ import { Project } from '@/lib/types';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import Button from './button';
-import Cursor from './cursor';
+import CursorGlow from './cursorGlow';
 import HorizontalScroller from './horizontalScroller';
 
 interface ProjectCardProps {
@@ -39,15 +39,16 @@ export default function ProjectCard({ project, variant = 'standard' }: ProjectCa
 		<div className="col-span-12 lg:col-span-9 relative rounded-2xl w-full flex flex-col justify-between lg:min-h-[360px] border bg-background-tertiary shadow-shadow">
 			<div className="grid grid-cols-6 gap-2 h-full">
 				<div className="relative col-span-2 lg:col-span-3 py-4 flex items-center">
-					<div className="relative rounded-r-xl h-full">
+					<CursorGlow
+						containerClass="rounded-r-xl"
+						cursorClass="bg-brand-secondary dark:bg-brand rounded-full text-foreground-inverse"
+						cursorElement={<IconArrowUpRight className="w-6 h-6" />}
+					>
 						<a
 							href={project.deployLink || project.githubLink}
 							aria-label={project.deployLink ? 'Visit deployed site' : 'View source code'}
-							className="relative rounded-r-xl h-full"
+							className="relative rounded-r-xl h-full cursor-none"
 						>
-							<Cursor containerClass="rounded-r-xl">
-								<IconArrowUpRight className="w-6 h-6" />
-							</Cursor>
 							<Image
 								priority
 								src={project.image as string}
@@ -59,7 +60,7 @@ export default function ProjectCard({ project, variant = 'standard' }: ProjectCa
 							/>
 							<div className="absolute inset-0 bg-gradient-to-tr from-black/70 to-black/10 rounded-r-xl"></div>
 						</a>
-					</div>
+					</CursorGlow>
 				</div>
 				<div className="col-span-4 lg:col-span-3 py-5 px-3 sm:px-5 flex flex-col h-full gap-y-2 pt-20 lg:pt-16 justify-center">
 					<h3 className="text-xl sm:text-2xl lg:text-3xl tracking-tight text-balance">
@@ -84,39 +85,42 @@ export default function ProjectCard({ project, variant = 'standard' }: ProjectCa
 						variant == 'reversed' && 'order-2'
 					)}
 				>
-					<a
-						href={project.deployLink || project.githubLink}
-						aria-label={project.deployLink ? 'Visit deployed site' : 'View source code'}
-						className={cn(
-							'relative h-full',
-							variant == 'reversed' ? 'rounded-l-xl' : 'rounded-r-xl'
-						)}
+					<CursorGlow
+						containerClass="rounded-l-xl"
+						cursorClass="bg-brand-secondary dark:bg-brand rounded-full text-foreground-inverse"
+						cursorElement={<IconArrowUpRight className="w-6 h-6" />}
 					>
-						<Cursor containerClass={`${variant == 'reversed' ? 'rounded-l-xl' : 'rounded-r-xl'}`}>
-							<IconArrowUpRight className="w-6 h-6" />
-						</Cursor>
-						<Image
-							src={project.image as string}
-							alt=""
-							width={600}
-							height={450}
-							draggable={false}
+						<a
+							href={project.deployLink || project.githubLink}
+							aria-label={project.deployLink ? 'Visit deployed site' : 'View source code'}
 							className={cn(
-								'select-none h-full w-full object-cover shadow-xl',
-								variant == 'reversed'
-									? 'object-left-bottom lg:object-left rounded-l-xl'
-									: 'object-right-bottom lg:object-right rounded-r-xl'
+								'relative h-full cursor-none',
+								variant == 'reversed' ? 'rounded-l-xl' : 'rounded-r-xl'
 							)}
-						/>
-						<div
-							className={cn(
-								'absolute inset-0 from-black/70 to-black/10',
-								variant == 'reversed'
-									? 'bg-gradient-to-tl rounded-l-xl'
-									: 'bg-gradient-to-tr rounded-r-xl'
-							)}
-						></div>
-					</a>
+						>
+							<Image
+								src={project.image as string}
+								alt=""
+								width={600}
+								height={450}
+								draggable={false}
+								className={cn(
+									'select-none h-full w-full object-cover shadow-xl',
+									variant == 'reversed'
+										? 'object-left-bottom lg:object-left rounded-l-xl'
+										: 'object-right-bottom lg:object-right rounded-r-xl'
+								)}
+							/>
+							<div
+								className={cn(
+									'absolute inset-0 from-black/70 to-black/10',
+									variant == 'reversed'
+										? 'bg-gradient-to-tl rounded-l-xl'
+										: 'bg-gradient-to-tr rounded-r-xl'
+								)}
+							></div>
+						</a>
+					</CursorGlow>
 				</div>
 				<div
 					className={cn(
