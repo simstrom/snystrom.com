@@ -1,0 +1,112 @@
+import { IconStar } from '@/lib/icons';
+import { Interactions, Post } from '@/lib/types';
+import { formatDate } from '@/lib/utils';
+import { AnimatePresence, motion } from 'framer-motion';
+import Link from 'next/link';
+import readingTime from 'reading-time';
+import ViewCounter from './blog/viewCounter';
+
+type PostListProps = {
+	posts: Post[];
+	includeSummary?: boolean;
+	views?: Interactions;
+	query?: string;
+};
+
+export default function PostList({ posts, includeSummary = false, views, query }: PostListProps) {
+	const determineMatch = (post: Post, query: string): string => {
+		const { title, summary, tags } = post.data;
+
+		if (title.toLowerCase().includes(query.toLowerCase())) {
+			return 'Title match';
+		}
+		if (summary?.toLowerCase().includes(query.toLowerCase())) {
+			return 'Content match';
+		}
+		const matchingTag = tags?.find((tag) => tag.toLowerCase().includes(query.toLowerCase()));
+		if (matchingTag) {
+			return `Topic match: ${matchingTag}`;
+		}
+		return '';
+	};
+
+	return (
+		<motion.ul
+			key="posts-view"
+			initial={{ opacity: 0, y: 50 }}
+			animate={{ opacity: 1, y: 0 }}
+			transition={{
+				duration: 0.5,
+				ease: 'easeInOut',
+			}}
+			className="flex flex-col opacity-list"
+		>
+			<AnimatePresence>
+				{posts
+					.sort((a, b) => {
+						if (
+							new Date(a.data.updatedAt ?? a.data.publishedAt) >
+							new Date(b.data.updatedAt ?? b.data.publishedAt)
+						) {
+							return -1;
+						}
+						return 1;
+					})
+					.map((post) => (
+						<motion.li
+							key={post.slug}
+							layout
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
+							exit={{ opacity: 0 }}
+							transition={{
+								duration: 0.3,
+								ease: 'easeInOut',
+							}}
+						>
+							<Link
+								className="flex flex-col w-full gap-2 py-4 px-2 font-medium rounded-xl hover:bg-brand/5 transition duration-300 ease-in-out group"
+								href={`/blog/${post.slug}`}
+							>
+								<div className="flex w-full gap-x-4 items-center">
+									<time className="text-foreground-secondary">
+										{formatDate(post.data.updatedAt ?? post.data.publishedAt, false, true)}
+									</time>
+									{views ? (
+										<>
+											<span className="text-brand font-bold">/</span>
+											<ViewCounter
+												className="text-foreground-secondary"
+												views={views.find((view) => view.slug === post.slug)?.views as number}
+											/>
+										</>
+									) : (
+										<>
+											<span className="text-brand font-bold">/</span>
+											<p className="text-foreground-secondary">{readingTime(post.content).text}</p>
+										</>
+									)}
+									{query && (
+										<motion.div
+											initial={{ opacity: 0 }}
+											animate={{ opacity: 1 }}
+											className="hidden xs:inline-flex ml-auto w-fit items-center gap-x-1 text-xs py-1 px-2 bg-brand-secondary/10 text-brand rounded-lg"
+										>
+											<IconStar width={14} height={14} />
+											{determineMatch(post, query)}
+										</motion.div>
+									)}
+								</div>
+								<h4 className="text-lg group-hover:text-brand transition-colors text-pretty">
+									{post.data.title}
+								</h4>
+								{includeSummary && post.data.summary && (
+									<p className="text-foreground-secondary line-clamp-2">{post.data.summary}</p>
+								)}
+							</Link>
+						</motion.li>
+					))}
+			</AnimatePresence>
+		</motion.ul>
+	);
+}

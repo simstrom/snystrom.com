@@ -1,7 +1,8 @@
+import PostView from '@/components/sections/postView';
+import PageHeader from '@/components/ui/pageHeader';
 import { getBlogPosts } from '@/lib/blog';
-import { formatDateAsRelative } from '@/lib/utils';
+import { getAllViews } from '@/lib/queries';
 import { Metadata } from 'next';
-import Link from 'next/link';
 
 export const metadata: Metadata = {
 	title: 'Blog',
@@ -9,35 +10,19 @@ export const metadata: Metadata = {
 		'Discover my thoughts, insights and learnings on software development, design and beyond.',
 };
 
-export default function Blog() {
+export default async function Blog() {
 	const blogPosts = getBlogPosts();
+	const allViews = await getAllViews();
 
 	return (
-		<section className="flex flex-col justify-center mt-32 sm:mt-40">
-			<h1 className="font-medium text-2xl mb-8 tracking-tighter">read my blog</h1>
-			{blogPosts
-				.sort((a, b) => {
-					if (new Date(a.data.publishedAt) > new Date(b.data.publishedAt)) {
-						return -1;
-					}
-					return 1;
-				})
-				.map((post) => (
-					<Link
-						key={post.slug}
-						className="flex flex-col space-y-1 mb-4"
-						href={`/blog/${post.slug}`}
-					>
-						<div className="w-full flex flex-col">
-							<p className="text-neutral-900 dark:text-neutral-100 tracking-tight">
-								{post.data.title}
-							</p>
-							<time className="text-sm text-foreground-secondary">
-								{formatDateAsRelative(post.data.publishedAt)}
-							</time>
-						</div>
-					</Link>
-				))}
-		</section>
+		<main className="flex flex-col pt-32 sm:pt-40 pb-20 sm:pb-40">
+			<PageHeader
+				title="Read My Blog"
+				content="This is where I share my thoughts and experiences on all things code and design."
+			/>
+			<div className="pt-8 sm:pt-20 space-y-12">
+				<PostView posts={blogPosts} views={allViews} />
+			</div>
+		</main>
 	);
 }
