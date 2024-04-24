@@ -1,4 +1,5 @@
-import PostView from '@/components/sections/postView';
+import PostViewHero from '@/components/sections/postViewHero';
+import PostViewSearch from '@/components/sections/postViewSearch';
 import PageHeader from '@/components/ui/pageHeader';
 import { getAllTags, getBlogPosts } from '@/lib/blog';
 import { getAllViews } from '@/lib/queries';
@@ -22,7 +23,8 @@ export default async function Blog() {
 				content="This is where I share my thoughts and experiences on all things code and design."
 			/>
 			<div className="pt-8 sm:pt-12 space-y-12">
-				<PostView posts={blogPosts} views={allViews} uniqueTags={allUniqueTags} />
+				<PostViewHero posts={blogPosts} views={allViews} uniqueTags={allUniqueTags} />
+				<PostViewSearch posts={blogPosts} views={allViews} />
 			</div>
 		</main>
 	);

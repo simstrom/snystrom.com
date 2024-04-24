@@ -15,7 +15,6 @@ export type Post = {
 	data: {
 		title: string;
 		publishedAt: string;
-		updatedAt?: string;
 		summary?: string;
 		tags?: string[];
 		image?: string | StaticImport;

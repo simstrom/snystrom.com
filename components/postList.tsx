@@ -1,11 +1,9 @@
-'use client';
-
 import { IconStar } from '@/lib/icons';
 import { Post, Views } from '@/lib/types';
 import { formatDate } from '@/lib/utils';
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
-import ViewCounter from './blog/viewCounter';
+import ViewCounter from './ui/viewCounter';
 
 type PostListProps = {
 	posts: Post[];
@@ -13,23 +11,23 @@ type PostListProps = {
 	query?: string;
 };
 
+const determineMatch = (post: Post, query: string): string => {
+	const { title, summary, tags } = post.data;
+
+	if (title.toLowerCase().includes(query.toLowerCase())) {
+		return 'Title match';
+	}
+	if (summary?.toLowerCase().includes(query.toLowerCase())) {
+		return 'Content match';
+	}
+	const matchingTag = tags?.find((tag) => tag.toLowerCase().includes(query.toLowerCase()));
+	if (matchingTag) {
+		return `Topic match: ${matchingTag}`;
+	}
+	return '';
+};
+
 export default function PostList({ posts, views, query }: PostListProps) {
-	const determineMatch = (post: Post, query: string): string => {
-		const { title, summary, tags } = post.data;
-
-		if (title.toLowerCase().includes(query.toLowerCase())) {
-			return 'Title match';
-		}
-		if (summary?.toLowerCase().includes(query.toLowerCase())) {
-			return 'Content match';
-		}
-		const matchingTag = tags?.find((tag) => tag.toLowerCase().includes(query.toLowerCase()));
-		if (matchingTag) {
-			return `Topic match: ${matchingTag}`;
-		}
-		return '';
-	};
-
 	return (
 		<motion.ul
 			key="posts-view"
@@ -44,10 +42,7 @@ export default function PostList({ posts, views, query }: PostListProps) {
 			<AnimatePresence>
 				{posts
 					.sort((a, b) => {
-						if (
-							new Date(a.data.updatedAt ?? a.data.publishedAt) >
-							new Date(b.data.updatedAt ?? b.data.publishedAt)
-						) {
+						if (new Date(a.data.publishedAt) > new Date(b.data.publishedAt)) {
 							return -1;
 						}
 						return 1;
@@ -70,7 +65,7 @@ export default function PostList({ posts, views, query }: PostListProps) {
 							>
 								<div className="flex w-full gap-x-4 items-center">
 									<time className="text-foreground-secondary">
-										{formatDate(post.data.updatedAt ?? post.data.publishedAt, false, true)}
+										{formatDate(post.data.publishedAt, false, true)}
 									</time>
 
 									<span className="text-brand font-bold">/</span>

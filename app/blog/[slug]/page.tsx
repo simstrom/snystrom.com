@@ -1,7 +1,7 @@
 import MDXComponents from '@/components/blog/MDXComponents';
 import LikeButton from '@/components/blog/likeButton';
-import ViewCounter from '@/components/blog/viewCounter';
 import PostListRelated from '@/components/postListRelated';
+import ViewCounter from '@/components/ui/viewCounter';
 import { incrementViews } from '@/lib/actions';
 import { getBlogPost, getBlogPosts, getRelatedPosts } from '@/lib/blog';
 import { IconArrowLeft } from '@/lib/icons';
@@ -93,7 +93,7 @@ export default async function BlogPost({ params }: Props) {
 					</div>
 					<div className="px-2 py-0.5 bg-brand-secondary/10 text-brand text-sm rounded-lg">
 						<span>Updated </span>
-						<time>{formatDateAsRelative(post.data.updatedAt ?? post.data.publishedAt)}</time>
+						<time>{formatDateAsRelative(post.data.publishedAt)}</time>
 					</div>
 				</div>
 			</header>

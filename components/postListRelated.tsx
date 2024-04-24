@@ -12,10 +12,7 @@ export default function PostListRelated({ posts }: PostListRelatedProps) {
 		<ul className="flex flex-col opacity-list">
 			{posts
 				.sort((a, b) => {
-					if (
-						new Date(a.data.updatedAt ?? a.data.publishedAt) >
-						new Date(b.data.updatedAt ?? b.data.publishedAt)
-					) {
+					if (new Date(a.data.publishedAt) > new Date(b.data.publishedAt)) {
 						return -1;
 					}
 					return 1;
@@ -28,7 +25,7 @@ export default function PostListRelated({ posts }: PostListRelatedProps) {
 					>
 						<div className="flex w-full gap-x-4 items-center">
 							<time className="text-foreground-secondary">
-								{formatDate(post.data.updatedAt ?? post.data.publishedAt, false, true)}
+								{formatDate(post.data.publishedAt, false, true)}
 							</time>
 
 							<span className="text-brand font-bold">/</span>
