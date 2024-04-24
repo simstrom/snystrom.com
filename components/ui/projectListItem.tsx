@@ -29,7 +29,7 @@ export default function ProjectListItem({ project }: { project: Project }) {
 				}
 			>
 				<div className="flex flex-col gap-y-2">
-					<h3 className="text-xl sm:text-2xl lg:text-3xl tracking-tight">{project.title}</h3>
+					<h3 className="text-lg sm:text-xl">{project.title}</h3>
 					<ul className="mt-2 hidden sm:flex flex-wrap gap-2 items-center text-xs uppercase font-medium tracking-wide text-foreground-secondary">
 						{project.skills.map((skill: any, idx: number) => (
 							<Fragment key={idx}>

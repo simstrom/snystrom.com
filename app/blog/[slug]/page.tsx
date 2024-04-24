@@ -70,7 +70,7 @@ export default async function BlogPost({ params }: Props) {
 				/>
 			)}
 
-			<header className="article-header flex flex-col gap-2 sm:gap-4">
+			<header className="article-header flex flex-col gap-2 sm:gap-3">
 				<ul className="opacity-list font-medium flex items-center gap-1 flex-wrap tracking-[0.02em] text-sm">
 					{post.data.tags?.map((tag, idx) => (
 						<Link
@@ -82,7 +82,7 @@ export default async function BlogPost({ params }: Props) {
 						</Link>
 					))}
 				</ul>
-				<h1 className="text-3xl tracking-tight">{post.data.title}</h1>
+				<h1 className="text-2xl sm:text-3xl">{post.data.title}</h1>
 				<div className="font-medium tracking-[0.02em] flex flex-wrap justify-between items-center gap-y-3 text-sm text-foreground/80">
 					<div className="flex items-center gap-2">
 						<time>{formatDate(post.data.publishedAt)}</time>
@@ -106,7 +106,7 @@ export default async function BlogPost({ params }: Props) {
 
 			{related.length > 0 && (
 				<section className="space-y-3 mb-10">
-					<h3 className="text-3xl">Related posts</h3>
+					<h3 className="text-2xl">Related posts</h3>
 					<PostListRelated posts={related} />
 				</section>
 			)}

@@ -15,7 +15,6 @@ type PostListProps = {
 
 export default function PostList({ posts, views, query }: PostListProps) {
 	const determineMatch = (post: Post, query: string): string => {
-		console.log('calculating');
 		const { title, summary, tags } = post.data;
 
 		if (title.toLowerCase().includes(query.toLowerCase())) {
@@ -91,9 +90,9 @@ export default function PostList({ posts, views, query }: PostListProps) {
 										</motion.div>
 									)}
 								</div>
-								<h4 className="text-lg group-hover:text-brand transition-colors text-pretty">
+								<h3 className="text-lg group-hover:text-brand transition-colors text-pretty">
 									{post.data.title}
-								</h4>
+								</h3>
 								<p className="text-foreground-secondary line-clamp-2">{post.data.summary}</p>
 							</Link>
 						</motion.li>

@@ -41,7 +41,7 @@ export default function ProjectCard({ project, variant = 'standard' }: ProjectCa
 				<div className="relative col-span-2 lg:col-span-3 py-4 flex items-center">
 					<CursorGlow
 						containerClass="rounded-r-xl"
-						cursorClass="bg-brand-secondary dark:bg-brand rounded-full text-foreground-inverse"
+						cursorClass="rounded-full bg-brand-secondary/80 dark:bg-brand/80rounded-full text-foreground-inverse dark:text-foreground"
 						cursorElement={<IconArrowUpRight className="w-6 h-6" />}
 					>
 						<a
@@ -63,9 +63,7 @@ export default function ProjectCard({ project, variant = 'standard' }: ProjectCa
 					</CursorGlow>
 				</div>
 				<div className="col-span-4 lg:col-span-3 py-5 px-3 sm:px-5 flex flex-col h-full gap-y-2 pt-20 lg:pt-16 justify-center">
-					<h3 className="text-xl sm:text-2xl lg:text-3xl tracking-tight text-balance">
-						{project.title}
-					</h3>
+					<h3 className="text-xl lg:text-2xl tracking-tight text-balance">{project.title}</h3>
 					<p className="text-pretty text-foreground-secondary">{project.description}</p>
 				</div>
 			</div>
@@ -87,7 +85,7 @@ export default function ProjectCard({ project, variant = 'standard' }: ProjectCa
 				>
 					<CursorGlow
 						containerClass="rounded-l-xl"
-						cursorClass="bg-brand-secondary dark:bg-brand rounded-full text-foreground-inverse"
+						cursorClass="bg-brand-secondary/80 dark:bg-brand/80 rounded-full text-foreground-inverse dark:text-foreground"
 						cursorElement={<IconArrowUpRight className="w-6 h-6" />}
 					>
 						<a
@@ -128,9 +126,7 @@ export default function ProjectCard({ project, variant = 'standard' }: ProjectCa
 						variant == 'reversed' && 'order-1'
 					)}
 				>
-					<h3 className="text-xl sm:text-2xl lg:text-3xl tracking-tight text-balance">
-						{project.title}
-					</h3>
+					<h3 className="text-xl lg:text-2xl tracking-tight text-balance">{project.title}</h3>
 					<p className="text-pretty text-foreground-secondary">{project.description}</p>
 				</div>
 			</div>
@@ -149,9 +145,7 @@ export default function ProjectCard({ project, variant = 'standard' }: ProjectCa
 	const CardSmall: React.FC<ProjectCardProps> = ({ project }) => (
 		<div className="col-span-12 md:col-span-5 lg:col-span-4 relative rounded-2xl w-full flex flex-col justify-between min-h-[300px] border bg-background-tertiary shadow-shadow">
 			<div className="py-5 px-3 sm:px-6 flex flex-col h-full gap-y-2 pt-16 lg:pt-16 justify-center">
-				<h3 className="text-xl sm:text-2xl lg:text-3xl tracking-tight text-balance">
-					{project.title}
-				</h3>
+				<h3 className="text-xl lg:text-2xl tracking-tight text-balance">{project.title}</h3>
 				<p className="text-pretty text-foreground-secondary">{project.description}</p>
 			</div>
 			<CardFooter project={project} />

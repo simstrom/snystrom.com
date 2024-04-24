@@ -20,7 +20,7 @@ export default async function Blog() {
 				title="Read My Blog"
 				content="This is where I share my thoughts and experiences on all things code and design."
 			/>
-			<div className="pt-8 sm:pt-20 space-y-12">
+			<div className="pt-8 sm:pt-12 space-y-12">
 				<PostView posts={blogPosts} views={allViews} />
 			</div>
 		</main>
