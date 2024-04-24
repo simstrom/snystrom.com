@@ -1,7 +1,7 @@
 'use client';
 
 import { IconStar } from '@/lib/icons';
-import { Interactions, Post } from '@/lib/types';
+import { Post, Views } from '@/lib/types';
 import { formatDate } from '@/lib/utils';
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
@@ -9,7 +9,7 @@ import ViewCounter from './blog/viewCounter';
 
 type PostListProps = {
 	posts: Post[];
-	views: Interactions;
+	views: Views;
 	query?: string;
 };
 

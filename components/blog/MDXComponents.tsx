@@ -1,3 +1,4 @@
+import { slugify } from '@/lib/utils';
 import React from 'react';
 import { highlight } from 'sugar-high';
 import Callout from './callout';
@@ -7,18 +8,6 @@ import CustomLink from './link';
 function Code({ children, ...props }: any) {
 	let codeHTML = highlight(children);
 	return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />;
-}
-
-// Used to create id's from headings
-function slugify(str: string) {
-	return str
-		.toString()
-		.toLowerCase()
-		.trim()
-		.replace(/\s+/g, '-') // Replace spaces with -
-		.replace(/&/g, '-and-') // Replace & with 'and'
-		.replace(/[^\w\-]+/g, '') // Remove all non-word characters except for -
-		.replace(/\-\-+/g, '-'); // Replace multiple - with single -
 }
 
 // Creates anchor links for all headings

@@ -7,7 +7,7 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 // Dates
-export const formatDate = (dateString: string | Date, asRelative?: boolean, short?: boolean) => {
+export function formatDate(dateString: string | Date, asRelative?: boolean, short?: boolean) {
 	const date = new Date(dateString).toLocaleString('en-US', {
 		month: short ? 'short' : 'long',
 		day: '2-digit',
@@ -19,9 +19,9 @@ export const formatDate = (dateString: string | Date, asRelative?: boolean, shor
 	} else {
 		return date;
 	}
-};
+}
 
-export const formatDateAsRelative = (date: string | Date) => {
+export function formatDateAsRelative(date: string | Date) {
 	const postDate = new Date(date);
 	const currentDate = new Date();
 
@@ -33,10 +33,10 @@ export const formatDateAsRelative = (date: string | Date) => {
 	if (daysAgo < 30) return `${Math.floor(daysAgo / 7)}w ago`;
 	if (daysAgo < 365) return `${Math.floor(daysAgo / 30)}mo ago`;
 	return `${Math.floor(daysAgo / 365)}y ago`;
-};
+}
 
 // Safe access to localStorage
-export const safeLocalStorageSetItem = (key: string, item: string): void => {
+export function safeLocalStorageSetItem(key: string, item: string): void {
 	let storageAccessible = false;
 	try {
 		localStorage.setItem('testkey', 'testvalue');
@@ -48,9 +48,9 @@ export const safeLocalStorageSetItem = (key: string, item: string): void => {
 	if (storageAccessible) {
 		localStorage.setItem(key, item);
 	}
-};
+}
 
-export const safeLocalStorageGetItem = (key: string): string => {
+export function safeLocalStorageGetItem(key: string): string {
 	if (typeof Storage !== 'undefined') {
 		try {
 			return localStorage.getItem(key) || '';
@@ -59,4 +59,15 @@ export const safeLocalStorageGetItem = (key: string): string => {
 		}
 	}
 	return '';
-};
+}
+
+export function slugify(str: string) {
+	return str
+		.toString()
+		.toLowerCase()
+		.trim()
+		.replace(/\s+/g, '-') // Replace spaces with -
+		.replace(/&/g, '-and-') // Replace & with 'and'
+		.replace(/[^\w\-]+/g, '') // Remove all non-word characters except for -
+		.replace(/\-\-+/g, '-'); // Replace multiple - with single -
+}

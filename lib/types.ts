@@ -22,7 +22,7 @@ export type Post = {
 	};
 };
 
-export type Interactions =
+export type Views =
 	| {
 			slug: string;
 			views: number;
