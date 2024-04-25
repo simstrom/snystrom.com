@@ -85,8 +85,9 @@
 .prose blockquote {
 	@apply border-brand;
 }
-.prose a {
-	@apply text-brand decoration-border/40 dark:decoration-border/60 underline-offset-2 decoration-[0.1em] hover:decoration-brand dark:hover:decoration-brand transition duration-300;
+.prose a,
+.custom-link {
+	@apply text-brand underline decoration-border/40 dark:decoration-border/60 underline-offset-2 decoration-[0.1em] hover:decoration-brand dark:hover:decoration-brand transition duration-300;
 }
 
 /* Heading anchorlinks */

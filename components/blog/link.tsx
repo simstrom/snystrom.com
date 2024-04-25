@@ -13,7 +13,7 @@ export default function CustomLink(props: CustomLinkProps) {
 
 	if (href.startsWith('/')) {
 		return (
-			<Link href={href} {...props}>
+			<Link href={href} {...props} className="custom-link">
 				{props.children}
 			</Link>
 		);
@@ -25,7 +25,7 @@ export default function CustomLink(props: CustomLinkProps) {
 		<a
 			target="_blank"
 			rel="noopener noreferrer"
-			className="inline-flex items-baseline gap-x-1"
+			className="custom-link inline-flex items-baseline gap-x-1"
 			{...props}
 		>
 			{props.children}
