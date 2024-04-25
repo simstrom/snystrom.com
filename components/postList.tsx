@@ -1,3 +1,5 @@
+'use client';
+
 import { IconStar } from '@/lib/icons';
 import { Post, Views } from '@/lib/types';
 import { formatDate } from '@/lib/utils';

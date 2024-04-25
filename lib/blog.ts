@@ -29,6 +29,14 @@ export const getRelatedPosts = (post: Post) => {
 	return related;
 };
 
+export const getPostsByTag = (tag: string) => {
+	const posts = getBlogPosts();
+	const postsByTag = posts.filter((p) =>
+		p.data.tags?.some((t: string) => tag.toLowerCase() === t.toLowerCase())
+	);
+	return postsByTag;
+};
+
 export const getBlogPost = (slug: string) => {
 	const posts = getBlogPosts();
 	return posts.find((post) => post.slug === slug);
@@ -37,7 +45,7 @@ export const getBlogPost = (slug: string) => {
 export const getAllTags = () => {
 	const posts = getBlogPosts();
 	// Extract tags from each post and flatten (take 12)
-	const tags = posts.flatMap((post) => post.data.tags ?? []).slice(0, 12);
+	const tags = posts.flatMap((post) => post.data.tags ?? []);
 	// Ensure uniqueness of tags with Set
 	return Array.from(new Set(tags));
 };

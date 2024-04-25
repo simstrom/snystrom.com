@@ -3,10 +3,11 @@
 import { AuroraBackground } from '@/components/ui/aurora';
 import { IconArrowUpRight, IconFire, IconSparkle } from '@/lib/icons';
 import { Post, Views } from '@/lib/types';
-import { formatDate, slugify } from '@/lib/utils';
+import { formatDate } from '@/lib/utils';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import readingTime from 'reading-time';
+import Tag from '../blog/tag';
 import CursorGlow from '../ui/cursorGlow';
 import ViewCounter from '../ui/viewCounter';
 
@@ -24,7 +25,10 @@ const getLatestPost = (posts: Post[]) => {
 	})[0];
 };
 
-const getPopularPost = (posts: Post[], views: Views) => {
+const getPopularPost = (
+	posts: Post[],
+	views: Views
+): { popularPost: { post: Post | undefined; views: number } } => {
 	const popularPostViewData = views?.reduce((prevPost, currPost) => {
 		return currPost.views > prevPost.views ? currPost : prevPost;
 	});
@@ -32,18 +36,9 @@ const getPopularPost = (posts: Post[], views: Views) => {
 	return { popularPost: { post: popularPostData, views: popularPostViewData?.views ?? 0 } };
 };
 
-const filterHeroPosts = (
-	posts: Post[],
-	views: Views
-): { latestPost: Post; popularPost: { post: Post | undefined; views: number } } => {
+export default function PostViewHero({ posts, views, uniqueTags }: PostViewHeroProps) {
 	const latestPost = getLatestPost(posts);
 	const { popularPost } = getPopularPost(posts, views);
-
-	return { latestPost, popularPost };
-};
-
-export default function PostViewHero({ posts, views, uniqueTags }: PostViewHeroProps) {
-	const { latestPost, popularPost } = filterHeroPosts(posts, views);
 
 	return (
 		<motion.section
@@ -91,7 +86,7 @@ const RecentCard: React.FC<{ latestPost: Post; views: Views }> = ({ latestPost, 
 						{latestPost.data.tags?.map((tag) => (
 							<div key={tag}>
 								<span className="text-brand"># </span>
-								{tag}
+								{tag.toLowerCase()}
 							</div>
 						))}
 					</div>
@@ -158,15 +153,8 @@ const TagsCard: React.FC<{ uniqueTags: string[] }> = ({ uniqueTags }) => {
 			</h4>
 			<h2 className="text-xl mb-2 md:mb-3 px-2">A taste of my interests</h2>
 			<div className="justify-self-end flex flex-wrap gap-1">
-				{uniqueTags.map((tag) => (
-					<Link
-						key={tag}
-						href={`/blog/tag/${slugify(tag.toLowerCase())}`}
-						className="text-center w-fit px-2 py-0.5 rounded-lg hover:bg-brand-secondary/10 hover:text-brand cursor-pointer transition duration-300 ease-in-out"
-					>
-						<span className="text-brand"># </span>
-						{tag.toLowerCase()}
-					</Link>
+				{uniqueTags.slice(0, 12).map((tag, idx) => (
+					<Tag key={idx} tag={tag} />
 				))}
 			</div>
 		</AuroraBackground>

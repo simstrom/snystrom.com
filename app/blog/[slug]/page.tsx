@@ -1,5 +1,6 @@
 import MDXComponents from '@/components/blog/MDXComponents';
 import LikeButton from '@/components/blog/likeButton';
+import Tag from '@/components/blog/tag';
 import PostListRelated from '@/components/postListRelated';
 import ViewCounter from '@/components/ui/viewCounter';
 import { incrementViews } from '@/lib/actions';
@@ -73,13 +74,7 @@ export default async function BlogPost({ params }: Props) {
 			<header className="article-header flex flex-col gap-2 sm:gap-3">
 				<ul className="opacity-list font-medium flex items-center gap-1 flex-wrap tracking-[0.02em] text-sm">
 					{post.data.tags?.map((tag, idx) => (
-						<Link
-							key={tag}
-							href={`/blog/tag/${tag.toLowerCase()}`}
-							className="px-2 py-0.5 rounded-lg hover:bg-brand-secondary/10 hover:text-brand cursor-pointer transition duration-300 ease-in-out"
-						>
-							#{tag.toLowerCase()}
-						</Link>
+						<Tag key={idx} tag={tag} />
 					))}
 				</ul>
 				<h1 className="text-2xl sm:text-3xl">{post.data.title}</h1>
