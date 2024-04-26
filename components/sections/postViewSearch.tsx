@@ -31,7 +31,7 @@ export default function PostViewSearch({ posts, views }: PostViewSearchProps) {
 	}, [posts, debouncedQuery]);
 
 	return (
-		<section className="max-w-2xl mx-auto min-h-[450px]">
+		<section className="max-w-3xl mx-auto min-h-[450px]">
 			<h3 className="text-2xl mb-5">All Articles</h3>
 			<div className="relative mb-5 flex items-center">
 				<label

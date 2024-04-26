@@ -5,6 +5,7 @@ import { Source_Code_Pro as FontMono } from 'next/font/google';
 import localFont from 'next/font/local';
 import Script from 'next/script';
 
+import Footer from '@/components/footer';
 import Navbar from '@/components/navbar';
 import Providers from './providers';
 
@@ -76,6 +77,7 @@ export default function RootLayout({
 				<Providers>
 					<Navbar />
 					{children}
+					<Footer />
 				</Providers>
 				<Script
 					src="https://analytics.eu.umami.is/script.js"

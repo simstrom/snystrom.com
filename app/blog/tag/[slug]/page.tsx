@@ -45,7 +45,10 @@ export default async function TagPage({ params }: Props) {
 	const posts = getPostsByTag(tag);
 
 	return (
-		<main className="max-w-2xl mx-auto flex flex-col pt-32 sm:pt-40 pb-20 sm:pb-40">
+		<main className="max-w-3xl mx-auto flex flex-col pt-32 sm:pt-40 pb-20 sm:pb-40">
+			<span className="px-3 pb-1 text-sm uppercase tracking-wider text-foreground-secondary">
+				Blog
+			</span>
 			<PageHeader title={`${tag}`} content={`Explore all articles and tutorials about ${tag}`} />
 			<section className="pt-5 mb-10">
 				<PostList posts={posts} views={views} />

@@ -216,7 +216,7 @@ pre .sh__line:hover {
 }
 
 .like-btn {
-	animation: shadow 3s infinite alternate ease-out;
+	animation: shadow 3s infinite alternate ease-in;
 }
 
 @keyframes shadow {

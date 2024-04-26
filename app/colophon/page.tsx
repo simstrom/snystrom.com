@@ -76,7 +76,7 @@ export default function Colophon() {
 				{/* COLOR SWATCHES */}
 				<div className="sm:grid grid-cols-12 space-y-4 sm:space-y-0 gap-4 xs:py-5">
 					<div className="col-span-4 flex flex-col rounded-xl bg-background-tertiary border h-44">
-						<div className="bg-brand w-full h-3/4 border-b rounded-t-xl flex items-center justify-center">
+						<div className="bg-brand w-full h-3/4 border-b rounded-t-xl font-medium flex items-center justify-center">
 							<span className="hidden dark:block">Sky Dancer</span>
 							<span className="block dark:hidden text-foreground-inverse">Bluetiful</span>
 						</div>
@@ -87,7 +87,7 @@ export default function Colophon() {
 						</div>
 					</div>
 					<div className="col-span-4 flex flex-col rounded-xl bg-background-tertiary border h-44">
-						<div className="bg-background w-full h-3/4 border-b rounded-t-xl flex items-center justify-center">
+						<div className="bg-background w-full h-3/4 border-b rounded-t-xl font-medium flex items-center justify-center">
 							<span className="hidden dark:block">Eerie Black</span>
 							<span className="block dark:hidden">Ghost White</span>
 						</div>
@@ -98,7 +98,7 @@ export default function Colophon() {
 						</div>
 					</div>
 					<div className="col-span-4 flex flex-col rounded-xl bg-background-tertiary border h-44">
-						<div className="bg-foreground text-foreground-inverse w-full h-3/4 border-b rounded-t-xl flex items-center justify-center">
+						<div className="bg-foreground text-foreground-inverse w-full h-3/4 border-b font-medium rounded-t-xl flex items-center justify-center">
 							<span className="hidden dark:block">Cotton</span>
 							<span className="block dark:hidden">Infinite Night</span>
 						</div>
