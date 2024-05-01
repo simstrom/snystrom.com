@@ -38,7 +38,7 @@ export default function LikeButton({ likes, slug }: { likes: number; slug: strin
 			whileTap={{ scale: 0.95 }}
 			transition={{ type: 'spring', stiffness: 180, damping: 10, mass: 1.5 }}
 			className={cn(
-				'like-btn relative w-fit min-w-32 h-12 rounded-full font-medium text-lg',
+				'like-btn relative w-fit min-w-32 h-12 rounded-full font-medium text-lg select-none',
 				isLiked && 'text-foreground-inverse dark:text-foreground bg-brand/80'
 			)}
 		>

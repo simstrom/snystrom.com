@@ -1,6 +1,6 @@
 import { cn } from '@/lib/utils';
 import '@/styles/globals.css';
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Source_Code_Pro as FontMono } from 'next/font/google';
 import localFont from 'next/font/local';
 import Script from 'next/script';
@@ -21,6 +21,10 @@ const fontMono = FontMono({
 	weight: '400',
 	variable: '--font-mono',
 });
+
+export const viewport: Viewport = {
+	maximumScale: 1,
+};
 
 export const metadata: Metadata = {
 	metadataBase: new URL('https://snystrom.com'),

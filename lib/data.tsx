@@ -34,7 +34,7 @@ const otherLinks = [
 	},
 	{
 		name: 'Read CV',
-		path: '/static/cv.pdf',
+		path: '/cv.pdf',
 		icon: <IconPerson />,
 	},
 ];

@@ -7,7 +7,7 @@ import { incrementViews } from '@/lib/actions';
 import { getBlogPost, getBlogPosts, getRelatedPosts } from '@/lib/blog';
 import { IconArrowLeft } from '@/lib/icons';
 import { getPostInteractions } from '@/lib/queries';
-import { formatDate, formatDateAsRelative } from '@/lib/utils';
+import { formatDate } from '@/lib/utils';
 import { Metadata } from 'next';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import Image from 'next/image';
@@ -86,10 +86,10 @@ export default async function BlogPost({ params }: Props) {
 						<span className="text-brand font-bold">/</span>
 						<p>{readingTime(post.content).text}</p>
 					</div>
-					<div className="px-2 py-0.5 bg-brand-secondary/10 text-brand text-sm rounded-lg">
+					{/* <div className="px-2 py-0.5 bg-brand-secondary/10 text-brand text-sm rounded-lg">
 						<span>Updated </span>
 						<time>{formatDateAsRelative(post.data.publishedAt)}</time>
-					</div>
+					</div> */}
 				</div>
 			</header>
 			<article className="mt-10 mb-10 sm:mb-20 prose dark:prose-invert max-w-none prose-headings:font-medium prose-headings:text-foreground prose-headings:relative">
