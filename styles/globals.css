@@ -60,7 +60,7 @@
 		text-rendering: optimizeLegibility;
 	}
 	body {
-		@apply bg-background text-foreground font-sans font-[450] tracking-[0.02em] last:antialiased leading-relaxed;
+		@apply bg-background text-foreground font-sans font-[450] tracking-[0.02em] antialiased leading-relaxed;
 	}
 
 	h1,

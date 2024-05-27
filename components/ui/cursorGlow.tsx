@@ -45,7 +45,7 @@ export default function CursorGlow({
 			initial="hidden"
 			whileHover="show"
 			whileTap="active"
-			className={cn('relative w-full h-full overflow-hidden z-10', containerClass)}
+			className={cn('relative w-full h-full overflow-hidden', containerClass)}
 		>
 			<AnimatePresence>
 				<motion.div

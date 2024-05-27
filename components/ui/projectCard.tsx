@@ -1,6 +1,7 @@
 import { IconArrowUpRight, IconGithub } from '@/lib/icons';
 import { Project } from '@/lib/types';
 import { cn } from '@/lib/utils';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Button from './button';
 import CursorGlow from './cursorGlow';
@@ -30,7 +31,7 @@ export default function ProjectCard({ project, variant = 'standard' }: ProjectCa
 	const CardFooter: React.FC<ProjectCardProps> = ({ project }) => (
 		<div className="border-t">
 			<div className="relative overflow-hidden py-4 text-xs uppercase font-medium tracking-wide text-foreground-secondary bg-background-secondary rounded-b-2xl select-none">
-				<HorizontalScroller items={project.skills} separator="•" />
+				<HorizontalScroller items={project.stack} separator="•" />
 			</div>
 		</div>
 	);
@@ -75,7 +76,15 @@ export default function ProjectCard({ project, variant = 'standard' }: ProjectCa
 	);
 
 	const CardStandard: React.FC<ProjectCardProps> = ({ project }) => (
-		<div className="col-span-12 md:col-span-7 lg:col-span-8 relative rounded-2xl w-full flex flex-col justify-between lg:min-h-[360px] border bg-background-tertiary shadow-shadow">
+		<motion.div
+			initial={{ opacity: 0, y: 75 }}
+			whileInView={{ opacity: 1, y: 0 }}
+			transition={{
+				duration: 0.5,
+				ease: 'easeInOut',
+			}}
+			className="col-span-12 md:col-span-7 lg:col-span-8 relative rounded-2xl w-full flex flex-col justify-between lg:min-h-[360px] border bg-background-tertiary shadow-shadow"
+		>
 			<div className="grid grid-cols-6 gap-2 h-full">
 				<div
 					className={cn(
@@ -84,12 +93,12 @@ export default function ProjectCard({ project, variant = 'standard' }: ProjectCa
 					)}
 				>
 					<CursorGlow
-						containerClass="rounded-l-xl"
+						containerClass={cn(variant == 'reversed' ? 'rounded-l-xl' : 'rounded-r-xl')}
 						cursorClass="bg-brand-secondary/80 dark:bg-brand/80 rounded-full text-foreground-inverse dark:text-foreground"
 						cursorElement={<IconArrowUpRight className="w-6 h-6" />}
 					>
 						<a
-							href={project.deployLink || project.githubLink}
+							href={project.deployLink ?? project.githubLink}
 							aria-label={project.deployLink ? 'Visit deployed site' : 'View source code'}
 							className={cn(
 								'relative h-full cursor-none',
@@ -139,11 +148,19 @@ export default function ProjectCard({ project, variant = 'standard' }: ProjectCa
 			>
 				{renderButtons(project)}
 			</div>
-		</div>
+		</motion.div>
 	);
 
 	const CardSmall: React.FC<ProjectCardProps> = ({ project }) => (
-		<div className="col-span-12 md:col-span-5 lg:col-span-4 relative rounded-2xl w-full flex flex-col justify-between min-h-[300px] border bg-background-tertiary shadow-shadow">
+		<motion.div
+			initial={{ opacity: 0, y: 75 }}
+			whileInView={{ opacity: 1, y: 0 }}
+			transition={{
+				duration: 0.5,
+				ease: 'easeInOut',
+			}}
+			className="col-span-12 md:col-span-5 lg:col-span-4 relative rounded-2xl w-full flex flex-col justify-between min-h-[300px] border bg-background-tertiary shadow-shadow"
+		>
 			<div className="py-5 px-3 sm:px-6 flex flex-col h-full gap-y-2 pt-16 lg:pt-16 justify-center">
 				<h3 className="text-xl lg:text-2xl tracking-tight text-balance">{project.title}</h3>
 				<p className="text-pretty text-foreground-secondary">{project.description}</p>
@@ -152,7 +169,7 @@ export default function ProjectCard({ project, variant = 'standard' }: ProjectCa
 			<div className="flex space-x-3 absolute top-4 right-3 sm:right-6">
 				{renderButtons(project)}
 			</div>
-		</div>
+		</motion.div>
 	);
 
 	const renderCard = () => {

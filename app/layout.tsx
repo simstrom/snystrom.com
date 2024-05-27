@@ -72,7 +72,7 @@ export default function RootLayout({
 		<html lang="en" suppressHydrationWarning>
 			<body
 				className={cn(
-					'container max-w-screen-xl min-h-screen transition-colors ease-in-out duration-300 bg-background',
+					'container max-w-screen-xl min-h-screen transition-colors ease-in-out duration-300',
 					GeneralSans.variable,
 					fontMono.variable
 				)}

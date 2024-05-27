@@ -5,24 +5,10 @@ import { cn } from '@/lib/utils';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
 
-import { Project } from '@/lib/types';
+import { projectsData } from '@/lib/data';
 import Button from '../ui/button';
 import ProjectCard from '../ui/projectCard';
 import ProjectListItem from '../ui/projectListItem';
-
-// TEMP DATA
-const items = ['React', 'Node', 'Express', 'Postgres', 'Chakra', 'Sequelize', 'JavaScript'];
-const projects = [
-	{
-		title: 'Loop Agile',
-		description:
-			'Arcade styled 2D space shooter game with unlimited levels and infinitely increasing difficulty. Has different enemy types and various power ups. Handles game saves locally to file. Built to solidify knowledge about object-oriented programming and learn to implement GUI for Java Apps.',
-		image: '/images/webpic.png',
-		skills: items,
-		deployLink: 'https://snystrom.com',
-		githubLink: 'https://github.com',
-	},
-] as Array<Project>;
 
 export default function ProjectView() {
 	const [isGridView, setIsGridView] = useState(true);
@@ -66,7 +52,7 @@ export default function ProjectView() {
 						}}
 						className="grid grid-cols-1 md:grid-cols-12 gap-4 h-fit"
 					>
-						<ProjectCard project={projects[0]} variant="featured" />
+						<ProjectCard project={projectsData[0]} variant="featured" />
 
 						{/* SIDE CONTENT */}
 						<div className="relative overflow-hidden hidden lg:flex lg:col-span-3 flex-col justify-center rounded-2xl w-full lg:min-h-[360px] border bg-background-tertiary shadow-shadow group/card">
@@ -92,8 +78,19 @@ export default function ProjectView() {
 							</div>
 						</div>
 
-						<ProjectCard project={projects[0]} variant="small" />
-						<ProjectCard project={projects[0]} variant="reversed" />
+						<ProjectCard project={projectsData[1]} variant="small" />
+						<ProjectCard project={projectsData[2]} variant="reversed" />
+
+						{projectsData.slice(3).map((project, index) => {
+							const projectCounter = index % 4;
+							const variant =
+								projectCounter === 0
+									? 'standard'
+									: projectCounter === 1 || projectCounter === 2
+									? 'small'
+									: 'reversed';
+							return <ProjectCard key={project.title} project={project} variant={variant} />;
+						})}
 					</motion.div>
 				) : (
 					<motion.div
@@ -107,7 +104,9 @@ export default function ProjectView() {
 						}}
 						className="flex flex-col gap-6 h-fit px-3"
 					>
-						<ProjectListItem project={projects[0]} />
+						{projectsData.map((project) => (
+							<ProjectListItem key={project.title} project={project} />
+						))}
 					</motion.div>
 				)}
 			</AnimatePresence>
