@@ -47,6 +47,7 @@ export default function ProjectCard({ project, variant = 'standard' }: ProjectCa
 					>
 						<a
 							href={project.deployLink || project.githubLink}
+							target="_blank"
 							aria-label={project.deployLink ? 'Visit deployed site' : 'View source code'}
 							className="relative rounded-r-xl h-full cursor-none"
 						>
@@ -99,6 +100,7 @@ export default function ProjectCard({ project, variant = 'standard' }: ProjectCa
 					>
 						<a
 							href={project.deployLink ?? project.githubLink}
+							target="_blank"
 							aria-label={project.deployLink ? 'Visit deployed site' : 'View source code'}
 							className={cn(
 								'relative h-full cursor-none',

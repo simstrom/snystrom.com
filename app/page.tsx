@@ -1,5 +1,6 @@
 'use client';
 
+import GalleryBlock from '@/components/sections/galleryBlock';
 import { AuroraBackground } from '@/components/ui/aurora';
 import { motion } from 'framer-motion';
 
@@ -34,6 +35,8 @@ export default function Home() {
 					iure perspiciatis quidem cumque.
 				</p>
 			</div>
+			<GalleryBlock />
+			<div className="h-screen"></div>
 		</main>
 	);
 }

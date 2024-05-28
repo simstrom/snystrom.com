@@ -72,8 +72,7 @@ const RecentCard: React.FC<{ latestPost: Post; views: Views }> = ({ latestPost, 
 				cursorClass="bg-brand-secondary/80 dark:bg-brand/80 rounded-full text-foreground-inverse dark:text-foreground"
 				cursorElement={<IconArrowUpRight className="w-6 h-6" />}
 			>
-				<div className="absolute -z-[1] inset-0 bg-gradient-to-t from-black/70 to-black/10 rounded-3xl" />
-				<div className="inline-flex items-center gap-x-2 px-4 py-3 rounded-full bg-background w-fit self-end text-xs uppercase tracking-wider font-medium">
+				<div className="inline-flex items-center gap-x-2 px-4 py-3 rounded-full bg-background w-fit self-end text-xs uppercase tracking-wider font-medium z-10">
 					<IconSparkle
 						width={15}
 						height={15}
@@ -81,7 +80,7 @@ const RecentCard: React.FC<{ latestPost: Post; views: Views }> = ({ latestPost, 
 					/>
 					Most Recent
 				</div>
-				<div className="mt-auto w-fit">
+				<div className="mt-auto w-fit z-10">
 					<div className="rounded-t-xl inline-flex gap-x-5 pb-1 pt-2 px-6 text-sm font-medium bg-background">
 						{latestPost.data.tags?.map((tag) => (
 							<div key={tag}>
@@ -103,6 +102,7 @@ const RecentCard: React.FC<{ latestPost: Post; views: Views }> = ({ latestPost, 
 						/>
 					</div>
 				</div>
+				<div className="absolute inset-0 bg-gradient-to-t from-black/70 to-black/10 rounded-3xl" />
 			</CursorGlow>
 		</Link>
 	);
@@ -124,12 +124,11 @@ const PopularCard: React.FC<{ popularPost: { post: Post | undefined; views: numb
 				cursorClass="bg-brand-secondary/80 dark:bg-brand/80 rounded-full text-foreground-inverse dark:text-foreground"
 				cursorElement={<IconArrowUpRight className="w-6 h-6" />}
 			>
-				<div className="absolute -z-[1] inset-0 bg-gradient-to-t from-black/80 from-20% to-black/10 rounded-3xl" />
-				<div className="inline-flex items-center gap-x-2 px-4 py-3 rounded-full bg-background w-fit text-xs uppercase tracking-wider self-end font-medium">
+				<div className="inline-flex items-center gap-x-2 px-4 py-3 rounded-full bg-background w-fit text-xs uppercase tracking-wider self-end font-medium z-10">
 					<IconFire width={14} height={14} className="text-foreground-secondary" />
 					Popular
 				</div>
-				<div className="mt-auto text-foreground-inverse dark:text-foreground">
+				<div className="mt-auto text-foreground-inverse dark:text-foreground z-10">
 					<div className="font-medium text-sm inline-flex gap-x-1 w-full ">
 						{readingTime(popularPost.post?.content as string).text}
 						<span className="text-brand">/</span>
@@ -137,6 +136,7 @@ const PopularCard: React.FC<{ popularPost: { post: Post | undefined; views: numb
 					</div>
 					<h2 className="text-xl sm:text-2xl">{popularPost.post?.data.title}</h2>
 				</div>
+				<div className="absolute inset-0 bg-gradient-to-t from-black/80 from-20% to-black/10 rounded-3xl" />
 			</CursorGlow>
 		</Link>
 	);
