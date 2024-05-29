@@ -71,13 +71,13 @@ export default async function BlogPost({ params }: Props) {
 				/>
 			)}
 
-			<header className="article-header flex flex-col gap-2 sm:gap-3">
+			<header className="article-header flex flex-col gap-1">
 				<ul className="opacity-list w-fit flex items-center gap-1 flex-wrap">
 					{post.data.tags?.map((tag, idx) => (
 						<Tag key={idx} tag={tag} />
 					))}
 				</ul>
-				<h1 className="text-2xl">{post.data.title}</h1>
+				<h1 className="text-2xl mb-1">{post.data.title}</h1>
 				<div className="font-medium flex flex-wrap justify-between items-center gap-y-3 text-sm text-foreground/80">
 					<div className="flex items-center gap-2">
 						<time>{formatDate(post.data.publishedAt)}</time>

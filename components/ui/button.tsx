@@ -28,7 +28,8 @@ export default function Button({
 	...props
 }: ButtonProps) {
 	const variantClasses = {
-		primary: 'uppercase tracking-wide button hover:text-brand transition duration-300 ease-in-out',
+		primary:
+			'uppercase tracking-normal button hover:text-brand transition duration-300 ease-in-out',
 		secondary: '',
 		ghost: '',
 		link: 'w-fit h-fit text-xs group/link',

@@ -22,7 +22,7 @@ export default function GalleryBlock({}: Props) {
 					I love building projects and practice my engineering skills, here's an archive of things
 					that I've worked on.
 				</p>
-				<Button className="z-10 after:bg-background/80 after:backdrop-blur-md after:-z-10">
+				<Button className="z-10 after:bg-background-tertiary/50 after:backdrop-blur-md after:-z-10">
 					Enter Gallery
 				</Button>
 			</div>

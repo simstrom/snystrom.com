@@ -77,7 +77,7 @@ export default function Navbar({ className }: { className?: string }) {
 				>
 					<div
 						ref={menuRef}
-						className="max-w-3xl w-full flex flex-col sm:mx-3 md:mx-0 border-b sm:border bg-background-tertiary/50 sm:rounded-xl backdrop-blur shadow-shadow"
+						className="max-w-3xl w-full flex flex-col sm:mx-3 md:mx-0 border-b sm:border bg-background-secondary/50 sm:rounded-xl backdrop-blur shadow-shadow"
 					>
 						<div className="flex justify-between items-center w-full py-3 px-4 sm:px-6">
 							<Link

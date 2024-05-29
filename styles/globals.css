@@ -5,39 +5,39 @@
 
 @layer base {
 	:root {
-		--background: 230 15% 98%;
-		--background-secondary: 230 2% 95%;
-		--background-tertiary: 230 2% 97%;
+		--background: 60 15% 92%;
+		--background-secondary: 60 15% 90%;
+		--background-tertiary: 60 15% 91%;
 
-		--foreground: 218 80% 10%;
-		--foreground-secondary: 220 18% 45%;
+		--foreground: 60 1% 13%;
+		--foreground-secondary: 60 5% 35%;
 		--foreground-inverse: var(--background);
 
 		--brand: 222 89% 55%;
 		--brand-secondary: 222 89% 65%;
 
-		--border: 218 20% 60%;
-		--border-hue: 218;
-		--border-saturation: 20%;
-		--border-lightness: 60%;
-		--shadow-color: 220deg 16% 66%;
+		--border: 60 1% 13%;
+		--border-hue: 60;
+		--border-saturation: 1%;
+		--border-lightness: 13%;
+		--shadow-color: 60deg 10% 66%;
 	}
 
 	.dark {
-		--background: 216 16% 8%;
-		--background-secondary: 220 16% 9%;
-		--background-tertiary: 222 15% 10%;
+		--background: 216 16% 7%;
+		--background-secondary: 220 16% 8%;
+		--background-tertiary: 222 15% 9%;
 
 		--foreground: 218 80% 95%;
-		--foreground-secondary: 218 18% 65%;
+		--foreground-secondary: 218 12% 65%;
 		--foreground-inverse: var(--background);
 
 		--brand: 222 100% 66%;
 		--brand-secondary: 222 100% 75%;
 
-		--border: 222 20% 38%;
+		--border: 222 15% 38%;
 		--border-hue: 222;
-		--border-saturation: 20%;
+		--border-saturation: 15%;
 		--border-lightness: 38%;
 		--shadow-color: 220deg 33% 1%;
 	}

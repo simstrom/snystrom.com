@@ -62,7 +62,7 @@ export default function PostList({ posts, views, query }: PostListProps) {
 							}}
 						>
 							<Link
-								className="flex flex-col w-full gap-2 py-4 px-2 rounded-xl hover:bg-brand/5 transition duration-300 ease-in-out group"
+								className="flex flex-col w-full gap-1 py-4 px-2 rounded-xl hover:bg-brand/5 transition duration-300 ease-in-out group"
 								href={`/blog/${post.slug}`}
 							>
 								<div className="flex w-full gap-x-4 items-center text-sm">
@@ -87,7 +87,7 @@ export default function PostList({ posts, views, query }: PostListProps) {
 										</motion.div>
 									)}
 								</div>
-								<h3 className="text-lg group-hover:text-brand transition-colors text-pretty">
+								<h3 className="group-hover:text-brand transition-colors text-pretty">
 									{post.data.title}
 								</h3>
 								<p className="text-sm leading-7 text-foreground-secondary line-clamp-2">
