@@ -15,7 +15,7 @@ export default function ProjectView() {
 
 	return (
 		<>
-			<div className="flex px-2 pt-8 sm:pt-12 pb-12 font-mono uppercase text-xs tracking-wide text-foreground-secondary">
+			<div className="flex pt-8 sm:pt-12 pb-12 font-mono uppercase text-xs tracking-wide text-foreground-secondary">
 				<span className="border-r-2 pr-4 select-non opacity-60">View As</span>
 				<button
 					onClick={() => setIsGridView(true)}

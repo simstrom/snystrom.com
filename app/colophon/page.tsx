@@ -14,7 +14,6 @@ export default function Colophon() {
 			<PageHeader
 				title="Colophon"
 				content="A summary of the technologies, design, workflow and decisions behind my website."
-				className="px-0"
 			/>
 			<div className="pt-8 sm:pt-12 space-y-10">
 				<div className="sm:grid grid-cols-12 gap-2">

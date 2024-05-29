@@ -42,7 +42,7 @@ export default function ProjectCard({ project, variant = 'standard' }: ProjectCa
 				<div className="relative col-span-2 lg:col-span-3 py-4 flex items-center">
 					<CursorGlow
 						containerClass="rounded-r-xl"
-						cursorClass="rounded-full bg-brand-secondary/80 dark:bg-brand/80rounded-full text-foreground-inverse dark:text-foreground"
+						cursorClass="rounded-full bg-brand-secondary/80 dark:bg-brand/80 rounded-full text-foreground-inverse dark:text-foreground"
 						cursorElement={<IconArrowUpRight className="w-6 h-6" />}
 					>
 						<a
