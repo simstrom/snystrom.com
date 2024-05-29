@@ -19,8 +19,8 @@ export default function GalleryBlock({}: Props) {
 					Explore the World
 				</h2>
 				<p className="text-lg pb-5 max-w-lg dark:text-foreground-secondary z-10 dark:mix-blend-luminosity">
-					I love building projects and practice my engineering skills, here's an archive of things
-					that I've worked on.
+					I love building projects and practice my engineering skills, here&apos;s an archive of
+					things that I&apos;ve worked on.
 				</p>
 				<Button className="z-10 after:bg-background-tertiary/50 after:backdrop-blur-md after:-z-10">
 					Enter Gallery
