@@ -10,9 +10,9 @@ export default function GalleryBlock({}: Props) {
 	const { scrollY } = useScroll();
 
 	return (
-		<div className="relative w-screen max-w-screen-2xl bg-background-secondary xl:rounded-3xl overflow-x-clip">
+		<div className="relative w-screen max-w-screen-2xl bg-background-secondary xl:rounded-3xl">
 			<div className="p-4 flex flex-col items-center justify-center text-center gap-y-5 min-h-[600px]">
-				<h4 className="text-sm tracking-wider uppercase z-10 text-foreground/50 dark:mix-blend-luminosity">
+				<h4 className="font-mono uppercase text-xs tracking-wide z-10 text-foreground/50 dark:mix-blend-luminosity">
 					Photography
 				</h4>
 				<h2 className="text-5xl sm:text-6xl md:text-8xl z-10 dark:mix-blend-luminosity">
@@ -23,7 +23,7 @@ export default function GalleryBlock({}: Props) {
 					that I've worked on.
 				</p>
 				<Button className="z-10 after:bg-background/80 after:backdrop-blur-md after:-z-10">
-					Gallery Coming Soon
+					Enter Gallery
 				</Button>
 			</div>
 			<ParallaxImage

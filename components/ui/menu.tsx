@@ -85,7 +85,7 @@ export default function Menu({ currentPath, isOpen, setIsOpen, className }: Menu
 				<div>
 					<motion.h5
 						variants={itemVariant}
-						className="tracking-wider text-xs uppercase text-foreground-secondary px-2 mb-2"
+						className="font-mono uppercase text-xs tracking-wide text-foreground-secondary px-2 mb-2"
 					>
 						Navigation
 					</motion.h5>
@@ -107,7 +107,7 @@ export default function Menu({ currentPath, isOpen, setIsOpen, className }: Menu
 				<div>
 					<motion.h5
 						variants={itemVariant}
-						className="tracking-wider text-xs uppercase text-foreground-secondary px-2 mb-2"
+						className="font-mono uppercase text-xs tracking-wide text-foreground-secondary px-2 mb-2"
 					>
 						Links
 					</motion.h5>
@@ -131,7 +131,7 @@ export default function Menu({ currentPath, isOpen, setIsOpen, className }: Menu
 			{/*  MenuFooter */}
 			<motion.div
 				variants={itemVariant}
-				className="hidden sm:flex py-3 px-4 sm:px-6 gap-8 items-center text-sm tracking-wide text-foreground-secondary border-t select-none"
+				className="hidden sm:flex py-3 px-4 sm:px-6 gap-8 items-center font-mono uppercase text-xs tracking-wide text-foreground-secondary border-t select-none"
 			>
 				<Kbd
 					label="Menu"

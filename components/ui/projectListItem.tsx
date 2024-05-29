@@ -13,7 +13,7 @@ export default function ProjectListItem({ project }: { project: Project }) {
 		>
 			<CursorGlow
 				containerClass="overflow-visible cursor-none"
-				cursorClass="font-medium uppercase text-xs tracking-widest"
+				cursorClass="font-mono uppercase text-xs tracking-wide"
 				size={480}
 				cursorElement={
 					<div className="w-80 relative items-center justify-center flex">
@@ -31,9 +31,9 @@ export default function ProjectListItem({ project }: { project: Project }) {
 					</div>
 				}
 			>
-				<div className="flex flex-col gap-y-2">
-					<h3 className="text-lg sm:text-xl">{project.title}</h3>
-					<ul className="mt-2 hidden sm:flex flex-wrap gap-2 items-center text-xs uppercase font-medium tracking-wide text-foreground-secondary">
+				<div className="flex flex-col">
+					<h3>{project.title}</h3>
+					<ul className="mt-2 hidden sm:flex flex-wrap gap-2 items-center font-mono text-xs tracking-tight text-foreground-secondary">
 						{project.stack.map((skill: any, idx: number) => (
 							<Fragment key={idx}>
 								<li>

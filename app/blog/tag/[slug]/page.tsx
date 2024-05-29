@@ -45,8 +45,8 @@ export default async function TagPage({ params }: Props) {
 	const posts = getPostsByTag(tag);
 
 	return (
-		<main className="max-w-3xl mx-auto flex flex-col pt-32 sm:pt-40 pb-20 sm:pb-40">
-			<span className="px-3 pb-1 text-sm uppercase tracking-wider text-foreground-secondary">
+		<main className="max-w-3xl mx-auto flex flex-col pt-32 sm:pt-40">
+			<span className="px-3 pb-1 font-mono text-xs uppercase tracking-wide text-foreground-secondary">
 				Blog
 			</span>
 			<PageHeader title={`${tag}`} content={`Explore all articles and tutorials about ${tag}`} />
@@ -55,14 +55,14 @@ export default async function TagPage({ params }: Props) {
 			</section>
 			<Link
 				href="/blog"
-				className="inline-flex items-center gap-x-2 text-sm tracking-wide font-medium mb-5 hover:text-brand-secondary transition group"
+				className="inline-flex w-fit items-center gap-x-2 font-mono text-sm tracking-tighter mb-5 hover:text-brand-secondary transition group"
 			>
 				<IconArrowLeft
 					width={18}
 					height={18}
 					className="group-hover:-translate-x-1 transition-transform duration-300"
 				/>
-				Back to all posts
+				Back to Blog
 			</Link>
 		</main>
 	);

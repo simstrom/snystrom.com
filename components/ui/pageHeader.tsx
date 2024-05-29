@@ -9,7 +9,7 @@ interface PageHeaderProps {
 export default function PageHeader({ title, content, className }: PageHeaderProps) {
 	return (
 		<section className={cn('w-full px-2 mx-auto space-y-2', className)}>
-			<h1 className="text-3xl">{title}</h1>
+			<h1 className="text-2xl">{title}</h1>
 			<p className="text-foreground-secondary text-pretty">{content}</p>
 		</section>
 	);

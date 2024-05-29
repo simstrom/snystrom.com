@@ -30,7 +30,7 @@ const renderButtons = (project: Project) => (
 export default function ProjectCard({ project, variant = 'standard' }: ProjectCardProps) {
 	const CardFooter: React.FC<ProjectCardProps> = ({ project }) => (
 		<div className="border-t">
-			<div className="relative overflow-hidden py-4 text-xs uppercase font-medium tracking-wide text-foreground-secondary bg-background-secondary rounded-b-2xl select-none">
+			<div className="relative overflow-hidden py-4 font-mono tracking-tight text-xs text-foreground-secondary bg-background-secondary rounded-b-2xl select-none">
 				<HorizontalScroller items={project.stack} separator="•" />
 			</div>
 		</div>
@@ -65,8 +65,10 @@ export default function ProjectCard({ project, variant = 'standard' }: ProjectCa
 					</CursorGlow>
 				</div>
 				<div className="col-span-4 lg:col-span-3 py-5 px-3 sm:px-5 flex flex-col h-full gap-y-2 pt-20 lg:pt-16 justify-center">
-					<h3 className="text-xl lg:text-2xl tracking-tight text-balance">{project.title}</h3>
-					<p className="text-pretty text-foreground-secondary">{project.description}</p>
+					<h3 className="text-lg text-balance">{project.title}</h3>
+					<p className="text-sm leading-7 text-pretty text-foreground-secondary">
+						{project.description}
+					</p>
 				</div>
 			</div>
 			<CardFooter project={project} />
@@ -137,8 +139,10 @@ export default function ProjectCard({ project, variant = 'standard' }: ProjectCa
 						variant == 'reversed' && 'order-1'
 					)}
 				>
-					<h3 className="text-xl lg:text-2xl tracking-tight text-balance">{project.title}</h3>
-					<p className="text-pretty text-foreground-secondary">{project.description}</p>
+					<h3 className="text-lg text-balance">{project.title}</h3>
+					<p className="text-sm leading-7 text-pretty text-foreground-secondary">
+						{project.description}
+					</p>
 				</div>
 			</div>
 			<CardFooter project={project} />
@@ -164,8 +168,10 @@ export default function ProjectCard({ project, variant = 'standard' }: ProjectCa
 			className="col-span-12 md:col-span-5 lg:col-span-4 relative rounded-2xl w-full flex flex-col justify-between min-h-[300px] border bg-background-tertiary shadow-shadow"
 		>
 			<div className="py-5 px-3 sm:px-6 flex flex-col h-full gap-y-2 pt-16 lg:pt-16 justify-center">
-				<h3 className="text-xl lg:text-2xl tracking-tight text-balance">{project.title}</h3>
-				<p className="text-pretty text-foreground-secondary">{project.description}</p>
+				<h3 className="text-lg text-balance">{project.title}</h3>
+				<p className="text-sm leading-7 text-pretty text-foreground-secondary">
+					{project.description}
+				</p>
 			</div>
 			<CardFooter project={project} />
 			<div className="flex space-x-3 absolute top-4 right-3 sm:right-6">

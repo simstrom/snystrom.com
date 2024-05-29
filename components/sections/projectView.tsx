@@ -15,13 +15,13 @@ export default function ProjectView() {
 
 	return (
 		<>
-			<div className="flex px-2 pt-8 sm:pt-12 pb-12 text-sm font-medium uppercase tracking-wide text-foreground-secondary">
+			<div className="flex px-2 pt-8 sm:pt-12 pb-12 font-mono uppercase text-xs tracking-wide text-foreground-secondary">
 				<span className="border-r-2 pr-4 select-non opacity-60">View As</span>
 				<button
 					onClick={() => setIsGridView(true)}
 					aria-label="Change to grid view"
 					className={cn(
-						'pl-4 uppercase tracking-wide font-medium hover:text-foreground transition',
+						'pl-4 uppercase tracking-wide hover:text-foreground transition',
 						isGridView && 'text-brand'
 					)}
 				>
@@ -31,7 +31,7 @@ export default function ProjectView() {
 					onClick={() => setIsGridView(false)}
 					aria-label="Change to list view"
 					className={cn(
-						'pl-4 uppercase tracking-wide font-medium hover:text-foreground transition',
+						'pl-4 uppercase tracking-wide hover:text-foreground transition',
 						!isGridView && 'text-brand'
 					)}
 				>
@@ -57,11 +57,11 @@ export default function ProjectView() {
 						{/* SIDE CONTENT */}
 						<div className="relative overflow-hidden hidden lg:flex lg:col-span-3 flex-col justify-center rounded-2xl w-full lg:min-h-[360px] border bg-background-tertiary shadow-shadow group/card">
 							<div className="flex-1 flex flex-col justify-center px-5 py-10">
-								<h3 className="text-lg tracking-tight">
+								<h3>
 									<span className="text-brand text-lg mr-2">‣</span>
 									My Expertise
 								</h3>
-								<p className="text-pretty text-foreground-secondary pt-3">
+								<p className="text-sm leading-7 text-pretty text-foreground-secondary pt-3">
 									Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet accusamus suscipit
 									ipsam voluptas. Porro dolorum laudantium neque corporis, enim officia tenetur
 									itaque unde optio soluta, nostrum placeat sed ab quasi!

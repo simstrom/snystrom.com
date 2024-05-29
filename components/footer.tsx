@@ -14,7 +14,7 @@ export default function Footer() {
 						{navItems.otherLinks.map((item) => (
 							<li
 								key={item.name}
-								className="w-fit group text-sm text-foreground-secondary hover:text-foreground transition duration-300"
+								className="w-fit group font-mono tracking-tight text-xs text-foreground-secondary hover:text-foreground transition duration-300"
 							>
 								<a
 									href={item.path}
@@ -32,10 +32,8 @@ export default function Footer() {
 							</li>
 						))}
 					</div>
-					<div className="col-span-4 text-sm text-foreground-secondary space-y-2">
-						<h5 className="uppercase tracking-wider font-semibold text-xs text-foreground">
-							Socials
-						</h5>
+					<div className="col-span-4 font-mono tracking-tight text-xs text-foreground-secondary space-y-2">
+						<h5 className="font-mono uppercase text-xs tracking-wide text-foreground">Socials</h5>
 						{navItems.socialLinks.map((item) => (
 							<li
 								key={item.name}
@@ -57,8 +55,8 @@ export default function Footer() {
 							</li>
 						))}
 					</div>
-					<div className="col-span-4 sm:col-span-3 text-sm text-foreground-secondary space-y-2">
-						<h5 className="uppercase tracking-wider font-semibold text-xs text-foreground">
+					<div className="col-span-4 sm:col-span-3 font-mono tracking-tight text-xs text-foreground-secondary space-y-2">
+						<h5 className="font-mono uppercase text-xs tracking-wide text-foreground">
 							Navigation
 						</h5>
 						{navItems.navigationLinks
@@ -74,7 +72,9 @@ export default function Footer() {
 					</div>
 				</ul>
 
-				<div className="mt-auto text-sm text-foreground-secondary/60">© Simon Nyström 2024</div>
+				<div className="mt-auto font-mono tracking-tight text-xs text-foreground-secondary/60">
+					© Simon Nyström 2024
+				</div>
 			</div>
 		</footer>
 	);

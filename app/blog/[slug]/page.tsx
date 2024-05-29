@@ -59,7 +59,7 @@ export default async function BlogPost({ params }: Props) {
 	const related = getRelatedPosts(post);
 
 	return (
-		<main className="flex flex-col gap-3 max-w-2xl mx-auto pt-32 sm:pt-40 pb-20">
+		<main className="flex flex-col gap-3 max-w-2xl mx-auto pt-32 sm:pt-40">
 			{post.data.image && (
 				<Image
 					src={post.data.image}
@@ -72,13 +72,13 @@ export default async function BlogPost({ params }: Props) {
 			)}
 
 			<header className="article-header flex flex-col gap-2 sm:gap-3">
-				<ul className="opacity-list font-medium flex items-center gap-1 flex-wrap tracking-[0.02em] text-sm">
+				<ul className="opacity-list w-fit flex items-center gap-1 flex-wrap">
 					{post.data.tags?.map((tag, idx) => (
 						<Tag key={idx} tag={tag} />
 					))}
 				</ul>
-				<h1 className="text-2xl sm:text-3xl">{post.data.title}</h1>
-				<div className="font-medium tracking-[0.02em] flex flex-wrap justify-between items-center gap-y-3 text-sm text-foreground/80">
+				<h1 className="text-2xl">{post.data.title}</h1>
+				<div className="font-medium flex flex-wrap justify-between items-center gap-y-3 text-sm text-foreground/80">
 					<div className="flex items-center gap-2">
 						<time>{formatDate(post.data.publishedAt)}</time>
 						<span className="text-brand font-bold">/</span>
@@ -107,14 +107,14 @@ export default async function BlogPost({ params }: Props) {
 			)}
 			<Link
 				href="/blog"
-				className="inline-flex items-center gap-x-2 text-sm tracking-wide font-medium mb-5 hover:text-brand-secondary transition group"
+				className="inline-flex w-fit items-center gap-x-2 font-mono tracking-tighter text-sm mb-5 hover:text-brand-secondary transition group"
 			>
 				<IconArrowLeft
 					width={18}
 					height={18}
 					className="group-hover:-translate-x-1 transition-transform duration-300"
 				/>
-				Back to all
+				Back to Blog
 			</Link>
 		</main>
 	);

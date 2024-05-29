@@ -20,10 +20,10 @@ export default function PostListRelated({ posts }: PostListRelatedProps) {
 				.map((post) => (
 					<Link
 						key={post.slug}
-						className="flex flex-col w-full gap-2 py-4 px-2 font-medium rounded-xl hover:bg-brand/5 transition duration-300 ease-in-out group"
+						className="flex flex-col w-full gap-2 py-4 px-2 rounded-xl hover:bg-brand/5 transition duration-300 ease-in-out group"
 						href={`/blog/${post.slug}`}
 					>
-						<div className="flex w-full gap-x-4 items-center">
+						<div className="flex w-full gap-x-4 items-center text-sm">
 							<time className="text-foreground-secondary">
 								{formatDate(post.data.publishedAt, false, true)}
 							</time>

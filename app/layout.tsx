@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils';
 import '@/styles/globals.css';
 import type { Metadata, Viewport } from 'next';
-import { Source_Code_Pro as FontMono } from 'next/font/google';
+import { Cousine as FontMono } from 'next/font/google';
 import localFont from 'next/font/local';
 import Script from 'next/script';
 

@@ -72,7 +72,7 @@ const RecentCard: React.FC<{ latestPost: Post; views: Views }> = ({ latestPost, 
 				cursorClass="bg-brand-secondary/80 dark:bg-brand/80 rounded-full text-foreground-inverse dark:text-foreground"
 				cursorElement={<IconArrowUpRight className="w-6 h-6" />}
 			>
-				<div className="inline-flex items-center gap-x-2 px-4 py-3 rounded-full bg-background w-fit self-end text-xs uppercase tracking-wider font-medium z-10">
+				<div className="inline-flex items-center gap-x-2 px-4 py-3 rounded-full bg-background w-fit self-end font-mono text-xs uppercase tracking-wide z-10">
 					<IconSparkle
 						width={15}
 						height={15}
@@ -81,20 +81,20 @@ const RecentCard: React.FC<{ latestPost: Post; views: Views }> = ({ latestPost, 
 					Most Recent
 				</div>
 				<div className="mt-auto w-fit z-10">
-					<div className="rounded-t-xl inline-flex gap-x-5 pb-1 pt-2 px-6 text-sm font-medium bg-background">
+					<div className="rounded-t-xl inline-flex gap-x-4 py-1 pt-2 px-6 font-mono tracking-tighter text-sm bg-background">
 						{latestPost.data.tags?.map((tag) => (
-							<div key={tag}>
-								<span className="text-brand"># </span>
+							<div key={tag} className="inline-flex gap-1 items-center w-fit">
+								<span className="text-brand">#</span>
 								{tag.toLowerCase()}
 							</div>
 						))}
 					</div>
-					<h2 className="whitespace-pre-wrap xl:text-6xl lg:text-5xl md:text-4xl">
+					<h2 className="whitespace-pre-wrap text-2xl xl:text-4xl">
 						<span className="bg-background leading-snug py-2 rounded-xl px-5 rounded-tl-none rounded-bl-none box-decoration-clone ">
 							{latestPost.data.title}
 						</span>
 					</h2>
-					<div className="rounded-b-xl inline-flex gap-x-4 pb-2 py-1 px-6 font-medium text-sm bg-background">
+					<div className="rounded-b-xl inline-flex gap-x-4 py-2 px-6 text-sm bg-background">
 						{formatDate(latestPost.data.publishedAt, false, true)}
 						<span className="text-brand">/</span>
 						<ViewCounter
@@ -124,17 +124,17 @@ const PopularCard: React.FC<{ popularPost: { post: Post | undefined; views: numb
 				cursorClass="bg-brand-secondary/80 dark:bg-brand/80 rounded-full text-foreground-inverse dark:text-foreground"
 				cursorElement={<IconArrowUpRight className="w-6 h-6" />}
 			>
-				<div className="inline-flex items-center gap-x-2 px-4 py-3 rounded-full bg-background w-fit text-xs uppercase tracking-wider self-end font-medium z-10">
+				<div className="inline-flex items-center gap-x-2 px-4 py-3 rounded-full bg-background w-fit font-mono text-xs uppercase tracking-wide self-end font-medium z-10">
 					<IconFire width={14} height={14} className="text-foreground-secondary" />
 					Popular
 				</div>
 				<div className="mt-auto text-foreground-inverse dark:text-foreground z-10">
-					<div className="font-medium text-sm inline-flex gap-x-1 w-full ">
+					<div className="text-sm inline-flex gap-x-1 w-full mb-1">
 						{readingTime(popularPost.post?.content as string).text}
 						<span className="text-brand">/</span>
 						<ViewCounter views={popularPost.views} />
 					</div>
-					<h2 className="text-xl sm:text-2xl">{popularPost.post?.data.title}</h2>
+					<h2 className="text-xl">{popularPost.post?.data.title}</h2>
 				</div>
 				<div className="absolute inset-0 bg-gradient-to-t from-black/80 from-20% to-black/10 rounded-3xl" />
 			</CursorGlow>
@@ -146,9 +146,9 @@ const TagsCard: React.FC<{ uniqueTags: string[] }> = ({ uniqueTags }) => {
 	return (
 		<AuroraBackground
 			showRadialGradient={true}
-			className="border h-2/5 justify-center rounded-3xl p-3 sm:p-5 flex flex-col shadow-shadow overflow-y-hidden"
+			className="border h-2/5 justify-center rounded-3xl p-3 sm:p-5 flex flex-col gap-y-1 shadow-shadow overflow-y-hidden"
 		>
-			<h4 className="text-sm tracking-wider uppercase text-foreground-secondary font-medium px-2">
+			<h4 className="text-xs font-mono tracking-wide uppercase text-foreground-secondary font-medium px-2">
 				Browse By Topic
 			</h4>
 			<h2 className="text-xl mb-2 md:mb-3 px-2">A taste of my interests</h2>

@@ -16,12 +16,13 @@ export const AuroraBackground = ({
 	return (
 		<div
 			className={cn(
-				'relative flex flex-col h-[100vh] max-h-[1080px] w-[99vw] items-center justify-center',
+				'relative flex flex-col',
+				// 'relative flex flex-col h-[100vh] max-h-[1080px] w-[99vw] items-center justify-center',
 				className
 			)}
 			{...props}
 		>
-			<div className="absolute inset-0 overflow-hidden">
+			<div className="absolute inset-0 overflow-hidden rounded-3xl -z-[1]">
 				<div
 					// beware tailwind trigger warning
 					className={cn(

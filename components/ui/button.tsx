@@ -28,10 +28,10 @@ export default function Button({
 	...props
 }: ButtonProps) {
 	const variantClasses = {
-		primary: 'button hover:text-brand transition duration-300 ease-in-out',
+		primary: 'uppercase tracking-wide button hover:text-brand transition duration-300 ease-in-out',
 		secondary: '',
 		ghost: '',
-		link: 'w-fit h-fit text-xs uppercase font-medium tracking-wide group/link',
+		link: 'w-fit h-fit text-xs group/link',
 	};
 
 	const sizeClasses = {
@@ -41,7 +41,8 @@ export default function Button({
 	};
 	const variantClass = variantClasses[variant];
 	const sizeClass = sizeClasses[size];
-	const commonClass = 'relative inline-flex items-center justify-center gap-x-2';
+	const commonClass =
+		'relative inline-flex items-center justify-center gap-x-2 font-mono tracking-tight text-sm';
 
 	if (isExternalLink) {
 		return (

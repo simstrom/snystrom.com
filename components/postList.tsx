@@ -24,7 +24,7 @@ const determineMatch = (post: Post, query: string): string => {
 	}
 	const matchingTag = tags?.find((tag) => tag.toLowerCase().includes(query.toLowerCase()));
 	if (matchingTag) {
-		return `Topic match: ${matchingTag}`;
+		return `Topic: ${matchingTag}`;
 	}
 	return '';
 };
@@ -62,10 +62,10 @@ export default function PostList({ posts, views, query }: PostListProps) {
 							}}
 						>
 							<Link
-								className="flex flex-col w-full gap-2 py-4 px-2 font-medium rounded-xl hover:bg-brand/5 transition duration-300 ease-in-out group"
+								className="flex flex-col w-full gap-2 py-4 px-2 rounded-xl hover:bg-brand/5 transition duration-300 ease-in-out group"
 								href={`/blog/${post.slug}`}
 							>
-								<div className="flex w-full gap-x-4 items-center">
+								<div className="flex w-full gap-x-4 items-center text-sm">
 									<time className="text-foreground-secondary">
 										{formatDate(post.data.publishedAt, false, true)}
 									</time>
@@ -80,7 +80,7 @@ export default function PostList({ posts, views, query }: PostListProps) {
 										<motion.div
 											initial={{ opacity: 0 }}
 											animate={{ opacity: 1 }}
-											className="hidden xs:inline-flex ml-auto w-fit items-center gap-x-1 text-xs py-1 px-2 bg-brand-secondary/10 text-brand rounded-lg"
+											className="hidden xs:inline-flex ml-auto w-fit items-center gap-x-1 font-mono text-xs tracking-tighter py-1 px-2 bg-brand-secondary/10 text-brand rounded-lg"
 										>
 											<IconStar width={14} height={14} />
 											{determineMatch(post, query)}
@@ -90,7 +90,9 @@ export default function PostList({ posts, views, query }: PostListProps) {
 								<h3 className="text-lg group-hover:text-brand transition-colors text-pretty">
 									{post.data.title}
 								</h3>
-								<p className="text-foreground-secondary line-clamp-2">{post.data.summary}</p>
+								<p className="text-sm leading-7 text-foreground-secondary line-clamp-2">
+									{post.data.summary}
+								</p>
 							</Link>
 						</motion.li>
 					))}

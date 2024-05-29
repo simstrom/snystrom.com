@@ -51,8 +51,8 @@ export default function PostViewSearch({ posts, views }: PostViewSearchProps) {
 					onChange={handleSearch}
 				/>
 				{debouncedQuery && (
-					<div className="hidden sm:block absolute text-foreground-secondary text-xs right-12">
-						Found {filteredPosts.length} matching results
+					<div className="hidden sm:block absolute text-foreground-secondary font-mono tracking-tighter text-xs right-12">
+						{filteredPosts.length} matching results
 					</div>
 				)}
 			</div>
