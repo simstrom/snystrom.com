@@ -1,10 +1,7 @@
-'use client';
-
 import { AuroraBackground } from '@/components/ui/aurora';
 import { IconArrowUpRight, IconFire, IconSparkle } from '@/lib/icons';
 import { Post, Views } from '@/lib/types';
 import { formatDate } from '@/lib/utils';
-import { motion } from 'framer-motion';
 import Link from 'next/link';
 import readingTime from 'reading-time';
 import Tag from '../blog/tag';
@@ -41,22 +38,13 @@ export default function PostViewHero({ posts, views, uniqueTags }: PostViewHeroP
 	const { popularPost } = getPopularPost(posts, views);
 
 	return (
-		<motion.section
-			key="blog-hero"
-			initial={{ opacity: 0, y: 50 }}
-			animate={{ opacity: 1, y: 0 }}
-			transition={{
-				duration: 0.5,
-				ease: 'easeInOut',
-			}}
-			className="grid grid-cols-12 gap-4 h-[calc(100vh/1.6)]"
-		>
+		<section key="blog-hero" className="grid grid-cols-12 gap-4 h-[calc(100vh/1.6)] animate-slide">
 			<RecentCard latestPost={latestPost} views={views} />
 			<div className="col-span-12 md:col-span-4 w-full h-full flex flex-col gap-4">
 				<PopularCard popularPost={popularPost} />
 				<TagsCard uniqueTags={uniqueTags} />
 			</div>
-		</motion.section>
+		</section>
 	);
 }
 

@@ -1,3 +1,5 @@
+'use client';
+
 import { useMousePosition } from '@/lib/hooks';
 import { cn } from '@/lib/utils';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -59,7 +61,7 @@ export default function CursorGlow({
 						translateX: offset / 2,
 						translateY: offset / 2,
 					}}
-					transition={{ type: 'spring', stiffness: 220, damping: 14, mass: 1.1 }}
+					transition={{ type: 'spring', stiffness: 200, damping: 20, mass: 1.1 }}
 					className={cn(
 						'absolute inset-0 z-50 pointer-events-none flex items-center justify-center',
 						cursorClass

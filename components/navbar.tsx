@@ -71,13 +71,13 @@ export default function Navbar({ className }: { className?: string }) {
 					transition={{ type: 'tween', ease: 'easeInOut', duration: 0.5 }}
 					role="menubar"
 					className={cn(
-						'navbar flex justify-center fixed top-0 sm:top-6 inset-x-0 z-[99]',
+						'navbar flex max-w-3xl w-full mx-auto justify-center fixed top-0 sm:top-6 inset-x-0 z-[99]',
 						className
 					)}
 				>
 					<div
 						ref={menuRef}
-						className="max-w-3xl w-full flex flex-col sm:mx-3 md:mx-0 border-b sm:border bg-background-secondary/50 sm:rounded-xl backdrop-blur shadow-shadow"
+						className="w-full flex flex-col sm:mx-3 md:mx-0 border-b sm:border bg-background-secondary/50 sm:rounded-xl backdrop-blur shadow-shadow"
 					>
 						<div className="flex justify-between items-center w-full py-3 px-4 sm:px-6">
 							<Link

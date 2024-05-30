@@ -15,7 +15,7 @@ export default function ProjectView() {
 
 	return (
 		<>
-			<div className="flex pt-8 sm:pt-12 pb-12 font-mono uppercase text-xs tracking-wide text-foreground-secondary">
+			<div className="flex py-8 sm:pt-12 font-mono uppercase text-xs tracking-wide text-foreground-secondary">
 				<span className="border-r-2 pr-4 select-non opacity-60">View As</span>
 				<button
 					onClick={() => setIsGridView(true)}
@@ -102,7 +102,7 @@ export default function ProjectView() {
 							duration: 0.5,
 							ease: 'easeInOut',
 						}}
-						className="flex flex-col gap-6 h-fit px-3"
+						className="flex flex-col gap-6 h-fit"
 					>
 						{projectsData.map((project) => (
 							<ProjectListItem key={project.title} project={project} />
