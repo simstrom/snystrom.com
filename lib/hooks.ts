@@ -27,3 +27,27 @@ export function useMousePosition(ref: React.RefObject<HTMLDivElement>) {
 
 	return mousePosition;
 }
+
+export function useScreenBreakpoints() {
+	const [isSmall, setIsSmall] = useState<boolean>(false);
+	const [isMedium, setIsMedium] = useState<boolean>(false);
+	const [isLarge, setIsLarge] = useState<boolean>(false);
+
+	useEffect(() => {
+		const updateScreenBreakpoints = () => {
+			const screenWidth = window.innerWidth;
+			setIsSmall(screenWidth < 640);
+			setIsMedium(screenWidth >= 640 && screenWidth < 768);
+			setIsLarge(screenWidth >= 768);
+		};
+
+		updateScreenBreakpoints();
+		window.addEventListener('resize', updateScreenBreakpoints);
+
+		return () => {
+			window.removeEventListener('resize', updateScreenBreakpoints);
+		};
+	}, []);
+
+	return { isSmall, isMedium, isLarge };
+}
