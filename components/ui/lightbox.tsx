@@ -1,0 +1,121 @@
+'use client';
+
+import { GalleryImage } from '@/lib/types';
+import { AnimatePresence, motion } from 'framer-motion';
+import Image from 'next/image';
+import { useEffect, useRef } from 'react';
+
+type Props = {
+	content: Array<GalleryImage>;
+	current: number;
+	setCurrent: React.Dispatch<React.SetStateAction<number>>;
+	isVisible: boolean;
+	isMobile: boolean;
+	onClose: () => void;
+};
+
+export default function Lightbox({
+	content,
+	current,
+	setCurrent,
+	isVisible,
+	isMobile,
+	onClose,
+}: Props) {
+	const containerRef = useRef<HTMLDivElement>(null);
+
+	const handleKeyDown = (e: any) => {
+		if (e.key === 'Escape') onClose();
+		if (e.key === 'ArrowLeft') showPrev(e);
+		if (e.key === 'ArrowRight') showNext(e);
+	};
+
+	const handleScroll = () => {
+		setTimeout(() => {
+			onClose();
+		}, 300);
+	};
+
+	const showNext = (e: any) => {
+		e.stopPropagation();
+		setCurrent((prevIndex) => (prevIndex + 1) % content.length);
+	};
+	const showPrev = (e: any) => {
+		e.stopPropagation();
+		setCurrent((prevIndex) => (prevIndex - 1 + content.length) % content.length);
+	};
+
+	useEffect(() => {
+		const container = containerRef.current;
+		if (isVisible) {
+			window.addEventListener('scroll', handleScroll);
+
+			container?.focus();
+			container?.addEventListener('keydown', handleKeyDown);
+		}
+
+		return () => {
+			window.removeEventListener('scroll', handleScroll);
+			container?.removeEventListener('keydown', handleKeyDown);
+		};
+	}, [isVisible]);
+
+	return (
+		<AnimatePresence>
+			{isVisible && (
+				<>
+					<motion.div
+						className="fixed z-[99] top-0 left-0 w-full h-full flex justify-center bg-background-secondary/80"
+						initial={{ opacity: 0 }}
+						animate={{ opacity: 1 }}
+						exit={{ opacity: 0 }}
+						transition={{ type: 'spring', stiffness: 200, damping: 30 }}
+					>
+						<div className="absolute bottom-10 font-mono text-xs text-foreground-secondary">
+							{current + 1} / {content.length}
+						</div>
+					</motion.div>
+					<div
+						ref={containerRef}
+						onClick={() => onClose()}
+						tabIndex={-1}
+						onKeyDown={handleKeyDown}
+						className="fixed z-[100] top-0 left-0 w-full h-full flex items-center justify-center focus-visible:outline-none p-14 sm:p-20"
+					>
+						<motion.div
+							initial={{
+								y: '100%',
+								opacity: 0,
+							}}
+							animate={{ y: 0, opacity: 1 }}
+							exit={{
+								y: '100%',
+								opacity: 0,
+							}}
+							transition={{ type: 'spring', stiffness: 200, damping: 30 }}
+							drag={isMobile ? 'x' : false}
+							dragConstraints={{ left: 0, right: 0 }}
+							onDragEnd={(event, info) => {
+								if (info.offset.x < -100) {
+									showNext(event);
+								} else if (info.offset.x > 100) {
+									showPrev(event);
+								}
+							}}
+							className="w-full h-full"
+						>
+							<Image
+								src={content[current].src}
+								width={800}
+								height={1000}
+								alt={content[current].alt}
+								draggable={false}
+								className="h-full w-full object-contain"
+							/>
+						</motion.div>
+					</div>
+				</>
+			)}
+		</AnimatePresence>
+	);
+}
