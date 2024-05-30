@@ -28,16 +28,16 @@
 		--background-secondary: 220 16% 8%;
 		--background-tertiary: 222 15% 9%;
 
-		--foreground: 218 80% 95%;
-		--foreground-secondary: 218 12% 65%;
+		--foreground: 60 15% 93%;
+		--foreground-secondary: 60 3% 65%;
 		--foreground-inverse: var(--background);
 
 		--brand: 222 100% 66%;
 		--brand-secondary: 222 100% 75%;
 
-		--border: 222 15% 38%;
+		--border: 222 6% 38%;
 		--border-hue: 222;
-		--border-saturation: 15%;
+		--border-saturation: 6%;
 		--border-lightness: 38%;
 		--shadow-color: 220deg 33% 1%;
 	}

@@ -87,24 +87,24 @@ export default function Colophon() {
 					</div>
 					<div className="col-span-4 flex flex-col rounded-xl bg-background-tertiary border h-44">
 						<div className="bg-background w-full h-3/4 border-b rounded-t-xl text-sm font-medium flex items-center justify-center">
-							<span className="hidden dark:block">Eerie Black</span>
-							<span className="block dark:hidden">Ghost White</span>
+							<span className="hidden dark:block">Metal</span>
+							<span className="block dark:hidden">Salt</span>
 						</div>
 						<div className="mt-auto w-full h-1/4 px-3 flex justify-between items-center font-mono text-xs tracking-tight text-foreground-secondary">
 							<span>Backgrounds</span>
-							<span className="hidden dark:block">#111317</span>
-							<span className="block dark:hidden">#F9F9FB</span>
+							<span className="hidden dark:block">#0F1114</span>
+							<span className="block dark:hidden">#EEEEE7</span>
 						</div>
 					</div>
 					<div className="col-span-4 flex flex-col rounded-xl bg-background-tertiary border h-44">
 						<div className="bg-foreground text-foreground-inverse w-full h-3/4 border-b text-sm font-medium rounded-t-xl flex items-center justify-center">
-							<span className="hidden dark:block">Cotton</span>
-							<span className="block dark:hidden">Infinite Night</span>
+							<span className="hidden dark:block">Pearl</span>
+							<span className="block dark:hidden">Charcoal</span>
 						</div>
 						<div className="mt-auto w-full h-1/4 px-3 flex justify-between items-center font-mono text-xs tracking-tight text-foreground-secondary">
 							<span>Foregrounds</span>
-							<span className="hidden dark:block">#E8EFFC</span>
-							<span className="block dark:hidden">#05142E</span>
+							<span className="hidden dark:block">#F0F0EA</span>
+							<span className="block dark:hidden">#212121</span>
 						</div>
 					</div>
 				</div>

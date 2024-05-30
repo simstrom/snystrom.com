@@ -102,7 +102,7 @@ export default function ProjectView() {
 							duration: 0.5,
 							ease: 'easeInOut',
 						}}
-						className="flex flex-col gap-6 h-fit"
+						className="flex flex-col h-fit"
 					>
 						{projectsData.map((project) => (
 							<ProjectListItem key={project.title} project={project} />

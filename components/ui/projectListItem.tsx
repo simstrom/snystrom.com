@@ -9,10 +9,10 @@ export default function ProjectListItem({ project }: { project: Project }) {
 	return (
 		<div
 			onClick={() => window.open(project.deployLink ?? project.githubLink, '_blank')}
-			className="flex justify-between items-center gap-x-20 pb-6 border-b cursor-default"
+			className="flex justify-between items-center gap-x-20 border-b cursor-default"
 		>
 			<CursorGlow
-				containerClass="overflow-visible cursor-none"
+				containerClass="overflow-visible cursor-none py-6"
 				cursorClass="font-mono uppercase text-xs tracking-wide"
 				size={480}
 				cursorElement={
