@@ -1,5 +1,5 @@
 import { IconEmail, IconGithub, IconInstagram, IconLinkedin, IconPerson } from './icons';
-import { Navigation, Project } from './types';
+import { GalleryCollection, Navigation, Project } from './types';
 
 //
 // NAVIGAITON
@@ -20,6 +20,10 @@ const navigationLinks = [
 	{
 		name: 'Blog',
 		path: '/blog',
+	},
+	{
+		name: 'Gallery',
+		path: '/gallery',
 	},
 	{
 		name: 'Colophon',
@@ -145,3 +149,67 @@ export const projectsData = [
 		githubLink: 'https://github.com/simstrom/arcturus',
 	},
 ] as Array<Project>;
+
+//
+// GALLERY: Destinations
+//
+export const galleryDestinations = [
+	{
+		title: 'Australia',
+		description: 'string',
+		type: 'destinations',
+		cover: { src: '/images/gallery/gatta.jpg', alt: '' },
+		images: [
+			{
+				src: '/images/gallery/gatta.jpg',
+				alt: '',
+			},
+			{
+				src: '/images/gallery/forest.jpg',
+				alt: '',
+			},
+			{
+				src: '/images/gallery/hopetoun.jpg',
+				alt: '',
+			},
+			{
+				src: '/images/gallery/moreton.jpg',
+				alt: '',
+			},
+			{
+				src: '/images/webpic.png',
+				alt: '',
+			},
+		],
+	},
+] as Array<GalleryCollection>;
+
+//
+// GALLERY: Collections
+//
+export const galleryCollections = [
+	{
+		title: 'Adventure',
+		description: 'string',
+		type: 'collections',
+		cover: { src: '/images/gallery/trecime.jpg', alt: '' },
+		images: [
+			{
+				src: '/images/gallery/trecime.jpg',
+				alt: '',
+			},
+			{
+				src: '/images/gallery/preikestolen.jpg',
+				alt: '',
+			},
+			{
+				src: '/images/gallery/manarola.jpg',
+				alt: '',
+			},
+			{
+				src: '/images/gallery/gatta.jpg',
+				alt: '',
+			},
+		],
+	},
+] as Array<GalleryCollection>;

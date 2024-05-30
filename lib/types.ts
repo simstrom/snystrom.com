@@ -28,12 +28,16 @@ export type Views =
 	  }[]
 	| null;
 
-export type Gallery = {
+export type GalleryCollection = {
 	title: string;
-	slug: string;
 	description: string;
-	cover: string | StaticImport;
-	images: Array<string | StaticImport>;
+	type: 'destinations' | 'collections';
+	cover: GalleryImage;
+	images: Array<GalleryImage>;
+};
+export type GalleryImage = {
+	src: string | StaticImport;
+	alt: string;
 };
 
 export type NavItem = {
