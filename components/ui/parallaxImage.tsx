@@ -1,6 +1,8 @@
 import { cn } from '@/lib/utils';
 import { MotionValue, motion, useTransform } from 'framer-motion';
+import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
+import Wobble from './wobble';
 
 type Props = {
 	scrollY: MotionValue<number>;
@@ -19,7 +21,7 @@ export default function ParallaxImage({
 	imgHeight,
 	className,
 }: Props) {
-	const ref = useRef<HTMLDivElement>(null);
+	const ref = useRef<HTMLAnchorElement>(null);
 	const [offsetTop, setOffsetTop] = useState<number>(0);
 
 	useEffect(() => {
@@ -30,21 +32,23 @@ export default function ParallaxImage({
 
 	const y = useTransform(scrollY, [offsetTop, offsetTop + 1000], [0, -250]);
 	return (
-		<div
+		<Link
+			href={'/gallery'}
 			className={cn(
 				'absolute w-64 blur-[3px] dark:brightness-50 dark:hover:brightness-100 hover:blur-none transition-[filter] duration-500 group',
 				className
 			)}
 			ref={ref}
 		>
-			<motion.img
-				style={{ y }}
-				className="opacity-50 dark:opacity-100 group-hover:opacity-100 transition-opacity duration-500"
-				src={imgSrc}
-				alt={imgAlt ?? ''}
-				height={imgHeight ?? 600}
-				width={imgWidth ?? 450}
-			/>
-		</div>
+			<Wobble containerStyle={{ y }}>
+				<motion.img
+					className="opacity-50 dark:opacity-100 group-hover:opacity-100 transition-opacity duration-500"
+					src={imgSrc}
+					alt={imgAlt ?? ''}
+					height={imgHeight ?? 600}
+					width={imgWidth ?? 450}
+				/>
+			</Wobble>
+		</Link>
 	);
 }
