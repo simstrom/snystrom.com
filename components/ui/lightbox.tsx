@@ -3,7 +3,7 @@
 import { GalleryImage } from '@/lib/types';
 import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 type Props = {
 	content: Array<GalleryImage>;
@@ -23,6 +23,7 @@ export default function Lightbox({
 	onClose,
 }: Props) {
 	const containerRef = useRef<HTMLDivElement>(null);
+	const [isLoading, setIsLoading] = useState(true);
 
 	const handleKeyDown = (e: any) => {
 		if (e.key === 'Escape') onClose();
@@ -87,7 +88,7 @@ export default function Lightbox({
 								y: '100%',
 								opacity: 0,
 							}}
-							animate={{ y: 0, opacity: 1 }}
+							animate={{ y: !isLoading ? 0 : '100%', opacity: !isLoading ? 1 : 0 }}
 							exit={{
 								y: '100%',
 								opacity: 0,
@@ -102,15 +103,16 @@ export default function Lightbox({
 									showPrev(event);
 								}
 							}}
-							className="w-full h-full"
+							className="w-full h-full relative"
 						>
 							<Image
 								src={content[current].src}
-								width={800}
-								height={1000}
 								alt={content[current].alt}
+								fill
+								loading="eager"
 								draggable={false}
 								className="h-full w-full object-contain"
+								onLoad={() => setIsLoading(false)}
 							/>
 						</motion.div>
 					</div>
