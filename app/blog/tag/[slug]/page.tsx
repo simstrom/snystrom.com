@@ -46,20 +46,20 @@ export default async function TagPage({ params }: Props) {
 
 	return (
 		<main className="max-w-3xl mx-auto flex flex-col pt-32 sm:pt-40">
-			<span className="px-3 pb-1 font-mono text-xs uppercase tracking-wide text-foreground-secondary">
-				Blog
-			</span>
+			<div className="absolute -translate-y-5 font-mono uppercase text-xs tracking-wide text-foreground-secondary">
+				<span className="text-brand">• </span>Blog
+			</div>
 			<PageHeader title={`${tag}`} content={`Explore all articles and tutorials about ${tag}`} />
 			<section className="pt-5 mb-10">
 				<PostList posts={posts} views={views} />
 			</section>
 			<Link
 				href="/blog"
-				className="inline-flex w-fit items-center gap-x-2 font-mono text-sm tracking-tighter mb-5 hover:text-brand-secondary transition group"
+				className="inline-flex w-fit items-center gap-x-1 font-mono uppercase text-xs tracking-wide hover:text-brand transition duration-300 group"
 			>
 				<IconArrowLeft
-					width={18}
-					height={18}
+					width={12}
+					height={12}
 					className="group-hover:-translate-x-1 transition-transform duration-300"
 				/>
 				Back to Blog

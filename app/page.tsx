@@ -1,9 +1,9 @@
 import GalleryBlock from '@/components/sections/galleryBlock';
-import { getAllImages } from '@/lib/gallery';
+import { getLandingImages } from '@/lib/gallery';
 // import { motion } from 'framer-motion';
 
 export default async function Home() {
-	const images = await getAllImages(6);
+	const images = await getLandingImages();
 
 	return (
 		<main className="flex flex-col items-center justify-center gap-20">

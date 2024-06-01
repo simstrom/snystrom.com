@@ -36,7 +36,13 @@ const mapGalleryImages = cache(async (result: any) => {
 });
 
 export async function getAllImages(limit?: number) {
-	const results = await cloudinary.v2.api.resources({ resource_type: 'image', max_results: limit });
+	const results = await cloudinary.v2.api.resources({ resource_type: 'image' });
+	const { resources } = results;
+	return await mapGalleryImages(resources);
+}
+
+export async function getLandingImages() {
+	const results = await cloudinary.v2.api.resources_by_tag('Landing', { max_results: 6 });
 	const { resources } = results;
 	return await mapGalleryImages(resources);
 }

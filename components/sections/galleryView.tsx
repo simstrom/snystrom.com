@@ -60,7 +60,7 @@ export default function GalleryView({ content, backLink, category }: Props) {
 				{backLink ? (
 					<Link
 						href={backLink.path}
-						className="inline-flex w-fit items-center gap-x-1 hover:text-brand transition duration-500 group"
+						className="inline-flex w-fit items-center gap-x-1 hover:text-brand transition duration-300 group"
 					>
 						<IconArrowLeft
 							width={12}
