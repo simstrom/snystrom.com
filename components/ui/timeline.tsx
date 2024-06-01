@@ -67,7 +67,7 @@ export default function Timeline({ className }: Props) {
 			/>
 			<motion.div className="absolute top-0 bottom-0 sm:left-1/2 sm:-translate-x-1/2 w-[2px] z-10 bg-black/5 dark:bg-white/5" />
 			{timelineData.map((item, index) => (
-				<div className="h-60 relative">
+				<div key={item.text} className="h-60 relative">
 					<div
 						ref={circleRefs[index]}
 						className={cn(
