@@ -71,6 +71,12 @@ export default function Button({
 				</span>
 			</Link>
 		);
+	} else if (href) {
+		return (
+			<Link {...props} href={href} className={cn(commonClass, variantClass, sizeClass, className)}>
+				{children}
+			</Link>
+		);
 	} else {
 		return (
 			<button

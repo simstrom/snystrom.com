@@ -1,12 +1,24 @@
 'use client';
 
+import { GalleryImage } from '@/lib/types';
 import { useScroll } from 'framer-motion';
 import Button from '../ui/button';
 import ParallaxImage from '../ui/parallaxImage';
 
-type Props = {};
+type Props = {
+	images: Array<GalleryImage>;
+};
 
-export default function GalleryBlock({}: Props) {
+const imagePositions = [
+	'-inset-x-28 top-32 sm:inset-x-24 sm:top-16',
+	'inset-x-80 inset-y-80 hidden xl:block',
+	'-inset-x-14 -bottom-40 sm:inset-x-6',
+	'top-24 right-1/3 hidden lg:block',
+	'-bottom-32 right-80 hidden lg:block',
+	'top-56 -right-24 sm:right-8',
+];
+
+export default function GalleryBlock({ images }: Props) {
 	const { scrollY } = useScroll();
 
 	return (
@@ -22,42 +34,22 @@ export default function GalleryBlock({}: Props) {
 					I love building projects and practice my engineering skills, here&apos;s an archive of
 					things that I&apos;ve worked on.
 				</p>
-				<Button className="z-10 after:bg-background-tertiary/50 after:backdrop-blur-md after:-z-10">
-					Enter Gallery
+				<Button
+					href="/gallery/destinations"
+					className="z-10 after:bg-background-tertiary/50 after:backdrop-blur-md after:-z-10"
+				>
+					Explore Destinations
 				</Button>
 			</div>
-			<ParallaxImage
-				className="-inset-x-28 top-16 sm:inset-x-24 sm:top-8"
-				scrollY={scrollY}
-				imgSrc="/images/gallery/hopetoun.jpg"
-			/>
-			<ParallaxImage
-				className="inset-x-80 inset-y-52 hidden xl:block"
-				scrollY={scrollY}
-				imgSrc="/images/gallery/gatta.jpg"
-			/>
-			<ParallaxImage
-				className="-inset-x-14 -bottom-20 sm:inset-x-6"
-				scrollY={scrollY}
-				imgSrc="/images/gallery/moreton.jpg"
-			/>
 
-			<ParallaxImage
-				className="top-24 right-1/3 hidden lg:block"
-				scrollY={scrollY}
-				imgSrc="/images/gallery/trecime.jpg"
-			/>
-			<ParallaxImage
-				className="-bottom-32 right-80 hidden lg:block"
-				scrollY={scrollY}
-				imgSrc="/images/gallery/manarola.jpg"
-			/>
-			<ParallaxImage
-				className="top-56 -right-24 sm:top-1/4 sm:right-8"
-				scrollY={scrollY}
-				imgSrc="/images/gallery/preikestolen.jpg"
-			/>
-			{/* <div className="absolute h-full w-screen inset-0 -left-5" /> */}
+			{images.map((image, idx) => (
+				<ParallaxImage
+					key={image.id}
+					className={imagePositions[idx]}
+					scrollY={scrollY}
+					image={image}
+				/>
+			))}
 		</div>
 	);
 }

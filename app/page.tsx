@@ -1,21 +1,23 @@
-'use client';
-
 import GalleryBlock from '@/components/sections/galleryBlock';
-import { AuroraBackground } from '@/components/ui/aurora';
-import { motion } from 'framer-motion';
+import { getAllImages } from '@/lib/gallery';
+// import { motion } from 'framer-motion';
 
-export default function Home() {
+export default async function Home() {
+	const images = await getAllImages(6);
+
 	return (
 		<main className="flex flex-col items-center justify-center gap-20">
-			<AuroraBackground showRadialGradient={true}>
-				<motion.div
-					initial={{ opacity: 0.0, y: 50 }}
-					whileInView={{ opacity: 1, y: 0 }}
-					transition={{
-						duration: 0.8,
-					}}
-					className="max-w-screen-lg relative flex flex-col gap-4 justify-center px-6 lg:px-0"
-				>
+			<div className="w-full mx-auto h-[90vh] max-w-screen-lg relative flex flex-col gap-4 justify-center px-6 lg:px-0">
+				<h1 className="text-5xl sm:text-6xl lg:text-8xl tracking-tight">
+					Background lights are cool you know.
+				</h1>
+				<div className="md:text-4xl py-4">And this, is chemical burn.</div>
+				<button className="bg-background border backdrop-blur-md shadow-sm rounded-xl w-fit px-10 py-3 uppercase text-sm tracking-wide font-medium">
+					Debug now
+				</button>
+			</div>
+			{/* <AuroraBackground showRadialGradient={true}>
+				<div className="max-w-screen-lg relative flex flex-col gap-4 justify-center px-6 lg:px-0">
 					<h1 className="text-5xl sm:text-6xl lg:text-8xl tracking-tight">
 						Background lights are cool you know.
 					</h1>
@@ -23,8 +25,8 @@ export default function Home() {
 					<button className="bg-background border backdrop-blur-md shadow-sm rounded-xl w-fit px-10 py-3 uppercase text-sm tracking-wide font-medium">
 						Debug now
 					</button>
-				</motion.div>
-			</AuroraBackground>
+				</div>
+			</AuroraBackground> */}
 			<div>
 				<p>
 					Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellendus in ipsa debitis
@@ -35,7 +37,7 @@ export default function Home() {
 					iure perspiciatis quidem cumque.
 				</p>
 			</div>
-			<GalleryBlock />
+			<GalleryBlock images={images} />
 			<div className="h-screen"></div>
 		</main>
 	);

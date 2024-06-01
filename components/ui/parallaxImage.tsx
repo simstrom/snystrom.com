@@ -1,26 +1,18 @@
+import { GalleryImage } from '@/lib/types';
 import { cn } from '@/lib/utils';
-import { MotionValue, motion, useTransform } from 'framer-motion';
+import { MotionValue, useTransform } from 'framer-motion';
+import { CldImage } from 'next-cloudinary';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import Wobble from './wobble';
 
 type Props = {
 	scrollY: MotionValue<number>;
-	imgSrc: string;
-	imgAlt?: string;
-	imgWidth?: number;
-	imgHeight?: number;
+	image: GalleryImage;
 	className?: string;
 };
 
-export default function ParallaxImage({
-	scrollY,
-	imgSrc,
-	imgAlt,
-	imgWidth,
-	imgHeight,
-	className,
-}: Props) {
+export default function ParallaxImage({ scrollY, image, className }: Props) {
 	const ref = useRef<HTMLAnchorElement>(null);
 	const [offsetTop, setOffsetTop] = useState<number>(0);
 
@@ -30,7 +22,7 @@ export default function ParallaxImage({
 		}
 	}, [ref]);
 
-	const y = useTransform(scrollY, [offsetTop, offsetTop + 1000], [0, -250]);
+	const y = useTransform(scrollY, [offsetTop, offsetTop + 2000], [0, -300]);
 	return (
 		<Link
 			href={'/gallery'}
@@ -41,12 +33,14 @@ export default function ParallaxImage({
 			ref={ref}
 		>
 			<Wobble containerStyle={{ y }}>
-				<motion.img
-					className="opacity-50 dark:opacity-100 group-hover:opacity-100 transition-opacity duration-500"
-					src={imgSrc}
-					alt={imgAlt ?? ''}
-					height={imgHeight ?? 600}
-					width={imgWidth ?? 450}
+				<CldImage
+					src={image.src}
+					width={256}
+					height={320}
+					alt={image.alt ?? ''}
+					placeholder="blur"
+					blurDataURL={image.blurData}
+					className="aspect-[4/5] object-cover object-center opacity-50 dark:opacity-100 group-hover:opacity-100 transition-opacity duration-500"
 				/>
 			</Wobble>
 		</Link>

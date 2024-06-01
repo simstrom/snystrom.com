@@ -35,8 +35,8 @@ const mapGalleryImages = cache(async (result: any) => {
 	return images as Array<GalleryImage>;
 });
 
-export async function getAllImages() {
-	const results = await cloudinary.v2.api.resources({ resource_type: 'image' });
+export async function getAllImages(limit?: number) {
+	const results = await cloudinary.v2.api.resources({ resource_type: 'image', max_results: limit });
 	const { resources } = results;
 	return await mapGalleryImages(resources);
 }
