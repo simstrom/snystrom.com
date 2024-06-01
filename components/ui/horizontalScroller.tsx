@@ -7,8 +7,7 @@ interface ScrollerProps {
 	items: Array<any>;
 	separator?: string;
 	pauseOnHover?: boolean;
-	startOnHover?: boolean;
-	isHovered?: boolean;
+	speed?: 'normal' | 'slow';
 	children?: React.ReactNode;
 	className?: string;
 }
@@ -17,8 +16,7 @@ export default function HorizontalScroller({
 	items,
 	separator,
 	pauseOnHover = true,
-	startOnHover = false,
-	isHovered,
+	speed = 'normal',
 	children,
 	className,
 }: ScrollerProps) {
@@ -49,17 +47,16 @@ export default function HorizontalScroller({
 		<div
 			ref={containerRef}
 			className={cn(
-				'scroller overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]',
+				'scroller overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_10%,white_90%,transparent)]',
 				className
 			)}
 		>
 			<ul
 				ref={scrollerRef}
 				className={cn(
-					'flex gap-3 w-max items-center',
-					start && 'animate-scroll ',
-					pauseOnHover && 'hover:[animation-play-state:paused]',
-					startOnHover && !isHovered && '[animation-play-state:paused]'
+					'flex flex-wrap gap-3 w-max items-center',
+					start && (speed == 'normal' ? 'animate-scroll' : 'animate-scrollSlow'),
+					pauseOnHover && 'hover:[animation-play-state:paused]'
 				)}
 			>
 				{items.map((item: any, idx: number) => (

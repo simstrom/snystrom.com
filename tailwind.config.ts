@@ -54,7 +54,7 @@ const config = {
 			},
 			animation: {
 				scroll: 'scroll 40s forwards linear infinite',
-				wiggle: 'wiggle 3s forwards linear infinite',
+				scrollSlow: 'scroll 100s forwards linear infinite',
 				aurora: 'aurora 50s forwards linear infinite',
 				slide: 'slide 0.5s ease-in-out forwards',
 			},
@@ -67,11 +67,6 @@ const config = {
 				slide: {
 					'0%': { opacity: '0', transform: 'translateY(50px)' },
 					'100%': { opacity: '1', transform: 'translateY(0)' },
-				},
-				wiggle: {
-					'0%': { transform: 'rotate(-24deg)' },
-					'50%': { transform: 'rotate(24deg)' },
-					'100%': { transform: 'rotate(-24deg)' },
 				},
 				aurora: {
 					from: {
