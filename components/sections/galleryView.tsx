@@ -13,6 +13,7 @@ import Lightbox from '../ui/lightbox';
 type Props = {
 	content: Array<GalleryImage> | Array<GalleryCollection>;
 	backLink?: { path: string; name: string };
+	category?: 'destinations' | 'collections';
 };
 
 const GalleryRoutes = [
@@ -30,27 +31,16 @@ const GalleryRoutes = [
 	},
 ];
 
-function isGalleryCollection(value: any): value is GalleryCollection {
-	return (
-		value &&
-		typeof value === 'object' &&
-		'title' in value &&
-		'images' in value &&
-		Array.isArray(value.images)
-	);
-}
-
-export default function GalleryView({ content, backLink }: Props) {
+export default function GalleryView({ content, backLink, category }: Props) {
 	const { isSmall, isMedium } = useScreenBreakpoints();
 	const [showLightbox, setShowLightbox] = useState<boolean>(false);
 	const [lightboxIndex, setLightboxIndex] = useState<number>(0);
-	const isCollection = content.some(isGalleryCollection);
 	const currentPath = usePathname();
 
 	const columns: any = [[], [], []];
 	content.forEach((item, index) => {
 		columns[index % (isSmall ? 1 : isMedium ? 2 : 3)].push(
-			isCollection ? (item as GalleryCollection) : (item as GalleryImage)
+			category ? (item as GalleryCollection) : (item as GalleryImage)
 		);
 	});
 
@@ -104,10 +94,10 @@ export default function GalleryView({ content, backLink }: Props) {
 						{col.map((item, idx) => (
 							<GalleryItem
 								key={idx}
-								isCollection={isCollection}
-								item={isCollection ? (item as GalleryCollection).cover : (item as GalleryImage)}
-								collectionTitle={isCollection ? (item as GalleryCollection).title : ''}
-								collectionType={isCollection ? (item as GalleryCollection).type : ''}
+								isCollection={!!category}
+								item={category ? (item as GalleryCollection).cover : (item as GalleryImage)}
+								collectionTitle={category ? (item as GalleryCollection).title : ''}
+								collectionType={category ?? ''}
 								priority={idx == 0 ? true : false}
 								lightboxIndex={calculateLightboxIndex(colIndex, idx)}
 								handleImageClick={handleImageClick}
@@ -117,7 +107,7 @@ export default function GalleryView({ content, backLink }: Props) {
 				))}
 			</div>
 
-			{!isCollection && (
+			{!category && (
 				<Lightbox
 					content={content as GalleryImage[]}
 					current={lightboxIndex}

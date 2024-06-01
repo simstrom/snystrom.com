@@ -1,6 +1,6 @@
 import GalleryView from '@/components/sections/galleryView';
 import PageHeader from '@/components/ui/pageHeader';
-import { galleryDestinations } from '@/lib/data';
+import { getCoverImages } from '@/lib/gallery';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -8,14 +8,16 @@ export const metadata: Metadata = {
 	description: 'A summary of the technologies, design, workflow and decisions behind snystrom.com.',
 };
 
-export default function Destinations() {
+export default async function Destinations() {
+	const collections = await getCoverImages('destinations');
+
 	return (
 		<main className="mx-auto pt-32 sm:pt-40">
 			<PageHeader
 				title="Gallery"
 				content="A summary of the technologies, design, workflow and decisions behind my website."
 			/>
-			<GalleryView content={galleryDestinations} />
+			<GalleryView content={collections} category="destinations" />
 		</main>
 	);
 }

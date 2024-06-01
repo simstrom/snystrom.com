@@ -157,102 +157,14 @@ export const galleryDestinations = [
 	{
 		title: 'Australia',
 		description: 'string',
-		type: 'destinations',
-		cover: { src: '/images/gallery/gatta.jpg', alt: '' },
-		images: [
-			{
-				src: '/images/gallery/gatta.jpg',
-				alt: '',
-			},
-			{
-				src: '/images/gallery/forest.jpg',
-				alt: '',
-			},
-			{
-				src: '/images/gallery/hopetoun.jpg',
-				alt: '',
-			},
-			{
-				src: '/images/gallery/moreton.jpg',
-				alt: '',
-			},
-			{
-				src: '/images/webpic.png',
-				alt: '',
-			},
-		],
 	},
 	{
 		title: 'Sweden',
 		description: 'string',
-		type: 'destinations',
-		cover: { src: '/images/gallery/red.jpg', alt: '' },
-		images: [
-			{
-				src: '/images/gallery/red.jpg',
-				alt: '',
-			},
-			{
-				src: '/images/gallery/snow.jpg',
-				alt: '',
-			},
-			{
-				src: '/images/gallery/interior.jpg',
-				alt: '',
-			},
-			{
-				src: '/images/gallery/dad.jpg',
-				alt: '',
-			},
-		],
 	},
 	{
 		title: 'Norway',
 		description: 'string',
-		type: 'destinations',
-		cover: { src: '/images/gallery/preikestolen.jpg', alt: '' },
-		images: [
-			{
-				src: '/images/gallery/preikestolen.jpg',
-				alt: '',
-			},
-			{
-				src: '/images/gallery/forest.jpg',
-				alt: '',
-			},
-			{
-				src: '/images/gallery/hopetoun.jpg',
-				alt: '',
-			},
-			{
-				src: '/images/gallery/moreton.jpg',
-				alt: '',
-			},
-		],
-	},
-	{
-		title: 'Italy',
-		description: 'string',
-		type: 'destinations',
-		cover: { src: '/images/gallery/trecime.jpg', alt: '' },
-		images: [
-			{
-				src: '/images/gallery/trecime.jpg',
-				alt: '',
-			},
-			{
-				src: '/images/gallery/forest.jpg',
-				alt: '',
-			},
-			{
-				src: '/images/gallery/hopetoun.jpg',
-				alt: '',
-			},
-			{
-				src: '/images/gallery/moreton.jpg',
-				alt: '',
-			},
-		],
 	},
 ] as Array<GalleryCollection>;
 
@@ -263,25 +175,5 @@ export const galleryCollections = [
 	{
 		title: 'Adventure',
 		description: 'string',
-		type: 'collections',
-		cover: { src: '/images/gallery/trecime.jpg', alt: '' },
-		images: [
-			{
-				src: '/images/gallery/trecime.jpg',
-				alt: '',
-			},
-			{
-				src: '/images/gallery/preikestolen.jpg',
-				alt: '',
-			},
-			{
-				src: '/images/gallery/manarola.jpg',
-				alt: '',
-			},
-			{
-				src: '/images/gallery/gatta.jpg',
-				alt: '',
-			},
-		],
 	},
 ] as Array<GalleryCollection>;

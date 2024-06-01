@@ -1,6 +1,7 @@
 import GalleryView from '@/components/sections/galleryView';
 import PageHeader from '@/components/ui/pageHeader';
 import { galleryCollections } from '@/lib/data';
+import { getImagesInCollection } from '@/lib/gallery';
 import { IconArrowLeft, IconArrowRight } from '@/lib/icons';
 import { slugify } from '@/lib/utils';
 import { Metadata } from 'next';
@@ -38,10 +39,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata | un
 	};
 }
 
-export default function GalleryCollection({ params }: Props) {
+export default async function GalleryCollection({ params }: Props) {
 	const index = galleryCollections.findIndex((item) => slugify(item.title) === params.slug);
 	if (index === -1) return notFound();
 	const collection = galleryCollections[index];
+	const images = await getImagesInCollection(collection.title);
 
 	const previousIndex = (index - 1 + galleryCollections.length) % galleryCollections.length;
 	const nextIndex = (index + 1) % galleryCollections.length;
@@ -59,7 +61,7 @@ export default function GalleryCollection({ params }: Props) {
 				<span className="text-brand">• </span>Collection
 			</div>
 			<PageHeader title={collection.title} content={collection.description} />
-			<GalleryView content={collection.images} backLink={backLink} />
+			<GalleryView content={images} backLink={backLink} />
 			<div className="mt-8 sm:mt-12 w-full flex justify-center items-center sm:gap-4 text-xs font-mono uppercase tracking-wide select-none">
 				<Link
 					href={`/gallery/destinations/${slugify(previousCollection.title)}`}

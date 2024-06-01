@@ -2,7 +2,7 @@
 
 import { GalleryImage } from '@/lib/types';
 import { AnimatePresence, motion } from 'framer-motion';
-import Image from 'next/image';
+import { CldImage } from 'next-cloudinary';
 import { useEffect, useRef, useState } from 'react';
 
 type Props = {
@@ -105,10 +105,11 @@ export default function Lightbox({
 							}}
 							className="w-full h-full relative"
 						>
-							<Image
+							<CldImage
 								src={content[current].src}
-								alt={content[current].alt}
-								fill
+								alt={content[current].alt ?? ''}
+								width={content[current].width}
+								height={content[current].height}
 								loading="eager"
 								draggable={false}
 								className="h-full w-full object-contain"

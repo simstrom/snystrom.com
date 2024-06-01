@@ -31,13 +31,15 @@ export type Views =
 export type GalleryCollection = {
 	title: string;
 	description: string;
-	type: 'destinations' | 'collections';
 	cover: GalleryImage;
-	images: Array<GalleryImage>;
 };
 export type GalleryImage = {
-	src: string | StaticImport;
-	alt: string;
+	id: string;
+	src: string;
+	blurData: string;
+	width: number;
+	height: number;
+	alt?: string;
 };
 
 export type NavItem = {
