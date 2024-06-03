@@ -3,7 +3,7 @@
 import { GalleryImage } from '@/lib/types';
 import { cn } from '@/lib/utils';
 import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
-import Image from 'next/image';
+import { CldImage } from 'next-cloudinary';
 import { useRef } from 'react';
 
 type Props = {
@@ -21,15 +21,15 @@ export default function HorizontalImages({ items, className }: Props) {
 	const spring = useSpring(x, { stiffness: 150, damping: 30 });
 
 	return (
-		<div className={cn('flex justify-center overflow-x-visible', className)}>
+		<div className={cn('flex justify-center overflow-x-clip sm:overflow-x-visible', className)}>
 			<motion.div
 				ref={containerRef}
 				style={{ x: spring, rotate: '-3deg' }}
 				className="w-screen flex justify-center gap-2 max-h-64"
 			>
-				{items.map((item) => (
-					<Image
-						key={item.id}
+				{items.map((item, idx) => (
+					<CldImage
+						key={idx}
 						src={item.src}
 						alt={item.alt ?? ''}
 						width={item.width}

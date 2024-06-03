@@ -4,9 +4,10 @@ import { useScreenBreakpoints } from '@/lib/hooks';
 import { IconArrowLeft } from '@/lib/icons';
 import { GalleryCollection, GalleryImage } from '@/lib/types';
 import { cn } from '@/lib/utils';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import GalleryItem from '../ui/galleryItem';
 import Lightbox from '../ui/lightbox';
 
@@ -36,6 +37,15 @@ export default function GalleryView({ content, backLink, category }: Props) {
 	const [showLightbox, setShowLightbox] = useState<boolean>(false);
 	const [lightboxIndex, setLightboxIndex] = useState<number>(0);
 	const currentPath = usePathname();
+	const { scrollY } = useScroll();
+	const ref = useRef<HTMLDivElement>(null);
+	const [offsetTop, setOffsetTop] = useState<number>(0);
+
+	useEffect(() => {
+		if (ref.current) {
+			setOffsetTop(ref.current.offsetTop);
+		}
+	}, [ref]);
 
 	const columns: any = [[], [], []];
 	content.forEach((item, index) => {
@@ -88,23 +98,29 @@ export default function GalleryView({ content, backLink, category }: Props) {
 				)}
 			</div>
 
-			<div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 h-fit animate-slide">
-				{columns.map((col: Array<GalleryCollection | GalleryImage>, colIndex: number) => (
-					<div key={colIndex} className="flex flex-col gap-4">
-						{col.map((item, idx) => (
-							<GalleryItem
-								key={idx}
-								isCollection={!!category}
-								item={category ? (item as GalleryCollection).cover : (item as GalleryImage)}
-								collectionTitle={category ? (item as GalleryCollection).title : ''}
-								collectionType={category ?? ''}
-								priority={idx == 0 ? true : false}
-								lightboxIndex={calculateLightboxIndex(colIndex, idx)}
-								handleImageClick={handleImageClick}
-							/>
-						))}
-					</div>
-				))}
+			<div ref={ref} className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 h-fit animate-slide">
+				{columns.map((col: Array<GalleryCollection | GalleryImage>, colIndex: number) => {
+					const start = colIndex % 2 == 1 ? 2000 : 2000;
+					const output = colIndex % 2 == 1 ? -100 : -500;
+					const y = useTransform(scrollY, [offsetTop, offsetTop + start], [0, output]);
+
+					return (
+						<motion.div key={colIndex} style={{ y }} className="flex flex-col gap-4">
+							{col.map((item, idx) => (
+								<GalleryItem
+									key={idx}
+									isCollection={!!category}
+									item={category ? (item as GalleryCollection).cover : (item as GalleryImage)}
+									collectionTitle={category ? (item as GalleryCollection).title : ''}
+									collectionType={category ?? ''}
+									priority={idx == 0 ? true : false}
+									lightboxIndex={calculateLightboxIndex(colIndex, idx)}
+									handleImageClick={handleImageClick}
+								/>
+							))}
+						</motion.div>
+					);
+				})}
 			</div>
 
 			{!category && (

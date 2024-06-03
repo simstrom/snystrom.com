@@ -41,7 +41,7 @@ export default function GalleryItem({
 						blurDataURL={item.blurData}
 						className="border border-black sm:aspect-[4/5] w-full object-cover object-center group-hover:opacity-80 transition-opacity duration-500"
 					/>
-					<div className="bg-black flex items-center justify-between absolute w-full top-0 sm:bottom-0 sm:top-auto py-0.5 px-4 text-foreground-inverse dark:text-foreground group-hover:py-5 transition-all duration-500">
+					<div className="bg-black flex items-center justify-between absolute w-full top-0 sm:bottom-0 sm:top-auto py-2 px-4 text-foreground-inverse dark:text-foreground group-hover:py-5 transition-all duration-500">
 						<h3 className="font-mono text-xs tracking-tight">{collectionTitle}</h3>
 						<IconArrowRight width={12} />
 					</div>

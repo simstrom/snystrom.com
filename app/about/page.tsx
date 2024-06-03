@@ -5,6 +5,7 @@ import PageHeader from '@/components/ui/pageHeader';
 import Timeline from '@/components/ui/timeline';
 import { timelineData } from '@/lib/data';
 import { getImagesInCollection } from '@/lib/gallery';
+import HeroImage from '@/public/images/hero.jpg';
 import { Metadata } from 'next';
 import Image from 'next/image';
 
@@ -43,10 +44,10 @@ export default async function About() {
 			<PageHeader title="About Me" content="" className="mb-4 md:mb-8" />
 			<div className="grid md:grid-cols-12 gap-y-4 md:gap-8 mb-10">
 				<Image
-					src="/images/hero.jpg"
+					src={HeroImage}
 					alt=""
-					width={780}
-					height={625}
+					priority
+					placeholder="blur"
 					className="col-span-12 md:col-span-5 aspect-square sm:aspect-video md:aspect-[4/5] w-full h-full object-cover object-center border border-black rounded-3xl mb-4"
 				/>
 
