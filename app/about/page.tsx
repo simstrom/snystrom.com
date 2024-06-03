@@ -1,6 +1,8 @@
+import Button from '@/components/ui/button';
 import HorizontalScroller from '@/components/ui/horizontalScroller';
 import PageHeader from '@/components/ui/pageHeader';
 import Timeline from '@/components/ui/timeline';
+import { timelineData } from '@/lib/data';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -66,7 +68,11 @@ export default function About() {
 						className="text-xl font-normal select-none"
 					/>
 				</div>
-				<Timeline className="pt-8 sm:pt-12" />
+				<Timeline items={timelineData} title="Milestones" body="A timeline of key events">
+					<Button href="/cv.pdf" isExternalLink size="small" className="mt-8 text-xs tracking-wide">
+						Open CV
+					</Button>
+				</Timeline>
 			</div>
 		</main>
 	);

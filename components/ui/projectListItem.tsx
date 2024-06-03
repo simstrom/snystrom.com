@@ -1,3 +1,4 @@
+import { useScreenBreakpoints } from '@/lib/hooks';
 import { IconArrowUpRight, IconGithub } from '@/lib/icons';
 import { Project } from '@/lib/types';
 import Image from 'next/image';
@@ -6,9 +7,11 @@ import Button from './button';
 import CursorGlow from './cursorGlow';
 
 export default function ProjectListItem({ project }: { project: Project }) {
+	const { isSmall } = useScreenBreakpoints();
+
 	return (
 		<div
-			onClick={() => window.open(project.deployLink ?? project.githubLink, '_blank')}
+			onClick={() => !isSmall && window.open(project.deployLink ?? project.githubLink, '_blank')}
 			className="flex justify-between items-center gap-x-20 border-b cursor-default"
 		>
 			<CursorGlow

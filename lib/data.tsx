@@ -1,4 +1,17 @@
-import { IconEmail, IconGithub, IconInstagram, IconLinkedin, IconPerson } from './icons';
+import {
+	IconBriefcase,
+	IconCity,
+	IconCompass,
+	IconEducation,
+	IconEmail,
+	IconGithub,
+	IconGroup,
+	IconInstagram,
+	IconLinkedin,
+	IconPerson,
+	IconReact,
+	IconSparkle,
+} from './icons';
 import { GalleryCollection, Navigation, Project } from './types';
 
 //
@@ -93,6 +106,60 @@ export enum Skills {
 	Contentful = 'Contentful',
 	Optimizely = 'Optimizely',
 }
+
+//
+// ABOUT
+//
+export const timelineData = [
+	{
+		date: '2023',
+		title: 'Started working at Sopra',
+		text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit tempora temporibus laborum delectus nisi.',
+		icon: <IconBriefcase width={16} />,
+	},
+	{
+		date: '2023',
+		title: 'Moved to a new city',
+		text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit tempora temporibus laborum delectus nisi.',
+		icon: <IconCity width={16} />,
+	},
+	{
+		date: '2023',
+		title: 'Graduated university',
+		text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit tempora temporibus laborum delectus nisi.',
+		icon: <IconEducation width={16} />,
+	},
+	{
+		date: '2023',
+		title: 'Worked with my first client',
+		text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit tempora temporibus laborum delectus nisi.',
+		icon: <IconGroup width={16} />,
+	},
+	{
+		date: '2022',
+		title: 'Moved to Australia',
+		text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit tempora temporibus laborum delectus nisi.',
+		icon: <IconCompass width={16} />,
+	},
+	{
+		date: '2022',
+		title: 'Started learning Next.js',
+		text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit tempora temporibus laborum delectus nisi.',
+		icon: <IconReact width={16} />,
+	},
+	{
+		date: '2020',
+		title: 'Started a new job',
+		text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit tempora temporibus laborum delectus nisi.',
+		icon: <IconBriefcase width={16} />,
+	},
+	{
+		date: '2020',
+		title: 'First step into Web Development',
+		text: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit tempora temporibus laborum delectus nisi.',
+		icon: <IconSparkle width={14} />,
+	},
+];
 
 //
 // PROJECTS
