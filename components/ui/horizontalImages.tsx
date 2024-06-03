@@ -29,6 +29,7 @@ export default function HorizontalImages({ items, className }: Props) {
 			>
 				{items.map((item) => (
 					<Image
+						key={item.id}
 						src={item.src}
 						alt={item.alt ?? ''}
 						width={item.width}
