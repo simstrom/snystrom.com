@@ -2,6 +2,7 @@ import { AuroraBackground } from '@/components/ui/aurora';
 import { IconArrowUpRight, IconFire, IconSparkle } from '@/lib/icons';
 import { Post, Views } from '@/lib/types';
 import { formatDate } from '@/lib/utils';
+import Image from 'next/image';
 import Link from 'next/link';
 import readingTime from 'reading-time';
 import Tag from '../blog/tag';
@@ -52,8 +53,7 @@ const RecentCard: React.FC<{ latestPost: Post; views: Views }> = ({ latestPost, 
 	return (
 		<Link
 			href={`/blog/${latestPost.slug}`}
-			className="hidden md:block col-span-8 shadow-shadow rounded-3xl relative bg-right-bottom cursor-none"
-			style={{ backgroundImage: `url(${latestPost.data.image ?? '/images/webpic.png'})` }}
+			className="hidden md:block col-span-8 rounded-3xl relative cursor-none"
 		>
 			<CursorGlow
 				containerClass="rounded-3xl p-5 flex flex-col"
@@ -90,7 +90,14 @@ const RecentCard: React.FC<{ latestPost: Post; views: Views }> = ({ latestPost, 
 						/>
 					</div>
 				</div>
-				<div className="absolute inset-0 bg-gradient-to-t from-black/70 to-black/10 rounded-3xl" />
+				<div className="absolute inset-0 bg-gradient-to-t from-black/70 to-black/10" />
+				<Image
+					src={latestPost.data.image ?? '/images/webpic.png'}
+					alt=""
+					fill
+					priority
+					className="w-full h-full object-cover object-right-bottom -z-10 rounded-3xl border border-black dark:border-border/20"
+				/>
 			</CursorGlow>
 		</Link>
 	);
@@ -102,10 +109,7 @@ const PopularCard: React.FC<{ popularPost: { post: Post | undefined; views: numb
 	return (
 		<Link
 			href={`/blog/${popularPost.post?.slug}`}
-			className="flex-1 h-3/5 rounded-3xl relative shadow-shadow bg-cover cursor-none"
-			style={{
-				backgroundImage: `url(${popularPost.post?.data.image ?? '/images/webpic.png'})`,
-			}}
+			className="flex-1 h-3/5 relative cursor-none rounded-3xl"
 		>
 			<CursorGlow
 				containerClass="rounded-3xl p-3 sm:p-5 flex flex-col"
@@ -124,7 +128,14 @@ const PopularCard: React.FC<{ popularPost: { post: Post | undefined; views: numb
 					</div>
 					<h2 className="text-lg">{popularPost.post?.data.title}</h2>
 				</div>
-				<div className="absolute inset-0 bg-gradient-to-t from-black/80 from-20% to-black/10 rounded-3xl" />
+				<div className="absolute inset-0 bg-gradient-to-t from-black/80 from-20% to-black/10" />
+				<Image
+					src={popularPost.post?.data.image ?? '/images/webpic.png'}
+					alt=""
+					fill
+					priority
+					className="w-full h-full object-cover object-right-bottom -z-10 rounded-3xl border border-black dark:border-border/20"
+				/>
 			</CursorGlow>
 		</Link>
 	);
@@ -134,7 +145,7 @@ const TagsCard: React.FC<{ uniqueTags: string[] }> = ({ uniqueTags }) => {
 	return (
 		<AuroraBackground
 			showRadialGradient={true}
-			className="border h-2/5 justify-center rounded-3xl p-3 sm:p-5 flex flex-col shadow-shadow overflow-y-hidden"
+			className="border border-black dark:border-border/20 h-2/5 justify-center rounded-3xl p-3 sm:p-5 flex flex-col overflow-y-hidden"
 		>
 			<h4 className="text-xs font-mono tracking-wide uppercase text-foreground-secondary font-medium px-2">
 				Browse By Topic

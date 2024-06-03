@@ -84,13 +84,13 @@ export default async function About() {
 					items={skills.slice(0, skills.length / 2)}
 					speed="slow"
 					separator="•"
-					className="text-xl font-normal select-none"
+					className="text-lg sm:text-2xl font-normal select-none"
 				/>
 				<HorizontalScroller
 					items={skills.slice(skills.length / 2)}
 					speed="slow"
 					separator="•"
-					className="text-xl font-normal select-none"
+					className="sm:text-lg font-normal select-none"
 				/>
 			</div>
 

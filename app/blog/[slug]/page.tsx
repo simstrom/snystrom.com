@@ -66,7 +66,7 @@ export default async function BlogPost({ params }: Props) {
 					alt={`${post.data.title} post image`}
 					width={672}
 					height={378}
-					className="max-w-[672px] max-h-[378px] w-full aspect-video rounded-xl object-cover border mb-3"
+					className="max-w-[672px] max-h-[378px] w-full aspect-video rounded-xl object-cover border border-black dark:border-border/20 mb-3"
 					priority
 				/>
 			)}

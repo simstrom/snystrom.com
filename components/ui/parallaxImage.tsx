@@ -27,7 +27,7 @@ export default function ParallaxImage({ scrollY, image, className }: Props) {
 		<Link
 			href={'/gallery'}
 			className={cn(
-				'absolute w-64 blur-[3px] dark:brightness-50 dark:hover:brightness-100 hover:blur-none transition-[filter] duration-500 group',
+				'pointer-events-none sm:pointer-events-auto absolute w-64 blur-[3px] dark:brightness-50 dark:hover:brightness-100 hover:blur-none transition-[filter] duration-500 group',
 				className
 			)}
 			ref={ref}

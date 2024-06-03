@@ -54,7 +54,7 @@ export default function HorizontalScroller({
 			<ul
 				ref={scrollerRef}
 				className={cn(
-					'flex flex-wrap gap-3 w-max items-center',
+					'flex flex-wrap gap-2 sm:gap-3 w-max items-center',
 					start && (speed == 'normal' ? 'animate-scroll' : 'animate-scrollSlow'),
 					pauseOnHover && 'hover:[animation-play-state:paused]'
 				)}
