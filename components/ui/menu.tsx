@@ -23,9 +23,9 @@ const containerVariant = {
 		height: 'auto',
 		transition: {
 			type: 'spring',
-			stiffness: 100,
-			damping: 20,
-			staggerChildren: 0.05,
+			stiffness: 180,
+			damping: 30,
+			staggerChildren: 0.04,
 		},
 	},
 };
@@ -97,7 +97,7 @@ export default function Menu({ currentPath, isOpen, setIsOpen, className }: Menu
 									idx={idx}
 									setFocusedIndex={setFocusedIndex}
 									setIsOpen={setIsOpen}
-									isCurrentPath={currentPath == navItem.path}
+									isCurrentPath={`/${currentPath.split('/')[1]}` == navItem.path}
 									isFocused={idx === focusedIndex ? true : false}
 								/>
 							</motion.li>

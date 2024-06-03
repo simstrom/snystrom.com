@@ -22,6 +22,7 @@
 		"react-dom": "^18.2.0",
 		"reading-time": "^1.5.0",
 		"resend": "^3.2.0",
+		"sharp": "^0.33.4",
 		"sugar-high": "^0.6.0",
 		"tailwind-merge": "^2.2.2",
 		"use-debounce": "^10.0.0"

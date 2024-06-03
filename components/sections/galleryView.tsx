@@ -37,9 +37,12 @@ export default function GalleryView({ content, backLink, category }: Props) {
 	const [showLightbox, setShowLightbox] = useState<boolean>(false);
 	const [lightboxIndex, setLightboxIndex] = useState<number>(0);
 	const currentPath = usePathname();
+
 	const { scrollY } = useScroll();
 	const ref = useRef<HTMLDivElement>(null);
 	const [offsetTop, setOffsetTop] = useState<number>(0);
+	const animationUnevenCol = useTransform(scrollY, [offsetTop, offsetTop + 2000], [0, -100]);
+	const animationEvenCol = useTransform(scrollY, [offsetTop, offsetTop + 2000], [0, -500]);
 
 	useEffect(() => {
 		if (ref.current) {
@@ -100,12 +103,12 @@ export default function GalleryView({ content, backLink, category }: Props) {
 
 			<div ref={ref} className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 h-fit animate-slide">
 				{columns.map((col: Array<GalleryCollection | GalleryImage>, colIndex: number) => {
-					const start = colIndex % 2 == 1 ? 2000 : 2000;
-					const output = colIndex % 2 == 1 ? -100 : -500;
-					const y = useTransform(scrollY, [offsetTop, offsetTop + start], [0, output]);
-
 					return (
-						<motion.div key={colIndex} style={{ y }} className="flex flex-col gap-4">
+						<motion.div
+							key={colIndex}
+							style={colIndex % 2 == 0 ? { y: animationEvenCol } : { y: animationUnevenCol }}
+							className="flex flex-col gap-4"
+						>
 							{col.map((item, idx) => (
 								<GalleryItem
 									key={idx}

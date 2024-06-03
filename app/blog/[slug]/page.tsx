@@ -59,7 +59,7 @@ export default async function BlogPost({ params }: Props) {
 	const related = getRelatedPosts(post);
 
 	return (
-		<main className="flex flex-col gap-3 max-w-2xl mx-auto pt-32 sm:pt-40">
+		<main className="flex flex-col gap-3 max-w-2xl mx-auto pt-32 sm:pt-40 animate-slide">
 			{post.data.image && (
 				<Image
 					src={post.data.image}

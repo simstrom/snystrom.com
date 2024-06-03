@@ -42,7 +42,7 @@ export default async function About() {
 				<span className="text-brand">• </span>Bio
 			</div>
 			<PageHeader title="About Me" content="" className="mb-4 md:mb-8" />
-			<div className="grid md:grid-cols-12 gap-y-4 md:gap-8 mb-10">
+			<div className="grid md:grid-cols-12 gap-y-4 md:gap-8 mb-10 animate-slide">
 				<Image
 					src={HeroImage}
 					alt=""
@@ -79,7 +79,7 @@ export default async function About() {
 					</div>
 				</div>
 			</div>
-			<div className="space-y-2 mb-20">
+			<div className="space-y-2 mb-20 animate-slide">
 				<HorizontalScroller
 					items={skills.slice(0, skills.length / 2)}
 					speed="slow"

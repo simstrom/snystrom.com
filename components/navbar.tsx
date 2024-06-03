@@ -68,7 +68,7 @@ export default function Navbar({ className }: { className?: string }) {
 					initial={{ y: 0 }}
 					exit={{ y: -100 }}
 					animate={{ y: visible ? 0 : -100 }}
-					transition={{ type: 'tween', ease: 'easeInOut', duration: 0.5 }}
+					transition={{ type: 'spring', stiffness: 300, damping: 30 }}
 					role="menubar"
 					className={cn(
 						'navbar flex max-w-3xl w-full mx-auto justify-center fixed top-0 sm:top-6 inset-x-0 z-[99]',

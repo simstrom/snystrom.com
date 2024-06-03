@@ -15,8 +15,8 @@ export default function Colophon() {
 				title="Colophon"
 				content="A summary of the technologies, design, workflow and decisions behind my website."
 			/>
-			<div className="pt-8 sm:pt-12 space-y-10">
-				<div className="sm:grid grid-cols-12 gap-2">
+			<div className="pt-8 sm:pt-12 space-y-10 overflow-y-visible">
+				<div className="sm:grid grid-cols-12 gap-2 animate-slide">
 					<h2 className="col-span-3 pb-2">Overview</h2>
 					<p className="text-sm leading-7 col-span-9 text-pretty text-foreground-secondary">
 						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi nobis incidunt non modi,
@@ -24,7 +24,7 @@ export default function Colophon() {
 						soluta amet atque quaerat totam laborum?
 					</p>
 				</div>
-				<div className="sm:grid grid-cols-12 gap-2">
+				<div className="sm:grid grid-cols-12 gap-2 animate-slide">
 					<h2 className="col-span-3 pb-2">Typography</h2>
 					<p className="text-sm leading-7 col-span-9 text-pretty text-foreground-secondary">
 						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi nobis incidunt non modi,
@@ -32,7 +32,7 @@ export default function Colophon() {
 						soluta amet atque quaerat totam laborum?
 					</p>
 				</div>
-				<div className="sm:grid grid-cols-12 gap-2">
+				<div className="sm:grid grid-cols-12 gap-2 animate-slide">
 					<h2 className="col-span-3 pb-2">Design & Colors</h2>
 					<p className="text-sm leading-7 col-span-9 text-pretty text-foreground-secondary">
 						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi nobis incidunt non modi,
@@ -42,10 +42,10 @@ export default function Colophon() {
 					</p>
 				</div>
 
-				<hr />
+				<hr className="animate-slide" />
 
 				{/* TYPOGRAPHY */}
-				<div className="sm:grid grid-cols-12 gap-2 xs:pt-5">
+				<div className="sm:grid grid-cols-12 gap-2 xs:pt-5 animate-slide">
 					<p className="col-span-9 text-lg xs:text-2xl tracking-normal xs:tracking-wide font-medium">
 						ABCDEFGHIJKLMNOPQRSTUVWXYZ
 						<br />
@@ -57,7 +57,7 @@ export default function Colophon() {
 						General Sans
 					</div>
 				</div>
-				<div className="flex flex-col sm:grid grid-cols-12 gap-2 font-mono xs:pb-5">
+				<div className="flex flex-col sm:grid grid-cols-12 gap-2 font-mono xs:pb-5 animate-slide">
 					<p className="col-span-9 text-lg xs:text-2xl tracking-normal xs:tracking-wide font-medium">
 						ABCDEFGHIJKLMNOPQRSTUVWXYZ
 						<br />
@@ -73,7 +73,7 @@ export default function Colophon() {
 				<hr />
 
 				{/* COLOR SWATCHES */}
-				<div className="sm:grid grid-cols-12 space-y-4 sm:space-y-0 gap-4 xs:py-5">
+				<div className="sm:grid grid-cols-12 space-y-4 sm:space-y-0 gap-4 xs:py-5 animate-slide">
 					<div className="col-span-4 flex flex-col rounded-xl bg-background-tertiary border h-44">
 						<div className="bg-brand w-full h-3/4 border-b rounded-t-xl text-sm font-medium flex items-center justify-center">
 							<span className="hidden dark:block">Sky Dancer</span>
