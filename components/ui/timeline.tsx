@@ -58,7 +58,7 @@ export default function Timeline({ items, title, body, children }: Props) {
 	}, [circleRefs, scrollYProgress]);
 
 	return (
-		<section className="pt-8 flex flex-col items-center">
+		<section className="flex flex-col items-center">
 			<h2 className="text-xl mb-2">{title}</h2>
 			<p className="font-mono text-xs tracking-tight text-foreground-secondary">{body}</p>
 			<div ref={containerRef} className="mt-4 sm:mt-8 flex flex-col sm:items-center relative">

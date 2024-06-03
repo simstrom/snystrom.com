@@ -36,7 +36,10 @@ const mapGalleryImages = cache(async (result: any) => {
 });
 
 export async function getAllImages(limit?: number) {
-	const results = await cloudinary.v2.api.resources({ resource_type: 'image' });
+	const results = await cloudinary.v2.search
+		.expression('folder:snystrom/* AND -tags=about')
+		.sort_by('uploaded_at', 'desc')
+		.execute();
 	const { resources } = results;
 	return await mapGalleryImages(resources);
 }
