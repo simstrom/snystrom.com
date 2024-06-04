@@ -163,6 +163,7 @@ export const timelineData = [
 
 //
 // PROJECTS
+// Add from top.
 //
 export const projectsData = [
 	{

@@ -22,7 +22,7 @@ export default function GalleryBlock({ images }: Props) {
 	const { scrollY } = useScroll();
 
 	return (
-		<div className="relative w-screen max-w-screen-2xl bg-background-secondary xl:rounded-3xl overflow-x-clip">
+		<section className="relative w-screen max-w-screen-2xl bg-background-secondary xl:rounded-3xl overflow-x-clip">
 			<div className="p-4 flex flex-col items-center justify-center text-center gap-y-5 min-h-[600px]">
 				<h4 className="font-mono uppercase text-xs tracking-wide z-10 text-foreground/50 dark:mix-blend-luminosity">
 					Photography
@@ -50,6 +50,6 @@ export default function GalleryBlock({ images }: Props) {
 					image={image}
 				/>
 			))}
-		</div>
+		</section>
 	);
 }

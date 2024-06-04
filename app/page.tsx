@@ -1,9 +1,16 @@
 import GalleryBlock from '@/components/sections/galleryBlock';
+import PostViewHero from '@/components/sections/postViewHero';
+import Button from '@/components/ui/button';
+import { getAllTags, getBlogPosts } from '@/lib/blog';
 import { getLandingImages } from '@/lib/gallery';
+import { getAllViews } from '@/lib/queries';
 // import { motion } from 'framer-motion';
 
 export default async function Home() {
 	const images = await getLandingImages();
+	const blogPosts = getBlogPosts();
+	const allUniqueTags = getAllTags();
+	const allViews = await getAllViews();
 
 	return (
 		<main className="flex flex-col items-center justify-center gap-20">
@@ -38,7 +45,27 @@ export default async function Home() {
 				</p>
 			</div>
 			<GalleryBlock images={images} />
-			<div className="h-screen"></div>
+
+			<section className="w-full">
+				<div className="flex items-end justify-between mb-4">
+					<div>
+						<div className="font-mono uppercase text-xs text-foreground-secondary tracking-wide">
+							<span className="text-brand">• </span>
+							Blog
+						</div>
+						<h2 className="text-2xl">Latest Articles and Tutorials</h2>
+					</div>
+					<Button variant="link" href="/blog" className="pr-4">
+						Browse all articles
+					</Button>
+				</div>
+				<PostViewHero
+					posts={blogPosts}
+					views={allViews}
+					uniqueTags={allUniqueTags}
+					showTags={false}
+				/>
+			</section>
 		</main>
 	);
 }

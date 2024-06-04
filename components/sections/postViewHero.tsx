@@ -1,7 +1,7 @@
 import { AuroraBackground } from '@/components/ui/aurora';
 import { IconArrowUpRight, IconFire, IconSparkle } from '@/lib/icons';
 import { Post, Views } from '@/lib/types';
-import { formatDate } from '@/lib/utils';
+import { cn, formatDate } from '@/lib/utils';
 import Image from 'next/image';
 import Link from 'next/link';
 import readingTime from 'reading-time';
@@ -13,6 +13,7 @@ type PostViewHeroProps = {
 	posts: Post[];
 	views: Views;
 	uniqueTags: string[];
+	showTags?: boolean;
 };
 
 const getLatestPost = (posts: Post[]) => {
@@ -34,43 +35,56 @@ const getPopularPost = (
 	return { popularPost: { post: popularPostData, views: popularPostViewData?.views ?? 0 } };
 };
 
-export default function PostViewHero({ posts, views, uniqueTags }: PostViewHeroProps) {
+export default function PostViewHero({
+	posts,
+	views,
+	uniqueTags,
+	showTags = true,
+}: PostViewHeroProps) {
 	const latestPost = getLatestPost(posts);
 	const { popularPost } = getPopularPost(posts, views);
 
 	return (
-		<section key="blog-hero" className="grid grid-cols-12 gap-4 h-[calc(100vh/1.6)] animate-slide">
-			<RecentCard latestPost={latestPost} views={views} />
+		<section
+			key="blog-hero"
+			className="grid grid-cols-12 gap-2 sm:gap-4 h-[calc(100vh/1.6)] animate-slide"
+		>
+			<div className="hidden md:block col-span-8">
+				<BlogFeaturedCard post={latestPost} views={views} type="recent" />
+			</div>
+			{!showTags && (
+				<div className="md:hidden col-span-12">
+					<BlogCard
+						post={latestPost}
+						views={views?.find((view) => view.slug === latestPost.slug)?.views as number}
+						type="recent"
+					/>
+				</div>
+			)}
 			<div className="col-span-12 md:col-span-4 w-full h-full flex flex-col gap-4">
-				<PopularCard popularPost={popularPost} />
-				<TagsCard uniqueTags={uniqueTags} />
+				<BlogCard post={popularPost.post} views={popularPost.views} type="popular" />
+				<TagsCard uniqueTags={uniqueTags} className={cn(!showTags && 'hidden md:flex')} />
 			</div>
 		</section>
 	);
 }
 
-const RecentCard: React.FC<{ latestPost: Post; views: Views }> = ({ latestPost, views }) => {
+const BlogFeaturedCard: React.FC<{ post: Post; views: Views; type: 'popular' | 'recent' }> = ({
+	post,
+	views,
+	type,
+}) => {
 	return (
-		<Link
-			href={`/blog/${latestPost.slug}`}
-			className="hidden md:block col-span-8 rounded-3xl relative cursor-none"
-		>
+		<Link href={`/blog/${post.slug}`} className="rounded-3xl relative cursor-none">
 			<CursorGlow
 				containerClass="rounded-3xl p-5 flex flex-col"
 				cursorClass="bg-brand-secondary/80 dark:bg-brand/80 rounded-full text-foreground-inverse dark:text-foreground"
 				cursorElement={<IconArrowUpRight className="w-6 h-6" />}
 			>
-				<div className="inline-flex items-center gap-x-2 px-4 py-3 rounded-full bg-background w-fit self-end font-mono text-xs uppercase tracking-wide z-10">
-					<IconSparkle
-						width={15}
-						height={15}
-						className="text-foreground-secondary -translate-y-[2px]"
-					/>
-					Most Recent
-				</div>
+				<CardLabel type={type} />
 				<div className="mt-auto w-fit z-10">
 					<div className="rounded-t-xl inline-flex gap-x-4 py-1 pt-2 px-6 font-mono tracking-tight text-xs bg-background">
-						{latestPost.data.tags?.map((tag) => (
+						{post.data.tags?.map((tag) => (
 							<div key={tag} className="inline-flex gap-1 items-center w-fit">
 								<span className="text-brand">#</span>
 								{tag.toLowerCase()}
@@ -79,20 +93,18 @@ const RecentCard: React.FC<{ latestPost: Post; views: Views }> = ({ latestPost, 
 					</div>
 					<h2 className="whitespace-pre-wrap text-2xl xl:text-2xl">
 						<span className="bg-background leading-snug py-2 rounded-xl px-5 rounded-tl-none rounded-bl-none box-decoration-clone ">
-							{latestPost.data.title}
+							{post.data.title}
 						</span>
 					</h2>
 					<div className="rounded-b-xl inline-flex gap-x-4 py-2 px-6 text-sm bg-background">
-						{formatDate(latestPost.data.publishedAt, false, true)}
+						{formatDate(post.data.publishedAt, false, true)}
 						<span className="text-brand">/</span>
-						<ViewCounter
-							views={views?.find((view) => view.slug === latestPost.slug)?.views as number}
-						/>
+						<ViewCounter views={views?.find((view) => view.slug === post.slug)?.views as number} />
 					</div>
 				</div>
 				<div className="absolute inset-0 bg-gradient-to-t from-black/70 to-black/10" />
 				<Image
-					src={latestPost.data.image ?? '/images/webpic.png'}
+					src={post.data.image ?? '/images/webpic.png'}
 					alt=""
 					fill
 					priority
@@ -103,34 +115,30 @@ const RecentCard: React.FC<{ latestPost: Post; views: Views }> = ({ latestPost, 
 	);
 };
 
-const PopularCard: React.FC<{ popularPost: { post: Post | undefined; views: number } }> = ({
-	popularPost,
+const BlogCard: React.FC<{ post: Post | undefined; views: number; type: 'popular' | 'recent' }> = ({
+	post,
+	views,
+	type,
 }) => {
 	return (
-		<Link
-			href={`/blog/${popularPost.post?.slug}`}
-			className="flex-1 h-3/5 relative cursor-none rounded-3xl"
-		>
+		<Link href={`/blog/${post?.slug}`} className="flex-1 h-3/5 relative cursor-none rounded-3xl">
 			<CursorGlow
 				containerClass="rounded-3xl p-3 sm:p-5 flex flex-col"
 				cursorClass="bg-brand-secondary/80 dark:bg-brand/80 rounded-full text-foreground-inverse dark:text-foreground"
 				cursorElement={<IconArrowUpRight className="w-6 h-6" />}
 			>
-				<div className="inline-flex items-center gap-x-2 px-4 py-3 rounded-full bg-background w-fit font-mono text-xs uppercase tracking-wide self-end font-medium z-10">
-					<IconFire width={14} height={14} className="text-foreground-secondary" />
-					Popular
-				</div>
+				<CardLabel type={type} />
 				<div className="mt-auto text-foreground-inverse dark:text-foreground z-10">
 					<div className="text-sm inline-flex gap-x-1 w-full">
-						{readingTime(popularPost.post?.content as string).text}
+						{readingTime(post?.content as string).text}
 						<span className="text-brand">/</span>
-						<ViewCounter views={popularPost.views} />
+						<ViewCounter views={views} />
 					</div>
-					<h2 className="text-lg">{popularPost.post?.data.title}</h2>
+					<h2 className="text-lg">{post?.data.title}</h2>
 				</div>
 				<div className="absolute inset-0 bg-gradient-to-t from-black/80 from-20% to-black/10" />
 				<Image
-					src={popularPost.post?.data.image ?? '/images/webpic.png'}
+					src={post?.data.image ?? '/images/webpic.png'}
 					alt=""
 					fill
 					priority
@@ -141,11 +149,17 @@ const PopularCard: React.FC<{ popularPost: { post: Post | undefined; views: numb
 	);
 };
 
-const TagsCard: React.FC<{ uniqueTags: string[] }> = ({ uniqueTags }) => {
+const TagsCard: React.FC<{ uniqueTags: string[]; className: string }> = ({
+	uniqueTags,
+	className,
+}) => {
 	return (
 		<AuroraBackground
 			showRadialGradient={true}
-			className="border border-black dark:border-border/20 h-2/5 justify-center rounded-3xl p-3 sm:p-5 flex flex-col overflow-y-hidden"
+			className={cn(
+				'border border-black dark:border-border/20 h-2/5 justify-center rounded-3xl p-3 sm:p-5 flex flex-col overflow-y-hidden',
+				className
+			)}
 		>
 			<h4 className="text-xs font-mono tracking-wide uppercase text-foreground-secondary font-medium px-2">
 				Browse By Topic
@@ -157,5 +171,29 @@ const TagsCard: React.FC<{ uniqueTags: string[] }> = ({ uniqueTags }) => {
 				))}
 			</div>
 		</AuroraBackground>
+	);
+};
+
+const CardLabel: React.FC<{ type: 'popular' | 'recent'; className?: string }> = ({
+	type,
+	className,
+}) => {
+	const icon =
+		type == 'popular' ? (
+			<IconFire width={15} height={15} className="text-foreground-secondary -translate-y-[1px]" />
+		) : (
+			<IconSparkle
+				width={15}
+				height={15}
+				className="text-foreground-secondary -translate-y-[1px]"
+			/>
+		);
+	const label = type == 'recent' ? 'Most Recent' : 'Popular';
+
+	return (
+		<div className="inline-flex items-center gap-x-2 px-4 py-3 rounded-full bg-background w-fit self-end font-mono text-xs uppercase tracking-wide z-10">
+			{icon}
+			{label}
+		</div>
 	);
 };

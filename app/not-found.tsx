@@ -13,9 +13,9 @@ export default function NotFound() {
 			</span>
 			<h1 className="text-xl mb-2">Page not found</h1>
 			<p className="text-sm leading-7 text-foreground-secondary mb-4 text-center">
-				I could not find what you're looking for... but it's alright,
+				I could not find what you&apos;re looking for... but it&apos;s alright,
 				<br className="hidden sm:block" />
-				we'll get you right back on track!
+				we&apos;ll get you right back on track!
 			</p>
 			<Button size="small" href="/">
 				Take me home
