@@ -69,7 +69,7 @@ export default function GalleryView({ content, backLink, category }: Props) {
 
 	return (
 		<>
-			<div className="py-8 sm:pt-12 flex font-mono uppercase text-xs tracking-wide text-foreground-secondary">
+			<div className="py-8 sm:pt-12 flex font-mono text-xs tracking-tight text-foreground-secondary">
 				{backLink ? (
 					<Link
 						href={backLink.path}
@@ -84,7 +84,9 @@ export default function GalleryView({ content, backLink, category }: Props) {
 					</Link>
 				) : (
 					<>
-						<span className="border-r-2 pr-4 select-non opacity-60">View As</span>
+						<span className="border-r-2 pr-4 select-none opacity-60 uppercase tracking-wide">
+							View As
+						</span>
 						{GalleryRoutes.map((route) => (
 							<Link
 								key={route.name}

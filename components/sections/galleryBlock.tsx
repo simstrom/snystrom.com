@@ -2,6 +2,7 @@
 
 import { GalleryImage } from '@/lib/types';
 import { useScroll } from 'framer-motion';
+import { useRef } from 'react';
 import Button from '../ui/button';
 import ParallaxImage from '../ui/parallaxImage';
 
@@ -10,19 +11,26 @@ type Props = {
 };
 
 const imagePositions = [
-	'-inset-x-28 top-32 sm:inset-x-24 sm:top-16',
-	'inset-x-80 inset-y-80 hidden xl:block',
+	'-inset-x-28 top-24 sm:inset-x-24 sm:top-16',
+	'inset-x-96 inset-y-80 hidden xl:block',
 	'-inset-x-14 -bottom-40 sm:inset-x-6',
-	'top-24 right-1/3 hidden lg:block',
-	'-bottom-32 right-80 hidden lg:block',
+	'top-24 right-1/4 hidden lg:block',
+	'-bottom-44 right-80 hidden lg:block',
 	'top-56 -right-24 sm:right-8',
 ];
 
 export default function GalleryBlock({ images }: Props) {
-	const { scrollY } = useScroll();
+	const ref = useRef<HTMLDivElement>(null);
+	const { scrollYProgress } = useScroll({
+		target: ref,
+		offset: ['start end', 'end start'],
+	});
 
 	return (
-		<section className="relative w-screen max-w-screen-2xl bg-background-secondary xl:rounded-3xl overflow-x-clip">
+		<section
+			ref={ref}
+			className="relative w-screen max-w-screen-2xl bg-background-secondary xl:rounded-3xl overflow-x-clip"
+		>
 			<div className="p-4 flex flex-col items-center justify-center text-center gap-y-5 min-h-[600px]">
 				<h4 className="font-mono uppercase text-xs tracking-wide z-10 text-foreground/50 dark:mix-blend-luminosity">
 					Photography
@@ -36,9 +44,9 @@ export default function GalleryBlock({ images }: Props) {
 				</p>
 				<Button
 					href="/gallery/destinations"
-					className="z-10 after:bg-background-tertiary/50 after:backdrop-blur-md after:-z-10"
+					className="z-10 after:bg-background-tertiary/50 after:backdrop-blur-md after:-z-10 text-xs"
 				>
-					Explore Destinations
+					Discover Destinations
 				</Button>
 			</div>
 
@@ -46,7 +54,7 @@ export default function GalleryBlock({ images }: Props) {
 				<ParallaxImage
 					key={image.id}
 					className={imagePositions[idx]}
-					scrollY={scrollY}
+					scrollY={scrollYProgress}
 					image={image}
 				/>
 			))}
