@@ -45,10 +45,7 @@ export default function PostViewHero({
 	const { popularPost } = getPopularPost(posts, views);
 
 	return (
-		<section
-			key="blog-hero"
-			className="grid grid-cols-12 gap-2 sm:gap-4 h-[calc(100vh/1.6)] animate-slide"
-		>
+		<section key="blog-hero" className="grid grid-cols-12 gap-2 sm:gap-4 h-[540px] animate-slide">
 			<div className="hidden md:block col-span-8">
 				<BlogFeaturedCard post={latestPost} views={views} type="recent" />
 			</div>
@@ -157,7 +154,7 @@ const TagsCard: React.FC<{ uniqueTags: string[]; className: string }> = ({
 		<AuroraBackground
 			showRadialGradient={true}
 			className={cn(
-				'border border-black dark:border-border/20 h-2/5 justify-center rounded-3xl p-3 sm:p-5 flex flex-col overflow-y-hidden',
+				'border h-2/5 justify-center rounded-3xl p-3 sm:p-5 flex flex-col overflow-y-hidden',
 				className
 			)}
 		>

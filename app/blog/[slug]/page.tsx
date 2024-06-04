@@ -107,7 +107,7 @@ export default async function BlogPost({ params }: Props) {
 			)}
 			<Link
 				href="/blog"
-				className="inline-flex w-fit items-center gap-x-1 font-mono uppercase text-xs tracking-wide hover:text-brand transition duration-300 group"
+				className="inline-flex w-fit items-center gap-x-1 font-mono text-xs tracking-tight hover:text-brand transition duration-300 group"
 			>
 				<IconArrowLeft
 					width={12}

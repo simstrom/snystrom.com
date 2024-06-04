@@ -55,7 +55,7 @@ export default function ProjectView() {
 						<ProjectCard project={projectsData[0]} variant="featured" />
 
 						{/* SIDE CONTENT */}
-						<div className="relative overflow-hidden hidden lg:flex lg:col-span-3 flex-col justify-center rounded-2xl w-full lg:min-h-[360px] border bg-background-tertiary shadow-shadow group/card">
+						<div className="relative overflow-hidden hidden lg:flex lg:col-span-3 flex-col justify-center rounded-2xl w-full lg:min-h-[360px] border bg-background-tertiary group/card">
 							<div className="flex-1 flex flex-col justify-center px-5 py-10">
 								<h3>
 									<span className="text-brand text-lg mr-2">‣</span>

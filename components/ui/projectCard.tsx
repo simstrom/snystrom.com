@@ -1,3 +1,5 @@
+'use client';
+
 import { IconArrowUpRight, IconGithub } from '@/lib/icons';
 import { Project } from '@/lib/types';
 import { cn } from '@/lib/utils';
@@ -10,6 +12,7 @@ import HorizontalScroller from './horizontalScroller';
 interface ProjectCardProps {
 	project: Project;
 	variant?: 'featured' | 'standard' | 'reversed' | 'small';
+	className?: string;
 }
 
 const renderButtons = (project: Project) => (
@@ -27,7 +30,11 @@ const renderButtons = (project: Project) => (
 	</>
 );
 
-export default function ProjectCard({ project, variant = 'standard' }: ProjectCardProps) {
+export default function ProjectCard({
+	project,
+	variant = 'standard',
+	className,
+}: ProjectCardProps) {
 	const CardFooter: React.FC<ProjectCardProps> = ({ project }) => (
 		<div className="border-t">
 			<div className="relative overflow-hidden py-4 font-mono tracking-tight text-xs text-foreground-secondary bg-background-secondary rounded-b-2xl select-none">
@@ -36,8 +43,13 @@ export default function ProjectCard({ project, variant = 'standard' }: ProjectCa
 		</div>
 	);
 
-	const CardFeatured: React.FC<ProjectCardProps> = ({ project }) => (
-		<div className="col-span-12 lg:col-span-9 relative rounded-2xl w-full flex flex-col justify-between lg:min-h-[360px] border bg-background-tertiary shadow-shadow">
+	const CardFeatured: React.FC<ProjectCardProps> = ({ project, className }) => (
+		<div
+			className={cn(
+				'col-span-12 lg:col-span-9 relative rounded-2xl w-full flex flex-col justify-between lg:min-h-[360px] border bg-background-tertiary',
+				className
+			)}
+		>
 			<div className="grid grid-cols-6 gap-2 h-full">
 				<div className="relative col-span-2 lg:col-span-3 py-4 flex items-center">
 					<CursorGlow
@@ -78,7 +90,7 @@ export default function ProjectCard({ project, variant = 'standard' }: ProjectCa
 		</div>
 	);
 
-	const CardStandard: React.FC<ProjectCardProps> = ({ project }) => (
+	const CardStandard: React.FC<ProjectCardProps> = ({ project, className }) => (
 		<motion.div
 			initial={{ opacity: 0, y: 75 }}
 			whileInView={{ opacity: 1, y: 0 }}
@@ -86,7 +98,10 @@ export default function ProjectCard({ project, variant = 'standard' }: ProjectCa
 				duration: 0.5,
 				ease: 'easeInOut',
 			}}
-			className="col-span-12 md:col-span-7 lg:col-span-8 relative rounded-2xl w-full flex flex-col justify-between lg:min-h-[360px] border bg-background-tertiary shadow-shadow"
+			className={cn(
+				'col-span-12 md:col-span-7 lg:col-span-8 relative rounded-2xl w-full flex flex-col justify-between lg:min-h-[360px] border bg-background-tertiary shadow-shadow',
+				className
+			)}
 		>
 			<div className="grid grid-cols-6 gap-2 h-full">
 				<div
@@ -157,7 +172,7 @@ export default function ProjectCard({ project, variant = 'standard' }: ProjectCa
 		</motion.div>
 	);
 
-	const CardSmall: React.FC<ProjectCardProps> = ({ project }) => (
+	const CardSmall: React.FC<ProjectCardProps> = ({ project, className }) => (
 		<motion.div
 			initial={{ opacity: 0, y: 75 }}
 			whileInView={{ opacity: 1, y: 0 }}
@@ -165,7 +180,10 @@ export default function ProjectCard({ project, variant = 'standard' }: ProjectCa
 				duration: 0.5,
 				ease: 'easeInOut',
 			}}
-			className="col-span-12 md:col-span-5 lg:col-span-4 relative rounded-2xl w-full flex flex-col justify-between min-h-[300px] border bg-background-tertiary shadow-shadow"
+			className={cn(
+				'col-span-12 md:col-span-5 lg:col-span-4 relative rounded-2xl w-full flex flex-col justify-between min-h-[300px] border bg-background-tertiary shadow-shadow',
+				className
+			)}
 		>
 			<div className="py-5 px-3 sm:px-6 flex flex-col h-full gap-y-2 pt-16 lg:pt-16 justify-center">
 				<h3 className="text-lg text-balance">{project.title}</h3>
@@ -183,13 +201,13 @@ export default function ProjectCard({ project, variant = 'standard' }: ProjectCa
 	const renderCard = () => {
 		switch (variant) {
 			case 'featured':
-				return <CardFeatured project={project} />;
+				return <CardFeatured project={project} className={className} />;
 			case 'small':
-				return <CardSmall project={project} />;
+				return <CardSmall project={project} className={className} />;
 			case 'reversed':
-				return <CardStandard project={project} />;
+				return <CardStandard project={project} className={className} />;
 			default:
-				return <CardStandard project={project} />;
+				return <CardStandard project={project} className={className} />;
 		}
 	};
 
