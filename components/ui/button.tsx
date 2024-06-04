@@ -1,4 +1,4 @@
-import { IconArrowUpRight } from '@/lib/icons';
+import { IconArrowRight } from '@/lib/icons';
 import { cn } from '@/lib/utils';
 import { Url } from 'next/dist/shared/lib/router/router';
 import Link from 'next/link';
@@ -32,7 +32,7 @@ export default function Button({
 			'uppercase tracking-normal button hover:text-brand transition duration-300 ease-in-out',
 		secondary: '',
 		ghost: '',
-		link: 'w-fit h-fit text-xs group/link',
+		link: 'items-center gap-x-1 font-mono text-xs tracking-tight hover:text-brand transition duration-300 group',
 	};
 
 	const sizeClasses = {
@@ -43,7 +43,7 @@ export default function Button({
 	const variantClass = variantClasses[variant];
 	const sizeClass = sizeClasses[size];
 	const commonClass =
-		'relative inline-flex items-center justify-center gap-x-2 font-mono tracking-tight text-sm';
+		'relative inline-flex w-fit items-center justify-center gap-x-2 font-mono tracking-tight text-sm';
 
 	if (isExternalLink) {
 		return (
@@ -60,15 +60,14 @@ export default function Button({
 	} else if (variant === 'link') {
 		return (
 			<Link href={href as Url} {...props} className={cn(commonClass, variantClass, className)}>
-				<IconArrowUpRight
+				<span className="group-hover:translate-x-1 transition-transform duration-300">
+					{children}
+				</span>
+				<IconArrowRight
 					width={14}
 					height={14}
-					className="text-foreground-secondary group-hover/link:text-foreground group-hover/link:translate-x-1.5 group-hover/link:-translate-y-0.5 group-hover/link:scale-110 transition-transform duration-500"
+					className="text-foreground-secondary group-hover:text-brand group-hover:translate-x-1.5 transition-transform duration-300"
 				/>
-				<span className="relative group-hover/link:translate-x-1.5 transition-transform duration-500">
-					{children}
-					<span className="absolute -bottom-1 left-0 w-full h-0.5 bg-brand transition scale-x-0 origin-left group-hover/link:scale-x-100 duration-500" />
-				</span>
 			</Link>
 		);
 	} else if (href) {
