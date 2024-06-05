@@ -1,5 +1,6 @@
 import GalleryBlock from '@/components/sections/galleryBlock';
 import PostViewHero from '@/components/sections/postViewHero';
+import { AuroraBackground } from '@/components/ui/aurora';
 import Button from '@/components/ui/button';
 import ProjectCard from '@/components/ui/projectCard';
 import { getAllTags, getBlogPosts } from '@/lib/blog';
@@ -18,14 +19,16 @@ export default async function Home() {
 
 	return (
 		<main className="flex flex-col items-center justify-center gap-20">
-			<div className="w-full mx-auto h-[90vh] max-w-screen-lg relative flex flex-col gap-4 justify-center px-6 lg:px-0">
-				<h1 className="text-5xl sm:text-6xl lg:text-8xl tracking-tight">
-					Background lights are cool you know.
-				</h1>
-				<div className="md:text-4xl py-4">And this, is chemical burn.</div>
-				<button className="bg-background border backdrop-blur-md shadow-sm rounded-xl w-fit px-10 py-3 uppercase text-sm tracking-wide font-medium">
-					Debug now
-				</button>
+			<div className="w-screen h-screen flex flex-col items-center justify-center p-4 pt-24 sm:px-6 xl:px-16">
+				<div className="absolute -z-20 w-5 h-5 bg-transparent rounded" />
+				<AuroraBackground className="h-full w-full rounded-3xl text-foreground-inverse dark:text-foreground">
+					{/* <div className="w-full h-full max-w-screen-lg mx-auto relative flex flex-col gap-4 justify-center">
+						<h1 className="text-5xl sm:text-6xl lg:text-8xl tracking-tight">
+							Background lights are cool you know.
+						</h1>
+						<div className="md:text-4xl py-4">And this, is chemical burn.</div>
+					</div> */}
+				</AuroraBackground>
 			</div>
 			{/* <AuroraBackground showRadialGradient={true}>
 				<div className="max-w-screen-lg relative flex flex-col gap-4 justify-center px-6 lg:px-0">
@@ -72,9 +75,13 @@ export default async function Home() {
 				</div>
 				<div className="grid grid-cols-1 md:grid-cols-12 gap-4 h-fit">
 					<ProjectCard project={projectsData[0]} variant="featured" />
-					<ProjectCard project={snystrom} variant="reversed" className="md:col-span-12 lg:hidden" />
+					<ProjectCard
+						project={snystrom}
+						variant="reversed"
+						className="md:col-span-12 lg:col-span-12"
+					/>
 					{/* SIDE CONTENT */}
-					<div className="hidden lg:flex col-span-3 flex-col justify-center rounded-2xl w-full lg:min-h-[360px] border bg-background-tertiary group/card">
+					{/* <div className="hidden lg:flex col-span-3 flex-col justify-center rounded-2xl w-full lg:min-h-[360px] border bg-background-tertiary group/card">
 						<div className="flex-1 flex flex-col justify-center px-5 py-10">
 							<h3>
 								<span className="text-brand text-lg mr-2">‣</span>
@@ -89,7 +96,7 @@ export default async function Home() {
 								Learn more about the process
 							</Button>
 						</div>
-					</div>
+					</div> */}
 				</div>
 				<Button size="small" href="/projects" className="text-xs mt-6 w-fit place-self-center">
 					Browse all projects

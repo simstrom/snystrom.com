@@ -46,7 +46,7 @@ export default function ProjectCard({
 	const CardFeatured: React.FC<ProjectCardProps> = ({ project, className }) => (
 		<div
 			className={cn(
-				'col-span-12 lg:col-span-9 relative rounded-2xl w-full flex flex-col justify-between lg:min-h-[360px] border bg-background-tertiary',
+				'col-span-12 relative rounded-2xl w-full flex flex-col justify-between lg:min-h-[360px] border bg-background-tertiary',
 				className
 			)}
 		>

@@ -13,22 +13,23 @@ import ThemeSwitcher from './ui/themeSwitcher';
 
 export default function Navbar({ className }: { className?: string }) {
 	const [visible, setVisible] = useState(true);
+	const [isScrolled, setIsScrolled] = useState(false);
 	const [menuOpen, setMenuOpen] = useState(false);
 	const menuRef = useRef<HTMLDivElement>(null);
 	const pathName = usePathname();
-
+	const isStartPage = pathName == '/';
 	const { scrollY } = useScroll();
-	const [prevScrollY, setPrevScrollY] = useState(0);
 
 	useMotionValueEvent(scrollY, 'change', (latest) => {
-		if (latest <= 0) {
-			setVisible(true);
-		} else if (latest > prevScrollY && latest > 50) {
-			setVisible(false);
-		} else if (prevScrollY - latest > 1) {
-			setVisible(true);
+		if (latest < 10) {
+			// setVisible(true);
+			setIsScrolled(false);
+		} else if (scrollY.getVelocity() > 0 && latest > 10) {
+			setIsScrolled(true);
+			// if (latest > 200) setVisible(false);
+		} else if (scrollY.getVelocity() < 0) {
+			// setVisible(true);
 		}
-		setPrevScrollY(latest);
 	});
 
 	useEffect(() => {
@@ -71,15 +72,21 @@ export default function Navbar({ className }: { className?: string }) {
 					transition={{ type: 'spring', stiffness: 300, damping: 30 }}
 					role="menubar"
 					className={cn(
-						'navbar flex max-w-3xl w-full mx-auto justify-center fixed top-0 sm:top-6 inset-x-0 z-[99]',
+						'navbar flex w-screen py-10 justify-center fixed top-0 left-0 z-[99] border-b border-transparent transition-all duration-500 ease-in-out',
+						isScrolled && 'bg-background/70 backdrop-blur-md py-3 border-b-border/20',
+						isStartPage && !isScrolled && 'py-6',
 						className
 					)}
 				>
 					<div
 						ref={menuRef}
-						className="w-full flex flex-col sm:mx-3 md:mx-0 border-b sm:border bg-background-secondary/50 sm:rounded-xl backdrop-blur shadow-shadow"
+						className={cn(
+							'w-full px-4 lg:px-2 lg:pr-6 max-w-screen-lg flex flex-col transition-all duration-500 ease-in-out',
+							isStartPage && 'max-w-[90vw]',
+							isStartPage && isScrolled && 'max-w-screen-lg'
+						)}
 					>
-						<div className="flex justify-between items-center w-full py-3 px-4 sm:px-6">
+						<div className={cn('flex justify-between items-center w-full')}>
 							<Link
 								href="/"
 								onClick={() => pathName != '/' && setMenuOpen(false)}
@@ -91,7 +98,10 @@ export default function Navbar({ className }: { className?: string }) {
 									viewBox="0 0 44 44"
 									fill="none"
 									aria-label="Logo"
-									className="hover:text-brand active:scale-95 transition"
+									className={cn(
+										'w-8 h-8 hover:text-brand active:scale-95 origin-bottom transition-all duration-500 ease-in-out',
+										isScrolled && 'w-7 h-7'
+									)}
 								>
 									<motion.path
 										key="logo"
@@ -112,19 +122,19 @@ export default function Navbar({ className }: { className?: string }) {
 							</Link>
 
 							<div className="flex gap-x-2">
-								<ThemeSwitcher />
 								<Button
 									size="icon"
 									onClick={() => setMenuOpen(!menuOpen)}
 									aria-label="Toggle menu"
 									className={cn(
-										'active:scale-95',
+										'active:scale-95 text-foreground-secondary',
 										menuOpen &&
 											'focus-visible:outline-none text-brand after:border-brand after:border-2'
 									)}
 								>
 									<IconCommand />
 								</Button>
+								<ThemeSwitcher />
 							</div>
 						</div>
 
