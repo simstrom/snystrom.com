@@ -1,4 +1,3 @@
-import { AuroraBackground } from '@/components/ui/aurora';
 import { IconArrowUpRight, IconFire, IconSparkle } from '@/lib/icons';
 import { Post, Views } from '@/lib/types';
 import { cn, formatDate } from '@/lib/utils';
@@ -151,8 +150,7 @@ const TagsCard: React.FC<{ uniqueTags: string[]; className: string }> = ({
 	className,
 }) => {
 	return (
-		<AuroraBackground
-			showRadialGradient={true}
+		<div
 			className={cn(
 				'border h-2/5 justify-center rounded-3xl p-3 sm:p-5 flex flex-col overflow-y-hidden',
 				className
@@ -167,7 +165,7 @@ const TagsCard: React.FC<{ uniqueTags: string[]; className: string }> = ({
 					<Tag key={idx} tag={tag} />
 				))}
 			</div>
-		</AuroraBackground>
+		</div>
 	);
 };
 

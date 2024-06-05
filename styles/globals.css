@@ -242,27 +242,13 @@ pre .sh__line:hover {
 /* 	------------
 	OTHER
 	-----------	*/
-.noise {
-	position: relative;
-}
-.noise::before {
-	position: absolute;
-	left: 0;
-	top: 0;
-	content: '';
+#gradient-canvas {
 	width: 100%;
 	height: 100%;
-	z-index: -1;
-	mix-blend-mode: difference;
-	overflow: hidden;
-	border-radius: 1rem;
-}
-.noise::before {
-	background-image: url(/noise.svg);
-}
-.dark .noise::before {
-	mix-blend-mode: luminosity;
-	opacity: 0.5;
+	--gradient-color-1: #3e5ca3;
+	--gradient-color-2: #5286ff;
+	--gradient-color-3: #7398f0;
+	--gradient-color-4: #9cb1e0;
 }
 
 @media print {

@@ -29,7 +29,7 @@ export default function Button({
 }: ButtonProps) {
 	const variantClasses = {
 		primary:
-			'uppercase tracking-normal button hover:text-brand transition duration-300 ease-in-out',
+			'uppercase tracking-normal button hover:text-brand transition duration-300 ease-in-out after:bg-background/80 z-10 after:-z-[1]',
 		secondary: '',
 		ghost: '',
 		link: 'items-center gap-x-1 font-mono text-xs tracking-tight hover:text-brand transition duration-300 group',
