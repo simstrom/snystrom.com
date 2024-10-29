@@ -40,6 +40,8 @@ export default function PostViewHero({
 	uniqueTags,
 	showTags = true,
 }: PostViewHeroProps) {
+	if (!views || views.length === 0) return null;
+
 	const latestPost = getLatestPost(posts);
 	const { popularPost } = getPopularPost(posts, views);
 

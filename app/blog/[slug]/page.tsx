@@ -82,7 +82,7 @@ export default async function BlogPost({ params }: Props) {
 					<div className="flex items-center gap-2">
 						<time>{formatDate(post.data.publishedAt)}</time>
 						<span className="text-brand font-bold">/</span>
-						<ViewCounter views={postInteractions?.views} />
+						<ViewCounter views={postInteractions?.views ? postInteractions.views + 1 : 1} />
 						<span className="text-brand font-bold">/</span>
 						<p>{readingTime(post.content).text}</p>
 					</div>
