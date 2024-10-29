@@ -12,7 +12,7 @@ import {
 	IconSnow,
 	IconWeight,
 } from '@/lib/icons';
-import { getActivities } from '@/lib/strava';
+import { getActivities, getActivityImages } from '@/lib/strava';
 import { Activity, ActivityTypes } from '@/lib/types';
 import { cn } from '@/lib/utils';
 import { Metadata } from 'next';
@@ -166,6 +166,9 @@ export default async function Activities() {
 	const featuredActivities = allActivities
 		.filter((activity) => activity.total_photo_count > 0)
 		.slice(0, 2);
+	const activityImages = await Promise.all(
+		featuredActivities.map((activity) => getActivityImages(activity.id))
+	);
 
 	return (
 		<main className="max-w-screen-lg mx-auto pt-32 sm:pt-40">
@@ -176,9 +179,12 @@ export default async function Activities() {
 			<div className="grid md:grid-cols-12 gap-5 mb-10 animate-slide">
 				<div className="col-span-8">
 					<div className="flex gap-4">
-						{featuredActivities.map((activity) => (
+						{featuredActivities.map((activity, idx) => (
 							// <ActivityCard key={activity.id} activity={activity} /> // Create ActivityCard component + fetch image
-							<div className="relative w-full min-h-96 overflow-hidden rounded-2xl p-3 flex flex-col border shadow-shadow">
+							<div
+								key={`featured-${idx}`}
+								className="relative w-full min-h-96 overflow-hidden rounded-2xl p-3 flex flex-col border shadow-shadow"
+							>
 								<div className="mt-auto flex flex-col gap-2 text-foreground-inverse dark:text-foreground z-10">
 									<div className="flex items-center justify-between font-mono uppercase text-sm tracking-wider">
 										<div className="text-brand-secondary inline-flex gap-2 items-center font-medium">
@@ -207,7 +213,7 @@ export default async function Activities() {
 								</div>
 								<div className="absolute inset-0 bg-gradient-to-t from-black/100 from-5% to-60% dark:to-80% to-transparent" />
 								<img
-									src="https://dgtzuqphqg23d.cloudfront.net/ITeJIGYOktCDPF8O3l8p-JyQSj8TEz7qb6HTkP3shSw-1536x2048.jpg"
+									src={activityImages[idx]}
 									alt=""
 									className="absolute inset-0 w-full h-full object-cover object-center -z-10"
 								/>
@@ -220,7 +226,10 @@ export default async function Activities() {
 								if (featuredActivities.includes(activity)) return; // Filter out already featured activities
 
 								return (
-									<tr className="border-b flex w-full items-center">
+									<tr
+										key={`activityInfo-${activity.id}`}
+										className="border-b flex w-full items-center"
+									>
 										<td className="py-6 px-2 flex items-center gap-4 mr-auto font-medium">
 											<span className="text-brand">
 												{getActivityIcon(activity.type as ActivityTypes)}

@@ -47,7 +47,7 @@ export const getActivities = async (): Promise<{
 	const res = await fetch(
 		`${ATHLETES_ENDPOINT}/activities?access_token=${accessToken}&after=${startOfLastMonthInEpoch}`,
 		{
-			next: { revalidate: 3600 },
+			next: { revalidate: 7200 },
 		}
 	);
 	const data = await res.json();
@@ -76,12 +76,13 @@ export const getActivities = async (): Promise<{
 	return { currentMonthActivities, lastMonthActivities };
 };
 
-export const getActivityImages = async (id: number): Promise<Activity> => {
+export const getActivityImages = async (id: number) => {
 	const { access_token: accessToken } = await getAccessToken();
 	const res = await fetch(`${ACTIVITY_ENDPOINT}/activities/${id}?access_token=${accessToken}`, {
-		next: { revalidate: 3600 },
+		next: { revalidate: 7200 },
 	});
 	const data = await res.json();
+
 	const images = data.photos.primary.urls;
-	return images;
+	return images[600];
 };
