@@ -16,6 +16,7 @@ import { getActivities, getActivityImages } from '@/lib/strava';
 import { Activity, ActivityTypes } from '@/lib/types';
 import { cn } from '@/lib/utils';
 import { Metadata } from 'next';
+import Image from 'next/image';
 
 type ActivityStats = {
 	count: number;
@@ -172,47 +173,62 @@ export default async function Activities() {
 
 	return (
 		<main className="max-w-screen-lg mx-auto pt-32 sm:pt-40">
-			<div className="absolute -translate-y-5 font-mono uppercase text-xs tracking-wide text-foreground-secondary">
-				<span className="text-brand">• </span>Health
+			<div className="absolute -translate-y-6 text-sm font-medium text-foreground-secondary">
+				Health
 			</div>
-			<PageHeader title="Activities Dashboard" content="" className="mb-4 md:mb-8" />
-			<div className="grid md:grid-cols-12 gap-5 mb-10 animate-slide">
-				<div className="col-span-8">
-					<div className="flex gap-4">
+			<PageHeader
+				title="Activities Dashboard"
+				content="A summary of the technologies, design, workflow and decisions behind my website."
+				className="mb-4 md:mb-8"
+			/>
+			<div className="my-8 pt-4 sm:pt-12 grid lg:grid-cols-12 gap-5 mb-10 animate-slide">
+				<div className="lg:col-span-8">
+					<div className="flex flex-col sm:flex-row gap-4">
 						{featuredActivities.map((activity, idx) => (
 							// <ActivityCard key={activity.id} activity={activity} /> // Create ActivityCard component + fetch image
 							<div
 								key={`featured-${idx}`}
-								className="relative w-full min-h-96 overflow-hidden rounded-2xl p-3 flex flex-col border shadow-shadow"
+								className={cn(
+									'relative w-full min-h-96 overflow-hidden rounded-xl p-4 flex flex-col border',
+									idx > 0 && 'hidden sm:block'
+								)}
 							>
-								<div className="mt-auto flex flex-col gap-2 text-foreground-inverse dark:text-foreground z-10">
-									<div className="flex items-center justify-between font-mono uppercase text-sm tracking-wider">
-										<div className="text-brand-secondary inline-flex gap-2 items-center font-medium">
-											{getActivityIcon(activity.type as ActivityTypes)}
-											{activity.type == ActivityTypes.WeightTraining ? 'Weight' : activity.type}
-										</div>
-										<div className="text-foreground-inverse dark:text-foreground">
-											{formatRelativeDate(activity.start_date)}
-										</div>
+								<div className="mt-auto ml-auto flex flex-col gap-2 text-foreground-inverse dark:text-foreground z-10">
+									<div className="flex items-center gap-x-3 text-right text-foreground-inverse/70 dark:text-foreground-secondary">
+										{getActivityIcon(activity.type as ActivityTypes)}
+										{formatRelativeDate(activity.start_date)}
 									</div>
-									<div className="flex flex-wrap items-center gap-2 text-lg">
-										{activity.distance > 0 && (
-											<>
-												<div>{formatDistance(activity.distance)}</div>
-												<div className="border-l border-white/30 h-6"></div>
-											</>
-										)}
+
+									<div className="flex flex-col items-end gap-2 text-lg">
+										<div className="text-right flex flex-col">
+											<div>{formatDuration(activity.moving_time)}</div>
+											<span className="text-foreground-inverse/70 dark:text-foreground-secondary text-sm -mt-1">
+												Duration
+											</span>
+										</div>
 										{activity.average_speed > 0 && (
-											<>
+											<div className="text-right flex flex-col">
 												<div>{formatPace(activity.average_speed)}</div>
-												<div className="border-l border-white/30 h-6"></div>
-											</>
+												<span className="text-foreground-inverse/70 dark:text-foreground-secondary text-sm -mt-1">
+													Pace
+												</span>
+											</div>
 										)}
-										<div>{formatDuration(activity.moving_time)}</div>
+										{activity.distance > 0 && (
+											<div className="text-right flex flex-col">
+												<div>{formatDistance(activity.distance)}</div>
+												<span className="text-foreground-inverse/70 dark:text-foreground-secondary text-sm -mt-1">
+													Distance
+												</span>
+											</div>
+										)}
 									</div>
 								</div>
-								<div className="absolute inset-0 bg-gradient-to-t from-black/100 from-5% to-60% dark:to-80% to-transparent" />
-								<img
+								<div className="absolute inset-0 bg-gradient-to-l from-black to-40% to-transparent" />
+								<Image
+									priority
+									height={390}
+									width={660}
 									src={activityImages[idx]}
 									alt=""
 									className="absolute inset-0 w-full h-full object-cover object-center -z-10"
@@ -220,69 +236,64 @@ export default async function Activities() {
 							</div>
 						))}
 					</div>
-					<table className="mt-5 border-collapse w-full">
-						<tbody>
-							{allActivities.map((activity) => {
-								if (featuredActivities.includes(activity)) return; // Filter out already featured activities
+					<div className="mt-5 w-full">
+						{allActivities.map((activity) => {
+							if (featuredActivities.includes(activity)) return; // Filter out already featured activities
 
-								return (
-									<tr
-										key={`activityInfo-${activity.id}`}
-										className="border-b flex w-full items-center"
-									>
-										<td className="py-6 px-2 flex items-center gap-4 mr-auto font-medium">
-											<span className="text-brand">
-												{getActivityIcon(activity.type as ActivityTypes)}
-											</span>
-											{activity.name}
-										</td>
-										{activity.distance > 0 && (
-											<>
-												<td className="text-foreground-secondary/30">/</td>
-												<td className="px-3 py-2 min-w-20 text-sm">
-													{formatDistance(activity.distance)}
-												</td>
-											</>
-										)}
-										{activity.average_speed > 0 && (
-											<>
-												<td className="text-foreground-secondary/30">/</td>
-												<td className="px-3 py-2 min-w-20 text-sm">
-													{formatPace(activity.average_speed)}
-												</td>
-											</>
-										)}
-										<td className="text-foreground-secondary/30">/</td>
-										<td className="px-3 py-2 min-w-20 text-sm">
+							return (
+								<div
+									key={`activityInfo-${activity.id}`}
+									className="text-foreground-secondary border-t border-b pt-4 mt-8 md:border-t-0 md:mt-0 md:pt-0 flex flex-col w-full items-start"
+								>
+									<div className="text-foreground pb-2 md:pt-4 px-2 flex items-center gap-4 mr-auto">
+										<span className="text-foreground-secondary/50">
+											{getActivityIcon(activity.type as ActivityTypes)}
+										</span>
+										{activity.name}
+									</div>
+									<div className="flex w-full items-center">
+										<div className="px-3 py-2 text-sm md:px-4 border-r flex flex-col text-foreground">
+											<span className="text-foreground-secondary">Duration</span>
 											{formatDuration(activity.moving_time)}
-										</td>
-										<td className="text-foreground-secondary/30">/</td>
-										<td className="px-3 py-2 text-right min-w-20 text-sm text-foreground-secondary">
+										</div>
+										{activity.average_speed > 0 && (
+											<div className="px-3 py-2 text-sm md:px-4 border-r flex flex-col text-foreground">
+												<span className="text-foreground-secondary">Pace</span>
+												{formatPace(activity.average_speed)}
+											</div>
+										)}
+										{activity.distance > 0 && (
+											<div className="px-3 py-2 text-sm md:px-4 border-r flex flex-col text-foreground">
+												<span className="text-foreground-secondary">Distance</span>
+												{formatDistance(activity.distance)}
+											</div>
+										)}
+										<div className="px-3 py-2 text-sm md:px-4 ml-auto text-foreground-secondary">
 											{formatRelativeDate(activity.start_date)}
-										</td>
-									</tr>
-								);
-							})}
-						</tbody>
-					</table>
-					<div className="mt-5 w-full text-center text-foreground-secondary text-xs opacity-80">
+										</div>
+									</div>
+								</div>
+							);
+						})}
+					</div>
+					<div className="mt-8 w-full text-center text-foreground-secondary text-xs opacity-80">
 						<span className="mr-1">Powered by</span>
-						<CustomLink href="https://www.strava.com/athletes/104671575">Strava</CustomLink>
+						<CustomLink href="https://www.strava.com/athletes/104671575" className="pb-1">
+							Strava
+						</CustomLink>
 					</div>
 				</div>
 
-				<aside className="col-span-4 sticky h-fit -mt-20 top-24 right-0 p-5 py-7 border rounded-2xl shadow-shadow bg-background-secondary">
+				<aside className="lg:col-span-4 -order-1 h-fit p-5 py-7 border rounded-xl shadow-shadow bg-background-secondary lg:sticky lg:order-1 top-24 right-0">
 					<h2 className="text-xl mb-4">
 						{new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
 					</h2>
 					<Calendar activityDates={currentMonthActivities.map((activity) => activity.start_date)} />
 					<div className="pt-5 flex flex-col gap-5">
 						<div className="pl-8">
-							<h4 className="font-mono uppercase text-xs tracking-wider text-foreground-secondary">
-								Activities
-							</h4>
+							<h4 className="text-sm tracking-normal text-foreground-secondary">Activities</h4>
 							<div className="flex justify-between items-center">
-								<div className="font-medium text-xl">{stats.activities.count}</div>
+								<div className="font-medium text-lg">{stats.activities.count}</div>
 								<div className="flex items-center gap-1 text-foreground-secondary text-sm">
 									{stats.activities.countIncrease ?? 0}
 									<IconCaretUp
@@ -300,17 +311,15 @@ export default async function Activities() {
 						<div className="pl-8 flex flex-col gap-3">
 							<div className="flex items-center gap-3 -ml-8">
 								<IconRun className="text-foreground-secondary" />
-								<h3 className="w-full text-xl flex justify-between items-center">
+								<h3 className="w-full text-lg flex justify-between items-center">
 									Runs <span>{stats.Run.count}</span>
 								</h3>
 							</div>
 
 							<div>
-								<h4 className="font-mono uppercase text-xs tracking-wider text-foreground-secondary">
-									Duration
-								</h4>
+								<h4 className="text-sm tracking-normal text-foreground-secondary">Duration</h4>
 								<div className="flex justify-between items-center">
-									<div className="font-medium text-xl">{formatDuration(stats.Run.duration)}</div>
+									<div className="font-medium text-lg">{formatDuration(stats.Run.duration)}</div>
 									<div className="flex items-center gap-1 text-foreground-secondary text-sm">
 										{stats.Run.durationIncrease
 											? formatDuration(stats.Run.durationIncrease)
@@ -325,11 +334,9 @@ export default async function Activities() {
 								</div>
 							</div>
 							<div>
-								<h4 className="font-mono uppercase text-xs tracking-wider text-foreground-secondary">
-									Distance
-								</h4>
+								<h4 className="text-sm tracking-normal text-foreground-secondary">Distance</h4>
 								<div className="flex justify-between items-center">
-									<div className="font-medium text-xl">{formatDistance(stats.Run.distance)}</div>
+									<div className="font-medium text-lg">{formatDistance(stats.Run.distance)}</div>
 									<div className="flex items-center gap-1 text-foreground-secondary text-sm">
 										{stats.Run.distanceIncrease
 											? formatDistance(stats.Run.distanceIncrease)
@@ -350,17 +357,15 @@ export default async function Activities() {
 						<div className="pl-8 flex flex-col gap-3">
 							<div className="flex items-center gap-3 -ml-8">
 								<IconWeight className="text-foreground-secondary" />
-								<h3 className="w-full text-xl flex justify-between items-center">
+								<h3 className="w-full text-lg flex justify-between items-center">
 									Weights <span>{stats.WeightTraining.count}</span>
 								</h3>
 							</div>
 
 							<div>
-								<h4 className="font-mono uppercase text-xs tracking-wider text-foreground-secondary">
-									Duration
-								</h4>
+								<h4 className="text-sm tracking-normal text-foreground-secondary">Duration</h4>
 								<div className="flex justify-between items-center">
-									<div className="font-medium text-xl">
+									<div className="font-medium text-lg">
 										{formatDuration(stats.WeightTraining.duration)}
 									</div>
 									<div className="flex items-center gap-1 text-foreground-secondary text-sm">

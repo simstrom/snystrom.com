@@ -25,7 +25,10 @@ export default function Calendar({ activityDates }: CalendarProps) {
 	// Fill in the empty boxes before the first day of the month
 	for (let i = 0; i < startingDay; i++) {
 		calendarBoxes.push(
-			<div key={`empty-${i}`} className="w-8 h-8 bg-transparent rounded-md"></div>
+			<div
+				key={`empty-${i}`}
+				className="min-w-8 w-full max-w-10 aspect-square bg-transparent rounded-md"
+			></div>
 		);
 	}
 
@@ -39,8 +42,10 @@ export default function Calendar({ activityDates }: CalendarProps) {
 				: activityCount === 1
 				? 'bg-brand-secondary'
 				: 'bg-black/10 dark:bg-white/5';
-		calendarBoxes.push(<div key={day} className={`w-8 h-8 rounded-md ${boxStyle}`} />);
+		calendarBoxes.push(
+			<div key={day} className={`min-w-8 w-full max-w-10 aspect-square rounded-md ${boxStyle}`} />
+		);
 	}
 
-	return <div className="grid grid-cols-7 gap-3">{calendarBoxes}</div>;
+	return <div className="grid grid-cols-7 gap-3 min-w-fit">{calendarBoxes}</div>;
 }
