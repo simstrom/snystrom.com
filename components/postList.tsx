@@ -1,6 +1,5 @@
 'use client';
 
-import { IconStar } from '@/lib/icons';
 import { Post, Views } from '@/lib/types';
 import { formatDate } from '@/lib/utils';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -36,8 +35,7 @@ export default function PostList({ posts, views, query }: PostListProps) {
 			initial={{ opacity: 0, y: 50 }}
 			animate={{ opacity: 1, y: 0 }}
 			transition={{
-				duration: 0.5,
-				ease: 'easeInOut',
+				duration: 0.2,
 			}}
 			className="flex flex-col opacity-list"
 		>
@@ -56,22 +54,16 @@ export default function PostList({ posts, views, query }: PostListProps) {
 							initial={{ opacity: 0 }}
 							animate={{ opacity: 1 }}
 							exit={{ opacity: 0 }}
-							transition={{
-								duration: 0.3,
-								ease: 'easeInOut',
-							}}
 						>
 							<Link
-								className="flex flex-col w-full gap-1 py-4 px-2 rounded-xl hover:bg-brand/5 transition duration-300 ease-in-out group"
+								className="flex flex-col p-5 rounded-lg transition group hover:bg-background-tertiary"
 								href={`/blog/${post.slug}`}
 							>
-								<div className="flex w-full gap-x-4 items-center text-sm">
+								<div className="flex w-full gap-x-2 items-center text-sm">
 									<time className="text-foreground-secondary">
 										{formatDate(post.data.publishedAt, false, true)}
 									</time>
-
-									<span className="text-brand font-bold">/</span>
-
+									<span className="text-foreground/30">/</span>
 									<ViewCounter
 										className="text-foreground-secondary"
 										views={views?.find((view) => view.slug === post.slug)?.views as number}
@@ -80,19 +72,19 @@ export default function PostList({ posts, views, query }: PostListProps) {
 										<motion.div
 											initial={{ opacity: 0 }}
 											animate={{ opacity: 1 }}
-											className="hidden xs:inline-flex ml-auto w-fit items-center gap-x-1 font-mono text-xs tracking-tighter py-1 px-2 bg-brand-secondary/10 text-brand rounded-lg"
+											transition={{ duration: 0.2 }}
+											className="hidden sm:block ml-auto text-xs text-brand"
 										>
-											<IconStar width={14} height={14} />
 											{determineMatch(post, query)}
 										</motion.div>
 									)}
 								</div>
-								<h3 className="group-hover:text-brand transition-colors text-pretty">
-									{post.data.title}
-								</h3>
-								<p className="text-sm leading-7 text-foreground-secondary line-clamp-2">
+
+								<h3 className="transition-colors text-pretty">{post.data.title}</h3>
+
+								{/* <p className="text-sm leading-6 text-foreground-secondary line-clamp-2">
 									{post.data.summary}
-								</p>
+								</p> */}
 							</Link>
 						</motion.li>
 					))}

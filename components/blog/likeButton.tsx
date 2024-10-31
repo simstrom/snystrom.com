@@ -31,14 +31,10 @@ export default function LikeButton({ likes, slug }: { likes: number; slug: strin
 	if (!isMounted) return;
 
 	return (
-		<motion.button
+		<button
 			onClick={handleLike}
-			type="button"
-			whileHover={{ scale: 1.05 }}
-			whileTap={{ scale: 0.95 }}
-			transition={{ type: 'spring', stiffness: 180, damping: 10, mass: 1.5 }}
 			className={cn(
-				'like-btn relative w-fit min-w-32 h-12 rounded-full font-medium text-lg select-none',
+				'like-btn relative shadow-shadow border w-fit min-w-32 h-12 rounded-full font-medium text-lg select-none hover:scale-125 active:scale-100 transition-transform',
 				isLiked && 'text-foreground-inverse dark:text-foreground bg-brand/80'
 			)}
 		>
@@ -69,6 +65,6 @@ export default function LikeButton({ likes, slug }: { likes: number; slug: strin
 					</motion.div>
 				)}
 			</AnimatePresence>
-		</motion.button>
+		</button>
 	);
 }

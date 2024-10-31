@@ -63,8 +63,7 @@ export default function PostViewSearch({ posts, views }: PostViewSearchProps) {
 					initial={{ opacity: 0, y: 50 }}
 					animate={{ opacity: 1, y: 0 }}
 					transition={{
-						duration: 0.5,
-						ease: 'easeInOut',
+						duration: 0.2,
 					}}
 					className="text-center space-y-2 pt-4"
 				>

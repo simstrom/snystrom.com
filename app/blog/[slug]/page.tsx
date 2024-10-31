@@ -2,16 +2,15 @@ import MDXComponents from '@/components/blog/MDXComponents';
 import LikeButton from '@/components/blog/likeButton';
 import Tag from '@/components/blog/tag';
 import PostListRelated from '@/components/postListRelated';
+import Button from '@/components/ui/button';
 import ViewCounter from '@/components/ui/viewCounter';
 import { incrementViews } from '@/lib/actions';
 import { getBlogPost, getBlogPosts, getRelatedPosts } from '@/lib/blog';
-import { IconArrowLeft } from '@/lib/icons';
 import { getPostInteractions } from '@/lib/queries';
-import { formatDate } from '@/lib/utils';
+import { cn, formatDate } from '@/lib/utils';
 import { Metadata } from 'next';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import Image from 'next/image';
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import readingTime from 'reading-time';
 
@@ -60,39 +59,50 @@ export default async function BlogPost({ params }: Props) {
 
 	return (
 		<main className="flex flex-col gap-3 max-w-2xl mx-auto pt-32 sm:pt-40 animate-slide">
+			{/* <div className="self-center px-2 py-0.5 bg-brand-secondary/10 text-brand text-sm rounded-lg w-fit">
+				<span>Updated </span>
+				<time>{formatDateAsRelative(post.data.publishedAt)}</time>
+			</div> */}
+			<Button
+				variant="link"
+				href="/blog"
+				backLink
+				className={cn(
+					'text-foreground-secondary hover:text-brand transition-colors',
+					post.data.image ? 'mb-4' : 'mb-8'
+				)}
+			>
+				Blog
+			</Button>
 			{post.data.image && (
 				<Image
 					src={post.data.image}
 					alt={`${post.data.title} post image`}
 					width={672}
 					height={378}
-					className="max-w-[672px] max-h-[378px] w-full aspect-video rounded-xl object-cover border border-black dark:border-border/20 mb-3"
+					className="w-full aspect-video rounded-xl object-cover border mb-3"
 					priority
 				/>
 			)}
 
 			<header className="article-header flex flex-col gap-1">
-				<ul className="opacity-list w-fit flex items-center gap-1 flex-wrap">
+				<ul className="opacity-list w-fit flex items-center gap-1 flex-wrap mb-2">
 					{post.data.tags?.map((tag, idx) => (
 						<Tag key={idx} tag={tag} />
 					))}
 				</ul>
-				<h1 className="text-2xl mb-1">{post.data.title}</h1>
+				<h1 className="text-3xl text-balance mb-2">{post.data.title}</h1>
 				<div className="font-medium flex flex-wrap justify-between items-center gap-y-3 text-sm text-foreground/80">
 					<div className="flex items-center gap-2">
 						<time>{formatDate(post.data.publishedAt)}</time>
-						<span className="text-brand font-bold">/</span>
+						<span className="text-foreground/30">/</span>
 						<ViewCounter views={postInteractions?.views ? postInteractions.views + 1 : 1} />
-						<span className="text-brand font-bold">/</span>
+						<span className="text-foreground/30">/</span>
 						<p>{readingTime(post.content).text}</p>
 					</div>
-					{/* <div className="px-2 py-0.5 bg-brand-secondary/10 text-brand text-sm rounded-lg">
-						<span>Updated </span>
-						<time>{formatDateAsRelative(post.data.publishedAt)}</time>
-					</div> */}
 				</div>
 			</header>
-			<article className="mt-10 mb-10 sm:mb-20 prose dark:prose-invert max-w-none prose-headings:font-medium prose-headings:text-foreground prose-headings:relative">
+			<article className="mt-8 mb-10 sm:mb-20 prose dark:prose-invert max-w-none prose-headings:font-medium prose-headings:text-foreground prose-headings:relative">
 				<MDXRemote source={post.content} components={MDXComponents} />
 			</article>
 			<div className="mb-20 flex items-center justify-center">
@@ -102,20 +112,9 @@ export default async function BlogPost({ params }: Props) {
 			{related.length > 0 && (
 				<section className="space-y-3 mb-10">
 					<h3 className="text-2xl">Related posts</h3>
-					<PostListRelated posts={related} />
+					<PostListRelated posts={related.slice(0, 3)} />
 				</section>
 			)}
-			<Link
-				href="/blog"
-				className="inline-flex w-fit items-center gap-x-1 font-mono text-xs tracking-tight hover:text-brand transition duration-300 group"
-			>
-				<IconArrowLeft
-					width={12}
-					height={12}
-					className="group-hover:-translate-x-1 transition-transform duration-300"
-				/>
-				Back to Blog
-			</Link>
 		</main>
 	);
 }

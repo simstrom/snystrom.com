@@ -16,7 +16,7 @@ const createHeading = (level: number) => {
 		let slug = slugify(children);
 		return React.createElement(
 			`h${level}`,
-			{ id: slug },
+			{ id: slug, className: 'scroll-mt-24' },
 			[
 				React.createElement('a', {
 					href: `#${slug}`,
