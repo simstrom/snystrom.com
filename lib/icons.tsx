@@ -174,6 +174,44 @@ export function IconEnter(props: React.SVGAttributes<any>) {
 	);
 }
 
+export function IconGlobe(props: React.SVGAttributes<any>) {
+	return (
+		<svg
+			width="24"
+			height="24"
+			viewBox="0 0 24 24"
+			fill="none"
+			stroke="currentColor"
+			strokeWidth="2"
+			strokeLinecap="round"
+			strokeLinejoin="round"
+			{...props}
+		>
+			<circle cx="12" cy="12" r="10" />
+			<path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+			<path d="M2 12h20" />
+		</svg>
+	);
+}
+export function IconAt(props: React.SVGAttributes<any>) {
+	return (
+		<svg
+			width="24"
+			height="24"
+			viewBox="0 0 24 24"
+			fill="none"
+			stroke="currentColor"
+			strokeWidth="2"
+			strokeLinecap="round"
+			strokeLinejoin="round"
+			{...props}
+		>
+			<circle cx="12" cy="12" r="4" />
+			<path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-4 8" />
+		</svg>
+	);
+}
+
 export function IconCommand(props: React.SVGAttributes<any>) {
 	return (
 		<svg viewBox="0 0 24 24" fill="currentColor" height="20" width="20" {...props}>

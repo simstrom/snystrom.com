@@ -1,5 +1,5 @@
 import { navItems } from '@/lib/data';
-import { IconEmail, Logo } from '@/lib/icons';
+import { IconAt, IconEmail, IconGlobe, Logo } from '@/lib/icons';
 import Link from 'next/link';
 import CustomLink from './blog/link';
 import Copy from './ui/copy';
@@ -27,7 +27,10 @@ export default function Footer() {
 					</div>
 
 					<div className="col-span-5 sm:col-span-3 sm:justify-self-end flex flex-col gap-2 text-foreground-secondary">
-						<h5 className="text-foreground text-sm tracking-normal">Navigation</h5>
+						<div className="relative">
+							<IconGlobe className="hidden sm:block w-4 h-4 absolute -left-6 top-1/2 -translate-y-1/2 text-foreground" />
+							<h5 className="text-foreground text-sm tracking-normal">Navigation</h5>
+						</div>
 						{navItems.navigationLinks
 							.filter((item) => item.name !== 'Colophon' && item.name !== 'Home')
 							.map((item) => (
@@ -41,7 +44,10 @@ export default function Footer() {
 							))}
 					</div>
 					<div className="col-span-7 sm:col-span-3 sm:justify-self-end  flex flex-col gap-2 text-foreground-secondary">
-						<h5 className="text-foreground text-sm tracking-normal">Socials</h5>
+						<div className="relative">
+							<IconAt className="hidden sm:block w-4 h-4 absolute -left-6 top-1/2 -translate-y-1/2 text-foreground" />
+							<h5 className="text-foreground text-sm tracking-normal">Socials</h5>
+						</div>
 						{navItems.socialLinks.map((item) => (
 							<CustomLink
 								key={item.name}
