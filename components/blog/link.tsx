@@ -1,4 +1,4 @@
-import { IconExternal } from '@/lib/icons';
+import { IconArrowUpRight } from '@/lib/icons';
 import Link from 'next/link';
 import React from 'react';
 
@@ -13,7 +13,7 @@ export default function CustomLink(props: CustomLinkProps) {
 
 	if (href.startsWith('/')) {
 		return (
-			<Link href={href} {...props} className="custom-link">
+			<Link href={href} {...props} className="c-link">
 				{props.children}
 			</Link>
 		);
@@ -22,14 +22,12 @@ export default function CustomLink(props: CustomLinkProps) {
 		return <a {...props}>{props.children}</a>;
 	}
 	return (
-		<a
-			target="_blank"
-			rel="noopener noreferrer"
-			className="custom-link inline-flex items-baseline gap-x-1"
-			{...props}
-		>
+		<a target="_blank" rel="noopener noreferrer" className="c-link group" {...props}>
 			{props.children}
-			<IconExternal className="w-[15px] h-[15px]" />
+			<span className="overflow-hidden relative py-2">
+				<IconArrowUpRight className="w-4 h-4 group-hover:-translate-y-5 group-hover:translate-x-5 transition" />
+				<IconArrowUpRight className="absolute bottom-2 right-0  w-4 h-4 translate-y-5 -translate-x-5 group-hover:translate-y-0 group-hover:translate-x-0 transition" />
+			</span>
 		</a>
 	);
 }

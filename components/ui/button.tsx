@@ -12,6 +12,7 @@ interface ButtonProps extends HTMLAttributes<HTMLButtonElement | HTMLAnchorEleme
 	variant?: ButtonVariant;
 	size?: ButtonSize;
 	isExternalLink?: boolean;
+	backLink?: boolean;
 	href?: string;
 	onClick?: React.MouseEventHandler<HTMLButtonElement>;
 	className?: string;
@@ -22,6 +23,7 @@ export default function Button({
 	variant = 'primary',
 	size = 'default',
 	isExternalLink,
+	backLink = false,
 	href,
 	onClick,
 	className,
@@ -29,10 +31,10 @@ export default function Button({
 }: ButtonProps) {
 	const variantClasses = {
 		primary:
-			'uppercase tracking-normal button hover:text-brand transition duration-300 ease-in-out after:bg-background/80 z-10 after:-z-[1]',
+			'uppercase button hover:text-brand transition duration-300 ease-in-out after:bg-background/80 z-10 after:-z-[1]',
 		secondary: '',
 		ghost: '',
-		link: 'items-center gap-x-1 font-mono text-xs tracking-tight hover:text-brand transition duration-300 group',
+		link: 'items-end font-medium group',
 	};
 
 	const sizeClasses = {
@@ -42,8 +44,7 @@ export default function Button({
 	};
 	const variantClass = variantClasses[variant];
 	const sizeClass = sizeClasses[size];
-	const commonClass =
-		'relative inline-flex w-fit items-center justify-center gap-x-2 font-mono tracking-tight text-sm';
+	const commonClass = 'relative inline-flex w-fit items-center justify-center gap-x-2 text-sm';
 
 	if (isExternalLink) {
 		return (
@@ -60,14 +61,17 @@ export default function Button({
 	} else if (variant === 'link') {
 		return (
 			<Link href={href as Url} {...props} className={cn(commonClass, variantClass, className)}>
-				<span className="group-hover:translate-x-1 transition-transform duration-300">
-					{children}
-				</span>
-				<IconArrowRight
-					width={14}
-					height={14}
-					className="text-foreground-secondary group-hover:text-brand group-hover:translate-x-1.5 transition-transform duration-300"
-				/>
+				{backLink ? (
+					<>
+						<IconArrowRight className="rotate-180" />
+						{children}
+					</>
+				) : (
+					<>
+						{children}
+						<IconArrowRight />
+					</>
+				)}
 			</Link>
 		);
 	} else if (href) {

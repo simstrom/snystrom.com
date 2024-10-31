@@ -80,25 +80,33 @@ export function IconEmail(props: React.SVGAttributes<any>) {
 // NAVIGATION ICONS
 export function IconArrowUpRight(props: React.SVGAttributes<any>) {
 	return (
-		<svg fill="none" viewBox="0 0 15 15" height="20" width="20" {...props}>
-			<path
-				fill="currentColor"
-				fillRule="evenodd"
-				d="M3.646 11.354a.5.5 0 010-.707L10.293 4H6a.5.5 0 010-1h5.5a.5.5 0 01.5.5V9a.5.5 0 01-1 0V4.707l-6.646 6.647a.5.5 0 01-.708 0z"
-				clipRule="evenodd"
-			/>
+		<svg
+			width="24"
+			height="24"
+			viewBox="0 0 24 24"
+			fill="none"
+			stroke="currentColor"
+			strokeWidth="2"
+			strokeLinecap="round"
+			strokeLinejoin="round"
+			{...props}
+		>
+			<path d="M7 7h10v10" />
+			<path d="M7 17 17 7" />
 		</svg>
 	);
 }
 
 export function IconArrowRight(props: React.SVGAttributes<any>) {
 	return (
-		<svg width="20" height="20" viewBox="0 0 15 15" fill="none" {...props}>
+		<svg fill="currentColor" width="18" height="18" viewBox="0 0 18 10" {...props}>
 			<path
-				d="M8.14645 3.14645C8.34171 2.95118 8.65829 2.95118 8.85355 3.14645L12.8536 7.14645C13.0488 7.34171 13.0488 7.65829 12.8536 7.85355L8.85355 11.8536C8.65829 12.0488 8.34171 12.0488 8.14645 11.8536C7.95118 11.6583 7.95118 11.3417 8.14645 11.1464L11.2929 8H2.5C2.22386 8 2 7.77614 2 7.5C2 7.22386 2.22386 7 2.5 7H11.2929L8.14645 3.85355C7.95118 3.65829 7.95118 3.34171 8.14645 3.14645Z"
-				fill="currentColor"
-				fillRule="evenodd"
-				clipRule="evenodd"
+				className="transform origin-center scale-x-0 transition-transform group-hover:scale-100"
+				d="M17.216 4.8L16.4 5.616H0V4H16.4186L17.216 4.8Z"
+			></path>
+			<path
+				className="transform transition-transform group-hover:translate-x-[5px]"
+				d="M13.008 4.976L8.03205 9.952H6.00005L10.1441 5.792L10.9761 4.96L10.1921 4.176L6.01605 0L8.04805 0L13.008 4.976Z"
 			></path>
 		</svg>
 	);

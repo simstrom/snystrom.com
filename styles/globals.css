@@ -1,4 +1,3 @@
-@import url('https://use.typekit.net/bmo3epq.css');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -78,22 +77,18 @@
 	BLOG STYLES
 	-----------	*/
 .prose {
-	@apply text-foreground-secondary leading-[1.9] tracking-[0.02em];
+	@apply leading-[1.9] tracking-[0.02em];
 }
 .prose strong {
-	@apply font-medium text-foreground;
+	@apply font-semibold text-foreground;
 }
 .prose blockquote {
 	@apply border-brand;
 }
-.prose a,
-.custom-link {
-	@apply text-brand underline decoration-border/40 dark:decoration-border/60 underline-offset-2 decoration-[0.1em] hover:decoration-brand dark:hover:decoration-brand transition duration-300;
-}
 
 /* Heading anchorlinks */
 .prose .anchor {
-	@apply absolute w-full no-underline transition duration-300 -left-5 text-foreground-secondary/30 opacity-0;
+	@apply absolute w-full no-underline transition duration-150 -left-5 text-foreground-secondary/50 opacity-0;
 	cursor: pointer;
 }
 .prose .anchor:after {
@@ -101,7 +96,7 @@
 }
 .prose .anchor:hover,
 .prose *:hover > .anchor {
-	@apply sm:opacity-100 transition duration-300;
+	@apply sm:opacity-100 transition duration-150;
 }
 
 /* Code blocks */
@@ -152,7 +147,7 @@ pre .sh__line:hover {
 
 /* Inline code */
 .prose :not(pre) > code {
-	@apply px-2 py-0.5 rounded-lg bg-background-tertiary border font-medium shadow-sm text-brand-secondary;
+	@apply px-2 py-0.5 rounded-lg bg-background-tertiary text-sm font-normal border shadow-sm text-brand;
 }
 .prose :not(pre) > code::after,
 .prose :not(pre) > code::before {
@@ -194,6 +189,25 @@ pre .sh__line:hover {
 /* 	------------
 	COMPONENTS
 	-----------	*/
+.c-link {
+	@apply relative inline-flex items-center gap-x-0.5 font-normal no-underline whitespace-nowrap hover:text-brand transition duration-150;
+}
+.c-link::before {
+	position: absolute;
+	bottom: 0.2em;
+	height: 2px;
+	width: 100%;
+	background-color: hsl(var(--foreground-secondary));
+	opacity: 50%;
+	content: '';
+	transition-property: all;
+	transition-duration: 150ms;
+}
+.c-link:hover::before {
+	@apply translate-y-1 transform-gpu;
+	background-color: transparent;
+}
+
 .button::after {
 	z-index: 0;
 	overflow: hidden;
@@ -217,16 +231,16 @@ pre .sh__line:hover {
 }
 
 .like-btn {
-	animation: shadow 3s infinite alternate ease-in;
+	will-change: box-shadow;
+	animation: shadow 1s infinite alternate ease-in-out;
 }
 
 @keyframes shadow {
 	0% {
-		box-shadow: 0px 0px 30px #7aa2ff, 0px 0px 20px #7aa2ff, 0px 0px 5px #6488da, 0px 0px 5px #ffffff;
+		box-shadow: 0px 0px 10px #7aa2ff, 0px 0px 8px #7aa2ff, 0px 0px 4px #6488da, 0px 0px 3px #ffffff;
 	}
 	100% {
-		box-shadow: 0px 0px 80px #7aa2ff, 0px 0px 60px #7aa2ff, 0px 0px 20px #6488da,
-			0px 0px 5px #ffffff;
+		box-shadow: 0px 0px 30px #7aa2ff, 0px 0px 20px #7aa2ff, 0px 0px 8px #6488da, 0px 0px 5px #ffffff;
 	}
 }
 
