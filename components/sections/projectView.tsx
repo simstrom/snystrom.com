@@ -1,44 +1,32 @@
 'use client';
 
-import { cn } from '@/lib/utils';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
 
 import { projectsData } from '@/lib/data';
 import ProjectCard from '../ui/projectCard';
 import ProjectListItem from '../ui/projectListItem';
+import TabList from '../ui/tabList';
+
+enum Views {
+	Grid = 0,
+	List = 1,
+}
 
 export default function ProjectView() {
-	const [isGridView, setIsGridView] = useState(true);
+	const [activeView, setActiveView] = useState<Views>(Views.Grid);
 
 	return (
 		<>
-			<div className="flex py-8 sm:pt-12 font-mono uppercase text-xs tracking-wide text-foreground-secondary">
-				<span className="border-r-2 pr-4 select-non opacity-60">View As</span>
-				<button
-					onClick={() => setIsGridView(true)}
-					aria-label="Change to grid view"
-					className={cn(
-						'pl-4 uppercase tracking-wide hover:text-foreground transition',
-						isGridView && 'text-brand'
-					)}
-				>
-					Grid
-				</button>
-				<button
-					onClick={() => setIsGridView(false)}
-					aria-label="Change to list view"
-					className={cn(
-						'pl-4 uppercase tracking-wide hover:text-foreground transition',
-						!isGridView && 'text-brand'
-					)}
-				>
-					List
-				</button>
-			</div>
+			<TabList
+				labels={['Grid', 'List']}
+				selected={activeView}
+				setSelected={setActiveView}
+				className="my-8 sm:pt-12"
+			/>
 
 			<AnimatePresence mode="popLayout">
-				{isGridView ? (
+				{activeView === Views.Grid ? (
 					<motion.div
 						key="grid-view"
 						initial={{ opacity: 0, y: 50 }}
