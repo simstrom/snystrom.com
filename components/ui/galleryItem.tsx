@@ -28,7 +28,7 @@ export default function GalleryItem({
 			{isCollection ? (
 				<Link
 					href={`/gallery/${collectionType}/${slugify(collectionTitle)}`}
-					className="relative group hover:scale-[1.03] transition-transform duration-500 ease-in-out"
+					className="relative group hover:scale-[1.03] transition-transform"
 				>
 					<CldImage
 						src={item.src}
@@ -39,11 +39,13 @@ export default function GalleryItem({
 						loading={priority ? 'eager' : 'lazy'}
 						placeholder="blur"
 						blurDataURL={item.blurData}
-						className="border border-black sm:aspect-[4/5] w-full object-cover object-center group-hover:opacity-80 transition-opacity duration-500"
+						className="rounded-lg sm:aspect-[4/5] w-full object-cover object-center group-hover:opacity-80 transition-opacity"
 					/>
-					<div className="bg-black flex items-center justify-between absolute w-full top-0 sm:bottom-0 sm:top-auto py-2 px-4 text-foreground-inverse dark:text-foreground group-hover:py-5 transition-all duration-500">
-						<h3 className="font-mono text-xs tracking-tight">{collectionTitle}</h3>
-						<IconArrowRight width={12} />
+					<div className="rounded-lg bg-gradient-to-t from-black/70 to-transparent to-20% flex items-end p-4 justify-between absolute w-full top-0 bottom-0 text-foreground-inverse dark:text-foreground transition-all">
+						<h3 className="sm:text-sm tracking-normal">{collectionTitle}</h3>
+						<div className="rounded-full bg-foreground-inverse/20 dark:bg-foreground/20 p-1 transition-all group-hover:scale-110 group-hover:p-2 origin-center">
+							<IconArrowRight />
+						</div>
 					</div>
 				</Link>
 			) : (
@@ -60,7 +62,7 @@ export default function GalleryItem({
 						loading={priority ? 'eager' : 'lazy'}
 						placeholder="blur"
 						blurDataURL={item.blurData}
-						className="border border-black w-full object-cover object-center transition-opacity duration-500"
+						className="rounded-lg w-full object-cover object-center"
 					/>
 				</div>
 			)}

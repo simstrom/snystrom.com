@@ -1,15 +1,14 @@
 'use client';
 
 import { useScreenBreakpoints } from '@/lib/hooks';
-import { IconArrowLeft } from '@/lib/icons';
 import { GalleryCollection, GalleryImage } from '@/lib/types';
-import { cn } from '@/lib/utils';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
+import Button from '../ui/button';
 import GalleryItem from '../ui/galleryItem';
 import Lightbox from '../ui/lightbox';
+import TabList from '../ui/tabList';
 
 type Props = {
 	content: Array<GalleryImage> | Array<GalleryCollection>;
@@ -69,37 +68,23 @@ export default function GalleryView({ content, backLink, category }: Props) {
 
 	return (
 		<>
-			<div className="py-8 sm:pt-12 flex font-mono text-xs tracking-tight text-foreground-secondary">
+			<div className="my-8 sm:pt-12 flex font-medium text-foreground-secondary">
 				{backLink ? (
-					<Link
+					<Button
+						variant="link"
+						backLink
 						href={backLink.path}
-						className="inline-flex w-fit items-center gap-x-1 hover:text-brand transition duration-300 group"
+						className="hover:text-foreground transition-colors mt-2"
 					>
-						<IconArrowLeft
-							width={12}
-							height={12}
-							className="group-hover:-translate-x-1 transition-transform duration-300"
-						/>
 						Back to all {backLink.name}
-					</Link>
+					</Button>
 				) : (
-					<>
-						<span className="border-r-2 pr-4 select-none opacity-60 uppercase tracking-wide">
-							View As
-						</span>
-						{GalleryRoutes.map((route) => (
-							<Link
-								key={route.name}
-								href={route.path}
-								className={cn(
-									'pl-4 uppercase tracking-wide hover:text-foreground transition',
-									route.path == currentPath && 'text-brand'
-								)}
-							>
-								{route.name}
-							</Link>
-						))}
-					</>
+					<TabList
+						labels={GalleryRoutes.map((route) => route.name)}
+						asLinks
+						links={GalleryRoutes.map((route) => route.path)}
+						selected={GalleryRoutes.findIndex((route) => route.path === currentPath)}
+					/>
 				)}
 			</div>
 

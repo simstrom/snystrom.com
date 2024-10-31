@@ -1,11 +1,11 @@
+import CustomLink from '@/components/blog/link';
 import GalleryView from '@/components/sections/galleryView';
+import Button from '@/components/ui/button';
 import PageHeader from '@/components/ui/pageHeader';
 import { galleryDestinations } from '@/lib/data';
 import { getImagesInCollection } from '@/lib/gallery';
-import { IconArrowLeft, IconArrowRight } from '@/lib/icons';
 import { slugify } from '@/lib/utils';
 import { Metadata } from 'next';
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
 interface Props {
@@ -57,38 +57,32 @@ export default async function GalleryDestination({ params }: Props) {
 
 	return (
 		<main className="mx-auto pt-32 sm:pt-40">
-			<div className="absolute -translate-y-5 font-mono uppercase text-xs tracking-wide text-foreground-secondary">
-				<span className="text-brand">• </span>Destination
+			<div className="absolute -translate-y-6 text-sm font-medium text-foreground-secondary">
+				<span className="text-brand mr-1">•</span>Destination
 			</div>
 			<PageHeader title={collection.title} content={collection.description} />
 			<GalleryView content={images} backLink={backLink} />
-			<div className="mt-8 sm:mt-12 w-full flex justify-center items-center sm:gap-4 text-xs font-mono uppercase tracking-wide select-none">
-				<Link
+			<div className="mt-8 sm:mt-12 w-full flex justify-between items-center sm:gap-4 text-sm font-medium text-foreground-secondary  select-none">
+				<Button
+					variant="link"
+					backLink
 					href={`/gallery/destinations/${slugify(previousCollection.title)}`}
-					className="w-full flex items-center justify-end gap-1 p-4 group hover:text-brand transition duration-300"
+					className="hover:text-foreground transition-colors"
 				>
-					<IconArrowLeft
-						width={12}
-						className="group-hover:-translate-x-1 transition-transform duration-300"
-					/>
 					{previousCollection.title}
-				</Link>
-				<span className="opacity-25">|</span>
-				<Link href="/gallery/destinations" className="p-4 hover:text-brand transition duration-300">
-					Index
-				</Link>
-				<span className="opacity-25">|</span>
+				</Button>
 
-				<Link
+				<CustomLink href="/gallery/destinations" className="pb-1 font-medium hover:text-foreground">
+					Index
+				</CustomLink>
+
+				<Button
+					variant="link"
 					href={`/gallery/destinations/${slugify(nextCollection.title)}`}
-					className="w-full flex items-center gap-1 p-4 group hover:text-brand transition duration-300"
+					className="hover:text-foreground transition-colors"
 				>
 					{nextCollection.title}
-					<IconArrowRight
-						width={12}
-						className="group-hover:translate-x-1 transition-transform duration-300"
-					/>
-				</Link>
+				</Button>
 			</div>
 		</main>
 	);

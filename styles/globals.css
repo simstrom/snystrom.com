@@ -85,6 +85,9 @@
 .prose blockquote {
 	@apply border-brand;
 }
+.prose .c-link {
+	@apply font-normal;
+}
 
 /* Heading anchorlinks */
 .prose .anchor {
@@ -190,7 +193,7 @@ pre .sh__line:hover {
 	COMPONENTS
 	-----------	*/
 .c-link {
-	@apply relative inline-flex items-center gap-x-0.5 font-normal no-underline whitespace-nowrap hover:text-brand transition duration-150;
+	@apply relative inline-flex items-center gap-x-0.5 no-underline whitespace-nowrap hover:text-brand transition duration-150;
 }
 .c-link::before {
 	position: absolute;

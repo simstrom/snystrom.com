@@ -1,4 +1,5 @@
 import { IconArrowUpRight } from '@/lib/icons';
+import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import React from 'react';
 
@@ -6,14 +7,16 @@ interface CustomLinkProps
 	extends React.DetailedHTMLProps<
 		React.AnchorHTMLAttributes<HTMLAnchorElement>,
 		HTMLAnchorElement
-	> {}
+	> {
+	className?: string;
+}
 
 export default function CustomLink(props: CustomLinkProps) {
 	const href = props?.href as string;
 
 	if (href.startsWith('/')) {
 		return (
-			<Link href={href} {...props} className="c-link">
+			<Link {...props} href={href} className={cn('c-link', props.className)}>
 				{props.children}
 			</Link>
 		);

@@ -70,11 +70,16 @@ export default function Lightbox({
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
 						exit={{ opacity: 0 }}
-						transition={{ type: 'spring', stiffness: 200, damping: 30 }}
 					>
-						<div className="absolute bottom-10 font-mono text-xs text-foreground-secondary">
+						<motion.div
+							className="absolute bottom-10 font-medium text-sm"
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
+							exit={{ opacity: 0 }}
+							transition={{ delay: 0.5 }}
+						>
 							{current + 1} / {content.length}
-						</div>
+						</motion.div>
 					</motion.div>
 					<div
 						ref={containerRef}
