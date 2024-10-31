@@ -11,10 +11,10 @@ export default function ThemeSwitcher() {
 	const [mounted, setMounted] = useState(false);
 	const { setTheme, theme } = useTheme();
 
-	// Make sure theme is loaded
-	useEffect(() => setMounted(true), []);
-
 	useEffect(() => {
+		// Make sure theme is loaded
+		setMounted(true);
+
 		const handleKeys = (e: KeyboardEvent) => {
 			if (e.key === 'b' && e.metaKey) {
 				setTheme(theme === 'dark' ? 'light' : 'dark');
@@ -23,7 +23,7 @@ export default function ThemeSwitcher() {
 		window.addEventListener('keydown', handleKeys);
 
 		return () => window.removeEventListener('keydown', handleKeys);
-	}, [theme, setTheme]);
+	}, []);
 
 	return (
 		<Button

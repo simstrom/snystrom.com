@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils';
 import '@/styles/globals.css';
 import type { Metadata, Viewport } from 'next';
-import { Cousine as FontMono } from 'next/font/google';
+import { JetBrains_Mono as FontMono } from 'next/font/google';
 import localFont from 'next/font/local';
 import Script from 'next/script';
 
@@ -9,7 +9,7 @@ import Footer from '@/components/footer';
 import Navbar from '@/components/navbar';
 import Providers from './providers';
 
-const GeneralSans = localFont({
+const fontSans = localFont({
 	src: '../public/fonts/GeneralSans-Variable.woff2',
 	display: 'swap',
 	weight: '300 800',
@@ -73,7 +73,7 @@ export default function RootLayout({
 			<body
 				className={cn(
 					'container max-w-screen-lg min-h-screen transition-colors ease-in-out duration-300',
-					GeneralSans.variable,
+					fontSans.variable,
 					fontMono.variable
 				)}
 			>
