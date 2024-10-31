@@ -46,8 +46,8 @@ export default async function TagPage({ params }: Props) {
 
 	return (
 		<main className="max-w-3xl mx-auto flex flex-col pt-32 sm:pt-40">
-			<div className="absolute -translate-y-5 font-mono uppercase text-xs tracking-wide text-foreground-secondary">
-				<span className="text-brand">• </span>Blog
+			<div className="absolute -translate-y-6 text-sm font-medium text-foreground-secondary">
+				Blog
 			</div>
 			<PageHeader title={`${tag}`} content={`Explore all articles and tutorials about ${tag}`} />
 			<section className="pt-5 mb-10">

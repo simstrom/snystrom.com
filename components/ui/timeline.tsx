@@ -60,7 +60,7 @@ export default function Timeline({ items, title, body, children }: Props) {
 	return (
 		<section className="flex flex-col items-center">
 			<h2 className="text-xl mb-2">{title}</h2>
-			<p className="font-mono text-xs tracking-tight text-foreground-secondary">{body}</p>
+			<p className="text-foreground-secondary text-sm">{body}</p>
 			<div ref={containerRef} className="mt-4 sm:mt-8 flex flex-col sm:items-center relative">
 				<motion.div
 					ref={lineRef}
@@ -104,7 +104,7 @@ function TimelineItem({
 			<div
 				ref={circleRef}
 				className={cn(
-					'absolute w-5 h-5 -left-[9px] sm:left-auto  rounded-full z-10 transition duration-500 ease-out',
+					'absolute w-5 h-5 -left-[9px] sm:left-auto  rounded-full z-10 transition',
 					isTouched
 						? 'scale-100 bg-brand border-2 border-transparent'
 						: 'scale-75 bg-background border-2 border-brand-secondary/80'
@@ -120,18 +120,18 @@ function TimelineItem({
 						x: isTouched ? 0 : isIndexUneven || isSmallScreen ? -30 : 30,
 						opacity: isTouched ? 1 : 0,
 					}}
-					transition={{ type: 'spring', stiffness: 200, damping: 20, mass: 1.1 }}
+					transition={{ type: 'spring', stiffness: 250, damping: 20, mass: 1.1 }}
 					className={cn(
-						'relative w-full sm:w-1/2 max-h-5/6 flex flex-col justify-center p-8 bg-background-secondary dark:bg-background-tertiary rounded-xl',
-						isIndexUneven || isSmallScreen ? 'rounded-l-none' : 'sm: rounded-r-none'
+						'relative w-full sm:w-1/2 max-h-5/6 flex flex-col justify-center p-8 border bg-background-secondary dark:bg-background-tertiary rounded-xl',
+						isIndexUneven || isSmallScreen
+							? 'rounded-l-none border-l-transparent'
+							: 'sm:rounded-r-none border-r-transparent'
 					)}
 				>
-					<div className="font-mono text-xs uppercase tracking-wide text-foreground-secondary">
-						{item.date}
-					</div>
+					<div className="text-sm text-foreground-secondary">{item.date}</div>
 					<h3 className="mb-2">{item.title}</h3>
 					<p className="text-sm leading-relaxed text-foreground-secondary">{item.text}</p>
-					<div className="absolute top-5 right-5 text-foreground-secondary">{item.icon}</div>
+					<div className="absolute top-5 right-5 text-foreground-secondary/50">{item.icon}</div>
 				</motion.div>
 			</motion.div>
 		</div>

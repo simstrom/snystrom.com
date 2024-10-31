@@ -58,7 +58,7 @@ export default async function GalleryCollection({ params }: Props) {
 	return (
 		<main className="mx-auto pt-32 sm:pt-40">
 			<div className="absolute -translate-y-6 text-sm font-medium text-foreground-secondary">
-				<span className="text-brand mr-1">•</span>Collection
+				Collection
 			</div>
 			<PageHeader title={collection.title} content={collection.description} />
 			<GalleryView content={images} backLink={backLink} />

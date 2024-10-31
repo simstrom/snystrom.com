@@ -8,6 +8,42 @@ export const metadata: Metadata = {
 	description: 'A summary of the technologies, design, workflow and decisions behind snystrom.com.',
 };
 
+const content = [
+	{
+		heading: 'Overview',
+		text: (
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi nobis incidunt non modi,
+				distinctio ducimus rerum quod{' '}
+				<CustomLink href="https://test.com">officiis magni</CustomLink> similique expedita
+				blanditiis culpa et soluta amet atque quaerat totam laborum?
+			</p>
+		),
+	},
+	{
+		heading: 'Typography',
+		text: (
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi nobis incidunt non modi,
+				distinctio ducimus rerum quod{' '}
+				<CustomLink href="https://test.com">officiis magni</CustomLink> similique expedita
+				blanditiis culpa et soluta amet atque quaerat totam laborum?
+			</p>
+		),
+	},
+	{
+		heading: 'Design & Colors',
+		text: (
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi nobis incidunt non modi,
+				distinctio ducimus rerum quod{' '}
+				<CustomLink href="https://test.com">officiis magni</CustomLink> similique expedita
+				blanditiis culpa et soluta amet atque quaerat totam laborum?
+			</p>
+		),
+	},
+];
+
 export default function Colophon() {
 	return (
 		<main className="max-w-screen-md mx-auto pt-32 sm:pt-40 overflow-x-hidden">
@@ -16,31 +52,12 @@ export default function Colophon() {
 				content="A summary of the technologies, design, workflow and decisions behind my website."
 			/>
 			<div className="pt-8 sm:pt-12 space-y-10 overflow-y-visible">
-				<div className="sm:grid grid-cols-12 gap-2 animate-slide">
-					<h2 className="col-span-3 pb-2">Overview</h2>
-					<p className="text-sm leading-7 col-span-9 text-pretty text-foreground-secondary">
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi nobis incidunt non modi,
-						distinctio ducimus rerum quod officiis magni similique expedita blanditiis culpa et
-						soluta amet atque quaerat totam laborum?
-					</p>
-				</div>
-				<div className="sm:grid grid-cols-12 gap-2 animate-slide">
-					<h2 className="col-span-3 pb-2">Typography</h2>
-					<p className="text-sm leading-7 col-span-9 text-pretty text-foreground-secondary">
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi nobis incidunt non modi,
-						distinctio ducimus rerum quod officiis magni similique expedita blanditiis culpa et
-						soluta amet atque quaerat totam laborum?
-					</p>
-				</div>
-				<div className="sm:grid grid-cols-12 gap-2 animate-slide">
-					<h2 className="col-span-3 pb-2">Design & Colors</h2>
-					<p className="text-sm leading-7 col-span-9 text-pretty text-foreground-secondary">
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi nobis incidunt non modi,
-						distinctio ducimus rerum quod{' '}
-						<CustomLink href="https://test.com">officiis magni</CustomLink> similique expedita
-						blanditiis culpa et soluta amet atque quaerat totam laborum?
-					</p>
-				</div>
+				{content.map((c) => (
+					<div key={c.heading} className="sm:grid grid-cols-12 gap-2 animate-slide">
+						<h2 className="text-lg col-span-3 pb-2">{c.heading}</h2>
+						<div className="col-span-9 text-foreground-secondary">{c.text}</div>
+					</div>
+				))}
 
 				<hr className="animate-slide" />
 
@@ -66,7 +83,7 @@ export default function Colophon() {
 						1234567890
 					</p>
 					<div className="col-span-3 text-pretty text-foreground-secondary self-end justify-self-end text-sm tracking-tight text-right">
-						Cousine
+						Jetbrains Mono
 					</div>
 				</div>
 
@@ -79,7 +96,7 @@ export default function Colophon() {
 							<span className="hidden dark:block">Sky Dancer</span>
 							<span className="block dark:hidden text-foreground-inverse">Bluetiful</span>
 						</div>
-						<div className="mt-auto w-full h-1/4 px-3 flex justify-between items-center font-mono text-xs tracking-tight text-foreground-secondary">
+						<div className="mt-auto w-full h-1/4 px-3 flex justify-between items-center text-sm text-foreground-secondary">
 							<span>Brand</span>
 							<span className="hidden dark:block">#5286FF</span>
 							<span className="block dark:hidden">#2663F2</span>
@@ -90,7 +107,7 @@ export default function Colophon() {
 							<span className="hidden dark:block">Metal</span>
 							<span className="block dark:hidden">Salt</span>
 						</div>
-						<div className="mt-auto w-full h-1/4 px-3 flex justify-between items-center font-mono text-xs tracking-tight text-foreground-secondary">
+						<div className="mt-auto w-full h-1/4 px-3 flex justify-between items-center text-sm text-foreground-secondary">
 							<span>Backgrounds</span>
 							<span className="hidden dark:block">#0F1114</span>
 							<span className="block dark:hidden">#EEEEE7</span>
@@ -101,7 +118,7 @@ export default function Colophon() {
 							<span className="hidden dark:block">Pearl</span>
 							<span className="block dark:hidden">Charcoal</span>
 						</div>
-						<div className="mt-auto w-full h-1/4 px-3 flex justify-between items-center font-mono text-xs tracking-tight text-foreground-secondary">
+						<div className="mt-auto w-full h-1/4 px-3 flex justify-between items-center text-sm text-foreground-secondary">
 							<span>Foregrounds</span>
 							<span className="hidden dark:block">#F0F0EA</span>
 							<span className="block dark:hidden">#212121</span>

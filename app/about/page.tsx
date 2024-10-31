@@ -38,8 +38,8 @@ export default async function About() {
 
 	return (
 		<main className="max-w-screen-lg mx-auto pt-32 sm:pt-40">
-			<div className="absolute -translate-y-5 font-mono uppercase text-xs tracking-wide text-foreground-secondary">
-				<span className="text-brand">• </span>Bio
+			<div className="absolute -translate-y-6 text-sm font-medium text-foreground-secondary">
+				Bio
 			</div>
 			<PageHeader title="About Me" content="" className="mb-4 md:mb-8" />
 			<div className="grid md:grid-cols-12 gap-y-4 md:gap-8 mb-10 animate-slide">
