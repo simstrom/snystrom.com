@@ -5,20 +5,20 @@ import Button from '@/components/ui/button';
 import ProjectCard from '@/components/ui/projectCard';
 import { getAllTags, getBlogPosts } from '@/lib/blog';
 import { projectsData } from '@/lib/data';
-import { getLandingImages } from '@/lib/gallery';
+import { getImagesByTag } from '@/lib/gallery';
 import { getAllViews } from '@/lib/queries';
 import { Project } from '@/lib/types';
 // import { motion } from 'framer-motion';
 
 export default async function Home() {
-	const images = await getLandingImages();
+	const images = await getImagesByTag('Landing');
 	const blogPosts = getBlogPosts();
 	const allUniqueTags = getAllTags();
 	const allViews = await getAllViews();
 	const snystrom = projectsData.find((project) => project.title === 'Snystrom.com') as Project;
 
 	return (
-		<main className="flex flex-col items-center justify-center gap-20">
+		<main className="grow flex flex-col items-center justify-center gap-20">
 			<div className="w-screen h-screen flex flex-col items-center justify-center p-4 pt-24 sm:px-6 xl:px-16">
 				<div className="absolute -z-20 w-5 h-5 bg-transparent rounded" />
 				<AuroraBackground className="h-full w-full rounded-3xl text-foreground-inverse dark:text-foreground">

@@ -42,8 +42,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata | un
 export default async function GalleryDestination({ params }: Props) {
 	const index = galleryDestinations.findIndex((item) => slugify(item.title) === params.slug);
 	if (index === -1) return notFound();
+
 	const collection = galleryDestinations[index];
-	const images = await getImagesInCollection(collection.title);
+	const images = await getImagesInCollection('destinations', params.slug);
 
 	const previousIndex = (index - 1 + galleryDestinations.length) % galleryDestinations.length;
 	const nextIndex = (index + 1) % galleryDestinations.length;
@@ -56,7 +57,7 @@ export default async function GalleryDestination({ params }: Props) {
 	};
 
 	return (
-		<main className="mx-auto pt-32 sm:pt-40">
+		<main className="grow mx-auto w-full pt-32 sm:pt-40">
 			<div className="absolute -translate-y-6 text-sm font-medium text-foreground-secondary">
 				Destination
 			</div>

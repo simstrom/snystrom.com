@@ -23,6 +23,8 @@ export default function GalleryItem({
 	lightboxIndex,
 	handleImageClick,
 }: Props) {
+	if (!item) return;
+
 	return (
 		<>
 			{isCollection ? (

@@ -4,7 +4,7 @@ import HorizontalScroller from '@/components/ui/horizontalScroller';
 import PageHeader from '@/components/ui/pageHeader';
 import Timeline from '@/components/ui/timeline';
 import { timelineData } from '@/lib/data';
-import { getImagesInCollection } from '@/lib/gallery';
+import { getImagesByTag } from '@/lib/gallery';
 import HeroImage from '@/public/images/hero.jpg';
 import { Metadata } from 'next';
 import Image from 'next/image';
@@ -33,11 +33,11 @@ const skills = [
 ];
 
 export default async function About() {
-	const result = await getImagesInCollection('about');
+	const result = await getImagesByTag('About');
 	const scrollerImages = [...result, ...result, ...result];
 
 	return (
-		<main className="max-w-screen-lg mx-auto pt-32 sm:pt-40">
+		<main className="grow max-w-screen-lg mx-auto pt-32 sm:pt-40">
 			<div className="absolute -translate-y-6 text-sm font-medium text-foreground-secondary">
 				Bio
 			</div>
