@@ -12,7 +12,7 @@ export default async function Destinations() {
 	const collections = await getCoverImages('collections');
 
 	return (
-		<main className="mx-auto pt-32 sm:pt-40">
+		<main className="grow mx-auto w-full pt-32 sm:pt-40">
 			<PageHeader
 				title="Gallery"
 				content="A summary of the technologies, design, workflow and decisions behind my website."

@@ -193,7 +193,7 @@ pre .sh__line:hover {
 	COMPONENTS
 	-----------	*/
 .c-link {
-	@apply relative inline-flex items-center gap-x-0.5 no-underline whitespace-nowrap hover:text-brand transition duration-150;
+	@apply relative inline-flex items-center gap-x-0.5 no-underline whitespace-nowrap hover:text-brand transition;
 }
 .c-link::before {
 	position: absolute;
@@ -204,7 +204,7 @@ pre .sh__line:hover {
 	opacity: 50%;
 	content: '';
 	transition-property: all;
-	transition-duration: 150ms;
+	transition-duration: 200ms;
 }
 .c-link:hover::before {
 	@apply translate-y-1 transform-gpu;

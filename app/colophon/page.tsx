@@ -46,7 +46,7 @@ const content = [
 
 export default function Colophon() {
 	return (
-		<main className="max-w-screen-md mx-auto pt-32 sm:pt-40 overflow-x-hidden">
+		<main className="grow max-w-screen-md mx-auto pt-32 sm:pt-40 overflow-x-hidden">
 			<PageHeader
 				title="Colophon"
 				content="A summary of the technologies, design, workflow and decisions behind my website."

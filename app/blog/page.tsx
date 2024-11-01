@@ -17,7 +17,7 @@ export default async function Blog() {
 	const allViews = await getAllViews();
 
 	return (
-		<main className="flex flex-col pt-32 sm:pt-40">
+		<main className="grow flex flex-col pt-32 sm:pt-40">
 			<PageHeader
 				title="Read My Blog"
 				content="This is where I share my thoughts and experiences on all things code and design."

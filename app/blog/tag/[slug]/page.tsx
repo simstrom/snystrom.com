@@ -45,7 +45,7 @@ export default async function TagPage({ params }: Props) {
 	const posts = getPostsByTag(tag);
 
 	return (
-		<main className="max-w-3xl mx-auto flex flex-col pt-32 sm:pt-40">
+		<main className="grow max-w-3xl mx-auto flex flex-col pt-32 sm:pt-40">
 			<div className="absolute -translate-y-6 text-sm font-medium text-foreground-secondary">
 				Blog
 			</div>

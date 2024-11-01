@@ -22,7 +22,7 @@ export default function Footer() {
 							toCopy="simons.nystrom@gmail.com"
 							message="Email copied!"
 							icon={<IconEmail className="w-4 h-4" />}
-							className="hidden sm:flex"
+							className="hidden sm:flex mt-2"
 						/>
 					</div>
 

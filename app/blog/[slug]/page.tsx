@@ -58,7 +58,7 @@ export default async function BlogPost({ params }: Props) {
 	const related = getRelatedPosts(post);
 
 	return (
-		<main className="flex flex-col gap-3 max-w-2xl mx-auto pt-32 sm:pt-40 animate-slide">
+		<main className="grow flex flex-col gap-3 max-w-2xl mx-auto pt-32 sm:pt-40 animate-slide">
 			{/* <div className="self-center px-2 py-0.5 bg-brand-secondary/10 text-brand text-sm rounded-lg w-fit">
 				<span>Updated </span>
 				<time>{formatDateAsRelative(post.data.publishedAt)}</time>

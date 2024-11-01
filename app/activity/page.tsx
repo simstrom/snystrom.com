@@ -172,7 +172,7 @@ export default async function Activities() {
 	);
 
 	return (
-		<main className="max-w-screen-lg mx-auto pt-32 sm:pt-40">
+		<main className="grow max-w-screen-lg mx-auto pt-32 sm:pt-40">
 			<div className="absolute -translate-y-6 text-sm font-medium text-foreground-secondary">
 				Health
 			</div>
