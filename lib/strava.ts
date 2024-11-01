@@ -16,8 +16,8 @@ const getAccessToken = async () => {
 	const body = JSON.stringify({
 		client_id: clientId,
 		client_secret: clientSecret,
-		code: refreshToken,
-		grant_type: 'authorization_code',
+		refresh_token: refreshToken,
+		grant_type: 'refresh_token',
 	});
 
 	const res = await fetch(TOKEN_ENDPOINT, {
