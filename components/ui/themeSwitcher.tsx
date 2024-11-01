@@ -1,63 +1,63 @@
 'use client';
 
 import { IconMoon, IconSun } from '@/lib/icons';
+import { cn } from '@/lib/utils';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 
-import Button from './button';
-
-export default function ThemeSwitcher() {
+export default function ThemeSwitcher({ className }: { className?: string }) {
 	const [mounted, setMounted] = useState(false);
 	const { setTheme, theme } = useTheme();
 
+	// Avoid hydration mismatch
 	useEffect(() => {
-		// Make sure theme is loaded
 		setMounted(true);
-
-		const handleKeys = (e: KeyboardEvent) => {
-			if (e.key === 'b' && e.metaKey) {
-				setTheme(theme === 'dark' ? 'light' : 'dark');
-			}
-		};
-		window.addEventListener('keydown', handleKeys);
-
-		return () => window.removeEventListener('keydown', handleKeys);
 	}, []);
 
 	return (
-		<Button
-			size="icon"
-			onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-			className="active:scale-95 relative overflow-hidden text-foreground-secondary"
-			aria-label="Toggle theme"
-		>
-			<AnimatePresence mode="wait">
-				{mounted &&
-					(theme == 'light' ? (
+		<AnimatePresence mode="wait">
+			{mounted && (
+				<motion.button
+					initial={{ opacity: 0 }}
+					animate={{ opacity: 1 }}
+					transition={{ duration: 0.2 }}
+					onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+					className={cn(
+						'p-2 rounded-full overflow-hidden text-foreground/80 hover:text-foreground hover:bg-background-secondary dark:hover:bg-foreground/10 transition-colors',
+						className
+					)}
+					aria-label="Toggle theme"
+				>
+					<div className="relative h-5 w-5 flex items-center justify-center">
 						<motion.div
-							key="light"
 							className="absolute"
-							initial={{ x: 30, opacity: 0 }}
-							exit={{ x: 30, opacity: 0 }}
-							animate={{ x: 0, opacity: 1 }}
-							transition={{ type: 'tween', duration: 0.1, ease: 'easeInOut' }}
+							initial={{ y: theme === 'light' ? 0 : 50 }}
+							animate={{ y: theme === 'light' ? 0 : 50, rotate: theme === 'light' ? 0 : 100 }}
+							transition={{
+								type: 'spring',
+								stiffness: 300,
+								damping: 30,
+							}}
 						>
 							<IconSun />
 						</motion.div>
-					) : (
+
 						<motion.div
-							key="dark"
 							className="absolute"
-							initial={{ x: -30, opacity: 0 }}
-							exit={{ x: -30, opacity: 0 }}
-							animate={{ x: 0, opacity: 1 }}
-							transition={{ type: 'tween', duration: 0.1, ease: 'easeInOut' }}
+							initial={{ y: theme === 'dark' ? 0 : -50 }}
+							animate={{ y: theme === 'dark' ? 0 : -50, rotate: theme === 'dark' ? 0 : -200 }}
+							transition={{
+								type: 'spring',
+								stiffness: 300,
+								damping: 30,
+							}}
 						>
 							<IconMoon />
 						</motion.div>
-					))}
-			</AnimatePresence>
-		</Button>
+					</div>
+				</motion.button>
+			)}
+		</AnimatePresence>
 	);
 }
