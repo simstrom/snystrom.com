@@ -5,7 +5,7 @@ const clientSecret = process.env.STRAVA_CLIENT_SECRET;
 const refreshToken = process.env.STRAVA_REFRESH_TOKEN;
 
 const userId = 104671575;
-const TOKEN_ENDPOINT = 'https://www.strava.com/oauth/token';
+const TOKEN_ENDPOINT = 'https://www.strava.com/oauth/token?';
 const ATHLETES_ENDPOINT = `https://www.strava.com/api/v3/athletes/${userId}`;
 const ACTIVITY_ENDPOINT = 'https://www.strava.com/api/v3/';
 
@@ -16,8 +16,8 @@ const getAccessToken = async () => {
 	const body = JSON.stringify({
 		client_id: clientId,
 		client_secret: clientSecret,
-		refresh_token: refreshToken,
-		grant_type: 'refresh_token',
+		code: refreshToken,
+		grant_type: 'authorization_code',
 	});
 
 	const res = await fetch(TOKEN_ENDPOINT, {
