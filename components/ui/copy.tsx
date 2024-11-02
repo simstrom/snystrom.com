@@ -4,20 +4,21 @@ import { cn } from '@/lib/utils';
 import React, { useState } from 'react';
 
 interface CopyProps {
-	icon: React.ReactNode;
+	icon?: React.ReactNode;
 	toCopy: string;
-	message: string;
-	className: string;
+	successMessage: string | React.ReactNode;
+	className?: string;
+	children: React.ReactNode;
 }
 
-export default function Copy({ icon, toCopy, message, className }: CopyProps) {
+export default function Copy({ icon, toCopy, successMessage, className, children }: CopyProps) {
 	const [copied, setCopied] = useState(false);
 
 	const handleCopy = async () => {
 		try {
 			await navigator.clipboard.writeText(toCopy);
 			setCopied(true);
-			setTimeout(() => setCopied(false), 2000); // Reset state after 2 seconds
+			setTimeout(() => setCopied(false), 3000); // Reset state after 3 seconds
 		} catch (error) {
 			console.error('Failed to copy: ', error);
 		}
@@ -32,14 +33,15 @@ export default function Copy({ icon, toCopy, message, className }: CopyProps) {
 			)}
 		>
 			{icon}
-			<span className={cn('transition-transform', copied && '-translate-y-5')}>{toCopy}</span>
+			<span className={cn('transition-transform', copied && '-translate-y-5')}>{children}</span>
 			<span
 				className={cn(
-					'translate-y-5 transition-transform absolute left-6 bottom-0',
+					'translate-y-5 transition-transform absolute bottom-0',
+					icon ? 'left-6' : 'left-0',
 					copied && 'translate-y-0'
 				)}
 			>
-				{message}
+				{successMessage}
 			</span>
 		</button>
 	);

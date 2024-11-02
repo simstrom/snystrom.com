@@ -102,55 +102,66 @@
 	@apply sm:opacity-100 transition duration-150;
 }
 
-/* Code blocks */
-.prose pre {
-	@apply rounded-xl overflow-x-auto border bg-background-tertiary shadow-sm px-0 leading-loose tracking-normal;
-	-ms-overflow-style: none; /* IE and Edge */
-	scrollbar-width: none; /* Firefox */
+/* 
+	Code blocks 
+*/
+/* Code block title tab */
+figcaption[data-rehype-pretty-code-title] {
+	@apply flex items-center border-b h-10 py-3 px-4 mt-0 bg-background-secondary text-sm text-foreground/90 font-medium border-border/10 dark:border-border/20;
+}
 
-	--sh-class: #cc0e87;
-	--sh-identifier: #556791;
-	--sh-sign: #8c9dc5;
-	--sh-property: rgb(165, 91, 7);
-	--sh-entity: #cc0e87;
-	--sh-jsxliterals: hsl(var(--brand));
-	--sh-string: #66728e;
-	--sh-comment: #77839d;
-	--sh-keyword: hsl(var(--brand));
+/* Code block body */
+figure[data-rehype-pretty-code-figure] {
+	@apply overflow-hidden bg-background-tertiary rounded-xl border border-border/10 dark:border-border/20 shadow-sm;
 }
-.dark .prose pre {
-	--sh-class: #fc92c2;
-	--sh-identifier: #afb7d4;
-	--sh-sign: #9eb0dc;
-	--sh-property: #d8cb88;
-	--sh-entity: #fc92c2;
-	--sh-jsxliterals: hsl(var(--brand));
-	--sh-string: #afbad4;
-	--sh-comment: #77829d;
-	--sh-keyword: hsl(var(--brand));
+figure[data-rehype-pretty-code-figure] pre {
+	@apply overflow-x-auto bg-transparent py-4 px-0 text-sm leading-[26px] tracking-normal;
+
+	--code-foreground: #445175;
+	--code-token-constant: #c46891;
+	--code-token-string: #3e4d75;
+	--code-token-comment: #97a0b5;
+	--code-token-keyword: hsl(var(--brand-secondary));
+	--code-token-parameter: #c46891;
+	--code-token-function: #ac8e4f;
+	--code-token-string-expression: #c46891;
+	--code-token-punctuation: #445175;
+	--code-token-link: hsl(var(--brand-secondary));
 }
-.prose pre::-webkit-scrollbar {
-	display: none;
+.dark figure[data-rehype-pretty-code-figure] pre {
+	--code-foreground: #bccae7;
+	--code-token-constant: #e99abe;
+	--code-token-string: #bccae7;
+	--code-token-comment: #7b88a1;
+	--code-token-keyword: hsl(var(--brand-secondary));
+	--code-token-parameter: #e99abe;
+	--code-token-function: #f0d88c;
+	--code-token-string-expression: #e99abe;
+	--code-token-punctuation: #bccae7;
+	--code-token-link: hsl(var(--brand-secondary));
 }
-pre code {
-	counter-reset: sh-line-number;
+
+/* Code block lines */
+figure[data-rehype-pretty-code-figure] pre [data-line] {
+	@apply border-l-4 border-transparent px-4;
 }
-/* Line numbers */
-pre .sh__line::before {
-	@apply text-right text-foreground-secondary/50 px-3 mr-2;
-	counter-increment: sh-line-number 1;
-	content: counter(sh-line-number);
+figure[data-rehype-pretty-code-figure] pre [data-highlighted-line] {
+	@apply bg-brand-secondary/5 border-brand/80;
 }
-pre .sh__line {
-	@apply border-l-[3px] border-transparent inline-block w-full;
+
+/* Code block line numbers */
+code[data-line-numbers] {
+	counter-reset: lineNumber;
 }
-pre .sh__line:hover {
-	@apply bg-brand/5 border-brand/30;
+code[data-line-numbers] [data-line]::before {
+	@apply inline-block text-right mr-4 text-[#9ca3af]/80;
+	counter-increment: lineNumber 1;
+	content: counter(lineNumber);
 }
 
 /* Inline code */
 .prose :not(pre) > code {
-	@apply px-2 py-0.5 rounded-lg bg-background-tertiary text-sm font-normal border shadow-sm text-brand;
+	@apply px-1 mx-1 py-0.5 rounded-lg bg-background-tertiary text-[13px] font-normal border shadow-sm text-brand-secondary;
 }
 .prose :not(pre) > code::after,
 .prose :not(pre) > code::before {

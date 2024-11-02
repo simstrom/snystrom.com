@@ -11,8 +11,8 @@ export const getBlogPosts = cache(() => {
 		.readdirSync(contentDirectory)
 		.filter((file) => path.extname(file) === '.mdx')
 		.map((file) => {
-			const raw = fs.readFileSync(path.join(contentDirectory, file));
-			const { data, content } = matter(raw);
+			const source = fs.readFileSync(path.join(contentDirectory, file));
+			const { data, content } = matter(source);
 			const slug = path.basename(file, path.extname(file));
 
 			return { slug, content, data } as Post;

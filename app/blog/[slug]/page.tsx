@@ -1,5 +1,5 @@
-import MDXComponents from '@/components/blog/MDXComponents';
 import LikeButton from '@/components/blog/likeButton';
+import { useMDXComponents } from '@/components/blog/mdx-components';
 import Tag from '@/components/blog/tag';
 import PostListRelated from '@/components/postListRelated';
 import Button from '@/components/ui/button';
@@ -7,12 +7,14 @@ import ViewCounter from '@/components/ui/viewCounter';
 import { incrementViews } from '@/lib/actions';
 import { getBlogPost, getBlogPosts, getRelatedPosts } from '@/lib/blog';
 import { getPostInteractions } from '@/lib/queries';
+import { rehypeCodeOptions } from '@/lib/rehype';
 import { cn, formatDate } from '@/lib/utils';
 import { Metadata } from 'next';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import readingTime from 'reading-time';
+import rehypePrettyCode from 'rehype-pretty-code';
 
 interface Props {
 	params: {
@@ -58,7 +60,7 @@ export default async function BlogPost({ params }: Props) {
 	const related = getRelatedPosts(post);
 
 	return (
-		<main className="grow flex flex-col gap-3 max-w-2xl mx-auto pt-32 sm:pt-40 animate-slide">
+		<main className="grow flex flex-col gap-3 w-[inherit] max-w-2xl mx-auto pt-32 sm:pt-40 animate-slide">
 			{/* <div className="self-center px-2 py-0.5 bg-brand-secondary/10 text-brand text-sm rounded-lg w-fit">
 				<span>Updated </span>
 				<time>{formatDateAsRelative(post.data.publishedAt)}</time>
@@ -103,7 +105,15 @@ export default async function BlogPost({ params }: Props) {
 				</div>
 			</header>
 			<article className="mt-8 mb-10 sm:mb-20 prose dark:prose-invert max-w-none prose-headings:font-medium prose-headings:text-foreground prose-headings:relative">
-				<MDXRemote source={post.content} components={MDXComponents} />
+				<MDXRemote
+					source={post.content}
+					components={useMDXComponents}
+					options={{
+						mdxOptions: {
+							rehypePlugins: [[rehypePrettyCode as any, rehypeCodeOptions]],
+						},
+					}}
+				/>
 			</article>
 			<div className="mb-20 flex items-center justify-center">
 				<LikeButton likes={postInteractions?.likes} slug={post.slug} />

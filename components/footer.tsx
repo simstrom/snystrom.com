@@ -20,10 +20,12 @@ export default function Footer() {
 
 						<Copy
 							toCopy="simons.nystrom@gmail.com"
-							message="Email copied!"
+							successMessage="Email copied!"
 							icon={<IconEmail className="w-4 h-4" />}
 							className="hidden sm:flex mt-2"
-						/>
+						>
+							simons.nystrom@gmail.com
+						</Copy>
 					</div>
 
 					<div className="col-span-5 sm:col-span-3 sm:justify-self-end flex flex-col gap-2 text-foreground-secondary">
