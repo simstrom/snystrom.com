@@ -1,5 +1,5 @@
 import LikeButton from '@/components/blog/likeButton';
-import { useMDXComponents } from '@/components/blog/mdx-components';
+import MDXComponents from '@/components/blog/MDXcomponents';
 import Tag from '@/components/blog/tag';
 import PostListRelated from '@/components/postListRelated';
 import Button from '@/components/ui/button';
@@ -107,7 +107,7 @@ export default async function BlogPost({ params }: Props) {
 			<article className="mt-8 mb-10 sm:mb-20 prose dark:prose-invert max-w-none prose-headings:font-medium prose-headings:text-foreground prose-headings:relative">
 				<MDXRemote
 					source={post.content}
-					components={useMDXComponents}
+					components={MDXComponents}
 					options={{
 						mdxOptions: {
 							rehypePlugins: [[rehypePrettyCode as any, rehypeCodeOptions]],
