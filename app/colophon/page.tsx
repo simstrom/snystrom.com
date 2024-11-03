@@ -46,7 +46,7 @@ const content = [
 
 export default function Colophon() {
 	return (
-		<main className="grow max-w-screen-md mx-auto pt-32 sm:pt-40 overflow-x-hidden">
+		<main className="grow max-w-screen-lg mx-auto pt-32 sm:pt-40">
 			<PageHeader
 				title="Colophon"
 				content="A summary of the technologies, design, workflow and decisions behind my website."
@@ -54,8 +54,8 @@ export default function Colophon() {
 			<div className="pt-8 sm:pt-12 space-y-10 overflow-y-visible">
 				{content.map((c) => (
 					<div key={c.heading} className="sm:grid grid-cols-12 gap-2 animate-slide">
-						<h2 className="text-lg col-span-3 pb-2">{c.heading}</h2>
-						<div className="col-span-9 text-foreground-secondary">{c.text}</div>
+						<h2 className="text-lg col-span-4 pb-2">{c.heading}</h2>
+						<div className="col-span-8 text-foreground-secondary">{c.text}</div>
 					</div>
 				))}
 
@@ -126,29 +126,18 @@ export default function Colophon() {
 					</div>
 				</div>
 
-				{/* LOGOS */}
-				<div className="grid grid-cols-2 h-[450px] rounded-xl border my-10 relative overflow-hidden">
-					<div className="col-span-1 bg-background rounded-tl-xl flex items-center justify-center">
+				{/* LOGO */}
+				<div className="grid grid-cols-3 min-h-64 place-content-center place-items-center rounded-xl border my-10 bg-gradient-to-br from-background-tertiary to-background-tertiary/10 bg-clip-padding">
+					<div className="col-span-1">
 						<Logo />
 					</div>
-					<div className="col-span-1 bg-foreground rounded-tr-xl flex items-center justify-center">
-						<Logo className="text-foreground-inverse" />
-					</div>
-					<div className="col-span-1 bg-foreground rounded-bl-xl flex items-center justify-center">
-						<Logo className="text-brand-secondary dark:text-brand" />
-					</div>
-					<div className="col-span-1 bg-brand-secondary dark:bg-brand rounded-br-xl flex items-center justify-center">
-						<Logo className="text-foreground-inverse dark:text-foreground" />
-					</div>
-					<div className="hidden lg:block absolute inset-0 w-full h-full">
-						<div className="h-[77px] w-full border-b absolute"></div>
-						<div className="h-[148px] w-full border-b absolute"></div>
-						<div className="bottom-0 h-[77px] w-full border-t absolute"></div>
-						<div className="bottom-0 h-[148px] w-full border-t absolute"></div>
-						<div className="left-0 h-full w-[157px] border-r absolute"></div>
-						<div className="left-0 h-full w-[228px] border-r absolute"></div>
-						<div className="right-0 h-full w-[157px] border-l absolute"></div>
-						<div className="right-0 h-full w-[228px] border-l absolute"></div>
+
+					<div className="col-span-2 border-l pl-5 pr-2 py-4 md:pr-12">
+						<p className="text-foreground-secondary text-sm leading-relaxed">
+							Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus expedita
+							repudiandae earum quidem. Consectetur est minus similique ipsum assumenda, illo non
+							nobis libero odit blanditiis dolorum incidunt officiis asperiores quidem?
+						</p>
 					</div>
 				</div>
 			</div>

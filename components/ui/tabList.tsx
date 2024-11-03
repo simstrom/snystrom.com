@@ -22,6 +22,7 @@ export default function TabList({
 	links,
 	className,
 }: TabListProps) {
+	console.log(`underline-${labels}`);
 	return (
 		<LayoutGroup>
 			<div
@@ -33,7 +34,7 @@ export default function TabList({
 				{!asLinks && setSelected
 					? labels.map((label, i) => (
 							<motion.button
-								key={`tab_${label}`}
+								key={`tab_${i}`}
 								animate
 								onClick={() => setSelected(i)}
 								className={cn(
@@ -44,7 +45,7 @@ export default function TabList({
 								{label}
 								{i === selected && (
 									<motion.div
-										layoutId="underline"
+										layoutId={`underline-${labels}`}
 										className="w-full h-0.5 absolute bottom-0 left-0 bg-foreground"
 									/>
 								)}

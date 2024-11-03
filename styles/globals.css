@@ -56,7 +56,7 @@
 		min-width: 340px;
 	}
 	* {
-		@apply box-border border-border/20 scroll-smooth;
+		@apply box-border border-border/10 dark:border-border/20 scroll-smooth;
 		text-rendering: optimizeLegibility;
 	}
 	body {
@@ -107,15 +107,15 @@
 */
 /* Code block title tab */
 figcaption[data-rehype-pretty-code-title] {
-	@apply flex items-center border-b h-10 py-3 px-4 mt-0 bg-background-secondary text-sm text-foreground/90 font-medium border-border/10 dark:border-border/20;
+	@apply flex items-center border-b rounded-t-xl h-10 py-3 px-4 mt-0 text-sm text-foreground/90 font-medium border-border/10 dark:border-border/20 bg-gradient-to-br from-background-tertiary to-background;
 }
 
 /* Code block body */
 figure[data-rehype-pretty-code-figure] {
-	@apply overflow-hidden bg-background-tertiary rounded-xl border border-border/10 dark:border-border/20 shadow-sm;
+	@apply rounded-xl border border-border/10 dark:border-border/20 shadow-sm;
 }
 figure[data-rehype-pretty-code-figure] pre {
-	@apply overflow-x-auto bg-transparent py-4 px-0 text-sm leading-[26px] tracking-normal;
+	@apply overflow-x-auto py-4 px-0 text-sm leading-[26px] tracking-normal rounded-b-xl rounded-t-none bg-background-tertiary;
 
 	--code-foreground: #445175;
 	--code-token-constant: #c46891;
