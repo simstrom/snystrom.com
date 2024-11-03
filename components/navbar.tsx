@@ -7,6 +7,7 @@ import { usePathname } from 'next/navigation';
 
 import { navItems } from '@/lib/data';
 import ThemeSwitcher from './ui/themeSwitcher';
+import { Tooltip } from './ui/tooltip';
 
 export default function Navbar({ className }: { className?: string }) {
 	const currentPath = usePathname();
@@ -53,7 +54,9 @@ export default function Navbar({ className }: { className?: string }) {
 					))}
 				</div>
 
-				<ThemeSwitcher className="ml-auto" />
+				<Tooltip message="Change theme">
+					<ThemeSwitcher />
+				</Tooltip>
 
 				{/* <AnimatePresence>
 							{menuOpen && (

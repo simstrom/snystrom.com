@@ -1,35 +1,80 @@
+'use client';
+
+import { cn } from '@/lib/utils';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
 
 interface TooltipProps {
-	children?: React.ReactNode;
-	label: string;
+	message: string;
+	origin?: 'bottom' | 'top';
+	children: React.ReactNode;
 	className?: string;
 }
 
-export default function Tooltip({ children, label, className }: TooltipProps) {
-	const [isVisible, setIsVisible] = useState(false);
+export const Tooltip = ({ message, children, origin = 'bottom', className }: TooltipProps) => {
+	const [show, setShow] = useState(false);
+
+	const variants = {
+		initial: {
+			opacity: 0,
+			y: origin === 'bottom' ? -10 : 10,
+			transformOrigin: origin === 'bottom' ? 'top' : 'bottom',
+		},
+		animate: {
+			opacity: 1,
+			y: 0,
+			transformOrigin: origin === 'bottom' ? 'top' : 'bottom',
+		},
+		exit: {
+			opacity: 0,
+			y: origin === 'bottom' ? -10 : 10,
+			transformOrigin: origin === 'bottom' ? 'top' : 'bottom',
+		},
+	};
 
 	return (
-		<div
-			className="relative"
-			onMouseEnter={() => setIsVisible(true)}
-			onMouseLeave={() => setIsVisible(false)}
-			onMouseDown={() => setIsVisible(false)}
-		>
+		<div className={cn('relative flex flex-col items-center group', className)}>
+			<span
+				className="flex justify-center"
+				onMouseEnter={() => setShow(true)}
+				onFocus={() => setShow(true)}
+				onClick={() => setShow(false)}
+				onMouseLeave={() => setShow(false)}
+				onBlur={() => setShow(false)}
+			>
+				{children}
+			</span>
+
 			<AnimatePresence>
-				{isVisible && (
+				{show && (
 					<motion.div
-						className="flex items-center justify-center w-max absolute top-full right-0 sm:left-0 transform -translate-x-1/2 z-[999] px-2 py-1 mt-2 text-sm tracking-wide bg-background-secondary border rounded-lg shadow-shadow text-center pointer-events-none"
-						initial={{ opacity: 0, y: 10 }}
-						animate={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.2, delay: 0.5 }}
+						variants={variants}
+						initial="initial"
+						animate="animate"
+						exit="exit"
+						transition={{
+							type: 'just',
+							duration: 0.15,
+						}}
+						className={cn(
+							`pointer-events-none absolute whitespace-nowrap ${
+								origin === 'bottom' ? '-bottom-12' : '-top-12'
+							} flex flex-col items-center`,
+							!show ? 'hidden' : null
+						)}
 					>
-						{label}
+						{origin === 'bottom' && (
+							<div className="-mt-2 translate-y-1.5 w-3 h-3 rotate-45 bg-background-tertiary border-t border-l z-20" />
+						)}
+						<span className="relative z-10 px-3 py-2 text-xs leading-none text-foreground whitespace-no-wrap bg-background-tertiary shadow-sm border rounded-lg">
+							{message}
+						</span>
+						{origin === 'top' && (
+							<div className="-mt-1.5 w-3 h-3 rotate-45 bg-background-tertiary border-b border-r z-20" />
+						)}
 					</motion.div>
 				)}
 			</AnimatePresence>
-			{children}
 		</div>
 	);
-}
+};

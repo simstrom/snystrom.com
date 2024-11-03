@@ -1,6 +1,7 @@
 import { IconCheck, IconCopy } from '@/lib/icons';
 import React from 'react';
 import Copy from '../ui/copy';
+import { Tooltip } from '../ui/tooltip';
 
 interface CodeProps {
 	children: React.ReactNode;
@@ -36,19 +37,15 @@ export default function Code({ children, ...props }: CodeProps) {
 		<figure {...props} className="relative group">
 			<figcaption data-rehype-pretty-code-title>
 				{figcaption?.props.children}
-				<Copy
-					successMessage={<IconCheck width={20} height={20} className="text-brand" />}
-					toCopy={codeText}
-					className="ml-auto"
-				>
-					<IconCopy width={18} height={18} />
-				</Copy>
+				<Tooltip message="Copy code" className="ml-auto">
+					<Copy
+						successMessage={<IconCheck width={20} height={20} className="text-brand" />}
+						toCopy={codeText}
+					>
+						<IconCopy width={18} height={18} />
+					</Copy>
+				</Tooltip>
 			</figcaption>
-			{'data-language' in pre?.props && (
-				<span className="absolute top-14 right-6 font-mono text-xs text-transparent group-hover:text-[#9ca3af]/80 font-medium transition-colors select-none">
-					{pre?.props['data-language']}
-				</span>
-			)}
 			{filteredChildren}
 		</figure>
 	);
