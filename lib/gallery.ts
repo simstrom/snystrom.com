@@ -6,8 +6,6 @@ import { cache } from 'react';
 import { galleryCollections, galleryDestinations } from './data';
 import { GalleryCollection, GalleryImage } from './types';
 
-let cachedImages: GalleryImage[] | null = null; // Singleton cache
-
 async function createBlurDataURL(publicId: string): Promise<string> {
 	const imageUrl = getCldImageUrl({
 		src: publicId,
@@ -46,26 +44,19 @@ const mapGalleryImages = cache(async (result: any): Promise<GalleryImage[]> => {
 });
 
 export const getAllImages = cache(async (limit?: number) => {
-	if (cachedImages) return cachedImages;
-
 	try {
-		const searchParams = cloudinary.search
-			.expression('folder:snystrom/*')
-			.with_field(['metadata', 'tags'])
-			.sort_by('uploaded_at', 'desc');
-
-		if (limit) {
-			searchParams.max_results(limit);
-		}
-
-		const results = await searchParams.execute();
+		const results = await cloudinary.api.resources({
+			tags: true,
+			context: true,
+			max_results: limit,
+		});
 
 		if (!results || !Array.isArray(results.resources)) {
 			throw new Error('Invalid response from Cloudinary');
 		}
 
-		cachedImages = results.resources; // Cache results in memory
-		return await mapGalleryImages(results.resources);
+		const filteredResult = results.resources.filter((img: any) => img.metadata != null);
+		return await mapGalleryImages(filteredResult);
 	} catch (error) {
 		console.error('Error fetching images:', error);
 		throw new Error('Failed to fetch images');
@@ -73,8 +64,21 @@ export const getAllImages = cache(async (limit?: number) => {
 });
 
 export async function getImagesByTag(tag: string) {
-	const images = await getAllImages();
-	return images.filter((img) => img.tags.includes(tag));
+	try {
+		const results = await cloudinary.api.resources_by_tag(tag, {
+			tags: true,
+			context: true,
+		});
+
+		if (!results || !Array.isArray(results.resources)) {
+			throw new Error('Invalid response from Cloudinary');
+		}
+
+		return await mapGalleryImages(results.resources);
+	} catch (error) {
+		console.error('Error fetching images:', error);
+		throw new Error('Failed to fetch images');
+	}
 }
 
 export async function getImagesInCollection(type: 'destinations' | 'collections', name: string) {

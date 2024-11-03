@@ -15,7 +15,7 @@ export default function Tabs({ labels, children, ...props }: TabListProps) {
 		<>
 			<TabList labels={labels} selected={activeView} setSelected={setActiveView} className="mt-8" />
 			<div className="mb-12">
-				{children.map((child, idx) => activeView === idx && <>{child}</>)}
+				{children.map((child, idx) => activeView === idx && <div key={idx}>{child}</div>)}
 			</div>
 		</>
 	);

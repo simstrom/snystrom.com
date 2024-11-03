@@ -52,7 +52,7 @@ export default function GalleryBlock({ images }: Props) {
 
 			{images.map((image, idx) => (
 				<ParallaxImage
-					key={image.id}
+					key={image.id + idx}
 					className={imagePositions[idx]}
 					scrollY={scrollYProgress}
 					image={image}
