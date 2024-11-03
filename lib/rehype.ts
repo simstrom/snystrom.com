@@ -1,16 +1,8 @@
-import { Theme, type Options } from 'rehype-pretty-code';
-import { createCssVariablesTheme } from 'shiki';
-// import vercelLightTheme from "./lib/themes/vercel-light.json"
-
-const myTheme = createCssVariablesTheme({
-	name: 'snystrom',
-	variablePrefix: '--code-',
-	variableDefaults: {},
-	fontStyle: true,
-});
+import fs from 'fs';
+import { type Options } from 'rehype-pretty-code';
 
 export const rehypeCodeOptions: Partial<Options> = {
-	theme: myTheme as Theme,
+	theme: JSON.parse(fs.readFileSync('lib/themes/snystrom-theme.json', 'utf-8')),
 	keepBackground: false,
 	bypassInlineCode: true,
 };
