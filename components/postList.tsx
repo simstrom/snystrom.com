@@ -4,7 +4,7 @@ import { Post, Views } from '@/lib/types';
 import { formatDate } from '@/lib/utils';
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
-import ViewCounter from './ui/viewCounter';
+import readingTime from 'reading-time';
 
 type PostListProps = {
 	posts: Post[];
@@ -13,17 +13,14 @@ type PostListProps = {
 };
 
 const determineMatch = (post: Post, query: string): string => {
-	const { title, summary, tags } = post.data;
+	const { title, tags } = post.data;
 
-	if (title.toLowerCase().includes(query.toLowerCase())) {
-		return 'Title match';
-	}
-	if (summary?.toLowerCase().includes(query.toLowerCase())) {
-		return 'Content match';
-	}
 	const matchingTag = tags?.find((tag) => tag.toLowerCase().includes(query.toLowerCase()));
 	if (matchingTag) {
-		return `Topic: ${matchingTag}`;
+		return matchingTag;
+	}
+	if (title.toLowerCase().includes(query.toLowerCase())) {
+		return 'Title';
 	}
 	return '';
 };
@@ -35,7 +32,9 @@ export default function PostList({ posts, views, query }: PostListProps) {
 			initial={{ opacity: 0, y: 50 }}
 			animate={{ opacity: 1, y: 0 }}
 			transition={{
-				duration: 0.2,
+				type: 'spring',
+				stiffness: 300,
+				damping: 30,
 			}}
 			className="flex flex-col opacity-list"
 		>
@@ -56,35 +55,33 @@ export default function PostList({ posts, views, query }: PostListProps) {
 							exit={{ opacity: 0 }}
 						>
 							<Link
-								className="flex flex-col p-5 rounded-lg transition group hover:bg-background-tertiary"
+								className="flex flex-col items-baseline gap-x-8 sm:flex-row py-3 group transition rounded-xl"
 								href={`/blog/${post.slug}`}
 							>
-								<div className="flex w-full gap-x-2 items-center text-sm">
-									<time className="text-foreground-secondary">
-										{formatDate(post.data.publishedAt, false, true)}
-									</time>
-									<span className="text-foreground/30">/</span>
-									<ViewCounter
-										className="text-foreground-secondary"
-										views={views?.find((view) => view.slug === post.slug)?.views as number}
-									/>
+								<div className="w-full sm:w-fit min-w-fit flex items-baseline gap-x-2 sm:block text-sm text-foreground-secondary ">
+									<time>{formatDate(post.data.publishedAt, false, true)}</time>
+									<span className="sm:hidden">·</span>
+									<span className="sm:hidden min-w-fit">{readingTime(post.content).text}</span>
 									{query && (
 										<motion.div
 											initial={{ opacity: 0 }}
 											animate={{ opacity: 1 }}
-											transition={{ duration: 0.2 }}
-											className="hidden sm:block ml-auto text-xs text-brand"
+											transition={{ duration: 0.15 }}
+											className="ml-auto text-xs text-brand"
 										>
 											{determineMatch(post, query)}
 										</motion.div>
 									)}
 								</div>
 
-								<h3 className="transition-colors text-pretty">{post.data.title}</h3>
+								<div>
+									<h3 className="transition-colors text-pretty grow">{post.data.title}</h3>
+									<p className="text-sm text-foreground/50 line-clamp-2">{post.data.summary}</p>
+								</div>
 
-								{/* <p className="text-sm leading-6 text-foreground-secondary line-clamp-2">
-									{post.data.summary}
-								</p> */}
+								<span className="hidden sm:block text-sm text-foreground-secondary ml-auto text-right min-w-fit">
+									{readingTime(post.content).text}
+								</span>
 							</Link>
 						</motion.li>
 					))}

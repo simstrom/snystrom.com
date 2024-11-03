@@ -21,7 +21,7 @@ export default function PostListRelated({ posts }: PostListRelatedProps) {
 				.map((post) => (
 					<Link
 						key={post.slug}
-						className="relative flex gap-x-1 w-full p-5 items-end group transition border rounded-lg hover:bg-background-tertiary"
+						className="relative flex gap-x-1 w-full p-5 items-end group transition border shadow-sm rounded-xl bg-gradient-to-br from-background-tertiary to-background-tertiary/20 hover:border-border/20 dark:hover:border-border/30"
 						href={`/blog/${post.slug}`}
 					>
 						<div>

@@ -1,11 +1,10 @@
 import PostList from '@/components/postList';
+import Button from '@/components/ui/button';
 import PageHeader from '@/components/ui/pageHeader';
 import { getAllTags, getPostsByTag } from '@/lib/blog';
-import { IconArrowLeft } from '@/lib/icons';
 import { getAllViews } from '@/lib/queries';
 import { slugify } from '@/lib/utils';
 import { Metadata } from 'next';
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
 interface Props {
@@ -45,25 +44,23 @@ export default async function TagPage({ params }: Props) {
 	const posts = getPostsByTag(tag);
 
 	return (
-		<main className="grow max-w-3xl mx-auto flex flex-col pt-32 sm:pt-40">
-			<div className="absolute -translate-y-6 text-sm font-medium text-foreground-secondary">
+		<main className="grow max-w-2xl w-full mx-auto flex flex-col pt-32 sm:pt-40">
+			<Button
+				variant="link"
+				href="/blog"
+				backLink
+				className="text-foreground-secondary hover:text-foreground transition-colors mb-8"
+			>
 				Blog
-			</div>
-			<PageHeader title={`${tag}`} content={`Explore all articles and tutorials about ${tag}`} />
+			</Button>
+			<PageHeader
+				title={`${tag}`}
+				className="text-2xl sm:text-2xl"
+				content={`Explore all articles and tutorials about ${tag}`}
+			/>
 			<section className="pt-5 mb-10">
 				<PostList posts={posts} views={views} />
 			</section>
-			<Link
-				href="/blog"
-				className="inline-flex w-fit items-center gap-x-1 font-mono text-xs tracking-tight hover:text-brand transition duration-300 group"
-			>
-				<IconArrowLeft
-					width={12}
-					height={12}
-					className="group-hover:-translate-x-1 transition-transform duration-300"
-				/>
-				Back to Blog
-			</Link>
 		</main>
 	);
 }

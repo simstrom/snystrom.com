@@ -3,6 +3,7 @@ import MDXComponents from '@/components/blog/MDXcomponents';
 import Tag from '@/components/blog/tag';
 import PostListRelated from '@/components/postListRelated';
 import Button from '@/components/ui/button';
+import PageHeader from '@/components/ui/pageHeader';
 import ViewCounter from '@/components/ui/viewCounter';
 import { incrementViews } from '@/lib/actions';
 import { getBlogPost, getBlogPosts, getRelatedPosts } from '@/lib/blog';
@@ -89,7 +90,7 @@ export default async function BlogPost({ params }: Props) {
 						<Tag key={idx} tag={tag} />
 					))}
 				</ul>
-				<h1 className="text-3xl text-balance mb-2">{post.data.title}</h1>
+				<PageHeader title={post.data.title} />
 				<div className="font-medium flex flex-wrap justify-between items-center gap-y-3 text-sm text-foreground/80">
 					<div className="flex items-center gap-2">
 						<time>{formatDate(post.data.publishedAt)}</time>
