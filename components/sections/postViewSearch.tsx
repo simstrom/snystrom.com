@@ -46,7 +46,7 @@ export default function PostViewSearch({ posts, views }: PostViewSearchProps) {
 					type="search"
 					autoComplete="off"
 					placeholder="Search for articles or topics ..."
-					className="w-full text-sm text-tertiary border bg-background-tertiary py-4 pl-12 pr-4 rounded-lg placeholder:text-foreground-secondary focus:outline-none focus:ring-2 ring-brand ring-offset-2 ring-offset-background transition duration-300"
+					className="w-full text-sm text-tertiary border bg-background-tertiary py-4 pl-12 pr-4 rounded-xl placeholder:text-foreground-secondary focus:outline-none focus:ring-2 ring-brand ring-offset-2 ring-offset-background transition"
 					value={searchQuery}
 					onChange={handleSearch}
 				/>
@@ -63,7 +63,9 @@ export default function PostViewSearch({ posts, views }: PostViewSearchProps) {
 					initial={{ opacity: 0, y: 50 }}
 					animate={{ opacity: 1, y: 0 }}
 					transition={{
-						duration: 0.2,
+						type: 'spring',
+						stiffness: 300,
+						damping: 30,
 					}}
 					className="text-center space-y-2 pt-4"
 				>

@@ -80,13 +80,13 @@
 	@apply leading-[1.9] tracking-[0.02em];
 }
 .prose strong {
-	@apply font-semibold text-foreground;
+	@apply font-[550] text-foreground;
 }
 .prose blockquote {
 	@apply border-brand;
 }
 .prose .c-link {
-	@apply font-normal;
+	@apply font-[450];
 }
 
 /* Heading anchorlinks */
@@ -161,7 +161,7 @@ code[data-line-numbers] [data-line]::before {
 
 /* Inline code */
 .prose :not(pre) > code {
-	@apply px-1 mx-1 py-0.5 rounded-lg bg-background-tertiary text-[13px] font-normal border shadow-sm text-brand-secondary;
+	@apply px-1 mx-1 py-0.5 rounded-lg bg-background-tertiary text-[13px] font-[450] border shadow-sm text-brand-secondary;
 }
 .prose :not(pre) > code::after,
 .prose :not(pre) > code::before {

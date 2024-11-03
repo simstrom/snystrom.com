@@ -37,7 +37,7 @@ export default async function About() {
 	const scrollerImages = [...result, ...result, ...result];
 
 	return (
-		<main className="grow max-w-screen-lg mx-auto pt-32 sm:pt-40">
+		<main className="pt-32 sm:pt-40 overflow-hidden">
 			<div className="absolute -translate-y-6 text-sm font-medium text-foreground-secondary">
 				Bio
 			</div>
@@ -84,13 +84,13 @@ export default async function About() {
 					items={skills.slice(0, skills.length / 2)}
 					speed="slow"
 					separator="•"
-					className="text-lg sm:text-2xl font-normal select-none"
+					className="text-lg sm:text-2xl font-[450] select-none"
 				/>
 				<HorizontalScroller
 					items={skills.slice(skills.length / 2)}
 					speed="slow"
 					separator="•"
-					className="sm:text-lg font-normal select-none"
+					className="sm:text-lg font-[450] select-none"
 				/>
 			</div>
 

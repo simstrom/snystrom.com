@@ -2,18 +2,23 @@ import { cn } from '@/lib/utils';
 
 interface PageHeaderProps {
 	title: string;
-	content: string;
+	content?: string;
 	className?: string;
 }
 
 export default function PageHeader({ title, content, className }: PageHeaderProps) {
 	return (
-		<section className={cn('w-full mx-auto', className)}>
-			<h1 className="pb-2 text-3xl sm:text-4xl bg-gradient-to-br from-foreground to-foreground/30 bg-clip-text text-transparent">
+		<>
+			<h1
+				className={cn(
+					'pb-2 text-3xl sm:text-4xl bg-gradient-to-br from-foreground to-foreground/50 dark:to-foreground/30 bg-clip-text text-transparent',
+					className
+				)}
+			>
 				{title}
 			</h1>
-			<p className="text-foreground-secondary text-pretty">{content}</p>
-		</section>
+			{content && <p className="text-foreground-secondary text-pretty">{content}</p>}
+		</>
 	);
 }
 

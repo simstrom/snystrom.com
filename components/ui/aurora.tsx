@@ -99,7 +99,7 @@ export const AuroraBackground = ({
 				<h1 className="leading-none text-[9vw] tracking-tight flex flex-col gap-1 sm:gap-0 items-center">
 					<motion.span
 						variants={itemVariant}
-						className="sm:flex items-baseline gap-8 lg:gap-10 font-normal"
+						className="sm:flex items-baseline gap-8 lg:gap-10 font-[450]"
 					>
 						Simon
 						<span className="sm:hidden"> </span>
@@ -113,7 +113,7 @@ export const AuroraBackground = ({
 						Nyström
 					</motion.span>
 					<motion.span variants={itemVariant}>Frontend Developer</motion.span>
-					<motion.span variants={itemVariant} className="font-normal">
+					<motion.span variants={itemVariant} className="font-[450]">
 						Stockholm, Sweden
 					</motion.span>
 				</h1>

@@ -33,8 +33,8 @@ export default function CustomLink(props: CustomLinkProps) {
 		>
 			{props.children}
 			<span className="overflow-hidden relative">
-				<IconArrowUpRight className="w-4 h-4 group-hover:-translate-y-5 group-hover:translate-x-5 transition" />
-				<IconArrowUpRight className="absolute bottom-0 right-0  w-4 h-4 translate-y-5 -translate-x-5 group-hover:translate-y-0 group-hover:translate-x-0 transition" />
+				<IconArrowUpRight className="w-4 h-4 group-hover:-translate-y-5 group-hover:translate-x-5 transition-transform" />
+				<IconArrowUpRight className="absolute bottom-0 right-0  w-4 h-4 translate-y-5 -translate-x-5 group-hover:translate-y-0 group-hover:translate-x-0 transition-transform" />
 			</span>
 		</a>
 	);
