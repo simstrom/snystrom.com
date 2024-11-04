@@ -8,14 +8,12 @@ import ViewCounter from '@/components/ui/viewCounter';
 import { incrementViews } from '@/lib/actions';
 import { getBlogPost, getBlogPosts, getRelatedPosts } from '@/lib/blog';
 import { getPostInteractions } from '@/lib/queries';
-import { rehypeCodeOptions } from '@/lib/rehype';
 import { cn, formatDate } from '@/lib/utils';
+import { MDXContent } from '@content-collections/mdx/react';
 import { Metadata } from 'next';
-import { MDXRemote } from 'next-mdx-remote/rsc';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import readingTime from 'reading-time';
-import rehypePrettyCode from 'rehype-pretty-code';
+import Script from 'next/script';
 
 interface Props {
 	params: {
@@ -29,7 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata | un
 		return;
 	}
 
-	const { title, summary, publishedAt, image } = post.data;
+	const { title, summary, date, image } = post;
 	const seoImage = image ? `https://snystrom.com${image}` : `https://snystrom.com/og.png`;
 
 	return {
@@ -39,7 +37,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata | un
 			title,
 			description: summary,
 			type: 'article',
-			publishedTime: publishedAt,
+			publishedTime: date.toISOString(),
 			url: `https://snystrom.com/blog/${post.slug}`,
 			images: seoImage,
 		},
@@ -60,69 +58,89 @@ export default async function BlogPost({ params }: Props) {
 	const postInteractions = await getPostInteractions(post.slug);
 	const related = getRelatedPosts(post);
 
+	const jsonLd = {
+		'@type': 'BlogPost',
+		'@context': 'https://schema.org',
+		mainEntityOfPage: {
+			'@type': 'WebPage',
+			'@id': new URL(
+				`/blog/${post.slug}`,
+				process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL
+			).toString(),
+		},
+		headline: post.title,
+		description: post.summary,
+		image: post.image,
+		datePublished: post.date.toISOString(),
+		dateModified: post.date.toISOString(),
+		author: 'Simon Nyström',
+		isAccessibleForFree: true,
+	};
+
 	return (
-		<main className="grow flex flex-col gap-3 w-[inherit] max-w-2xl mx-auto pt-32 sm:pt-40 animate-slide">
-			<Button
-				variant="link"
-				href="/blog"
-				backLink
-				className={cn(
-					'text-foreground-secondary hover:text-brand transition-colors',
-					post.data.image ? 'mb-4' : 'mb-8'
+		<>
+			<Script
+				type="application/ld+json"
+				id={`${post.slug}_jsonLd`}
+				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+			/>
+			<main className="grow flex flex-col gap-3 w-[inherit] max-w-2xl mx-auto pt-32 sm:pt-40 animate-slide">
+				<Button
+					variant="link"
+					href="/blog"
+					backLink
+					className={cn(
+						'text-foreground-secondary hover:text-brand transition-colors',
+						post.image ? 'mb-4' : 'mb-8'
+					)}
+				>
+					Blog
+				</Button>
+				{post.image && post.imageBlur && (
+					<Image
+						priority
+						src={post.image}
+						alt={`${post.title} post image`}
+						width={672}
+						height={378}
+						placeholder="blur"
+						blurDataURL={post.imageBlur}
+						className="w-full aspect-video rounded-xl object-cover border mb-3"
+					/>
 				)}
-			>
-				Blog
-			</Button>
-			{post.data.image && (
-				<Image
-					src={post.data.image}
-					alt={`${post.data.title} post image`}
-					width={672}
-					height={378}
-					className="w-full aspect-video rounded-xl object-cover border mb-3"
-					priority
-				/>
-			)}
 
-			<header className="article-header flex flex-col gap-1">
-				<ul className="opacity-list w-fit flex items-center gap-1 flex-wrap mb-2">
-					{post.data.tags?.map((tag, idx) => (
-						<Tag key={idx} tag={tag} />
-					))}
-				</ul>
-				<PageHeader title={post.data.title} />
-				<div className="font-medium flex flex-wrap justify-between items-center gap-y-3 text-sm text-foreground/80">
-					<div className="flex items-center gap-2">
-						<time>{formatDate(post.data.publishedAt)}</time>
-						<span className="text-foreground/30">/</span>
-						<ViewCounter views={postInteractions?.views ? postInteractions.views + 1 : 1} />
-						<span className="text-foreground/30">/</span>
-						<p>{readingTime(post.content).text}</p>
+				<header className="article-header flex flex-col gap-1">
+					<ul className="opacity-list w-fit flex items-center gap-1 flex-wrap mb-2">
+						{post.tags?.map((tag, idx) => (
+							<Tag key={idx} tag={tag} />
+						))}
+					</ul>
+					<PageHeader title={post.title} />
+					<div className="font-medium flex flex-wrap justify-between items-center gap-y-3 text-sm text-foreground/80">
+						<div className="flex items-center gap-2">
+							<time>{formatDate(post.date)}</time>
+							<span className="text-foreground/30">/</span>
+							<ViewCounter views={postInteractions?.views ? postInteractions.views + 1 : 1} />
+							<span className="text-foreground/30">/</span>
+							<p>{post.readingTime}</p>
+						</div>
 					</div>
+				</header>
+				<article className="mt-8 mb-10 sm:mb-20 prose dark:prose-invert max-w-none prose-headings:font-medium prose-headings:text-foreground prose-headings:relative">
+					<MDXContent code={post.body} components={MDXComponents} />
+				</article>
+				<div className="mb-20 flex items-center justify-center">
+					<LikeButton likes={postInteractions?.likes} slug={post.slug} />
 				</div>
-			</header>
-			<article className="mt-8 mb-10 sm:mb-20 prose dark:prose-invert max-w-none prose-headings:font-medium prose-headings:text-foreground prose-headings:relative">
-				<MDXRemote
-					source={post.content}
-					components={MDXComponents}
-					options={{
-						mdxOptions: {
-							rehypePlugins: [[rehypePrettyCode as any, rehypeCodeOptions]],
-						},
-					}}
-				/>
-			</article>
-			<div className="mb-20 flex items-center justify-center">
-				<LikeButton likes={postInteractions?.likes} slug={post.slug} />
-			</div>
 
-			{related.length > 0 && (
-				<section className="space-y-3 mb-10">
-					<h3 className="text-2xl">Related posts</h3>
-					<PostListRelated posts={related.slice(0, 3)} />
-				</section>
-			)}
-		</main>
+				{related.length > 0 && (
+					<section className="space-y-3 mb-10">
+						<h3 className="text-2xl">Related posts</h3>
+						<PostListRelated posts={related.slice(0, 3)} />
+					</section>
+				)}
+			</main>
+		</>
 	);
 }
 

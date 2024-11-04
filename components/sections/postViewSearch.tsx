@@ -1,10 +1,11 @@
 'use client';
 
 import { IconSearch } from '@/lib/icons';
-import { Post, Views } from '@/lib/types';
+import { Views } from '@/lib/types';
 import { useMemo, useState } from 'react';
 import { useDebounce } from 'use-debounce';
 
+import { Post } from '@/.content-collections/generated';
 import { motion } from 'framer-motion';
 import PostList from '../postList';
 
@@ -24,8 +25,8 @@ export default function PostViewSearch({ posts, views }: PostViewSearchProps) {
 	const filteredPosts = useMemo(() => {
 		return posts.filter(
 			(post) =>
-				post.data.title.toLowerCase().includes(debouncedQuery.toLowerCase()) ||
-				post.data.tags?.some((tag) => tag.toLowerCase().includes(debouncedQuery.toLowerCase()))
+				post.title.toLowerCase().includes(debouncedQuery.toLowerCase()) ||
+				post.tags?.some((tag) => tag.toLowerCase().includes(debouncedQuery.toLowerCase()))
 		);
 	}, [posts, debouncedQuery]);
 

@@ -17,8 +17,8 @@ type PostViewHeroProps = {
 
 const getLatestPost = (posts: Post[]) => {
 	return posts.slice().sort((a, b) => {
-		const dateA = new Date(a.data.publishedAt);
-		const dateB = new Date(b.data.publishedAt);
+		const dateA = new Date(a.data.date);
+		const dateB = new Date(b.data.date);
 		return dateB.getTime() - dateA.getTime();
 	})[0];
 };
@@ -95,7 +95,7 @@ const BlogFeaturedCard: React.FC<{ post: Post; views: Views; type: 'popular' | '
 						</span>
 					</h2>
 					<div className="rounded-b-xl inline-flex gap-x-4 py-2 px-6 text-sm bg-background">
-						{formatDate(post.data.publishedAt, false, true)}
+						{formatDate(post.data.date, false, true)}
 						<span className="text-brand">/</span>
 						<ViewCounter views={views?.find((view) => view.slug === post.slug)?.views as number} />
 					</div>

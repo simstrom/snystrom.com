@@ -1,28 +1,8 @@
-import fs from 'fs';
-import matter from 'gray-matter';
-import path from 'path';
+import { allPosts, Post } from 'content-collections';
 import { cache } from 'react';
-import { Post } from './types';
-
-const contentDirectory = path.join(process.cwd(), 'content/blog');
 
 export const getBlogPosts = cache(() => {
-	const posts = fs
-		.readdirSync(contentDirectory)
-		.filter((file) => path.extname(file) === '.mdx')
-		.map((file) => {
-			const source = fs.readFileSync(path.join(contentDirectory, file));
-			const { data, content } = matter(source);
-			const slug = path.basename(file, path.extname(file));
-
-			return { slug, content, data } as Post;
-		})
-		.sort((a, b) => {
-			if (new Date(a.data.publishedAt) > new Date(b.data.publishedAt)) {
-				return -1;
-			}
-			return 1;
-		});
+	const posts = allPosts.toSorted((a, b) => b.date.getTime() - a.date.getTime());
 	return posts;
 });
 
@@ -37,7 +17,7 @@ export const getRelatedPosts = (post: Post) => {
 	const posts = getBlogPosts();
 	const related = posts
 		.filter((p) => p.slug !== post.slug)
-		.filter((p) => p.data.tags?.some((tag: string) => post.data.tags?.includes(tag)))
+		.filter((p) => p.tags?.some((tag: string) => post.tags?.includes(tag)))
 		.slice(0, 3);
 	return related;
 };
@@ -45,7 +25,7 @@ export const getRelatedPosts = (post: Post) => {
 export const getPostsByTag = (tag: string) => {
 	const posts = getBlogPosts();
 	const postsByTag = posts.filter((p) =>
-		p.data.tags?.some((t: string) => tag.toLowerCase() === t.toLowerCase())
+		p.tags?.some((t: string) => tag.toLowerCase() === t.toLowerCase())
 	);
 	return postsByTag;
 };
@@ -58,7 +38,7 @@ export const getBlogPost = (slug: string) => {
 export const getAllTags = () => {
 	const posts = getBlogPosts();
 	// Extract tags from each post and flatten (take 12)
-	const tags = posts.flatMap((post) => post.data.tags ?? []);
+	const tags = posts.flatMap((post) => post.tags ?? []);
 	// Ensure uniqueness of tags with Set
 	return Array.from(new Set(tags));
 };

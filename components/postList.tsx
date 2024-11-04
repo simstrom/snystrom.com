@@ -1,10 +1,10 @@
 'use client';
 
-import { Post, Views } from '@/lib/types';
+import { Post } from '@/.content-collections/generated';
+import { Views } from '@/lib/types';
 import { formatDate } from '@/lib/utils';
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
-import readingTime from 'reading-time';
 
 type PostListProps = {
 	posts: Post[];
@@ -13,7 +13,7 @@ type PostListProps = {
 };
 
 const determineMatch = (post: Post, query: string): string => {
-	const { title, tags } = post.data;
+	const { title, tags } = post;
 
 	const matchingTag = tags?.find((tag) => tag.toLowerCase().includes(query.toLowerCase()));
 	if (matchingTag) {
@@ -53,9 +53,9 @@ export default function PostList({ posts, views, query }: PostListProps) {
 							href={`/blog/${post.slug}`}
 						>
 							<div className="w-full sm:w-fit min-w-fit flex items-baseline gap-x-2 sm:block text-sm text-foreground-secondary ">
-								<time>{formatDate(post.data.publishedAt, false, true)}</time>
+								<time>{formatDate(post.date, false, true)}</time>
 								<span className="sm:hidden">·</span>
-								<span className="sm:hidden min-w-fit">{readingTime(post.content).text}</span>
+								<span className="sm:hidden min-w-fit">{post.readingTime}</span>
 								{query && (
 									<motion.div
 										initial={{ opacity: 0 }}
@@ -69,12 +69,12 @@ export default function PostList({ posts, views, query }: PostListProps) {
 							</div>
 
 							<div>
-								<h3 className="transition-colors text-pretty grow">{post.data.title}</h3>
-								<p className="text-sm text-foreground/50 line-clamp-2">{post.data.summary}</p>
+								<h3 className="transition-colors text-pretty grow">{post.title}</h3>
+								<p className="text-sm text-foreground/50 line-clamp-2">{post.summary}</p>
 							</div>
 
 							<span className="hidden sm:block text-sm text-foreground-secondary ml-auto text-right min-w-fit">
-								{readingTime(post.content).text}
+								{post.readingTime}
 							</span>
 						</Link>
 					</motion.li>
