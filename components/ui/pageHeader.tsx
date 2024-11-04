@@ -11,7 +11,7 @@ export default function PageHeader({ title, content, className }: PageHeaderProp
 		<>
 			<h1
 				className={cn(
-					'pb-2 text-3xl sm:text-4xl bg-gradient-to-br from-foreground to-foreground/50 dark:to-foreground/30 bg-clip-text text-transparent',
+					'pb-2 text-3xl sm:text-4xl bg-gradient-to-br from-foreground to-foreground/50 dark:to-foreground/30 from-10% bg-clip-text text-transparent',
 					className
 				)}
 			>

@@ -1,13 +1,16 @@
 import GalleryBlock from '@/components/sections/galleryBlock';
 import PostViewHero from '@/components/sections/postViewHero';
+import AnimatedBadge from '@/components/ui/animatedBadge';
 import { AuroraBackground } from '@/components/ui/aurora';
 import Button from '@/components/ui/button';
 import ProjectCard from '@/components/ui/projectCard';
-import { getAllTags, getBlogPosts } from '@/lib/blog';
+import { getAllTags, getBlogPosts, getLatestBlogPost } from '@/lib/blog';
 import { projectsData } from '@/lib/data';
 import { getImagesByTag } from '@/lib/gallery';
+import { IconArrowRight, IconSparkle } from '@/lib/icons';
 import { getAllViews } from '@/lib/queries';
 import { Project } from '@/lib/types';
+import Link from 'next/link';
 // import { motion } from 'framer-motion';
 
 export default async function Home() {
@@ -15,6 +18,7 @@ export default async function Home() {
 	const blogPosts = getBlogPosts();
 	const allUniqueTags = getAllTags();
 	const allViews = await getAllViews();
+	const latestPost = getLatestBlogPost();
 	const snystrom = projectsData.find((project) => project.title === 'Snystrom.com') as Project;
 
 	return (
@@ -42,6 +46,16 @@ export default async function Home() {
 				</div>
 			</AuroraBackground> */}
 			<section className="w-full">
+				{latestPost && (
+					<AnimatedBadge as={Link} href={`/blog/${latestPost.slug}`}>
+						<IconSparkle width={18} height={18} className="text-brand" />
+						<span className="hidden xs:block text-brand font-medium dark:font-[450]">Recent</span>
+						<span className="text-foreground/30">|</span>
+						<span className="truncate">{latestPost.data.title}</span>
+						<IconArrowRight />
+					</AnimatedBadge>
+				)}
+
 				<div className="flex items-end justify-between mb-4">
 					<div>
 						<div className="font-mono uppercase text-xs text-foreground-secondary tracking-wide">

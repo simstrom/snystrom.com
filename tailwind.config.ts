@@ -58,6 +58,9 @@ const config = {
 				scrollSlow: 'scroll 100s forwards linear infinite',
 				aurora: 'aurora 50s forwards linear infinite',
 				slide: 'slide 0.3s ease-out forwards',
+				// Animated Badge
+				flip: 'flip 6s infinite steps(2, end)',
+				rotate: 'rotate 3s linear infinite both',
 			},
 			keyframes: {
 				scroll: {
@@ -75,6 +78,17 @@ const config = {
 					},
 					to: {
 						backgroundPosition: '350% 50%, 350% 50%',
+					},
+				},
+				// Animated Badge
+				flip: {
+					to: {
+						transform: 'rotate(360deg)',
+					},
+				},
+				rotate: {
+					to: {
+						transform: 'rotate(90deg)',
 					},
 				},
 			},
