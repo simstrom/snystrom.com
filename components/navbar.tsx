@@ -1,22 +1,28 @@
 'use client';
 
-import { Logo } from '@/lib/icons';
+import { IconMenu, Logo } from '@/lib/icons';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import { navItems } from '@/lib/data';
+import { useScrollLock } from '@/lib/hooks';
+import { AnimatePresence } from 'framer-motion';
+import { useState } from 'react';
+import Menu from './ui/menu';
 import ThemeSwitcher from './ui/themeSwitcher';
 import { Tooltip } from './ui/tooltip';
 
 export default function Navbar({ className }: { className?: string }) {
+	const [isOpen, setIsOpen] = useState(false);
 	const currentPath = usePathname();
+	useScrollLock(isOpen);
 
 	return (
 		<header
 			role="menubar"
 			className={cn(
-				'navbar pt-4 flex flex-col w-screen items-center fixed top-0 left-0 z-[99] dark:bg-gradient-to-b from-background/50 to-transparent transition-all',
+				'navbar py-2 sm:pt-4 px-3 flex flex-col w-screen max-h-screen items-center fixed top-0 left-0 z-[99] dark:bg-gradient-to-b from-background/50 to-transparent',
 				className
 			)}
 		>
@@ -27,42 +33,58 @@ export default function Navbar({ className }: { className?: string }) {
 			<nav
 				aria-label="Main navigation"
 				className={cn(
-					'flex items-center w-full h-12 max-w-screen-lg border rounded-xl px-4 backdrop-blur-md bg-background-secondary/80 dark:bg-background-secondary/60 border-border/10 dark:border-border/30'
+					'flex flex-col justify-center w-full max-w-screen-lg max-h-screen border rounded-xl px-4 py-2 backdrop-blur-md bg-background-secondary/80 dark:bg-background-secondary/60 border-border/10 dark:border-border/30'
 				)}
 			>
-				<Link href="/" aria-label="Home" className="hover:opacity-80 transition-opacity p-2">
-					<Logo width={20} height={20} aria-label="Logo" />
-				</Link>
+				<div className="flex items-center w-full">
+					<Link href="/" aria-label="Home" className="hover:opacity-80 transition-opacity p-2">
+						<Logo width={20} height={20} aria-label="Logo" />
+					</Link>
 
-				<div className="h-7 border-l ml-4 mr-1 border-border/10 dark:border-border/30"></div>
+					<div className="hidden sm:block h-7 border-l ml-4 mr-1 border-border/10 dark:border-border/30"></div>
 
-				<div className="flex w-full h-full items-center text-foreground/80 text-sm font-medium tracking-normal">
-					{navItems.navigationLinks.map((navItem, idx) => (
-						<Link
-							key={`navItem-${idx}`}
-							href={navItem.path}
+					<div className="flex w-full h-full items-center text-foreground/80 text-sm font-medium tracking-normal">
+						{navItems.navigationLinks.map((navItem, idx) => (
+							<Link
+								key={`navItem-${idx}`}
+								href={navItem.path}
+								className={cn(
+									'hidden sm:block relative px-4 py-3 rounded-lg hover:text-foreground transition-colors',
+									`/${currentPath.split('/')[1]}` == navItem.path && 'text-foreground'
+								)}
+							>
+								{navItem.name}
+								{`/${currentPath.split('/')[1]}` == navItem.path && (
+									<div className="h-0.5 absolute -bottom-[2px] left-0 right-0 bg-gradient-to-r from-transparent via-foreground to-transparent" />
+								)}
+							</Link>
+						))}
+					</div>
+
+					<div className="flex gap-x-1">
+						<Tooltip message="Theme">
+							<ThemeSwitcher />
+						</Tooltip>
+						<button
+							onClick={() => setIsOpen(!isOpen)}
+							aria-expanded={isOpen}
+							aria-controls="sliding-menu"
+							aria-label={isOpen ? 'Close menu' : 'Open menu'}
 							className={cn(
-								'relative px-4 py-3 rounded-lg hover:text-foreground transition-colors',
-								`/${currentPath.split('/')[1]}` == navItem.path && 'text-foreground'
+								'p-2 rounded-full text-foreground/80 transition-colors',
+								'hover:text-foreground hover:bg-background-secondary dark:hover:bg-foreground/10 ',
+								isOpen && 'bg-background-secondary  dark:bg-foreground/10 text-foreground'
 							)}
 						>
-							{navItem.name}
-							{`/${currentPath.split('/')[1]}` == navItem.path && (
-								<div className="h-0.5 absolute -bottom-[2px] left-0 right-0 bg-gradient-to-r from-transparent via-foreground to-transparent" />
-							)}
-						</Link>
-					))}
+							<IconMenu isOpen={isOpen} />
+						</button>
+						<span className="sr-only">{isOpen ? 'Close menu' : 'Open menu'}</span>
+					</div>
 				</div>
 
-				<Tooltip message="Change theme">
-					<ThemeSwitcher />
-				</Tooltip>
-
-				{/* <AnimatePresence>
-							{menuOpen && (
-								<Menu isOpen={menuOpen} setIsOpen={setMenuOpen} currentPath={currentPath} />
-							)}
-						</AnimatePresence> */}
+				<AnimatePresence>
+					{isOpen && <Menu isOpen={isOpen} setIsOpen={setIsOpen} currentPath={currentPath} />}
+				</AnimatePresence>
 			</nav>
 		</header>
 	);

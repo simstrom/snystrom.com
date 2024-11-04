@@ -27,7 +27,7 @@ export default function ThemeSwitcher({ className }: { className?: string }) {
 						'p-2 rounded-full overflow-hidden text-foreground/80 hover:text-foreground hover:bg-background-secondary dark:hover:bg-foreground/10 transition-colors',
 						className
 					)}
-					aria-label="Toggle theme"
+					aria-label={theme === 'dark' ? 'Change to light mode' : 'Change to dark mode'}
 				>
 					<div className="relative h-5 w-5 flex items-center justify-center">
 						<motion.div

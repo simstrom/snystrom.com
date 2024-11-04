@@ -59,17 +59,17 @@ const socialLinks = [
 	{
 		name: 'Github',
 		path: 'https://github.com/simstrom',
-		icon: <IconGithub width={18} />,
+		icon: <IconGithub width={20} height={20} />,
 	},
 	{
 		name: 'LinkedIn',
 		path: 'https://se.linkedin.com/in/simon-nystrom',
-		icon: <IconLinkedin width={18} />,
+		icon: <IconLinkedin width={20} height={20} />,
 	},
 	{
 		name: 'Instagram',
 		path: 'https://www.instagram.com/simonnystrom/',
-		icon: <IconInstagram width={18} />,
+		icon: <IconInstagram width={20} height={20} />,
 	},
 ];
 
