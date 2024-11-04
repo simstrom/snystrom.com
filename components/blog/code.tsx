@@ -41,6 +41,7 @@ export default function Code({ children, ...props }: CodeProps) {
 					<Copy
 						successMessage={<IconCheck width={20} height={20} className="text-brand" />}
 						toCopy={codeText}
+						variant="grow"
 					>
 						<IconCopy width={18} height={18} />
 					</Copy>

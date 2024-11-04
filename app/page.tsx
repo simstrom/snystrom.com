@@ -1,5 +1,4 @@
 import GalleryBlock from '@/components/sections/galleryBlock';
-import PostViewHero from '@/components/sections/postViewHero';
 import AnimatedBadge from '@/components/ui/animatedBadge';
 import { AuroraBackground } from '@/components/ui/aurora';
 import Button from '@/components/ui/button';
@@ -48,11 +47,11 @@ export default async function Home() {
 			<section className="w-full">
 				{latestPost && (
 					<AnimatedBadge as={Link} href={`/blog/${latestPost.slug}`}>
-						<IconSparkle width={18} height={18} className="text-brand" />
+						<IconSparkle width={18} height={18} className="text-brand min-w-[18px] min-h-[18px]" />
 						<span className="hidden xs:block text-brand font-medium dark:font-[450]">Recent</span>
 						<span className="text-foreground/30">|</span>
-						<span className="truncate">{latestPost.data.title}</span>
-						<IconArrowRight />
+						<span className="line-clamp-1">{latestPost.title}</span>
+						<IconArrowRight width={18} height={18} className="min-w-[18px] min-h-[18px]" />
 					</AnimatedBadge>
 				)}
 
@@ -68,12 +67,12 @@ export default async function Home() {
 						Get to know me more
 					</Button>
 				</div>
-				<PostViewHero
+				{/* <PostViewHero
 					posts={blogPosts}
 					views={allViews}
 					uniqueTags={allUniqueTags}
 					showTags={false}
-				/>
+				/> */}
 				<Button variant="link" href="/blog" className="pr-4 sm:hidden w-full mt-6">
 					Get to know me more
 				</Button>
@@ -127,12 +126,12 @@ export default async function Home() {
 					</div>
 					<h2 className="text-2xl">Latest Articles and Tutorials</h2>
 				</div>
-				<PostViewHero
+				{/* <PostViewHero
 					posts={blogPosts}
 					views={allViews}
 					uniqueTags={allUniqueTags}
 					showTags={false}
-				/>
+				/> */}
 				<Button variant="link" href="/blog" className="mt-2 p-4 place-self-center">
 					Browse all articles
 				</Button>
