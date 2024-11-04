@@ -40,7 +40,7 @@ const posts = defineCollection({
 			date: new Date(page.date),
 			slug: page._meta.path,
 			readingTime: readingTime(page.content).text,
-			image: `${POSTS_ASSETS_DIR}/${page.image}`,
+			image: page.image ? `${POSTS_ASSETS_DIR}/${page.image}` : undefined,
 			imageBlur: blur,
 		};
 	},

@@ -27,7 +27,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-	metadataBase: new URL('https://snystrom.com'),
+	metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://snystrom.com'),
 	title: {
 		default: 'Simon Nyström | Web developer and Photographer',
 		template: '%s | Simon Nyström',
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
 		alternateLocale: 'en_SE',
 		title: 'Simon Nyström | Web developer and Photographer',
 		description: 'Frontend engineer with a passion for UI/UX design and photography.',
-		url: 'https://snystrom.com',
+		url: process.env.NEXT_PUBLIC_SITE_URL,
 		// images:
 	},
 	twitter: {
@@ -61,6 +61,16 @@ export const metadata: Metadata = {
 	},
 	referrer: 'origin',
 	icons: '/favicon.ico',
+	alternates: {
+		types: {
+			'application/rss+xml': [
+				{
+					title: 'Blog RSS Feed',
+					url: `${process.env.NEXT_PUBLIC_SITE_URL}/rss.xml`,
+				},
+			],
+		},
+	},
 };
 
 export default function RootLayout({

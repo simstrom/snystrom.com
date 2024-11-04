@@ -19,7 +19,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata | un
 	if (!collection) return notFound();
 
 	const { title, description, cover } = collection;
-	const seoImage = cover ? `https://snystrom.com${cover.src}` : `https://snystrom.com/og.png`;
+	const seoImage = cover
+		? `${process.env.NEXT_PUBLIC_SITE_URL}${cover.src}`
+		: `${process.env.NEXT_PUBLIC_SITE_URL}/og.png`;
 
 	return {
 		title: `Gallery - ${title}`,
@@ -27,7 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata | un
 		openGraph: {
 			title: `Gallery - ${title}`,
 			description,
-			url: `https://snystrom.com/gallery/collections/${slugify(collection.title)}`,
+			url: `${process.env.NEXT_PUBLIC_SITE_URL}/gallery/collections/${slugify(collection.title)}`,
 			images: seoImage,
 		},
 		twitter: {

@@ -28,7 +28,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata | un
 	}
 
 	const { title, summary, date, image } = post;
-	const seoImage = image ? `https://snystrom.com${image}` : `https://snystrom.com/og.png`;
+	const seoImage = image
+		? `${process.env.NEXT_PUBLIC_SITE_URL}${image}`
+		: `${process.env.NEXT_PUBLIC_SITE_URL}/og.png`;
 
 	return {
 		title,
@@ -38,7 +40,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata | un
 			description: summary,
 			type: 'article',
 			publishedTime: date.toISOString(),
-			url: `https://snystrom.com/blog/${post.slug}`,
+			url: `${process.env.NEXT_PUBLIC_SITE_URL}/blog/${post.slug}`,
 			images: seoImage,
 		},
 		twitter: {
@@ -63,10 +65,7 @@ export default async function BlogPost({ params }: Props) {
 		'@context': 'https://schema.org',
 		mainEntityOfPage: {
 			'@type': 'WebPage',
-			'@id': new URL(
-				`/blog/${post.slug}`,
-				process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL
-			).toString(),
+			'@id': `${process.env.NEXT_PUBLIC_SITE_URL}/blog/${post.slug}`,
 		},
 		headline: post.title,
 		description: post.summary,

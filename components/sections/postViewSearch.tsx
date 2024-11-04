@@ -1,12 +1,13 @@
 'use client';
 
-import { IconSearch } from '@/lib/icons';
+import { IconRSS, IconSearch } from '@/lib/icons';
 import { Views } from '@/lib/types';
 import { useMemo, useState } from 'react';
 import { useDebounce } from 'use-debounce';
 
 import { Post } from '@/.content-collections/generated';
 import { motion } from 'framer-motion';
+import CustomLink from '../blog/link';
 import PostList from '../postList';
 
 type PostViewSearchProps = {
@@ -32,7 +33,18 @@ export default function PostViewSearch({ posts, views }: PostViewSearchProps) {
 
 	return (
 		<section className="max-w-3xl mx-auto min-h-[450px]">
-			<h3 className="text-2xl mb-5">All Articles</h3>
+			<div className="flex items-baseline justify-between">
+				<h3 className="text-2xl mb-5">All Articles</h3>
+				{posts.length !== 0 && (
+					<CustomLink
+						href="/rss.xml"
+						className="w-fit text-sm font-medium dark:font-[450] p-2 before:content-[] text-foreground/80 hover:text-foreground transition-colors"
+					>
+						<IconRSS className="mr-1" />
+						RSS
+					</CustomLink>
+				)}
+			</div>
 			<div className="relative mb-5 flex items-center">
 				<label
 					htmlFor="search"

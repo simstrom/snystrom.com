@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata | un
 
 	const title = `${tag} Blog`;
 	const description = `Articles and tutorials about ${tag}`;
-	const url = `https://snystrom.com/blog/tag/${params.slug}`;
+	const url = `${process.env.NEXT_PUBLIC_SITE_URL}/blog/tag/${params.slug}`;
 
 	return {
 		title,
