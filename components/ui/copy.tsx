@@ -3,16 +3,37 @@
 import { cn } from '@/lib/utils';
 import React, { useState } from 'react';
 
+type Variant = 'slide' | 'grow';
+
 interface CopyProps {
 	icon?: React.ReactNode;
 	toCopy: string;
 	successMessage: string | React.ReactNode;
+	variant?: Variant;
 	className?: string;
 	children: React.ReactNode;
 }
 
-export default function Copy({ icon, toCopy, successMessage, className, children }: CopyProps) {
+export default function Copy({
+	icon,
+	toCopy,
+	successMessage,
+	variant = 'slide',
+	className,
+	children,
+}: CopyProps) {
 	const [copied, setCopied] = useState(false);
+
+	const variants = {
+		slide: {
+			mainElement: copied ? '-translate-y-5' : '',
+			hiddenElement: cn('translate-y-5', copied && 'translate-y-0'),
+		},
+		grow: {
+			mainElement: copied ? 'scale-0' : '',
+			hiddenElement: copied ? 'scale-1' : 'scale-0',
+		},
+	};
 
 	const handleCopy = async () => {
 		try {
@@ -33,12 +54,12 @@ export default function Copy({ icon, toCopy, successMessage, className, children
 			)}
 		>
 			{icon}
-			<span className={cn('transition-transform', copied && '-translate-y-5')}>{children}</span>
+			<span className={cn('transition-transform', variants[variant].mainElement)}>{children}</span>
 			<span
 				className={cn(
-					'translate-y-5 transition-transform absolute bottom-0',
+					'absolute bottom-0 transition-transform',
 					icon ? 'left-6' : 'left-0',
-					copied && 'translate-y-0'
+					variants[variant].hiddenElement
 				)}
 			>
 				{successMessage}
