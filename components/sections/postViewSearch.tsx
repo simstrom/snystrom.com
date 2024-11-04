@@ -25,7 +25,6 @@ export default function PostViewSearch({ posts, views }: PostViewSearchProps) {
 		return posts.filter(
 			(post) =>
 				post.data.title.toLowerCase().includes(debouncedQuery.toLowerCase()) ||
-				post.data.summary?.toLowerCase().includes(debouncedQuery.toLowerCase()) ||
 				post.data.tags?.some((tag) => tag.toLowerCase().includes(debouncedQuery.toLowerCase()))
 		);
 	}, [posts, debouncedQuery]);

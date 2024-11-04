@@ -10,7 +10,7 @@ type PostListRelatedProps = {
 
 export default function PostListRelated({ posts }: PostListRelatedProps) {
 	return (
-		<ul className="flex flex-col gap-3">
+		<ul className="flex flex-col gap-4">
 			{posts
 				.sort((a, b) => {
 					if (new Date(a.data.publishedAt) > new Date(b.data.publishedAt)) {
@@ -30,7 +30,7 @@ export default function PostListRelated({ posts }: PostListRelatedProps) {
 									{formatDate(post.data.publishedAt, false, true)}
 								</time>
 
-								<span className="text-foreground/30">/</span>
+								<span className="text-foreground/30">·</span>
 								<p className="text-foreground-secondary">{readingTime(post.content).text}</p>
 							</div>
 							<h4 className="text-pretty">{post.data.title}</h4>

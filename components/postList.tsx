@@ -39,52 +39,46 @@ export default function PostList({ posts, views, query }: PostListProps) {
 			className="flex flex-col opacity-list"
 		>
 			<AnimatePresence>
-				{posts
-					.sort((a, b) => {
-						if (new Date(a.data.publishedAt) > new Date(b.data.publishedAt)) {
-							return -1;
-						}
-						return 1;
-					})
-					.map((post) => (
-						<motion.li
-							key={post.slug}
-							layout
-							initial={{ opacity: 0 }}
-							animate={{ opacity: 1 }}
-							exit={{ opacity: 0 }}
+				{posts.map((post) => (
+					<motion.li
+						key={post.slug}
+						layout
+						initial={{ opacity: 0 }}
+						animate={{ opacity: 1 }}
+						exit={{ opacity: 0 }}
+					>
+						<Link
+							draggable="false"
+							className="flex flex-col items-baseline gap-x-8 sm:flex-row py-5 group transition rounded-xl"
+							href={`/blog/${post.slug}`}
 						>
-							<Link
-								className="flex flex-col items-baseline gap-x-8 sm:flex-row py-3 group transition rounded-xl"
-								href={`/blog/${post.slug}`}
-							>
-								<div className="w-full sm:w-fit min-w-fit flex items-baseline gap-x-2 sm:block text-sm text-foreground-secondary ">
-									<time>{formatDate(post.data.publishedAt, false, true)}</time>
-									<span className="sm:hidden">·</span>
-									<span className="sm:hidden min-w-fit">{readingTime(post.content).text}</span>
-									{query && (
-										<motion.div
-											initial={{ opacity: 0 }}
-											animate={{ opacity: 1 }}
-											transition={{ duration: 0.15 }}
-											className="ml-auto text-xs text-brand"
-										>
-											{determineMatch(post, query)}
-										</motion.div>
-									)}
-								</div>
+							<div className="w-full sm:w-fit min-w-fit flex items-baseline gap-x-2 sm:block text-sm text-foreground-secondary ">
+								<time>{formatDate(post.data.publishedAt, false, true)}</time>
+								<span className="sm:hidden">·</span>
+								<span className="sm:hidden min-w-fit">{readingTime(post.content).text}</span>
+								{query && (
+									<motion.div
+										initial={{ opacity: 0 }}
+										animate={{ opacity: 1 }}
+										transition={{ duration: 0.15 }}
+										className="ml-auto text-xs text-brand"
+									>
+										{determineMatch(post, query)}
+									</motion.div>
+								)}
+							</div>
 
-								<div>
-									<h3 className="transition-colors text-pretty grow">{post.data.title}</h3>
-									<p className="text-sm text-foreground/50 line-clamp-2">{post.data.summary}</p>
-								</div>
+							<div>
+								<h3 className="transition-colors text-pretty grow">{post.data.title}</h3>
+								<p className="text-sm text-foreground/50 line-clamp-2">{post.data.summary}</p>
+							</div>
 
-								<span className="hidden sm:block text-sm text-foreground-secondary ml-auto text-right min-w-fit">
-									{readingTime(post.content).text}
-								</span>
-							</Link>
-						</motion.li>
-					))}
+							<span className="hidden sm:block text-sm text-foreground-secondary ml-auto text-right min-w-fit">
+								{readingTime(post.content).text}
+							</span>
+						</Link>
+					</motion.li>
+				))}
 			</AnimatePresence>
 		</motion.ul>
 	);

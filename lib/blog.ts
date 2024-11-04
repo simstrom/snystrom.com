@@ -16,9 +16,22 @@ export const getBlogPosts = cache(() => {
 			const slug = path.basename(file, path.extname(file));
 
 			return { slug, content, data } as Post;
+		})
+		.sort((a, b) => {
+			if (new Date(a.data.publishedAt) > new Date(b.data.publishedAt)) {
+				return -1;
+			}
+			return 1;
 		});
 	return posts;
 });
+
+export const getLatestBlogPost = () => {
+	const posts = getBlogPosts();
+
+	if (!posts) return null;
+	return posts[0];
+};
 
 export const getRelatedPosts = (post: Post) => {
 	const posts = getBlogPosts();
