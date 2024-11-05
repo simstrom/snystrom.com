@@ -7,6 +7,7 @@ import PageHeader from '@/components/ui/pageHeader';
 import ViewCounter from '@/components/ui/viewCounter';
 import { incrementViews } from '@/lib/actions';
 import { getBlogPost, getBlogPosts, getRelatedPosts } from '@/lib/blog';
+import { createOgImage } from '@/lib/createOgImage';
 import { getPostInteractions } from '@/lib/queries';
 import { cn, formatDate } from '@/lib/utils';
 import { MDXContent } from '@content-collections/mdx/react';
@@ -27,10 +28,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata | un
 		return;
 	}
 
-	const { title, summary, date, image } = post;
-	const seoImage = image
-		? `${process.env.NEXT_PUBLIC_SITE_URL}${image}`
-		: `${process.env.NEXT_PUBLIC_SITE_URL}/og.png`;
+	const { title, summary, date } = post;
+	const seoImage = createOgImage({
+		title: post.title,
+		meta: ['snystrom.com', formatDate(post.date, false, true, true), ...post.tags.slice(0, 2)].join(
+			' · '
+		),
+	});
 
 	return {
 		title,

@@ -7,11 +7,16 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 // Dates
-export function formatDate(dateString: string | Date, asRelative?: boolean, short?: boolean) {
+export function formatDate(
+	dateString: string | Date,
+	asRelative?: boolean,
+	short?: boolean,
+	omitYear: boolean = false
+) {
 	const date = new Date(dateString).toLocaleString('en-US', {
 		month: short ? 'short' : 'long',
 		day: '2-digit',
-		year: 'numeric',
+		...(omitYear ? {} : { year: 'numeric' }),
 	});
 
 	if (asRelative) {
