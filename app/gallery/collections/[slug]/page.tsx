@@ -19,9 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata | un
 	if (!collection) return notFound();
 
 	const { title, description, cover } = collection;
-	const seoImage = cover
-		? `${process.env.NEXT_PUBLIC_SITE_URL}${cover.src}`
-		: `${process.env.NEXT_PUBLIC_SITE_URL}/og.png`;
+	const seoImage = cover ? cover.src : '/images/og.png';
 
 	return {
 		title: `Gallery - ${title}`,

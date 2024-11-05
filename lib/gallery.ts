@@ -43,6 +43,7 @@ export const getAllImages = cache(async (limit?: number) => {
 	try {
 		const results = await cloudinary.search
 			.expression('folder:snystrom/gallery')
+			.with_field('metadata')
 			.with_field('tags')
 			.with_field('context')
 			.max_results(limit)

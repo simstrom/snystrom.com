@@ -1,11 +1,9 @@
 // Thank you Delba ( https://delba.dev/ ) for inspiration to this magnificent solution
 
 // PUBLIC IDs from cloudinary
-const baseImages = ['og-variant-1.jpg', 'og-variant-2.jpg', 'og-variant-3.jpg'];
+const BASE_IMAGE = 'og-base.jpg';
 
 export const createOgImage = ({ title, meta }: { title: string; meta: string }) => {
-	const randomImage = baseImages[Math.floor(Math.random() * baseImages.length)];
-
 	return [
 		`https://res.cloudinary.com/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`,
 
@@ -20,7 +18,7 @@ export const createOgImage = ({ title, meta }: { title: string; meta: string }) 
 		`fl_layer_apply,g_south_west,x_100,y_100`,
 
 		// BG
-		randomImage,
+		BASE_IMAGE,
 	].join('/');
 };
 

@@ -43,13 +43,13 @@ export const metadata: Metadata = {
 		title: 'Simon Nyström | Web developer and Photographer',
 		description: 'Frontend engineer with a passion for UI/UX design and photography.',
 		url: process.env.NEXT_PUBLIC_SITE_URL,
-		// images:
+		images: { url: '/images/og.png', width: 1600, height: 836 },
 	},
 	twitter: {
 		card: 'summary_large_image',
 		title: 'Simon Nyström | Web developer and Photographer',
 		description: 'Frontend engineer with a passion for UI/UX design and photography.',
-		// images:
+		images: { url: '/images/og.png', width: 1600, height: 836 },
 	},
 	robots: {
 		index: true,

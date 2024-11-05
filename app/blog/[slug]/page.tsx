@@ -31,9 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata | un
 	const { title, summary, date } = post;
 	const seoImage = createOgImage({
 		title: post.title,
-		meta: ['snystrom.com', formatDate(post.date, false, true, true), ...post.tags.slice(0, 2)].join(
-			' · '
-		),
+		meta: [formatDate(post.date, false, true, true), ...post.tags.slice(0, 3)].join(' · '),
 	});
 
 	return {
