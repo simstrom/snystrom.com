@@ -10,6 +10,7 @@ import {
 	IconLinkedin,
 	IconPerson,
 	IconReact,
+	IconRSS,
 	IconSparkle,
 } from './icons';
 import { GalleryCollection, Navigation, Project } from './types';
@@ -27,13 +28,15 @@ const navigationLinks = [
 		path: '/about',
 	},
 	{
-		name: 'Projects',
-		path: '/projects',
-	},
-	{
 		name: 'Blog',
 		path: '/blog',
 	},
+	{
+		name: 'Projects',
+		path: '/projects',
+	},
+];
+const exploreLinks = [
 	{
 		name: 'Gallery',
 		path: '/gallery',
@@ -42,15 +45,24 @@ const navigationLinks = [
 		name: 'Colophon',
 		path: '/colophon',
 	},
+	{
+		name: 'Activity',
+		path: '/activity',
+	},
+	{
+		name: 'Playground',
+		path: '',
+		upcoming: true,
+	},
 ];
-const otherLinks = [
+const connectLinks = [
 	{
 		name: 'Contact',
 		path: 'mailto:simons.nystrom@gmail.com',
 		icon: <IconEmail />,
 	},
 	{
-		name: 'Read CV',
+		name: 'Resume',
 		path: '/cv.pdf',
 		icon: <IconPerson />,
 	},
@@ -71,14 +83,20 @@ const socialLinks = [
 		path: 'https://www.instagram.com/simonnystrom/',
 		icon: <IconInstagram width={20} height={20} />,
 	},
+	{
+		name: 'RSS',
+		path: '/rss.xml',
+		icon: <IconRSS width={20} height={20} />,
+	},
 ];
 
 export const navItems: Navigation = {
 	navigationLinks,
-	otherLinks,
+	exploreLinks,
+	connectLinks,
 	socialLinks,
 } as const;
-export const links = [...navigationLinks, ...otherLinks, ...socialLinks];
+export const links = [...navigationLinks, ...exploreLinks, connectLinks, ...socialLinks];
 
 //
 // SKILLS

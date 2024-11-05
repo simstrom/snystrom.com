@@ -22,7 +22,9 @@ export default function Navbar({ className }: { className?: string }) {
 		<header
 			role="menubar"
 			className={cn(
-				'navbar py-2 sm:pt-4 px-3 flex flex-col w-screen max-h-screen items-center fixed top-0 left-0 z-[99] dark:bg-gradient-to-b from-background/50 to-transparent',
+				'navbar py-2 sm:pt-4 px-3 flex flex-col w-screen max-h-screen items-center fixed top-0 left-0 z-[99] dark:bg-gradient-to-b from-background/50 to-transparent before:transition',
+				isOpen &&
+					'sm:before:hidden before:content-[""] before:absolute before:top-0 before:h-screen before:w-full before:backdrop-blur-sm',
 				className
 			)}
 		>
@@ -33,7 +35,7 @@ export default function Navbar({ className }: { className?: string }) {
 			<nav
 				aria-label="Main navigation"
 				className={cn(
-					'flex flex-col justify-center w-full max-w-screen-lg max-h-screen border rounded-xl px-4 py-2 backdrop-blur-md bg-background-secondary/80 dark:bg-background-secondary/60 border-border/10 dark:border-border/30'
+					'flex flex-col justify-center w-full sm:w-fit max-w-screen-lg max-h-screen border rounded-xl px-4 py-1 backdrop-blur-md bg-background-secondary/80'
 				)}
 			>
 				<div className="flex items-center w-full">
@@ -55,13 +57,20 @@ export default function Navbar({ className }: { className?: string }) {
 							>
 								{navItem.name}
 								{`/${currentPath.split('/')[1]}` == navItem.path && (
-									<div className="h-0.5 absolute -bottom-[2px] left-0 right-0 bg-gradient-to-r from-transparent via-foreground to-transparent" />
+									<div className="h-0.5 absolute -bottom-[5px] left-0 right-0 bg-gradient-to-r from-transparent via-foreground to-transparent" />
 								)}
 							</Link>
 						))}
+						<div
+							className={cn(
+								'hidden sm:block relative px-4 py-3 rounded-lg hover:text-foreground transition-colors'
+							)}
+						>
+							Explore
+						</div>
 					</div>
 
-					<div className="flex gap-x-1">
+					<div className="ml-6 flex gap-x-1">
 						<Tooltip message="Theme">
 							<ThemeSwitcher />
 						</Tooltip>
@@ -71,7 +80,7 @@ export default function Navbar({ className }: { className?: string }) {
 							aria-controls="sliding-menu"
 							aria-label={isOpen ? 'Close menu' : 'Open menu'}
 							className={cn(
-								'p-2 rounded-full text-foreground/80 transition-colors',
+								'sm:hidden p-2 rounded-full text-foreground/80 transition-colors',
 								'hover:text-foreground hover:bg-background-secondary dark:hover:bg-foreground/10 ',
 								isOpen && 'bg-background-secondary  dark:bg-foreground/10 text-foreground'
 							)}

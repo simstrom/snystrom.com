@@ -44,6 +44,19 @@ export default function Footer() {
 									{item.name}
 								</CustomLink>
 							))}
+						{navItems.exploreLinks
+							.filter(
+								(item) => !item.upcoming && item.name !== 'Activity' && item.name !== 'Colophon'
+							)
+							.map((item) => (
+								<CustomLink
+									key={item.name}
+									href={item.path}
+									className="w-fit text-sm before:content-[] hover:text-foreground transition-colors"
+								>
+									{item.name}
+								</CustomLink>
+							))}
 					</div>
 					<div className="col-span-7 sm:col-span-3 sm:justify-self-end  flex flex-col gap-2 text-foreground-secondary">
 						<div className="relative">

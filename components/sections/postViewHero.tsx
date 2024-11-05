@@ -1,5 +1,6 @@
+import { Post } from '@/.content-collections/generated';
 import { IconArrowUpRight, IconFire, IconSparkle } from '@/lib/icons';
-import { Post, Views } from '@/lib/types';
+import { Views } from '@/lib/types';
 import { cn, formatDate } from '@/lib/utils';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -17,8 +18,8 @@ type PostViewHeroProps = {
 
 const getLatestPost = (posts: Post[]) => {
 	return posts.slice().sort((a, b) => {
-		const dateA = new Date(a.data.date);
-		const dateB = new Date(b.data.date);
+		const dateA = new Date(a.date);
+		const dateB = new Date(b.date);
 		return dateB.getTime() - dateA.getTime();
 	})[0];
 };
@@ -82,7 +83,7 @@ const BlogFeaturedCard: React.FC<{ post: Post; views: Views; type: 'popular' | '
 				<CardLabel type={type} />
 				<div className="mt-auto w-fit z-10">
 					<div className="rounded-t-xl inline-flex gap-x-4 py-1 pt-2 px-6 font-mono tracking-tight text-xs bg-background">
-						{post.data.tags?.map((tag) => (
+						{post.tags?.map((tag) => (
 							<div key={tag} className="inline-flex gap-1 items-center w-fit">
 								<span className="text-brand">#</span>
 								{tag.toLowerCase()}
@@ -91,18 +92,18 @@ const BlogFeaturedCard: React.FC<{ post: Post; views: Views; type: 'popular' | '
 					</div>
 					<h2 className="whitespace-pre-wrap text-2xl xl:text-2xl">
 						<span className="bg-background leading-snug py-2 rounded-xl px-5 rounded-tl-none rounded-bl-none box-decoration-clone ">
-							{post.data.title}
+							{post.title}
 						</span>
 					</h2>
 					<div className="rounded-b-xl inline-flex gap-x-4 py-2 px-6 text-sm bg-background">
-						{formatDate(post.data.date, false, true)}
+						{formatDate(post.date, false, true)}
 						<span className="text-brand">/</span>
 						<ViewCounter views={views?.find((view) => view.slug === post.slug)?.views as number} />
 					</div>
 				</div>
 				<div className="absolute inset-0 bg-gradient-to-t from-black/70 to-black/10" />
 				<Image
-					src={post.data.image ?? '/images/webpic.png'}
+					src={post.image ?? '/images/webpic.png'}
 					alt=""
 					fill
 					priority
@@ -132,11 +133,11 @@ const BlogCard: React.FC<{ post: Post | undefined; views: number; type: 'popular
 						<span className="text-brand">/</span>
 						<ViewCounter views={views} />
 					</div>
-					<h2 className="text-lg">{post?.data.title}</h2>
+					<h2 className="text-lg">{post?.title}</h2>
 				</div>
 				<div className="absolute inset-0 bg-gradient-to-t from-black/80 from-20% to-black/10" />
 				<Image
-					src={post?.data.image ?? '/images/webpic.png'}
+					src={post?.image ?? '/images/webpic.png'}
 					alt=""
 					fill
 					priority

@@ -36,11 +36,13 @@ export type NavItem = {
 	name: string;
 	path: string;
 	icon?: React.ReactNode;
+	upcoming?: boolean;
 };
 export type Navigation = {
 	navigationLinks: NavItem[];
+	exploreLinks: NavItem[];
+	connectLinks: NavItem[];
 	socialLinks: NavItem[];
-	otherLinks: NavItem[];
 };
 
 export type Activity = {

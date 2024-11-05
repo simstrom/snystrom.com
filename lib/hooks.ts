@@ -53,14 +53,21 @@ export function useScreenBreakpoints() {
 }
 
 export const useScrollLock = (lock: boolean) => {
+	const { isMedium, isLarge } = useScreenBreakpoints();
+
 	useEffect(() => {
 		if (lock) {
 			document.body.style.overflow = 'hidden';
+		}
+
+		// Release lock if window width is resized past breakpoints
+		if (isMedium || isLarge) {
+			document.body.style.overflow = 'unset';
 		}
 		return () => {
 			if (lock) {
 				document.body.style.overflow = 'unset';
 			}
 		};
-	}, [lock]);
+	}, [lock, isMedium, isLarge]);
 };
