@@ -22,7 +22,6 @@ export default function TabList({
 	links,
 	className,
 }: TabListProps) {
-	console.log(`underline-${labels}`);
 	return (
 		<LayoutGroup>
 			<div

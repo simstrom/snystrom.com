@@ -1,22 +1,18 @@
 'use server';
 
 import { v2 as cloudinary } from 'cloudinary';
-import { getCldImageUrl } from 'next-cloudinary';
+import { getPlaiceholder } from 'plaiceholder';
 import { cache } from 'react';
 import { galleryCollections, galleryDestinations } from './data';
 import { GalleryCollection, GalleryImage } from './types';
 
-async function createBlurDataURL(publicId: string): Promise<string> {
-	const imageUrl = getCldImageUrl({
-		src: publicId,
-		width: 100,
+async function createBlurDataURL(src: string): Promise<string> {
+	const buffer = await fetch(src).then(async (res) => {
+		return Buffer.from(await res.arrayBuffer());
 	});
-	const response = await fetch(imageUrl);
-	const arrayBuffer = await response.arrayBuffer();
-	const buffer = Buffer.from(arrayBuffer);
-	const base64 = buffer.toString('base64');
-	const dataUrl = `data:${response.type};base64,${base64}`;
-	return dataUrl;
+	const { base64 } = await getPlaiceholder(buffer);
+
+	return base64;
 }
 
 const mapGalleryImages = cache(async (result: any): Promise<GalleryImage[]> => {
@@ -28,7 +24,7 @@ const mapGalleryImages = cache(async (result: any): Promise<GalleryImage[]> => {
 				return {
 					id: public_id,
 					src: secure_url,
-					blurData: await createBlurDataURL(public_id),
+					blurData: await createBlurDataURL(secure_url),
 					width,
 					height,
 					metadata,
@@ -45,18 +41,18 @@ const mapGalleryImages = cache(async (result: any): Promise<GalleryImage[]> => {
 
 export const getAllImages = cache(async (limit?: number) => {
 	try {
-		const results = await cloudinary.api.resources({
-			tags: true,
-			context: true,
-			max_results: limit,
-		});
+		const results = await cloudinary.search
+			.expression('folder:snystrom/gallery')
+			.with_field('tags')
+			.with_field('context')
+			.max_results(limit)
+			.execute();
 
 		if (!results || !Array.isArray(results.resources)) {
 			throw new Error('Invalid response from Cloudinary');
 		}
 
-		const filteredResult = results.resources.filter((img: any) => img.metadata != null);
-		return await mapGalleryImages(filteredResult);
+		return await mapGalleryImages(results.resources);
 	} catch (error) {
 		console.error('Error fetching images:', error);
 		throw new Error('Failed to fetch images');
