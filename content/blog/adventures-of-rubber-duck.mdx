@@ -1,8 +1,8 @@
 ---
 title: 'The Unlikely Adventures of Rubber Duck'
-publishedAt: '2024-04-22'
+date: '2024-09-15'
 summary: 'Follow the whimsical journey of Quirk, a rubber duck catapulted into space, as he encounters peculiar beings, battles space pirates, and discovers newfound courage and camaraderie amidst the stars, ultimately finding a sense of purpose in the vastness of the universe.'
-image: '/assets/blog/duck.jpeg'
+image: 'duck.jpeg'
 tags: ['Fiction', 'Space ventures', 'Next.js']
 ---
 
@@ -14,11 +14,11 @@ Tired of the **mundane life of floating** in bathtubs and paddling pools, Quirk 
 
 ### A Galaxy of Peculiar Encounters
 
-Before [external link](https://github.com) he knew it, Quirk found himself hurtling through the vast [internal link](/about) expanse of space, surrounded by shimmering stars and swirling galaxies. Panic soon gave way to wonder as Quirk marveled at the cosmic spectacle unfolding before his plastic eyes. But Quirk's adventure was just beginning.
+Before [external link](https://github.com) he knew it, Quirk found himself hurtling `ABSORPTION_COEFFICIENT` through the vast [internal link](/about) expanse of space, surrounded by shimmering stars and swirling galaxies. Panic soon gave way to wonder as Quirk marveled at the cosmic spectacle unfolding before his plastic eyes. But Quirk's adventure was just beginning.
 
 #### Misadventures Among the Stars
 
-<Image src="/assets/blog/duck.jpeg" alt="" width={800} height={800} />
+<Image src="/assets/blog/duck.jpeg" alt="" />
 
 As he drifted through the cosmos, Quirk encountered a motley crew of intergalactic beings, each more peculiar than the last.
 Three asterisks for a thematic break:
@@ -34,10 +34,45 @@ From friendly aliens with tentacles for arms to sentient space rocks with a penc
   - This is an indentation test
 - Stumbled upon a hidden planet made entirely of cheese.
 
-* They battled space pirates
+<Tabs labels={["example.js", "[slug].js"]}>
+```tsx showLineNumbers {1,5,8-10} title="example.js"
+import { allPosts, type Post } from 'contentlayer/generated';
+import { type GetStaticProps, type InferGetStaticPropsType } from 'next';
+
+export const getStaticPaths = () => ({
+	paths: allPosts.map((post) => ({ params: { slug: post.slug } })),
+	fallback: false,
+});
+
+export const getStaticProps: GetStaticProps<{
+	post: Post;
+}> = ({ params }) => ({
+	props: { post: allPosts.find((post) => post.slug === params?.slug) },
+});
+
+export default function SinglePostPage(props: InferGetStaticPropsType<typeof getStaticProps>) {
+	return (
+		<div>
+			<h1>{props.post.title}</h1>
+		</div>
+	);
+}
+```
+
+```tsx title="server.ts"
+import { Client } from '@notionhq/client';
+
+const notion = new Client({
+	auth: process.env.NOTION_TOKEN,
+});
+```
+
+</Tabs>
+
+- They battled space pirates
   - Outwitted cosmic con artists
   - This is an indentation test
-* Stumbled upon a hidden planet made entirely of cheese.
+- Stumbled upon a hidden planet made entirely of cheese.
 
 > Along the way, Quirk discovered courage he never knew he had and forged bonds that transcended the boundaries of space and time.
 

@@ -6,6 +6,8 @@ import { cache } from 'react';
 import { galleryCollections, galleryDestinations } from './data';
 import { GalleryCollection, GalleryImage } from './types';
 
+let cachedImages: GalleryImage[]; // Local cache for images to prevent build time rate limits.
+
 async function createBlurDataURL(src: string): Promise<string> {
 	const buffer = await fetch(src).then(async (res) => {
 		return Buffer.from(await res.arrayBuffer());
@@ -40,6 +42,10 @@ const mapGalleryImages = cache(async (result: any): Promise<GalleryImage[]> => {
 });
 
 export const getAllImages = cache(async (limit?: number) => {
+	if (cachedImages) {
+		return limit ? cachedImages.slice(0, limit) : cachedImages;
+	}
+
 	try {
 		const results = await cloudinary.search
 			.expression('folder:snystrom/gallery')
@@ -53,7 +59,8 @@ export const getAllImages = cache(async (limit?: number) => {
 			throw new Error('Invalid response from Cloudinary');
 		}
 
-		return await mapGalleryImages(results.resources);
+		cachedImages = await mapGalleryImages(results.resources);
+		return await mapGalleryImages(cachedImages);
 	} catch (error) {
 		console.error('Error fetching images:', error);
 		throw new Error('Failed to fetch images');
