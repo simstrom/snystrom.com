@@ -15,8 +15,10 @@
 		"clsx": "^2.1.0",
 		"feed": "^4.2.2",
 		"framer-motion": "^11.0.27",
+		"gray-matter": "^4.0.3",
 		"next": "^14.1.4",
 		"next-cloudinary": "^6.6.2",
+		"next-mdx-remote": "^5.0.0",
 		"next-themes": "^0.3.0",
 		"plaiceholder": "^3.0.0",
 		"react": "^18.2.0",
@@ -30,9 +32,6 @@
 		"use-debounce": "^10.0.0"
 	},
 	"devDependencies": {
-		"@content-collections/core": "^0.7.2",
-		"@content-collections/mdx": "^0.2.0",
-		"@content-collections/next": "^0.2.3",
 		"@tailwindcss/typography": "^0.5.12",
 		"@types/node": "^20",
 		"@types/react": "^18.2.78",

@@ -3,21 +3,20 @@ import AnimatedBadge from '@/components/ui/animatedBadge';
 import { AuroraBackground } from '@/components/ui/aurora';
 import Button from '@/components/ui/button';
 import ProjectCard from '@/components/ui/projectCard';
-import { getAllTags, getBlogPosts, getLatestBlogPost } from '@/lib/blog';
+import { getLatestBlogPost } from '@/lib/blog';
 import { projectsData } from '@/lib/data';
 import { getImagesByTag } from '@/lib/gallery';
 import { IconArrowRight, IconSparkle } from '@/lib/icons';
-import { getAllViews } from '@/lib/queries';
 import { Project } from '@/lib/types';
 import Link from 'next/link';
 // import { motion } from 'framer-motion';
 
 export default async function Home() {
 	const images = await getImagesByTag('Landing');
-	const blogPosts = getBlogPosts();
-	const allUniqueTags = getAllTags();
-	const allViews = await getAllViews();
-	const latestPost = getLatestBlogPost();
+	// const blogPosts = getBlogPosts();
+	// const allUniqueTags = getAllTags();
+	// const allViews = await getAllViews();
+	const latestPost = await getLatestBlogPost();
 	const snystrom = projectsData.find((project) => project.title === 'Snystrom.com') as Project;
 
 	return (

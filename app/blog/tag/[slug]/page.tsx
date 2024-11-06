@@ -14,7 +14,8 @@ interface Props {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata | undefined> {
-	const tag = getAllTags().find((t) => slugify(t) == params.slug);
+	const tags = await getAllTags();
+	const tag = tags.find((t) => slugify(t) == params.slug);
 	if (!tag) return;
 
 	const title = `${tag} Blog`;
@@ -37,11 +38,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata | un
 }
 
 export default async function TagPage({ params }: Props) {
-	const tag = getAllTags().find((t) => slugify(t) == params.slug);
+	const tags = await getAllTags();
+	const tag = tags.find((t) => slugify(t) == params.slug);
 	if (!tag) return notFound();
 
 	const views = await getAllViews();
-	const posts = getPostsByTag(tag);
+	const posts = await getPostsByTag(tag);
 
 	return (
 		<main className="grow max-w-2xl w-full mx-auto flex flex-col pt-32 sm:pt-40">
@@ -66,6 +68,6 @@ export default async function TagPage({ params }: Props) {
 }
 
 export async function generateStaticParams() {
-	const uniqueTags = getAllTags();
+	const uniqueTags = await getAllTags();
 	return uniqueTags.map((tag) => ({ slug: slugify(tag) }));
 }

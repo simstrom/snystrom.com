@@ -1,10 +1,8 @@
-import { Post } from '@/.content-collections/generated';
 import { IconArrowUpRight, IconFire, IconSparkle } from '@/lib/icons';
-import { Views } from '@/lib/types';
+import { Post, Views } from '@/lib/types';
 import { cn, formatDate } from '@/lib/utils';
 import Image from 'next/image';
 import Link from 'next/link';
-import readingTime from 'reading-time';
 import Tag from '../blog/tag';
 import CursorGlow from '../ui/cursorGlow';
 import ViewCounter from '../ui/viewCounter';
@@ -129,7 +127,7 @@ const BlogCard: React.FC<{ post: Post | undefined; views: number; type: 'popular
 				<CardLabel type={type} />
 				<div className="mt-auto text-foreground-inverse dark:text-foreground z-10">
 					<div className="text-sm inline-flex gap-x-1 w-full">
-						{readingTime(post?.content as string).text}
+						{post?.readingTime}
 						<span className="text-brand">/</span>
 						<ViewCounter views={views} />
 					</div>

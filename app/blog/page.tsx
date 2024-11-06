@@ -1,6 +1,6 @@
 import PostViewSearch from '@/components/sections/postViewSearch';
 import PageHeader from '@/components/ui/pageHeader';
-import { getAllTags, getBlogPosts } from '@/lib/blog';
+import { getBlogPosts } from '@/lib/blog';
 import { getAllViews } from '@/lib/queries';
 import { Metadata } from 'next';
 
@@ -11,8 +11,8 @@ export const metadata: Metadata = {
 };
 
 export default async function Blog() {
-	const posts = getBlogPosts();
-	const tags = getAllTags();
+	const posts = await getBlogPosts();
+	// const tags = await getAllTags();
 	const views = await getAllViews();
 
 	return (
