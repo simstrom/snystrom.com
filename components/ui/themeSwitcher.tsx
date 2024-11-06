@@ -17,7 +17,7 @@ export default function ThemeSwitcher({ className }: { className?: string }) {
 
 	return (
 		<AnimatePresence mode="wait">
-			{mounted && (
+			{mounted ? (
 				<motion.button
 					initial={{ opacity: 0 }}
 					animate={{ opacity: 1 }}
@@ -57,6 +57,8 @@ export default function ThemeSwitcher({ className }: { className?: string }) {
 						</motion.div>
 					</div>
 				</motion.button>
+			) : (
+				<div className="h-9 w-9"></div>
 			)}
 		</AnimatePresence>
 	);

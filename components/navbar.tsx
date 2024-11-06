@@ -9,6 +9,7 @@ import { navItems } from '@/lib/data';
 import { useScrollLock } from '@/lib/hooks';
 import { AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
+import Dropdown from './ui/dropdown';
 import Menu from './ui/menu';
 import ThemeSwitcher from './ui/themeSwitcher';
 import { Tooltip } from './ui/tooltip';
@@ -35,7 +36,7 @@ export default function Navbar({ className }: { className?: string }) {
 			<nav
 				aria-label="Main navigation"
 				className={cn(
-					'flex flex-col justify-center w-full sm:w-fit max-w-screen-lg max-h-screen border rounded-xl px-4 py-1 backdrop-blur-md bg-background-secondary/80'
+					'flex flex-col justify-center w-full sm:w-fit max-w-screen-lg max-h-screen border rounded-xl px-4 py-2 sm:py-1 backdrop-blur-md bg-background/80'
 				)}
 			>
 				<div className="flex items-center w-full">
@@ -57,11 +58,17 @@ export default function Navbar({ className }: { className?: string }) {
 							>
 								{navItem.name}
 								{`/${currentPath.split('/')[1]}` == navItem.path && (
-									<div className="h-0.5 absolute -bottom-[5px] left-0 right-0 bg-gradient-to-r from-transparent via-foreground to-transparent" />
+									<div
+										className={cn(
+											'h-0.5 absolute -bottom-[5px] left-0 right-0 bg-gradient-to-r from-transparent via-foreground to-transparent transition-opacity',
+											isOpen && 'opacity-0'
+										)}
+									/>
 								)}
 							</Link>
 						))}
 						<div
+							onMouseEnter={() => setIsOpen(!isOpen)}
 							className={cn(
 								'hidden sm:block relative px-4 py-3 rounded-lg hover:text-foreground transition-colors'
 							)}
@@ -91,6 +98,9 @@ export default function Navbar({ className }: { className?: string }) {
 					</div>
 				</div>
 
+				<AnimatePresence>
+					{isOpen && <Dropdown isOpen={isOpen} setIsOpen={setIsOpen} />}
+				</AnimatePresence>
 				<AnimatePresence>
 					{isOpen && <Menu isOpen={isOpen} setIsOpen={setIsOpen} currentPath={currentPath} />}
 				</AnimatePresence>

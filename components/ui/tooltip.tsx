@@ -57,7 +57,7 @@ export const Tooltip = ({ message, children, origin = 'bottom', className }: Too
 							duration: 0.15,
 						}}
 						className={cn(
-							`pointer-events-none absolute whitespace-nowrap ${
+							`z-20 pointer-events-none absolute whitespace-nowrap ${
 								origin === 'bottom' ? '-bottom-12' : '-top-12'
 							} flex flex-col items-center`,
 							!show ? 'hidden' : null

@@ -74,7 +74,7 @@ export default function Menu({ currentPath, isOpen, setIsOpen, className }: Menu
 					exit={{ opacity: 0, transition: { delay: 0, duration: 0 } }}
 					transition={{ delay: 0.2, duration: 0 }}
 					className={cn(
-						'flex gap-x-5 fixed bottom-0 left-0 pb-1 pt-2 px-4 rounded-b-xl border-t w-full bg-background-secondary/20 backdrop-blur-md'
+						'flex gap-x-5 fixed bottom-0 left-0 pb-1 pt-2 px-4 rounded-b-xl border-t w-full bg-background-secondary/20'
 					)}
 				>
 					{navItems.socialLinks.map((navItem, idx) => (
