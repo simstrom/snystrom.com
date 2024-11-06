@@ -4,18 +4,16 @@ import { slugify } from '@/lib/utils';
 import type { MetadataRoute } from 'next';
 
 // Create dynamic routes with type-specific priorities and frequencies
-async function getDynamicRoutes(baseUrl: string): Promise<MetadataRoute.Sitemap> {
+function getDynamicRoutes(): MetadataRoute.Sitemap {
 	// Blog
-	const posts = await getBlogPosts();
-	const postsMeta = posts.map((post) => ({
-		url: `${baseUrl}/blog/${post.slug}`,
+	const posts = getBlogPosts().map((post) => ({
+		url: `blog/${post.slug}`,
 		lastModified: post.date,
 		changeFrequency: 'monthly',
 		priority: 0.7,
 	}));
-	const tags = await getAllTags();
-	const tagsMeta = tags.map((tag) => ({
-		url: `${baseUrl}/blog/tag/${slugify(tag)}`,
+	const tags = getAllTags().map((tag) => ({
+		url: `blog/tag/${slugify(tag)}`,
 		lastModified: new Date(),
 		changeFrequency: 'monthly',
 		priority: 0.5,
@@ -23,22 +21,22 @@ async function getDynamicRoutes(baseUrl: string): Promise<MetadataRoute.Sitemap>
 
 	// Gallery
 	const destinations = galleryDestinations.map((destination) => ({
-		url: `${baseUrl}/gallery/destinations/${slugify(destination.title)}`,
+		url: `gallery/destinations/${slugify(destination.title)}`,
 		lastModified: new Date(),
 		changeFrequency: 'monthly',
 		priority: 0.6,
 	}));
 	const collections = galleryCollections.map((collection) => ({
-		url: `${baseUrl}/gallery/collections/${slugify(collection.title)}`,
+		url: `gallery/collections/${slugify(collection.title)}`,
 		lastModified: new Date(),
 		changeFrequency: 'monthly',
 		priority: 0.6,
 	}));
 
-	return [...postsMeta, ...tagsMeta, ...destinations, ...collections] as MetadataRoute.Sitemap;
+	return [...posts, ...tags, ...destinations, ...collections] as MetadataRoute.Sitemap;
 }
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+export default function sitemap(): MetadataRoute.Sitemap {
 	const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://snystrom.com';
 
 	const staticRoutes: MetadataRoute.Sitemap = [
@@ -98,7 +96,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 		},
 	];
 
-	const dynamicRoutes = getDynamicRoutes(baseUrl);
+	const dynamicRoutes = getDynamicRoutes();
 
-	return [...staticRoutes, ...(await dynamicRoutes)];
+	return [...staticRoutes, ...dynamicRoutes];
 }

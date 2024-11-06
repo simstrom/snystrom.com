@@ -1,5 +1,5 @@
+import { Post } from '@/.content-collections/generated';
 import { IconArrowRight } from '@/lib/icons';
-import { Post } from '@/lib/types';
 import { formatDate } from '@/lib/utils';
 import Link from 'next/link';
 

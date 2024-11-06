@@ -1,6 +1,7 @@
 'use client';
 
-import { Post, Views } from '@/lib/types';
+import { Post } from '@/.content-collections/generated';
+import { Views } from '@/lib/types';
 import { formatDate } from '@/lib/utils';
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';

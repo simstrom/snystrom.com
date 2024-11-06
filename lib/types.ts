@@ -9,18 +9,6 @@ export type Project = {
 	image?: string | StaticImport;
 };
 
-export type Post = {
-	slug: string;
-	title: string;
-	summary: string;
-	date: Date;
-	tags: string[];
-	readingTime: string;
-	body: string;
-	image?: string;
-	imageBlur?: string;
-};
-
 export type Views =
 	| {
 			slug: string;

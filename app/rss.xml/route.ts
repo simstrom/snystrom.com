@@ -3,6 +3,7 @@ export const dynamic = 'force-static';
 import { getBlogPosts } from '@/lib/blog';
 import { Feed } from 'feed';
 
+const posts = getBlogPosts();
 const feed = new Feed({
 	title: 'Simon Nyström',
 	description:
@@ -21,8 +22,6 @@ const feed = new Feed({
 });
 
 export async function GET() {
-	const posts = await getBlogPosts();
-
 	try {
 		posts.forEach((post) => {
 			feed.addItem({

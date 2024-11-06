@@ -9,14 +9,12 @@ import { incrementViews } from '@/lib/actions';
 import { getBlogPost, getBlogPosts, getRelatedPosts } from '@/lib/blog';
 import { createOgImage } from '@/lib/createOgImage';
 import { getPostInteractions } from '@/lib/queries';
-import { rehypeCodeOptions } from '@/lib/rehype';
 import { cn, formatDate } from '@/lib/utils';
+import { MDXContent } from '@content-collections/mdx/react';
 import { Metadata } from 'next';
-import { MDXRemote } from 'next-mdx-remote/rsc';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import Script from 'next/script';
-import rehypePrettyCode from 'rehype-pretty-code';
 
 interface Props {
 	params: {
@@ -25,7 +23,7 @@ interface Props {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata | undefined> {
-	const post = await getBlogPost(params.slug);
+	const post = getBlogPost(params.slug);
 	if (!post) {
 		return;
 	}
@@ -57,12 +55,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata | un
 }
 
 export default async function BlogPost({ params }: Props) {
-	const post = await getBlogPost(params.slug);
+	const post = getBlogPost(params.slug);
 	if (!post) return notFound();
 
 	incrementViews(post.slug);
 	const postInteractions = await getPostInteractions(post.slug);
-	const related = await getRelatedPosts(post);
+	const related = getRelatedPosts(post);
 
 	const jsonLd = {
 		'@type': 'BlogPost',
@@ -130,11 +128,7 @@ export default async function BlogPost({ params }: Props) {
 					</div>
 				</header>
 				<article className="mt-8 mb-10 sm:mb-20 prose dark:prose-invert max-w-none prose-headings:font-medium prose-headings:text-foreground prose-headings:relative">
-					<MDXRemote
-						source={post.body}
-						components={MDXComponents}
-						options={{ mdxOptions: { rehypePlugins: [[rehypePrettyCode, rehypeCodeOptions]] } }}
-					/>
+					<MDXContent code={post.body} components={MDXComponents} />
 				</article>
 				<div className="mb-20 flex items-center justify-center">
 					<LikeButton likes={postInteractions?.likes} slug={post.slug} />
@@ -152,6 +146,6 @@ export default async function BlogPost({ params }: Props) {
 }
 
 export async function generateStaticParams() {
-	const posts = await getBlogPosts();
+	const posts = getBlogPosts();
 	return posts.map((post) => ({ slug: post.slug }));
 }

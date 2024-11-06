@@ -1,10 +1,12 @@
 'use client';
 
 import { IconRSS, IconSearch } from '@/lib/icons';
-import { Post, Views } from '@/lib/types';
-import { motion } from 'framer-motion';
+import { Views } from '@/lib/types';
 import { useMemo, useState } from 'react';
 import { useDebounce } from 'use-debounce';
+
+import { Post } from '@/.content-collections/generated';
+import { motion } from 'framer-motion';
 import CustomLink from '../blog/link';
 import PostList from '../postList';
 
