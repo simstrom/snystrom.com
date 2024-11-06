@@ -1,12 +1,12 @@
+import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+
 import PostList from '@/components/postList';
 import Button from '@/components/ui/button';
 import PageHeader from '@/components/ui/pageHeader';
 import { getAllTags, getPostsByTag } from '@/lib/blog';
 import { SITE_URL } from '@/lib/constants';
-import { getAllViews } from '@/lib/queries';
 import { slugify } from '@/lib/utils';
-import { Metadata } from 'next';
-import { notFound } from 'next/navigation';
 
 interface Props {
 	params: {
@@ -41,7 +41,6 @@ export default async function TagPage({ params }: Props) {
 	const tag = getAllTags().find((t) => slugify(t) == params.slug);
 	if (!tag) return notFound();
 
-	const views = await getAllViews();
 	const posts = getPostsByTag(tag);
 
 	return (
@@ -56,7 +55,7 @@ export default async function TagPage({ params }: Props) {
 			</Button>
 			<PageHeader title={tag} content={`Explore all articles and tutorials about ${tag}`} />
 			<section className="pt-5 mb-10">
-				<PostList posts={posts} views={views} />
+				<PostList posts={posts} />
 			</section>
 		</main>
 	);

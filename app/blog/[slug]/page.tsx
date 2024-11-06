@@ -1,21 +1,20 @@
+import { MDXContent } from '@content-collections/mdx/react';
+import { Metadata } from 'next';
+import Image from 'next/image';
+import { notFound } from 'next/navigation';
+import Script from 'next/script';
+
 import CustomLink from '@/components/blog/link';
 import MDXComponents from '@/components/blog/MDXcomponents';
 import Tag from '@/components/blog/tag';
 import PostListRelated from '@/components/postListRelated';
 import Button from '@/components/ui/button';
 import PageHeader from '@/components/ui/pageHeader';
-import { incrementViews } from '@/lib/actions';
 import { getBlogPost, getBlogPosts, getRelatedPosts } from '@/lib/blog';
 import { SITE_INSTAGRAM_URL, SITE_LINKEDIN_URL, SITE_NAME, SITE_URL } from '@/lib/constants';
 import { createOgImage } from '@/lib/createOgImage';
-import { getPostInteractions } from '@/lib/queries';
 import { cn, formatDate } from '@/lib/utils';
 import avatar from '@/public/images/avatar.avif';
-import { MDXContent } from '@content-collections/mdx/react';
-import { Metadata } from 'next';
-import Image from 'next/image';
-import { notFound } from 'next/navigation';
-import Script from 'next/script';
 
 interface Props {
 	params: {
@@ -32,7 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata | un
 	const { title, summary, date } = post;
 	const seoImage = createOgImage({
 		title: post.title,
-		meta: [formatDate(post.date, false, true, true), ...post.tags.slice(0, 3)].join(' · '),
+		meta: [formatDate(post.date, true, true), ...post.tags.slice(0, 3)].join(' · '),
 	});
 
 	return {
@@ -77,8 +76,6 @@ export default async function BlogPost({ params }: Props) {
 	const post = getBlogPost(params.slug);
 	if (!post) return notFound();
 
-	incrementViews(post.slug);
-	const postInteractions = await getPostInteractions(post.slug);
 	const related = getRelatedPosts(post);
 
 	const jsonLd = {
@@ -95,7 +92,7 @@ export default async function BlogPost({ params }: Props) {
 		dateModified: post.date.toISOString(),
 		image: createOgImage({
 			title: post.title,
-			meta: [formatDate(post.date, false, true, true), ...post.tags.slice(0, 3)].join(' · '),
+			meta: [formatDate(post.date, true, true), ...post.tags.slice(0, 3)].join(' · '),
 		}),
 		author: {
 			'@type': 'Person',
@@ -177,7 +174,7 @@ export default async function BlogPost({ params }: Props) {
 						If you enjoyed this article, check out some of my other posts below. Have questions,
 						feedback, or just want to connect? Find me on{' '}
 						<CustomLink href={SITE_LINKEDIN_URL}>Github</CustomLink> or drop me a message on{' '}
-						<CustomLink href={SITE_INSTAGRAM_URL}>LinkedIn</CustomLink> and let's chat.
+						<CustomLink href={SITE_INSTAGRAM_URL}>LinkedIn</CustomLink> and let&apos;s chat.
 					</p>
 				</div>
 

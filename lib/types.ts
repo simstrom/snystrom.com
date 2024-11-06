@@ -9,13 +9,6 @@ export type Project = {
 	image?: string | StaticImport;
 };
 
-export type Views =
-	| {
-			slug: string;
-			views: number;
-	  }[]
-	| null;
-
 export type GalleryCollection = {
 	title: string;
 	description: string;

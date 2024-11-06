@@ -1,14 +1,12 @@
 'use client';
 
 import { Post } from '@/.content-collections/generated';
-import { Views } from '@/lib/types';
 import { formatDate } from '@/lib/utils';
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
 
 type PostListProps = {
 	posts: Post[];
-	views: Views;
 	query?: string;
 };
 
@@ -25,7 +23,7 @@ const determineMatch = (post: Post, query: string): string => {
 	return '';
 };
 
-export default function PostList({ posts, views, query }: PostListProps) {
+export default function PostList({ posts, query }: PostListProps) {
 	return (
 		<motion.ul
 			key="posts-view"
@@ -53,7 +51,7 @@ export default function PostList({ posts, views, query }: PostListProps) {
 							href={`/blog/${post.slug}`}
 						>
 							<div className="w-full sm:w-fit min-w-fit flex items-baseline gap-x-2 sm:block text-sm text-foreground-secondary ">
-								<time>{formatDate(post.date, false, true)}</time>
+								<time>{formatDate(post.date, true)}</time>
 								<span className="sm:hidden">·</span>
 								<span className="sm:hidden min-w-fit">{post.readingTime}</span>
 								{query && (

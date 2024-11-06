@@ -18,9 +18,7 @@ export default function PostListRelated({ posts }: PostListRelatedProps) {
 				>
 					<div>
 						<div className="flex gap-x-2 items-center text-sm font-medium">
-							<time className="text-foreground-secondary">
-								{formatDate(post.date, false, true)}
-							</time>
+							<time className="text-foreground-secondary">{formatDate(post.date, true)}</time>
 
 							<span className="text-foreground/30">·</span>
 							<p className="text-foreground-secondary">{post.readingTime}</p>

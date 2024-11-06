@@ -8,7 +8,6 @@ import { SITE_URL } from '@/lib/constants';
 import { projectsData } from '@/lib/data';
 import { getImagesByTag } from '@/lib/gallery';
 import { IconArrowRight, IconSparkle } from '@/lib/icons';
-import { getAllViews } from '@/lib/queries';
 import { Project } from '@/lib/types';
 import { Metadata } from 'next';
 import Link from 'next/link';
@@ -24,7 +23,6 @@ export default async function Home() {
 	const images = await getImagesByTag('Landing');
 	const blogPosts = getBlogPosts();
 	const allUniqueTags = getAllTags();
-	const allViews = await getAllViews();
 	const latestPost = getLatestBlogPost();
 	const snystrom = projectsData.find((project) => project.title === 'Snystrom.com') as Project;
 

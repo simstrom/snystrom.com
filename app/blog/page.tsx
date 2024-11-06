@@ -1,8 +1,8 @@
+import { Metadata } from 'next';
+
 import PostViewSearch from '@/components/sections/postViewSearch';
 import PageHeader from '@/components/ui/pageHeader';
-import { getAllTags, getBlogPosts } from '@/lib/blog';
-import { getAllViews } from '@/lib/queries';
-import { Metadata } from 'next';
+import { getBlogPosts } from '@/lib/blog';
 
 export const metadata: Metadata = {
 	title: 'Blog',
@@ -12,8 +12,6 @@ export const metadata: Metadata = {
 
 export default async function Blog() {
 	const posts = getBlogPosts();
-	const tags = getAllTags();
-	const views = await getAllViews();
 
 	return (
 		<main className="grow flex flex-col pt-32 sm:pt-40">
@@ -22,8 +20,7 @@ export default async function Blog() {
 				content="This is where I share my thoughts and experiences on all things code and design."
 			/>
 			<div className="pt-8 sm:pt-12 space-y-12">
-				{/* <PostViewHero posts={posts} views={views} uniqueTags={tags} /> */}
-				<PostViewSearch posts={posts} views={views} />
+				<PostViewSearch posts={posts} />
 			</div>
 		</main>
 	);

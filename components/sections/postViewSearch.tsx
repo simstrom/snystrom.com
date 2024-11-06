@@ -1,7 +1,6 @@
 'use client';
 
 import { IconRSS, IconSearch } from '@/lib/icons';
-import { Views } from '@/lib/types';
 import { useMemo, useState } from 'react';
 import { useDebounce } from 'use-debounce';
 
@@ -12,10 +11,9 @@ import PostList from '../postList';
 
 type PostViewSearchProps = {
 	posts: Post[];
-	views: Views;
 };
 
-export default function PostViewSearch({ posts, views }: PostViewSearchProps) {
+export default function PostViewSearch({ posts }: PostViewSearchProps) {
 	const [searchQuery, setSearchQuery] = useState<string>('');
 	const [debouncedQuery] = useDebounce(searchQuery, 500);
 
@@ -89,7 +87,7 @@ export default function PostViewSearch({ posts, views }: PostViewSearchProps) {
 							<p className="text-sm text-foreground-secondary">Try searching for something else</p> */}
 				</motion.div>
 			) : (
-				<PostList posts={filteredPosts} query={debouncedQuery} views={views} />
+				<PostList posts={filteredPosts} query={debouncedQuery} />
 			)}
 		</section>
 	);

@@ -16,7 +16,7 @@ export default async function CustomImage({
 	caption,
 	priority = false,
 }: CustomImageProps) {
-	const result = await lqip(process.env.NODE_ENV !== 'production' ? `./public${src}` : src);
+	const result = await lqip(`public${src}`);
 
 	return (
 		<figure>

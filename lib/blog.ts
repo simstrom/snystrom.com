@@ -31,14 +31,12 @@ export const getPostsByTag = (tag: string) => {
 };
 
 export const getBlogPost = (slug: string) => {
-	const posts = getBlogPosts();
-	return posts.find((post) => post.slug === slug);
+	return allPosts.find((post) => post.slug === slug);
 };
 
 export const getAllTags = () => {
-	const posts = getBlogPosts();
 	// Extract tags from each post and flatten (take 12)
-	const tags = posts.flatMap((post) => post.tags ?? []);
+	const tags = allPosts.flatMap((post) => post.tags ?? []);
 	// Ensure uniqueness of tags with Set
 	return Array.from(new Set(tags));
 };
