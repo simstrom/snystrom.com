@@ -1,5 +1,4 @@
 import { withContentCollections } from '@content-collections/next';
-import withPlaiceholder from '@plaiceholder/next';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -19,4 +18,4 @@ const nextConfig = {
 	},
 };
 
-export default withContentCollections(withPlaiceholder(nextConfig));
+export default withContentCollections(nextConfig);

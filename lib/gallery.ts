@@ -1,18 +1,21 @@
 'use server';
 
 import { v2 as cloudinary } from 'cloudinary';
-import { getPlaiceholder } from 'plaiceholder';
+import lqip from 'lqip-modern';
+import { getCldImageUrl } from 'next-cloudinary';
 import { cache } from 'react';
 import { galleryCollections, galleryDestinations } from './data';
 import { GalleryCollection, GalleryImage } from './types';
 
 async function createBlurDataURL(src: string): Promise<string> {
-	const buffer = await fetch(src).then(async (res) => {
-		return Buffer.from(await res.arrayBuffer());
+	const imageUrl = getCldImageUrl({
+		src,
+		width: 100,
 	});
-	const { base64 } = await getPlaiceholder(buffer);
-
-	return base64;
+	const response = await fetch(imageUrl);
+	const buffer = Buffer.from(await response.arrayBuffer());
+	const result = await lqip(buffer);
+	return result.metadata.dataURIBase64;
 }
 
 const mapGalleryImages = cache(async (result: any): Promise<GalleryImage[]> => {
@@ -24,7 +27,7 @@ const mapGalleryImages = cache(async (result: any): Promise<GalleryImage[]> => {
 				return {
 					id: public_id,
 					src: secure_url,
-					blurData: await createBlurDataURL(secure_url),
+					blurData: await createBlurDataURL(public_id),
 					width,
 					height,
 					metadata,

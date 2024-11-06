@@ -1,7 +1,6 @@
 import { defineCollection, defineConfig } from '@content-collections/core';
 import { compileMDX } from '@content-collections/mdx';
-import { readFileSync } from 'fs';
-import { getPlaiceholder } from 'plaiceholder';
+import lqip from 'lqip-modern';
 import readingTime from 'reading-time';
 import rehypePrettyCode from 'rehype-pretty-code';
 import { rehypeCodeOptions } from './lib/rehype';
@@ -29,9 +28,8 @@ const posts = defineCollection({
 
 		const blur = await context.cache(page._meta.path, async () => {
 			if (!page.image) return null;
-			const buffer = readFileSync(`./public${POSTS_ASSETS_DIR}/${page.image}`);
-			const { base64 } = await getPlaiceholder(buffer);
-			return base64;
+			const result = await lqip(`./public${POSTS_ASSETS_DIR}/${page.image}`);
+			return result.metadata.dataURIBase64;
 		});
 
 		return {

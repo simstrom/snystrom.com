@@ -1,7 +1,6 @@
 import { cn } from '@/lib/utils';
-import { readFileSync } from 'fs';
+import lqip from 'lqip-modern';
 import Image from 'next/image';
-import { getPlaiceholder } from 'plaiceholder';
 
 type CustomImageProps = {
 	src: string;
@@ -16,20 +15,19 @@ export default async function CustomImage({
 	caption,
 	priority = false,
 }: CustomImageProps) {
-	const buffer = readFileSync(`./public${src}`);
-	const { base64, metadata } = await getPlaiceholder(buffer);
+	const result = await lqip(`./public${src}`);
 
 	return (
 		<figure>
 			<Image
 				src={src}
-				width={metadata.width}
-				height={metadata.height}
+				width={result.metadata.originalWidth}
+				height={result.metadata.originalHeight}
 				alt={alt}
 				className="w-full h-auto rounded-xl border"
 				priority={priority}
 				placeholder="blur"
-				blurDataURL={base64}
+				blurDataURL={result.metadata.dataURIBase64}
 				draggable={false}
 			/>
 			{caption && <figcaption className={cn('text-sm text-secondary')}>{caption}</figcaption>}
