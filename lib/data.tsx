@@ -249,18 +249,18 @@ export const galleryDestinations = [
 		title: 'Sweden',
 		description: 'string',
 	},
-	// {
-	// 	title: 'Norway',
-	// 	description: 'string',
-	// },
+	{
+		title: 'Norway',
+		description: 'string',
+	},
 ] as Array<GalleryCollection>;
 
 //
 // GALLERY: Collections
 //
 export const galleryCollections = [
-	// {
-	// 	title: 'Adventure',
-	// 	description: 'string',
-	// },
+	{
+		title: 'Adventure',
+		description: 'string',
+	},
 ] as Array<GalleryCollection>;

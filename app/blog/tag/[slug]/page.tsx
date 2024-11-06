@@ -54,11 +54,7 @@ export default async function TagPage({ params }: Props) {
 			>
 				Blog
 			</Button>
-			<PageHeader
-				title={`${tag}`}
-				className="text-2xl sm:text-2xl"
-				content={`Explore all articles and tutorials about ${tag}`}
-			/>
+			<PageHeader title={tag} content={`Explore all articles and tutorials about ${tag}`} />
 			<section className="pt-5 mb-10">
 				<PostList posts={posts} views={views} />
 			</section>

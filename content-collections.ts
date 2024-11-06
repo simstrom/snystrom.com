@@ -25,10 +25,14 @@ const posts = defineCollection({
 			})
 		);
 
-		const blur = await context.cache(page._meta.path, async () => {
+		const imageMeta = await context.cache(page._meta.path, async () => {
 			if (!page.image) return null;
 			const result = await lqip(`./public${page.image}`);
-			return result.metadata.dataURIBase64;
+			return {
+				blur: result.metadata.dataURIBase64,
+				width: result.metadata.originalWidth,
+				height: result.metadata.originalHeight,
+			};
 		});
 
 		return {
@@ -38,7 +42,7 @@ const posts = defineCollection({
 			slug: page._meta.path,
 			readingTime: readingTime(page.content).text,
 			image: page.image ? page.image : undefined,
-			imageBlur: blur,
+			imageMeta,
 		};
 	},
 });

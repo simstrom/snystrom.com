@@ -20,7 +20,7 @@ export default function Callout({ variant = 'info', title, children }: CalloutPr
 	return (
 		<aside
 			data-callout={variant}
-			className="callout p-4 my-5 rounded-xl text-foreground/70 border-2"
+			className="callout p-4 my-5 rounded-xl text-foreground/90 border-2"
 		>
 			<div className="callout-title py-2 flex gap-x-3 items-start font-medium tracking-tight">
 				<Icon width={24} height={24} className="flex-shrink-0 mt-1 text-[rgb(var(--callout))]" />

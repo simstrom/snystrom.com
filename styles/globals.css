@@ -77,7 +77,7 @@
 	BLOG STYLES
 	-----------	*/
 .prose {
-	@apply leading-[1.9] tracking-[0.02em];
+	@apply leading-[1.9] tracking-[0.02em] dark:prose-invert text-foreground prose-headings:font-medium prose-headings:text-foreground prose-headings:relative prose-p:text-foreground/80 marker:text-foreground-secondary prose-li:text-foreground/80 prose-ul:text-foreground/80 prose-hr:border-border/10 dark:prose-hr:border-border/20;
 }
 .prose strong {
 	@apply font-[550] text-foreground;
@@ -87,6 +87,9 @@
 }
 .prose .c-link {
 	@apply font-[450];
+}
+.prose figcaption .c-link {
+	@apply pb-1 text-foreground-secondary hover:text-foreground;
 }
 
 /* Heading anchorlinks */

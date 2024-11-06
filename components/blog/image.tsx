@@ -1,12 +1,12 @@
 import { cn } from '@/lib/utils';
 import lqip from 'lqip-modern';
 import Image from 'next/image';
-import path from 'path';
+import React from 'react';
 
 type CustomImageProps = {
 	src: string;
 	alt: string;
-	caption?: string;
+	caption?: React.ReactNode | string;
 	priority?: boolean;
 };
 
@@ -16,7 +16,7 @@ export default async function CustomImage({
 	caption,
 	priority = false,
 }: CustomImageProps) {
-	const result = await lqip(path.join(process.cwd(), `/public${src}`));
+	const result = await lqip(process.env.NODE_ENV !== 'production' ? `./public${src}` : src);
 
 	return (
 		<figure>
@@ -31,7 +31,9 @@ export default async function CustomImage({
 				blurDataURL={result.metadata.dataURIBase64}
 				draggable={false}
 			/>
-			{caption && <figcaption className={cn('text-sm text-secondary')}>{caption}</figcaption>}
+			{caption && (
+				<figcaption className={cn('text-sm text-foreground-secondary')}>{caption}</figcaption>
+			)}
 		</figure>
 	);
 }

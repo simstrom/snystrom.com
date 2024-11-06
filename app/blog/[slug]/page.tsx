@@ -1,16 +1,16 @@
-import LikeButton from '@/components/blog/likeButton';
+import CustomLink from '@/components/blog/link';
 import MDXComponents from '@/components/blog/MDXcomponents';
 import Tag from '@/components/blog/tag';
 import PostListRelated from '@/components/postListRelated';
 import Button from '@/components/ui/button';
 import PageHeader from '@/components/ui/pageHeader';
-import ViewCounter from '@/components/ui/viewCounter';
 import { incrementViews } from '@/lib/actions';
 import { getBlogPost, getBlogPosts, getRelatedPosts } from '@/lib/blog';
-import { SITE_NAME, SITE_URL } from '@/lib/constants';
+import { SITE_INSTAGRAM_URL, SITE_LINKEDIN_URL, SITE_NAME, SITE_URL } from '@/lib/constants';
 import { createOgImage } from '@/lib/createOgImage';
 import { getPostInteractions } from '@/lib/queries';
 import { cn, formatDate } from '@/lib/utils';
+import avatar from '@/public/images/avatar.avif';
 import { MDXContent } from '@content-collections/mdx/react';
 import { Metadata } from 'next';
 import Image from 'next/image';
@@ -124,15 +124,16 @@ export default async function BlogPost({ params }: Props) {
 				>
 					Blog
 				</Button>
-				{post.image && post.imageBlur && (
+				{post.image && post.imageMeta && (
 					<Image
 						priority
 						src={post.image}
 						alt={`${post.title} post image`}
-						width={672}
-						height={378}
+						width={post.imageMeta.width}
+						height={post.imageMeta.height}
 						placeholder="blur"
-						blurDataURL={post.imageBlur}
+						blurDataURL={post.imageMeta.blur}
+						draggable={false}
 						className="w-full aspect-video rounded-xl object-cover border mb-3"
 					/>
 				)}
@@ -147,18 +148,37 @@ export default async function BlogPost({ params }: Props) {
 					<div className="font-medium flex flex-wrap justify-between items-center gap-y-3 text-sm text-foreground/80">
 						<div className="flex items-center gap-2">
 							<time>{formatDate(post.date)}</time>
-							<span className="text-foreground/30">/</span>
-							<ViewCounter views={postInteractions?.views ? postInteractions.views + 1 : 1} />
-							<span className="text-foreground/30">/</span>
+							<span className="text-foreground/30">·</span>
 							<p>{post.readingTime}</p>
 						</div>
 					</div>
 				</header>
-				<article className="mt-8 mb-10 sm:mb-20 prose dark:prose-invert max-w-none prose-headings:font-medium prose-headings:text-foreground prose-headings:relative">
+
+				<article className="mt-8 mb-10 prose max-w-none">
 					<MDXContent code={post.body} components={MDXComponents} />
 				</article>
-				<div className="mb-20 flex items-center justify-center">
-					<LikeButton likes={postInteractions?.likes} slug={post.slug} />
+
+				<div className="mb-8 py-4 border-t prose">
+					<div className="flex items-center gap-x-4">
+						<Image
+							width={64}
+							height={64}
+							src={avatar}
+							alt=""
+							draggable={false}
+							className="rounded-full not-prose"
+						/>
+						<div className="flex flex-col">
+							<span className="text-sm text-foreground-secondary">Simon says:</span>
+							<span>Hey, thanks for reading! 👋</span>
+						</div>
+					</div>
+					<p className="mt-3">
+						If you enjoyed this article, check out some of my other posts below. Have questions,
+						feedback, or just want to connect? Find me on{' '}
+						<CustomLink href={SITE_LINKEDIN_URL}>Github</CustomLink> or drop me a message on{' '}
+						<CustomLink href={SITE_INSTAGRAM_URL}>LinkedIn</CustomLink> and let's chat.
+					</p>
 				</div>
 
 				{related.length > 0 && (
