@@ -2,6 +2,7 @@ import CustomLink from '@/components/blog/link';
 import GalleryView from '@/components/sections/galleryView';
 import Button from '@/components/ui/button';
 import PageHeader from '@/components/ui/pageHeader';
+import { SITE_URL } from '@/lib/constants';
 import { galleryDestinations } from '@/lib/data';
 import { getImagesInCollection } from '@/lib/gallery';
 import { slugify } from '@/lib/utils';
@@ -27,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata | un
 		openGraph: {
 			title: `Gallery - ${title}`,
 			description,
-			url: `${process.env.NEXT_PUBLIC_SITE_URL}/gallery/destinations/${slugify(collection.title)}`,
+			url: `${SITE_URL}/gallery/destinations/${slugify(collection.title)}`,
 			images: seoImage,
 		},
 		twitter: {

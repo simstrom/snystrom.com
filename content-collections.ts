@@ -5,7 +5,6 @@ import readingTime from 'reading-time';
 import rehypePrettyCode from 'rehype-pretty-code';
 import { rehypeCodeOptions } from './lib/rehype';
 
-const POSTS_ASSETS_DIR = '/assets/blog';
 const POSTS_DIR = 'content/blog';
 
 const posts = defineCollection({
@@ -28,7 +27,7 @@ const posts = defineCollection({
 
 		const blur = await context.cache(page._meta.path, async () => {
 			if (!page.image) return null;
-			const result = await lqip(`./public${POSTS_ASSETS_DIR}/${page.image}`);
+			const result = await lqip(`./public${page.image}`);
 			return result.metadata.dataURIBase64;
 		});
 
@@ -38,7 +37,7 @@ const posts = defineCollection({
 			date: new Date(page.date),
 			slug: page._meta.path,
 			readingTime: readingTime(page.content).text,
-			image: page.image ? `${POSTS_ASSETS_DIR}/${page.image}` : undefined,
+			image: page.image ? page.image : undefined,
 			imageBlur: blur,
 		};
 	},

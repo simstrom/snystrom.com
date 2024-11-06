@@ -2,6 +2,7 @@ import PostList from '@/components/postList';
 import Button from '@/components/ui/button';
 import PageHeader from '@/components/ui/pageHeader';
 import { getAllTags, getPostsByTag } from '@/lib/blog';
+import { SITE_URL } from '@/lib/constants';
 import { getAllViews } from '@/lib/queries';
 import { slugify } from '@/lib/utils';
 import { Metadata } from 'next';
@@ -19,7 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata | un
 
 	const title = `${tag} Blog`;
 	const description = `Articles and tutorials about ${tag}`;
-	const url = `${process.env.NEXT_PUBLIC_SITE_URL}/blog/tag/${params.slug}`;
+	const url = `${SITE_URL}/blog/tag/${params.slug}`;
 
 	return {
 		title,

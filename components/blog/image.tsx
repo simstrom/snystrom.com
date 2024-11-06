@@ -1,6 +1,7 @@
 import { cn } from '@/lib/utils';
 import lqip from 'lqip-modern';
 import Image from 'next/image';
+import path from 'path';
 
 type CustomImageProps = {
 	src: string;
@@ -15,7 +16,7 @@ export default async function CustomImage({
 	caption,
 	priority = false,
 }: CustomImageProps) {
-	const result = await lqip(`./public${src}`);
+	const result = await lqip(path.join(process.cwd(), `/public${src}`));
 
 	return (
 		<figure>

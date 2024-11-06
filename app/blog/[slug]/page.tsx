@@ -7,6 +7,7 @@ import PageHeader from '@/components/ui/pageHeader';
 import ViewCounter from '@/components/ui/viewCounter';
 import { incrementViews } from '@/lib/actions';
 import { getBlogPost, getBlogPosts, getRelatedPosts } from '@/lib/blog';
+import { SITE_NAME, SITE_URL } from '@/lib/constants';
 import { createOgImage } from '@/lib/createOgImage';
 import { getPostInteractions } from '@/lib/queries';
 import { cn, formatDate } from '@/lib/utils';
@@ -37,19 +38,37 @@ export async function generateMetadata({ params }: Props): Promise<Metadata | un
 	return {
 		title,
 		description: summary,
+		alternates: {
+			canonical: `/blog/${post.slug}`,
+		},
 		openGraph: {
 			title,
 			description: summary,
 			type: 'article',
 			publishedTime: date.toISOString(),
-			url: `${process.env.NEXT_PUBLIC_SITE_URL}/blog/${post.slug}`,
-			images: seoImage,
+			url: `${SITE_URL}/blog/${post.slug}`,
+			images: [
+				{
+					url: seoImage,
+					width: 1600,
+					height: 836,
+					alt: title,
+					type: 'image/png',
+				},
+			],
 		},
 		twitter: {
 			title,
 			description: summary,
-			images: seoImage,
 			card: 'summary_large_image',
+			images: [
+				{
+					url: seoImage,
+					width: 1600,
+					height: 836,
+					alt: title,
+				},
+			],
 		},
 	};
 }
@@ -63,18 +82,26 @@ export default async function BlogPost({ params }: Props) {
 	const related = getRelatedPosts(post);
 
 	const jsonLd = {
-		'@type': 'BlogPost',
+		'@type': 'Article',
 		'@context': 'https://schema.org',
 		mainEntityOfPage: {
 			'@type': 'WebPage',
-			'@id': `${process.env.NEXT_PUBLIC_SITE_URL}/blog/${post.slug}`,
+			'@id': `${SITE_URL}`,
 		},
 		headline: post.title,
 		description: post.summary,
-		image: post.image,
+		url: `${SITE_URL}/blog/${post.slug}`,
 		datePublished: post.date.toISOString(),
 		dateModified: post.date.toISOString(),
-		author: 'Simon Nyström',
+		image: createOgImage({
+			title: post.title,
+			meta: [formatDate(post.date, false, true, true), ...post.tags.slice(0, 3)].join(' · '),
+		}),
+		author: {
+			'@type': 'Person',
+			name: SITE_NAME,
+			url: SITE_URL,
+		},
 		isAccessibleForFree: true,
 	};
 

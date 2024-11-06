@@ -1,3 +1,4 @@
+import { SITE_CONTACT } from '@/lib/constants';
 import { navItems } from '@/lib/data';
 import { IconAt, IconEmail, IconGlobe, Logo } from '@/lib/icons';
 import Link from 'next/link';
@@ -19,12 +20,12 @@ export default function Footer() {
 						</p>
 
 						<Copy
-							toCopy="simons.nystrom@gmail.com"
+							toCopy={SITE_CONTACT}
 							successMessage="Email copied!"
 							icon={<IconEmail className="w-4 h-4" />}
 							className="hidden sm:flex mt-2"
 						>
-							simons.nystrom@gmail.com
+							{SITE_CONTACT}
 						</Copy>
 					</div>
 

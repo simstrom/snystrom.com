@@ -1,3 +1,4 @@
+import { SITE_CONTACT, SITE_GITHUB_URL, SITE_INSTAGRAM_URL, SITE_LINKEDIN_URL } from './constants';
 import {
 	IconBriefcase,
 	IconCity,
@@ -58,7 +59,7 @@ const exploreLinks = [
 const connectLinks = [
 	{
 		name: 'Contact',
-		path: 'mailto:simons.nystrom@gmail.com',
+		path: `mailto:${SITE_CONTACT}`,
 		icon: <IconEmail />,
 	},
 	{
@@ -70,17 +71,17 @@ const connectLinks = [
 const socialLinks = [
 	{
 		name: 'Github',
-		path: 'https://github.com/simstrom',
+		path: SITE_GITHUB_URL,
 		icon: <IconGithub width={20} height={20} />,
 	},
 	{
 		name: 'LinkedIn',
-		path: 'https://se.linkedin.com/in/simon-nystrom',
+		path: SITE_LINKEDIN_URL,
 		icon: <IconLinkedin width={20} height={20} />,
 	},
 	{
 		name: 'Instagram',
-		path: 'https://www.instagram.com/simonnystrom/',
+		path: SITE_INSTAGRAM_URL,
 		icon: <IconInstagram width={20} height={20} />,
 	},
 	{
@@ -248,18 +249,18 @@ export const galleryDestinations = [
 		title: 'Sweden',
 		description: 'string',
 	},
-	{
-		title: 'Norway',
-		description: 'string',
-	},
+	// {
+	// 	title: 'Norway',
+	// 	description: 'string',
+	// },
 ] as Array<GalleryCollection>;
 
 //
 // GALLERY: Collections
 //
 export const galleryCollections = [
-	{
-		title: 'Adventure',
-		description: 'string',
-	},
+	// {
+	// 	title: 'Adventure',
+	// 	description: 'string',
+	// },
 ] as Array<GalleryCollection>;

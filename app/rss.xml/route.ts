@@ -1,35 +1,32 @@
 export const dynamic = 'force-static';
 
 import { getBlogPosts } from '@/lib/blog';
+import { SITE_DESCRIPTION, SITE_NAME, SITE_TITLE, SITE_URL } from '@/lib/constants';
 import { Feed } from 'feed';
 
-const posts = getBlogPosts();
 const feed = new Feed({
-	title: 'Simon Nyström',
-	description:
-		'My writings on tutorials, technologies, personal development, and reflective insights.',
-	id: `${process.env.NEXT_PUBLIC_SITE_URL}/blog`,
-	link: `${process.env.NEXT_PUBLIC_SITE_URL}`,
-	language: 'en',
+	title: SITE_TITLE,
+	description: SITE_DESCRIPTION,
+	link: SITE_URL,
+	id: `${SITE_URL}/blog`,
+	feed: `${SITE_URL}/rss.xml`,
 	copyright: 'All rights reserved 2024, Simon Nyström',
-	author: {
-		name: 'Simon Nyström',
-		email: 'simons.nystrom@gmail.com',
-	},
-	feedLinks: {
-		rss: `${process.env.NEXT_PUBLIC_SITE_URL}/rss.xml`,
-	},
+	language: 'en',
+	image: `${SITE_URL}/images/og.png`,
 });
+
+const posts = getBlogPosts();
 
 export async function GET() {
 	try {
 		posts.forEach((post) => {
 			feed.addItem({
 				title: post.title,
-				id: `${process.env.NEXT_PUBLIC_SITE_URL}/blog/${post.slug}`,
-				link: `${process.env.NEXT_PUBLIC_SITE_URL}/blog/${post.slug}`,
+				id: `${SITE_URL}/blog/${post.slug}`,
+				link: `${SITE_URL}/blog/${post.slug}`,
 				description: post.summary,
 				date: post.date,
+				author: [{ name: SITE_NAME }],
 			});
 		});
 

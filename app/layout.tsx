@@ -7,6 +7,7 @@ import Script from 'next/script';
 
 import Footer from '@/components/footer';
 import Navbar from '@/components/navbar';
+import { SITE_DESCRIPTION, SITE_KEYWORDS, SITE_NAME, SITE_TITLE, SITE_URL } from '@/lib/constants';
 import Providers from './providers';
 
 const fontSans = localFont({
@@ -24,32 +25,41 @@ const fontMono = FontMono({
 
 export const viewport: Viewport = {
 	maximumScale: 1,
+	themeColor: [
+		{ media: '(prefers-color-scheme: light)', color: 'white' },
+		{ media: '(prefers-color-scheme: dark)', color: 'black' },
+	],
 };
 
 export const metadata: Metadata = {
-	metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://snystrom.com'),
+	metadataBase: new URL(SITE_URL),
 	title: {
-		default: 'Simon Nyström | Web developer and Photographer',
-		template: '%s | Simon Nyström',
+		default: SITE_TITLE,
+		template: `%s | ${SITE_NAME}`,
 	},
-	description: 'Frontend engineer with a passion for UI/UX design and photography.',
-	keywords:
-		'snystrom, simon nyström, simstrom, web developer, frontend, ui design, adventure photography',
+	description: SITE_DESCRIPTION,
+	keywords: SITE_KEYWORDS,
 	openGraph: {
 		type: 'website',
-		siteName: 'Simon Nyström',
+		siteName: SITE_NAME,
+		title: SITE_TITLE,
+		description: SITE_DESCRIPTION,
+		url: SITE_URL,
+		images: {
+			url: '/images/og.png',
+			width: 1600,
+			height: 836,
+			alt: SITE_DESCRIPTION,
+			type: 'image/png',
+		},
 		locale: 'en_US',
 		alternateLocale: 'en_SE',
-		title: 'Simon Nyström | Web developer and Photographer',
-		description: 'Frontend engineer with a passion for UI/UX design and photography.',
-		url: process.env.NEXT_PUBLIC_SITE_URL,
-		images: { url: '/images/og.png', width: 1600, height: 836 },
 	},
 	twitter: {
 		card: 'summary_large_image',
-		title: 'Simon Nyström | Web developer and Photographer',
-		description: 'Frontend engineer with a passion for UI/UX design and photography.',
-		images: { url: '/images/og.png', width: 1600, height: 836 },
+		title: SITE_TITLE,
+		description: SITE_DESCRIPTION,
+		images: { url: '/images/og.png', width: 1600, height: 836, alt: SITE_DESCRIPTION },
 	},
 	robots: {
 		index: true,
@@ -59,6 +69,7 @@ export const metadata: Metadata = {
 			follow: true,
 		},
 	},
+	manifest: '/manifest.webmanifest',
 	referrer: 'origin',
 	icons: '/favicon.ico',
 	alternates: {
@@ -66,7 +77,7 @@ export const metadata: Metadata = {
 			'application/rss+xml': [
 				{
 					title: 'Blog RSS Feed',
-					url: `${process.env.NEXT_PUBLIC_SITE_URL}/rss.xml`,
+					url: `${SITE_URL}/rss.xml`,
 				},
 			],
 		},

@@ -4,13 +4,21 @@ import { AuroraBackground } from '@/components/ui/aurora';
 import Button from '@/components/ui/button';
 import ProjectCard from '@/components/ui/projectCard';
 import { getAllTags, getBlogPosts, getLatestBlogPost } from '@/lib/blog';
+import { SITE_URL } from '@/lib/constants';
 import { projectsData } from '@/lib/data';
 import { getImagesByTag } from '@/lib/gallery';
 import { IconArrowRight, IconSparkle } from '@/lib/icons';
 import { getAllViews } from '@/lib/queries';
 import { Project } from '@/lib/types';
+import { Metadata } from 'next';
 import Link from 'next/link';
 // import { motion } from 'framer-motion';
+
+export const metadata: Metadata = {
+	alternates: {
+		canonical: SITE_URL,
+	},
+};
 
 export default async function Home() {
 	const images = await getImagesByTag('Landing');

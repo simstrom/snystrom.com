@@ -1,10 +1,11 @@
+import { SITE_DESCRIPTION, SITE_KEYWORDS, SITE_NAME, SITE_TITLE } from '@/lib/constants';
 import type { MetadataRoute } from 'next';
 
 export default function manifest(): MetadataRoute.Manifest {
 	return {
-		name: 'Simon Nyström | Web Developer and Photographer',
-		short_name: 'Simon Nyström',
-		description: 'Frontend engineer with a passion for UI/UX design and photography.',
+		name: SITE_TITLE,
+		short_name: SITE_NAME,
+		description: SITE_DESCRIPTION,
 		start_url: '/',
 		display: 'standalone',
 		background_color: '#0f1115',
@@ -16,7 +17,7 @@ export default function manifest(): MetadataRoute.Manifest {
 				type: 'image/x-icon',
 			},
 		],
-		categories: ['development', 'technology', 'web development', 'programming', 'frontend'],
+		categories: SITE_KEYWORDS,
 		orientation: 'portrait',
 		prefer_related_applications: false,
 		shortcuts: [
