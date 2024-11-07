@@ -46,7 +46,7 @@ export const metadata: Metadata = {
 		description: SITE_DESCRIPTION,
 		url: SITE_URL,
 		images: {
-			url: '/images/og.png',
+			url: '/images/og.webp',
 			width: 1600,
 			height: 836,
 			alt: SITE_DESCRIPTION,
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
 		card: 'summary_large_image',
 		title: SITE_TITLE,
 		description: SITE_DESCRIPTION,
-		images: { url: '/images/og.png', width: 1600, height: 836, alt: SITE_DESCRIPTION },
+		images: { url: '/images/og.webp', width: 1600, height: 836, alt: SITE_DESCRIPTION },
 	},
 	robots: {
 		index: true,

@@ -12,7 +12,7 @@ const feed = new Feed({
 	feed: `${SITE_URL}/rss.xml`,
 	copyright: 'All rights reserved 2024, Simon Nyström',
 	language: 'en',
-	image: `${SITE_URL}/images/og.png`,
+	image: `${SITE_URL}/images/og.webp`,
 });
 
 const posts = getBlogPosts();

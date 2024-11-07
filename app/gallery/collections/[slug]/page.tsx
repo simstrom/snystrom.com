@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata | un
 	if (!collection) return notFound();
 
 	const { title, description, cover } = collection;
-	const seoImage = cover ? cover.src : '/images/og.png';
+	const seoImage = cover ? cover.src : '/images/og.webp';
 
 	return {
 		title: `Gallery - ${title}`,

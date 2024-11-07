@@ -30,7 +30,7 @@ export default function Dropdown({ isOpen, setIsOpen, children, className }: Dro
 					<span className="z-20 relative">Gallery</span>
 					<Image
 						fill
-						src="/images/gallery.png"
+						src="/images/gallery.avif"
 						alt=""
 						className="absolute inset-0 rounded-xl object-cover object-left grayscale group-hover:grayscale-0 transition duration-300"
 						style={{
@@ -57,7 +57,7 @@ export default function Dropdown({ isOpen, setIsOpen, children, className }: Dro
 					<span className="z-20 relative">Colophon</span>
 					<Image
 						fill
-						src="/images/design.png"
+						src="/images/design.avif"
 						alt=""
 						className="absolute inset-0 translate-x-5 rounded-xl object-cover object-left grayscale group-hover:grayscale-0 transition duration-300"
 						style={{
@@ -84,7 +84,7 @@ export default function Dropdown({ isOpen, setIsOpen, children, className }: Dro
 					<span className="z-20 relative">Activity</span>
 					<Image
 						fill
-						src="/images/activity.png"
+						src="/images/activity.avif"
 						alt=""
 						className="absolute inset-0 translate-x-5 rounded-xl object-cover object-left grayscale group-hover:grayscale-0 transition duration-300"
 						style={{
@@ -112,7 +112,7 @@ export default function Dropdown({ isOpen, setIsOpen, children, className }: Dro
 					<span className="z-20 relative">Contact</span>
 					<Image
 						fill
-						src="/images/contact.png"
+						src="/images/contact.avif"
 						alt=""
 						className="absolute w-full inset-0 translate-x-10 rounded-xl object-cover object-left grayscale group-hover:grayscale-0 transition duration-300"
 						style={{
@@ -139,7 +139,7 @@ export default function Dropdown({ isOpen, setIsOpen, children, className }: Dro
 					<span className="z-20 relative">Resume</span>
 					<Image
 						fill
-						src="/images/resume.png"
+						src="/images/resume.avif"
 						alt=""
 						className="absolute inset-0 translate-x-8 rounded-xl object-cover object-left grayscale group-hover:grayscale-0 transition duration-300"
 						style={{
