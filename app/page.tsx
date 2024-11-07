@@ -1,3 +1,4 @@
+import PostListRelated from '@/components/postListRelated';
 import GalleryBlock from '@/components/sections/galleryBlock';
 import AnimatedBadge from '@/components/ui/animatedBadge';
 import { AuroraBackground } from '@/components/ui/aurora';
@@ -132,12 +133,7 @@ export default async function Home() {
 					</div>
 					<h2 className="text-2xl">Latest Articles and Tutorials</h2>
 				</div>
-				{/* <PostViewHero
-					posts={blogPosts}
-					views={allViews}
-					uniqueTags={allUniqueTags}
-					showTags={false}
-				/> */}
+				<PostListRelated posts={blogPosts.slice(0, 3)} />
 				<Button variant="link" href="/blog" className="mt-2 p-4 place-self-center">
 					Browse all articles
 				</Button>
