@@ -1,10 +1,11 @@
 'use client';
 
+import { useFocusTrap } from '@/lib/hooks';
 import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 
 interface NavDropdown {
 	isOpen: boolean;
@@ -14,38 +15,7 @@ interface NavDropdown {
 }
 
 export const NavDropdown = ({ isOpen, onClose, children, className }: NavDropdown) => {
-	const dropdownRef = useRef<HTMLDivElement>(null);
-
-	// Auto-focus the dropdown element when it opens
-	useEffect(() => {
-		if (isOpen && dropdownRef.current) {
-			dropdownRef.current.focus();
-		}
-	}, [isOpen]);
-
-	// Handle close on escape and trap focus
-	const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-		const focusableElements = dropdownRef.current?.querySelectorAll<HTMLElement>('a');
-		const firstElement = focusableElements?.[0];
-		const lastElement = focusableElements?.[focusableElements.length - 1];
-
-		if (event.key === 'Escape') {
-			onClose();
-		}
-
-		if (event.key === 'Tab' && focusableElements) {
-			// Shift + Tab on first element - wrap to last element
-			if (event.shiftKey && document.activeElement === firstElement) {
-				event.preventDefault();
-				lastElement?.focus();
-			}
-			// Tab on last element - close dropdown
-			else if (!event.shiftKey && document.activeElement === lastElement) {
-				event.preventDefault();
-				onClose();
-			}
-		}
-	};
+	const { focusRef } = useFocusTrap(isOpen, onClose, true);
 
 	return (
 		<motion.div
@@ -60,8 +30,7 @@ export const NavDropdown = ({ isOpen, onClose, children, className }: NavDropdow
 			onMouseLeave={onClose}
 		>
 			<div
-				ref={dropdownRef}
-				onKeyDown={handleKeyDown}
+				ref={focusRef}
 				tabIndex={-1}
 				className="py-2 w-full grid grid-cols-12 auto-rows-fr gap-2"
 			>
@@ -112,6 +81,7 @@ export const NavDropDownCard = ({
 			<span className="z-20 relative">{title}</span>
 			<Image
 				fill
+				sizes="330px"
 				loading="lazy"
 				src={imageSrc}
 				alt={imageAlt}

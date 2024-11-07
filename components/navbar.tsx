@@ -18,7 +18,7 @@ export default function Navbar({ className }: { className?: string }) {
 	const [openMobile, setOpenMobile] = useState(false);
 	const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 	const currentPath = usePathname();
-	useScrollLock(openMobile);
+	useScrollLock(openMobile, true);
 
 	const handleDropdownToggle = (dropdownId: string) => {
 		setOpenDropdown(openDropdown === dropdownId ? null : dropdownId);
@@ -79,7 +79,8 @@ export default function Navbar({ className }: { className?: string }) {
 							onMouseEnter={() => setOpenDropdown('explore')}
 							onClick={() => handleDropdownToggle('explore')}
 							className={cn(
-								'hidden sm:block relative px-4 py-3 rounded-lg hover:text-foreground transition-colors'
+								'hidden sm:block relative px-4 py-3 rounded-lg hover:text-foreground transition-colors',
+								openDropdown === 'explore' && 'text-foreground'
 							)}
 						>
 							Explore

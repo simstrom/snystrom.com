@@ -17,17 +17,18 @@ export const Tooltip = ({ message, children, origin = 'bottom', className }: Too
 	const variants = {
 		initial: {
 			opacity: 0,
-			y: origin === 'bottom' ? -10 : 10,
+			y: origin === 'bottom' ? -5 : 5,
 			transformOrigin: origin === 'bottom' ? 'top' : 'bottom',
 		},
 		animate: {
 			opacity: 1,
+			scale: 1,
 			y: 0,
 			transformOrigin: origin === 'bottom' ? 'top' : 'bottom',
 		},
 		exit: {
 			opacity: 0,
-			y: origin === 'bottom' ? -10 : 10,
+			y: origin === 'bottom' ? -5 : 5,
 			transformOrigin: origin === 'bottom' ? 'top' : 'bottom',
 		},
 	};
@@ -48,13 +49,15 @@ export const Tooltip = ({ message, children, origin = 'bottom', className }: Too
 			<AnimatePresence>
 				{show && (
 					<motion.div
+						role="tooltip"
+						aria-hidden={show}
 						variants={variants}
 						initial="initial"
 						animate="animate"
 						exit="exit"
 						transition={{
-							type: 'just',
 							duration: 0.15,
+							ease: 'easeInOut',
 						}}
 						className={cn(
 							`z-20 pointer-events-none absolute whitespace-nowrap ${
