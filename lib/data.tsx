@@ -41,19 +41,25 @@ const exploreLinks = [
 	{
 		name: 'Gallery',
 		path: '/gallery',
+		image: '/images/gallery.avif',
+		colSpan: 8,
+		rowSpan: 3,
 	},
 	{
 		name: 'Colophon',
 		path: '/colophon',
+		image: '/images/design.avif',
+		colSpan: 4,
+		rowSpan: 1,
+		translateX: 20,
 	},
 	{
 		name: 'Activity',
 		path: '/activity',
-	},
-	{
-		name: 'Playground',
-		path: '',
-		upcoming: true,
+		image: '/images/activity.avif',
+		colSpan: 4,
+		rowSpan: 1,
+		translateX: 20,
 	},
 ];
 const connectLinks = [
@@ -61,11 +67,19 @@ const connectLinks = [
 		name: 'Contact',
 		path: `mailto:${SITE_CONTACT}`,
 		icon: <IconEmail />,
+		image: '/images/contact.avif',
+		colSpan: 4,
+		rowSpan: 2,
+		translateX: 40,
 	},
 	{
 		name: 'Resume',
 		path: '/cv.pdf',
 		icon: <IconPerson />,
+		image: '/images/resume.avif',
+		colSpan: 8,
+		rowSpan: 1,
+		translateX: 32,
 	},
 ];
 const socialLinks = [
@@ -98,6 +112,7 @@ export const navItems: Navigation = {
 	socialLinks,
 } as const;
 export const links = [...navigationLinks, ...exploreLinks, connectLinks, ...socialLinks];
+export const dropdownLinks = [...exploreLinks, ...connectLinks];
 
 //
 // SKILLS

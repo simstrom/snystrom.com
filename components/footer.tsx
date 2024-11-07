@@ -46,9 +46,7 @@ export default function Footer() {
 								</CustomLink>
 							))}
 						{navItems.exploreLinks
-							.filter(
-								(item) => !item.upcoming && item.name !== 'Activity' && item.name !== 'Colophon'
-							)
+							.filter((item) => item.name !== 'Activity' && item.name !== 'Colophon')
 							.map((item) => (
 								<CustomLink
 									key={item.name}

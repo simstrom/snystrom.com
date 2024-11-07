@@ -29,7 +29,6 @@ export type NavItem = {
 	name: string;
 	path: string;
 	icon?: React.ReactNode;
-	upcoming?: boolean;
 };
 export type Navigation = {
 	navigationLinks: NavItem[];

@@ -5,27 +5,34 @@ import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import { navItems } from '@/lib/data';
+import { dropdownLinks, navItems } from '@/lib/data';
 import { useScrollLock } from '@/lib/hooks';
 import { AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
-import Dropdown from './ui/dropdown';
-import Menu from './ui/menu';
+import MobileMenu from './ui/mobileMenu';
+import { NavDropdown, NavDropDownCard } from './ui/navDropdown';
 import ThemeSwitcher from './ui/themeSwitcher';
 import { Tooltip } from './ui/tooltip';
 
 export default function Navbar({ className }: { className?: string }) {
-	const [isOpen, setIsOpen] = useState(false);
+	const [openMobile, setOpenMobile] = useState(false);
+	const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 	const currentPath = usePathname();
-	useScrollLock(isOpen);
+	useScrollLock(openMobile);
+
+	const handleDropdownToggle = (dropdownId: string) => {
+		setOpenDropdown(openDropdown === dropdownId ? null : dropdownId);
+	};
 
 	return (
 		<header
 			role="menubar"
 			className={cn(
-				'navbar py-2 sm:pt-4 px-3 flex flex-col w-screen max-h-screen items-center fixed top-0 left-0 z-[99] dark:bg-gradient-to-b from-background/50 to-transparent before:transition',
-				isOpen &&
-					'sm:before:hidden before:content-[""] before:absolute before:top-0 before:h-screen before:w-full before:backdrop-blur-sm',
+				'navbar py-2 sm:pt-4 px-3 flex flex-col w-screen max-h-screen items-center fixed top-0 left-0 z-[99] dark:bg-gradient-to-b from-background/50 to-transparent transition-all duration-300',
+				'before:absolute before:top-0 before:h-screen before:w-full before:bg-transparent before:invisible before-backdrop-blur-none before:transition-all before:duration-300',
+				(openMobile || openDropdown) &&
+					'before:visible before:backdrop-blur-md before:bg-black/30 dark:before:bg-background/50',
+				openMobile && 'sm:before:hidden',
 				className
 			)}
 		>
@@ -51,6 +58,7 @@ export default function Navbar({ className }: { className?: string }) {
 							<Link
 								key={`navItem-${idx}`}
 								href={navItem.path}
+								onMouseEnter={() => setOpenDropdown(null)}
 								className={cn(
 									'hidden sm:block relative px-4 py-3 rounded-lg hover:text-foreground transition-colors',
 									`/${currentPath.split('/')[1]}` == navItem.path && 'text-foreground'
@@ -61,20 +69,21 @@ export default function Navbar({ className }: { className?: string }) {
 									<div
 										className={cn(
 											'h-0.5 absolute -bottom-[5px] left-0 right-0 bg-gradient-to-r from-transparent via-foreground to-transparent transition-opacity',
-											isOpen && 'opacity-0'
+											openDropdown && 'opacity-0'
 										)}
 									/>
 								)}
 							</Link>
 						))}
-						<div
-							onMouseEnter={() => setIsOpen(!isOpen)}
+						<button
+							onMouseEnter={() => setOpenDropdown('explore')}
+							onClick={() => handleDropdownToggle('explore')}
 							className={cn(
 								'hidden sm:block relative px-4 py-3 rounded-lg hover:text-foreground transition-colors'
 							)}
 						>
 							Explore
-						</div>
+						</button>
 					</div>
 
 					<div className="ml-6 flex gap-x-1">
@@ -82,27 +91,45 @@ export default function Navbar({ className }: { className?: string }) {
 							<ThemeSwitcher />
 						</Tooltip>
 						<button
-							onClick={() => setIsOpen(!isOpen)}
-							aria-expanded={isOpen}
+							onClick={() => setOpenMobile(!openMobile)}
+							aria-expanded={openMobile}
 							aria-controls="sliding-menu"
-							aria-label={isOpen ? 'Close menu' : 'Open menu'}
+							aria-label={openMobile ? 'Close menu' : 'Open menu'}
 							className={cn(
 								'sm:hidden p-2 rounded-full text-foreground/80 transition-colors',
 								'hover:text-foreground hover:bg-background-secondary dark:hover:bg-foreground/10 ',
-								isOpen && 'bg-background-secondary  dark:bg-foreground/10 text-foreground'
+								openMobile && 'bg-background-secondary  dark:bg-foreground/10 text-foreground'
 							)}
 						>
-							<IconMenu isOpen={isOpen} />
+							<IconMenu isOpen={openMobile} />
 						</button>
-						<span className="sr-only">{isOpen ? 'Close menu' : 'Open menu'}</span>
+						<span className="sr-only">{openMobile ? 'Close menu' : 'Open menu'}</span>
 					</div>
 				</div>
 
 				<AnimatePresence>
-					{isOpen && <Dropdown isOpen={isOpen} setIsOpen={setIsOpen} />}
+					{openDropdown === 'explore' && (
+						<NavDropdown isOpen={openDropdown === 'explore'} onClose={() => setOpenDropdown(null)}>
+							{dropdownLinks.map((item) => (
+								<NavDropDownCard
+									key={item.name}
+									title={item.name}
+									href={item.path}
+									imageSrc={item.image}
+									colSpan={item.colSpan}
+									rowSpan={item.rowSpan}
+									translateX={item.translateX}
+									onClose={() => setOpenDropdown(null)}
+								/>
+							))}
+						</NavDropdown>
+					)}
 				</AnimatePresence>
+
 				<AnimatePresence>
-					{isOpen && <Menu isOpen={isOpen} setIsOpen={setIsOpen} currentPath={currentPath} />}
+					{openMobile && (
+						<MobileMenu isOpen={openMobile} setIsOpen={setOpenMobile} currentPath={currentPath} />
+					)}
 				</AnimatePresence>
 			</nav>
 		</header>

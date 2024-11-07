@@ -3,14 +3,14 @@ import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
 import MenuItem from './menuItem';
 
-interface MenuProps {
+interface MobileMenuProps {
 	className?: string;
 	isOpen: boolean;
 	setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 	currentPath: string;
 }
 
-export default function Menu({ currentPath, isOpen, setIsOpen, className }: MenuProps) {
+export default function MobileMenu({ currentPath, isOpen, setIsOpen, className }: MobileMenuProps) {
 	return (
 		<motion.div
 			initial={{ height: 0 }}
@@ -40,17 +40,15 @@ export default function Menu({ currentPath, isOpen, setIsOpen, className }: Menu
 					Explore
 				</h5>
 				<div className="grid grid-cols-2 gap-y-2 mb-8">
-					{navItems.exploreLinks
-						.filter((link) => !link.upcoming)
-						.map((navItem, idx) => (
-							<MenuItem
-								key={idx}
-								navItem={navItem}
-								idx={idx}
-								setIsOpen={setIsOpen}
-								isCurrentPath={`/${currentPath.split('/')[1]}` == navItem.path}
-							/>
-						))}
+					{navItems.exploreLinks.map((navItem, idx) => (
+						<MenuItem
+							key={idx}
+							navItem={navItem}
+							idx={idx}
+							setIsOpen={setIsOpen}
+							isCurrentPath={`/${currentPath.split('/')[1]}` == navItem.path}
+						/>
+					))}
 				</div>
 
 				<h5 className="text-xs tracking-wide text-foreground-secondary px-2 pb-1 mb-1 border-b">
