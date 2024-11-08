@@ -22,7 +22,7 @@ const mapGalleryImages = cache(async (result: Array<Object>): Promise<GalleryIma
 	try {
 		const images = await Promise.all(
 			result.map(async (resource: any): Promise<GalleryImage> => {
-				const { width, height, public_id, secure_url, metadata, tags } = resource;
+				const { width, height, public_id, secure_url, tags } = resource;
 
 				return {
 					id: public_id,
@@ -30,7 +30,6 @@ const mapGalleryImages = cache(async (result: Array<Object>): Promise<GalleryIma
 					blurData: await createBlurDataURL(public_id),
 					width,
 					height,
-					metadata,
 					tags,
 				};
 			})
@@ -72,7 +71,6 @@ export const getImagesByTag = cache(async (tag: string) => {
 	try {
 		const results = await cloudinary.api.resources_by_tag(tag, {
 			resource_type: 'image',
-			tags: true,
 			context: true,
 			max_results: 50, // Default is 10 so we don't want to be limited
 		});
@@ -90,13 +88,15 @@ export const getImagesByTag = cache(async (tag: string) => {
 
 export const getImagesInCollection = cache(
 	async (type: 'destinations' | 'collections', name: string, limit?: number, cursor?: string) => {
+		const tag = `${type}_${name}`;
+
 		try {
-			const results = await cloudinary.search
-				.expression(`metadata.${type}=${name}`)
-				.with_field(['metadata', 'tags', 'context'])
-				.max_results(limit)
-				.next_cursor(cursor)
-				.execute();
+			const results = await cloudinary.api.resources_by_tag(tag, {
+				resource_type: 'image',
+				context: true,
+				max_results: limit,
+				next_cursor: cursor,
+			});
 
 			if (!results || !Array.isArray(results.resources)) {
 				throw new Error('Invalid response from Cloudinary');
@@ -115,22 +115,21 @@ export const getImagesInCollection = cache(
 
 export const getCoverImages = cache(async (type: 'destinations' | 'collections') => {
 	try {
-		const results = await cloudinary.search
-			.expression(`metadata.use_as_cover=collections OR metadata.use_as_cover=destinations`)
-			.with_field(['metadata', 'tags', 'context'])
-			.max_results(50)
-			.execute();
+		const results = await cloudinary.api.resources_by_tag('cover', {
+			resource_type: 'image',
+			tags: true,
+			context: true,
+			max_results: 50,
+		});
 
 		const images = await mapGalleryImages(results.resources);
 		const targetArray = type === 'destinations' ? galleryDestinations : galleryCollections;
 
 		const collections = targetArray.map((item) => {
-			const matchingImages = images.filter((img: any) => {
-				return (
-					img.metadata[type]?.includes(item.title.toLowerCase()) &&
-					img.metadata['use_as_cover'] === type
-				);
-			});
+			const matchingImages = images.filter((img: any) =>
+				img.tags?.includes(`${type}_${item.title.toLowerCase()}`)
+			);
+
 			if (!matchingImages.length) console.error(`Collection ${item.title} is missing cover image`);
 
 			return {

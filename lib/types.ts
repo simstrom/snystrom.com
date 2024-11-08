@@ -21,7 +21,6 @@ export type GalleryImage = {
 	width: number;
 	height: number;
 	alt?: string;
-	metadata: { collections?: string[]; destinations?: string[] };
 	tags: string[];
 };
 
