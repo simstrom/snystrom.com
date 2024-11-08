@@ -54,7 +54,7 @@ export default function GalleryItem({
 				<div
 					className={cn(
 						'relative hover:cursor-zoom-in',
-						lightboxIndex <= 2 ? 'animate-slide' : 'animate-slideSlow' // Fast animation for images over the fold, slow for scroll loaded.
+						lightboxIndex <= 24 ? 'animate-slide' : 'animate-slideSlow' // Fast animation for images over the fold, slow for scroll loaded.
 					)}
 					onClick={(e) => handleImageClick(e, lightboxIndex)}
 				>

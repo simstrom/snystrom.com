@@ -137,7 +137,7 @@ export default function GalleryView({ content, cursor, backLink, category }: Pro
 									item={category ? (item as GalleryCollection).cover : (item as GalleryImage)}
 									collectionTitle={category ? (item as GalleryCollection).title : ''}
 									collectionType={category ?? ''}
-									priority={idx == 0 ? true : false}
+									priority={idx <= 2 ? true : false}
 									lightboxIndex={calculateLightboxIndex(colIndex, idx)}
 									handleImageClick={handleImageClick}
 								/>

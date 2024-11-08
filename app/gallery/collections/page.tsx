@@ -9,7 +9,9 @@ export const metadata: Metadata = {
 };
 
 export default async function Destinations() {
-	const collections = await getCoverImages('collections');
+	const collections = (await getCoverImages('collections')).filter(
+		(collection) => collection.cover != null
+	);
 
 	return (
 		<main className="grow mx-auto w-full pt-32 sm:pt-40">

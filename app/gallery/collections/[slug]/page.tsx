@@ -45,7 +45,7 @@ export default async function GalleryCollection({ params }: Props) {
 	if (index === -1) return notFound();
 
 	const collection = galleryCollections[index];
-	const images = await getImagesInCollection('collections', params.slug);
+	const { images, next_cursor } = await getImagesInCollection('collections', params.slug, 24);
 
 	const previousIndex = (index - 1 + galleryCollections.length) % galleryCollections.length;
 	const nextIndex = (index + 1) % galleryCollections.length;
@@ -63,7 +63,7 @@ export default async function GalleryCollection({ params }: Props) {
 				Collection
 			</div>
 			<PageHeader title={collection.title} content={collection.description} />
-			<GalleryView content={images} backLink={backLink} />
+			<GalleryView content={images} cursor={next_cursor} backLink={backLink} />
 			<div className="mt-8 sm:mt-12 w-full flex justify-between items-center sm:gap-4 text-sm font-medium text-foreground-secondary  select-none">
 				<Button
 					variant="link"
