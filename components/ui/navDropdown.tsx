@@ -42,6 +42,7 @@ export const NavDropdown = ({ isOpen, onClose, children, className }: NavDropdow
 
 interface NavDropDownCard {
 	title: string;
+	description?: string;
 	imageSrc: string;
 	imageAlt?: string;
 	href: string;
@@ -54,21 +55,23 @@ interface NavDropDownCard {
 
 export const NavDropDownCard = ({
 	title,
+	description,
 	imageSrc,
 	imageAlt = '',
 	onClose,
 	href,
-	colSpan = 8,
-	rowSpan = 3,
+	colSpan = 4,
+	rowSpan = 1,
 	translateX = 0,
 	className,
 }: NavDropDownCard) => {
+	const Component = href ? Link : 'div';
 	return (
-		<Link
+		<Component
 			href={href}
-			onClick={onClose}
+			onClick={!href ? undefined : onClose}
 			className={cn(
-				'relative overflow-hidden text-[13px] font-medium text-foreground p-4 rounded-xl',
+				'relative flex flex-col overflow-hidden text-sm font-medium text-foreground p-4 rounded-xl',
 				'bg-background-secondary dark:bg-background-tertiary',
 				'dark:hover:bg-[#181a20] transition duration-300 group',
 				className
@@ -78,10 +81,28 @@ export const NavDropDownCard = ({
 				gridRow: `span ${rowSpan}`,
 			}}
 		>
-			<span className="z-20 relative">{title}</span>
+			<div className={cn('flex gap-x-2', rowSpan > 1 ? 'flex-col h-full' : 'items-baseline')}>
+				<span className="z-20 relative">{title}</span>
+				{description && (
+					<span
+						className={cn(
+							'font-[450] text-[13px] text-foreground-secondary',
+							rowSpan == 1 ? 'truncate' : 'mt-1',
+							colSpan >= 6 && rowSpan > 1 && 'w-1/2'
+						)}
+					>
+						{description}
+					</span>
+				)}
+				{rowSpan >= 2 && (
+					<div className="mt-auto -mb-1 -ml-1 text-xs px-4 py-1 bg-foreground-secondary/5 dark:bg-foreground/10 rounded-full w-fit">
+						{!href ? 'Upcoming' : 'Visit'}
+					</div>
+				)}
+			</div>
 			<Image
 				fill
-				sizes="330px"
+				sizes="360px"
 				loading="lazy"
 				src={imageSrc}
 				alt={imageAlt}
@@ -104,7 +125,7 @@ export const NavDropDownCard = ({
 						'linear-gradient(to bottom right, hsl(var(--background-tertiary)) 0%, rgba(0,0,0,0) 200%)',
 				}}
 			/>
-		</Link>
+		</Component>
 	);
 };
 

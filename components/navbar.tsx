@@ -46,7 +46,7 @@ export default function Navbar({ className }: { className?: string }) {
 			<nav
 				aria-label="Main navigation"
 				className={cn(
-					'flex flex-col justify-center w-full sm:w-fit max-w-screen-lg max-h-screen border rounded-xl px-4 py-2 sm:py-1 backdrop-blur-md bg-background/80'
+					'flex flex-col justify-center w-full sm:max-w-screen-sm max-h-screen border rounded-xl px-4 py-2 sm:py-1 backdrop-blur-md bg-background/80'
 				)}
 			>
 				<div className="flex items-center w-full">
@@ -58,14 +58,14 @@ export default function Navbar({ className }: { className?: string }) {
 						<Logo width={18} height={18} aria-label="Logo" />
 					</Link>
 
-					<div className="hidden sm:block h-7 border-l ml-4 border-border/10 dark:border-border/30"></div>
+					<div className="hidden sm:block h-8 border-l ml-3 border-border/10 dark:border-border/30"></div>
 
-					<div className="mx-6 flex w-full h-full items-center text-foreground/80 text-sm font-medium tracking-normal">
+					<div className="mx-2 flex w-fit h-full items-center text-foreground/80 text-sm font-medium tracking-normal">
 						{navItems.navigationLinks.map((navItem, idx) => (
 							<Link
 								key={`navItem-${idx}`}
 								href={navItem.path}
-								onMouseEnter={() => setOpenDropdown(null)}
+								onMouseOver={() => setOpenDropdown(null)}
 								className={cn(
 									'hidden sm:block relative px-4 py-3 rounded-lg hover:text-foreground transition-colors',
 									`/${currentPath.split('/')[1]}` == navItem.path && 'text-foreground'
@@ -83,7 +83,7 @@ export default function Navbar({ className }: { className?: string }) {
 							</Link>
 						))}
 						<button
-							onMouseEnter={() => setOpenDropdown('explore')}
+							onMouseOver={() => setOpenDropdown('explore')}
 							onClick={() => handleDropdownToggle('explore')}
 							className={cn(
 								'hidden sm:block relative px-4 py-3 rounded-lg hover:text-foreground transition-colors',
@@ -94,7 +94,7 @@ export default function Navbar({ className }: { className?: string }) {
 						</button>
 					</div>
 
-					<div className="ml-2 flex gap-x-2">
+					<div className="ml-auto flex gap-x-2" onMouseOver={() => setOpenDropdown(null)}>
 						<Tooltip message="Theme">
 							<ThemeSwitcher />
 						</Tooltip>
@@ -132,6 +132,7 @@ export default function Navbar({ className }: { className?: string }) {
 								<NavDropDownCard
 									key={item.name}
 									title={item.name}
+									description={item.description}
 									href={item.path}
 									imageSrc={item.image}
 									colSpan={item.colSpan}

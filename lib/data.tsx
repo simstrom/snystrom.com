@@ -40,26 +40,38 @@ const navigationLinks = [
 const exploreLinks = [
 	{
 		name: 'Gallery',
+		description: 'Memorable photography collections from around the globe',
 		path: '/gallery',
 		image: '/images/gallery.avif',
-		colSpan: 8,
+		colSpan: 7,
 		rowSpan: 3,
 	},
 	{
 		name: 'Colophon',
+		description: 'Dev & design process',
 		path: '/colophon',
 		image: '/images/design.avif',
-		colSpan: 4,
+		colSpan: 5,
 		rowSpan: 1,
 		translateX: 20,
 	},
 	{
 		name: 'Activity',
+		description: 'Recent from Strava',
 		path: '/activity',
 		image: '/images/activity.avif',
-		colSpan: 4,
+		colSpan: 5,
 		rowSpan: 1,
 		translateX: 20,
+	},
+	{
+		name: 'Components',
+		description: 'Library of interactive elements',
+		path: '',
+		image: '/images/puzzle.avif',
+		colSpan: 5,
+		rowSpan: 2,
+		translateX: 40,
 	},
 ];
 const connectLinks = [
@@ -68,16 +80,17 @@ const connectLinks = [
 		path: `mailto:${SITE_CONTACT}`,
 		icon: <IconEmail />,
 		image: '/images/contact.avif',
-		colSpan: 4,
+		colSpan: 5,
 		rowSpan: 2,
 		translateX: 40,
 	},
 	{
 		name: 'Resume',
+		description: 'Summary of my experiences',
 		path: '/cv.pdf',
 		icon: <IconPerson />,
 		image: '/images/resume.avif',
-		colSpan: 8,
+		colSpan: 7,
 		rowSpan: 1,
 		translateX: 32,
 	},
@@ -112,7 +125,7 @@ export const navItems: Navigation = {
 	socialLinks,
 } as const;
 export const links = [...navigationLinks, ...exploreLinks, connectLinks, ...socialLinks];
-export const dropdownLinks = [...exploreLinks, ...connectLinks];
+export const dropdownLinks = [...exploreLinks, connectLinks[1]];
 
 //
 // SKILLS

@@ -50,7 +50,7 @@ export default async function Blog() {
 							<span>{formatDate(featured.date)}</span>
 							<span>·</span>
 							<span>{featured.readingTime}</span>
-							<div className="ml-auto transition group-hover:text-brand group-focus-visible:text-brand">
+							<div className="ml-2 transition group-hover:text-brand group-focus-visible:text-brand">
 								<IconArrowRight />
 							</div>
 						</div>
