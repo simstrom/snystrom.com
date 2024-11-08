@@ -1,17 +1,20 @@
 'use client';
 
+import { getAllImages } from '@/lib/gallery';
 import { useScreenBreakpoints } from '@/lib/hooks';
 import { GalleryCollection, GalleryImage } from '@/lib/types';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import Button from '../ui/button';
 import GalleryItem from '../ui/galleryItem';
 import Lightbox from '../ui/lightbox';
+import Skeleton from '../ui/skeleton';
 import TabList from '../ui/tabList';
 
 type Props = {
-	content: Array<GalleryImage> | Array<GalleryCollection>;
+	content: (GalleryImage | GalleryCollection)[];
+	cursor?: string;
 	backLink?: { path: string; name: string };
 	category?: 'destinations' | 'collections';
 };
@@ -31,26 +34,57 @@ const GalleryRoutes = [
 	},
 ];
 
-export default function GalleryView({ content, backLink, category }: Props) {
+export default function GalleryView({ content, cursor, backLink, category }: Props) {
 	const { isSmall, isMedium } = useScreenBreakpoints();
 	const [showLightbox, setShowLightbox] = useState<boolean>(false);
 	const [lightboxIndex, setLightboxIndex] = useState<number>(0);
 	const currentPath = usePathname();
 
+	// Column animation properties
 	const { scrollY } = useScroll();
-	const ref = useRef<HTMLDivElement>(null);
+	const animationRef = useRef<HTMLDivElement>(null);
 	const [offsetTop, setOffsetTop] = useState<number>(0);
 	const animationUnevenCol = useTransform(scrollY, [offsetTop, offsetTop + 2000], [0, -100]);
 	const animationEvenCol = useTransform(scrollY, [offsetTop, offsetTop + 2000], [0, -500]);
 
-	useEffect(() => {
-		if (ref.current) {
-			setOffsetTop(ref.current.offsetTop);
-		}
-	}, [ref]);
+	// Infinite scroll properties
+	const [isLoading, setIsLoading] = useState<boolean>(false);
+	const viewRef = useRef<HTMLDivElement>(null);
+	const inView = useInView(viewRef, { margin: '0px 0px 30% 0px' });
+	const [loadedImages, setLoadedImages] = useState<GalleryImage[] | null>(
+		!category ? (content as GalleryImage[]) : null
+	);
+	const [nextCursor, setNextCursor] = useState(cursor);
 
-	const columns: any = [[], [], []];
-	content.forEach((item, index) => {
+	const fetchNextImages = async () => {
+		if (!loadedImages || !nextCursor) return;
+
+		try {
+			setIsLoading(true);
+			const nextImages = await getAllImages(12, nextCursor); // Fetch 4 images per column.
+			setLoadedImages((prevImages) => [...(prevImages as GalleryImage[]), ...nextImages.images]);
+			setNextCursor(nextImages.next_cursor);
+			setIsLoading(false);
+		} catch (error) {
+			setIsLoading(false);
+			console.error('Error fetching next images');
+		}
+	};
+
+	useEffect(() => {
+		if (inView && nextCursor) {
+			fetchNextImages();
+		}
+	}, [inView, nextCursor]);
+
+	useEffect(() => {
+		if (animationRef.current) {
+			setOffsetTop(animationRef.current.offsetTop);
+		}
+	}, [animationRef]);
+
+	const columns: (GalleryImage | GalleryCollection)[][] = [[], [], []];
+	(!category ? (loadedImages as GalleryImage[]) : content).forEach((item, index) => {
 		columns[index % (isSmall ? 1 : isMedium ? 2 : 3)].push(
 			category ? (item as GalleryCollection) : (item as GalleryImage)
 		);
@@ -88,8 +122,8 @@ export default function GalleryView({ content, backLink, category }: Props) {
 				)}
 			</div>
 
-			<div ref={ref} className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 h-fit animate-slide">
-				{columns.map((col: Array<GalleryCollection | GalleryImage>, colIndex: number) => {
+			<div ref={animationRef} className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 h-fit">
+				{columns.map((col, colIndex: number) => {
 					return (
 						<motion.div
 							key={colIndex}
@@ -108,14 +142,21 @@ export default function GalleryView({ content, backLink, category }: Props) {
 									handleImageClick={handleImageClick}
 								/>
 							))}
+							{isLoading && (
+								<>
+									<Skeleton className="w-full h-[400px] animate-slide" />
+									<Skeleton className="w-full h-[400px] animate-slide" />
+								</>
+							)}
 						</motion.div>
 					);
 				})}
 			</div>
+			<div ref={viewRef} />
 
 			{!category && (
 				<Lightbox
-					content={content as GalleryImage[]}
+					content={loadedImages ?? (content as GalleryImage[])}
 					current={lightboxIndex}
 					setCurrent={setLightboxIndex}
 					isVisible={showLightbox}

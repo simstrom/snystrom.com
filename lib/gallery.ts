@@ -18,7 +18,7 @@ async function createBlurDataURL(src: string): Promise<string> {
 	return result.metadata.dataURIBase64;
 }
 
-const mapGalleryImages = cache(async (result: any): Promise<GalleryImage[]> => {
+const mapGalleryImages = cache(async (result: Array<Object>): Promise<GalleryImage[]> => {
 	try {
 		const images = await Promise.all(
 			result.map(async (resource: any): Promise<GalleryImage> => {
@@ -42,19 +42,25 @@ const mapGalleryImages = cache(async (result: any): Promise<GalleryImage[]> => {
 	}
 });
 
-export const getAllImages = cache(async (limit?: number) => {
+export const getAllImages = cache(async (limit?: number, cursor?: string) => {
 	try {
-		const results = await cloudinary.search
-			.expression('folder:snystrom/gallery')
-			.with_field(['metadata', 'tags', 'context'])
-			.max_results(limit)
-			.execute();
+		const results = await cloudinary.api.resources({
+			type: 'upload',
+			resource_type: 'image',
+			prefix: 'snystrom/gallery',
+			context: true,
+			max_results: limit,
+			next_cursor: cursor,
+		});
 
 		if (!results || !Array.isArray(results.resources)) {
 			throw new Error('Invalid response from Cloudinary');
 		}
 
-		return await mapGalleryImages(results.resources);
+		const images = await mapGalleryImages(results.resources);
+		const { next_cursor } = results;
+
+		return { images, next_cursor };
 	} catch (error) {
 		console.error('Error fetching images:', error);
 		throw new Error('Failed to fetch images');
@@ -80,7 +86,7 @@ export async function getImagesByTag(tag: string) {
 }
 
 export async function getImagesInCollection(type: 'destinations' | 'collections', name: string) {
-	const images = await getAllImages();
+	const { images } = await getAllImages();
 
 	return images.filter((img) =>
 		type === 'collections'
@@ -90,7 +96,7 @@ export async function getImagesInCollection(type: 'destinations' | 'collections'
 }
 
 export async function getCoverImages(type: 'destinations' | 'collections') {
-	const images = await getAllImages();
+	const { images } = await getAllImages();
 	const targetArray = type === 'destinations' ? galleryDestinations : galleryCollections;
 
 	const collections = targetArray.map((item) => {

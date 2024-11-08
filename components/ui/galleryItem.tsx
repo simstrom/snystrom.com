@@ -1,6 +1,6 @@
 import { IconArrowRight } from '@/lib/icons';
 import { GalleryImage } from '@/lib/types';
-import { slugify } from '@/lib/utils';
+import { cn, slugify } from '@/lib/utils';
 import { CldImage } from 'next-cloudinary';
 import Link from 'next/link';
 
@@ -30,7 +30,7 @@ export default function GalleryItem({
 			{isCollection ? (
 				<Link
 					href={`/gallery/${collectionType}/${slugify(collectionTitle)}`}
-					className="relative group hover:scale-[1.03] transition-transform"
+					className="relative group hover:scale-[1.03] transition-transform animate-slide"
 				>
 					<CldImage
 						src={item.src}
@@ -52,7 +52,10 @@ export default function GalleryItem({
 				</Link>
 			) : (
 				<div
-					className="relative hover:cursor-zoom-in"
+					className={cn(
+						'relative hover:cursor-zoom-in',
+						lightboxIndex <= 2 ? 'animate-slide' : 'animate-slideSlow' // Fast animation for images over the fold, slow for scroll loaded.
+					)}
 					onClick={(e) => handleImageClick(e, lightboxIndex)}
 				>
 					<CldImage

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Gallery() {
-	const images = await getAllImages();
+	const { images, next_cursor } = await getAllImages(24); // Initial images, 8 in each column
 
 	return (
 		<main className="grow mx-auto w-full pt-32 sm:pt-40">
@@ -17,7 +17,7 @@ export default async function Gallery() {
 				title="Gallery"
 				content="A summary of the technologies, design, workflow and decisions behind my website."
 			/>
-			<GalleryView content={images} />
+			<GalleryView content={images} cursor={next_cursor} />
 		</main>
 	);
 }

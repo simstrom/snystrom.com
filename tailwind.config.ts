@@ -58,6 +58,7 @@ const config = {
 				scrollSlow: 'scroll 100s forwards linear infinite',
 				aurora: 'aurora 50s forwards linear infinite',
 				slide: 'slide 0.3s ease-out forwards',
+				slideSlow: 'slide 0.6s ease-out forwards',
 				// Animated Badge
 				flip: 'flip 6s infinite steps(2, end)',
 				rotate: 'rotate 3s linear infinite both',
