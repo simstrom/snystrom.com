@@ -62,16 +62,19 @@ export const getAllImages = cache(async (limit?: number, cursor?: string) => {
 
 		return { images, next_cursor };
 	} catch (error) {
-		console.error('Error fetching images:', error);
-		throw new Error('Failed to fetch images');
+		console.error('Error fetching all images:', error);
+		throw new Error('Failed to fetch all images');
 	}
 });
 
-export async function getImagesByTag(tag: string) {
+// Used for other parts of site such as landing/about page.
+export const getImagesByTag = cache(async (tag: string) => {
 	try {
 		const results = await cloudinary.api.resources_by_tag(tag, {
+			resource_type: 'image',
 			tags: true,
 			context: true,
+			max_results: 50, // Default is 10 so we don't want to be limited
 		});
 
 		if (!results || !Array.isArray(results.resources)) {
@@ -80,40 +83,65 @@ export async function getImagesByTag(tag: string) {
 
 		return await mapGalleryImages(results.resources);
 	} catch (error) {
-		console.error('Error fetching images:', error);
-		throw new Error('Failed to fetch images');
+		console.error(`Error fetching ${tag} images:`, error);
+		throw new Error(`Failed to fetch ${tag} images:`);
 	}
-}
+});
 
-export async function getImagesInCollection(type: 'destinations' | 'collections', name: string) {
-	const { images } = await getAllImages();
+export const getImagesInCollection = cache(
+	async (type: 'destinations' | 'collections', name: string, limit?: number, cursor?: string) => {
+		try {
+			const results = await cloudinary.search
+				.expression(`metadata.${type}=${name}`)
+				.with_field(['metadata', 'tags', 'context'])
+				.max_results(limit)
+				.next_cursor(cursor)
+				.execute();
 
-	return images.filter((img) =>
-		type === 'collections'
-			? img.metadata.collections?.includes(name)
-			: img.metadata.destinations?.includes(name)
-	);
-}
+			if (!results || !Array.isArray(results.resources)) {
+				throw new Error('Invalid response from Cloudinary');
+			}
 
-export async function getCoverImages(type: 'destinations' | 'collections') {
-	const { images } = await getAllImages();
-	const targetArray = type === 'destinations' ? galleryDestinations : galleryCollections;
+			const images = await mapGalleryImages(results.resources);
+			const { next_cursor } = results;
 
-	const collections = targetArray.map((item) => {
-		// Find all matching images for this item
-		const matchingImages = images.filter((img) => {
-			const metadata =
-				type === 'collections' ? img.metadata.collections : img.metadata.destinations;
+			return { images, next_cursor };
+		} catch (error) {
+			console.error(`Error fetching ${name} images:`, error);
+			throw new Error(`Failed to fetch ${name} images:`);
+		}
+	}
+);
 
-			return metadata?.some((value) => value === item.title.toLowerCase());
+export const getCoverImages = cache(async (type: 'destinations' | 'collections') => {
+	try {
+		const results = await cloudinary.search
+			.expression(`metadata.use_as_cover=collections OR metadata.use_as_cover=destinations`)
+			.with_field(['metadata', 'tags', 'context'])
+			.max_results(50)
+			.execute();
+
+		const images = await mapGalleryImages(results.resources);
+		const targetArray = type === 'destinations' ? galleryDestinations : galleryCollections;
+
+		const collections = targetArray.map((item) => {
+			const matchingImages = images.filter((img: any) => {
+				return (
+					img.metadata[type]?.includes(item.title.toLowerCase()) &&
+					img.metadata['use_as_cover'] === type
+				);
+			});
+			if (!matchingImages.length) console.error(`Collection ${item.title} is missing cover image`);
+
+			return {
+				...item,
+				cover: matchingImages[0] ?? null,
+			};
 		});
 
-		return {
-			title: item.title,
-			description: item.description,
-			cover: matchingImages.length > 0 ? matchingImages[0] : null,
-		};
-	});
-
-	return collections as GalleryCollection[];
-}
+		return collections as GalleryCollection[];
+	} catch (error) {
+		console.error(`Error fetching ${type} cover images:`, error);
+		throw new Error(`Failed to fetch ${type} cover images:`);
+	}
+});
