@@ -1,4 +1,4 @@
-import { IconCheck, IconCross, IconInfo, IconWarning } from '@/lib/icons';
+import { IconCheck, IconInfo, IconWarning, IconX } from '@/lib/icons';
 import { cn } from '@/lib/utils';
 
 type CalloutProps = {
@@ -11,7 +11,7 @@ const variantConfig = {
 	info: IconInfo,
 	success: IconCheck,
 	warning: IconWarning,
-	danger: IconCross,
+	danger: IconX,
 };
 
 export default function Callout({ variant = 'info', title, children }: CalloutProps) {

@@ -38,7 +38,6 @@ export const Tooltip = ({ message, children, origin = 'bottom', className }: Too
 			<span
 				className="flex justify-center"
 				onMouseEnter={() => setShow(true)}
-				onFocus={() => setShow(true)}
 				onClick={() => setShow(false)}
 				onMouseLeave={() => setShow(false)}
 				onBlur={() => setShow(false)}

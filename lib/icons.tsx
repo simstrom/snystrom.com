@@ -347,7 +347,7 @@ export function IconCheck(props: React.SVGAttributes<any>) {
 		</svg>
 	);
 }
-export function IconCross(props: React.SVGAttributes<any>) {
+export function IconX(props: React.SVGAttributes<any>) {
 	return (
 		<svg fill="none" viewBox="0 0 15 15" height="20" width="20" {...props}>
 			<path

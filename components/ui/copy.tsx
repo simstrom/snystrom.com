@@ -11,6 +11,7 @@ interface CopyProps {
 	successMessage: string | React.ReactNode;
 	variant?: Variant;
 	className?: string;
+	hiddenClassName?: string;
 	children: React.ReactNode;
 }
 
@@ -20,6 +21,7 @@ export default function Copy({
 	successMessage,
 	variant = 'slide',
 	className,
+	hiddenClassName,
 	children,
 }: CopyProps) {
 	const [copied, setCopied] = useState(false);
@@ -59,7 +61,8 @@ export default function Copy({
 				className={cn(
 					'absolute bottom-0 transition-transform',
 					icon ? 'left-6' : 'left-0',
-					variants[variant].hiddenElement
+					variants[variant].hiddenElement,
+					hiddenClassName
 				)}
 			>
 				{successMessage}
