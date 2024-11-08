@@ -22,11 +22,12 @@ const mapGalleryImages = cache(async (result: Array<Object>): Promise<GalleryIma
 	try {
 		const images = await Promise.all(
 			result.map(async (resource: any): Promise<GalleryImage> => {
-				const { width, height, public_id, secure_url, tags } = resource;
+				const { width, height, public_id, secure_url, tags, context } = resource;
 
 				return {
 					id: public_id,
 					src: secure_url,
+					alt: context?.custom.alt,
 					blurData: await createBlurDataURL(public_id),
 					width,
 					height,
