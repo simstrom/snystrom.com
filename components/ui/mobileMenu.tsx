@@ -1,7 +1,9 @@
 import { navItems } from '@/lib/data';
 import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
+import { ContactModalContent } from '../navbar';
 import MenuItem from './menuItem';
+import Modal from './modal';
 
 interface MobileMenuProps {
 	className?: string;
@@ -55,15 +57,33 @@ export default function MobileMenu({ currentPath, isOpen, setIsOpen, className }
 					Connect
 				</h5>
 				<div className="grid gap-y-2 pb-12">
-					{navItems.connectLinks.map((navItem, idx) => (
-						<MenuItem
-							key={idx}
-							navItem={navItem}
-							idx={idx}
-							setIsOpen={setIsOpen}
-							isCurrentPath={`/${currentPath.split('/')[1]}` == navItem.path}
-						/>
-					))}
+					{navItems.connectLinks.map((navItem, idx) =>
+						navItem.name === 'Contact' ? (
+							<Modal
+								key={idx}
+								className="flex flex-col items-center gap-2"
+								trigger={
+									<MenuItem
+										as="div"
+										navItem={navItem}
+										idx={idx}
+										setIsOpen={setIsOpen}
+										isCurrentPath={`/${currentPath.split('/')[1]}` == navItem.path}
+									/>
+								}
+							>
+								{ContactModalContent}
+							</Modal>
+						) : (
+							<MenuItem
+								key={idx}
+								navItem={navItem}
+								idx={idx}
+								setIsOpen={setIsOpen}
+								isCurrentPath={`/${currentPath.split('/')[1]}` == navItem.path}
+							/>
+						)
+					)}
 				</div>
 
 				<motion.div
