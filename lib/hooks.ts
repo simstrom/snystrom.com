@@ -128,18 +128,8 @@ export const useFocusTrap = (isOpen: boolean, onClose: () => void, closeOnExit: 
 			}
 		};
 
-		// Set inital focus on open
-		const focusFirstElement = () => {
-			const focusableElements = getFocusableElements();
-			if (focusableElements.length > 0) {
-				focusableElements[0].focus();
-			} else {
-				focusRef.current?.focus();
-			}
-		};
-
 		document.addEventListener('keydown', handleKeyDown);
-		focusFirstElement();
+		focusRef.current?.focus();
 
 		return () => {
 			document.removeEventListener('keydown', handleKeyDown);

@@ -32,7 +32,7 @@ export const NavDropdown = ({ isOpen, onClose, children, className }: NavDropdow
 			<div
 				ref={focusRef}
 				tabIndex={-1}
-				className="py-2 w-full grid grid-cols-12 auto-rows-fr gap-2"
+				className="pb-2 w-full grid grid-cols-12 auto-rows-fr gap-2 outline-none"
 			>
 				{children}
 			</div>
@@ -73,7 +73,7 @@ export const NavDropDownCard = ({
 			className={cn(
 				'relative flex flex-col overflow-hidden text-sm font-medium text-foreground p-4 rounded-xl',
 				'bg-background-secondary dark:bg-background-tertiary',
-				'dark:hover:bg-[#181a20] transition duration-300 group',
+				'dark:hover:bg-[#181a20] transition-colors duration-300 group',
 				className
 			)}
 			style={{

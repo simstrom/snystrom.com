@@ -60,7 +60,7 @@ const Modal = ({
 									className={cn(
 										'fixed z-[100] max-w-md w-[95%] origin-center',
 										'grid rounded-xl p-3 xs:p-6 pt-8 xs:pt-10 border shadow-md',
-										'bg-background/50 bg-gradient-to-br from-background-tertiary to-background/50 bg-clip-padding',
+										'bg-background/50 bg-gradient-to-br from-background-tertiary to-background/50 bg-clip-padding outline-none',
 										containerClassName
 									)}
 									onClick={(e) => e.stopPropagation()}

@@ -16,14 +16,14 @@ export default function MobileMenu({ currentPath, isOpen, setIsOpen, className }
 	return (
 		<motion.div
 			initial={{ height: 0 }}
-			animate={{ height: '91vh' }}
+			animate={{ height: 'auto' }}
 			exit={{ height: 0 }}
 			transition={{ duration: 0.2, ease: 'easeInOut' }}
 			aria-expanded={isOpen}
 			aria-label="Mobile navigation"
-			className="sm:hidden overflow-auto"
+			className="sm:hidden overflow-hidden"
 		>
-			<div className="flex flex-col h-full pt-8 pb-4">
+			<div className="flex flex-col h-full pt-6 pb-10">
 				<h5 className="text-xs tracking-wide text-foreground-secondary px-2 pb-1 mb-1 border-b">
 					Navigate
 				</h5>
@@ -94,7 +94,7 @@ export default function MobileMenu({ currentPath, isOpen, setIsOpen, className }
 					exit={{ opacity: 0, transition: { delay: 0, duration: 0 } }}
 					transition={{ delay: 0.2, duration: 0 }}
 					className={cn(
-						'flex gap-x-5 fixed bottom-0 left-0 pb-1 pt-2 px-4 rounded-b-xl border-t w-full bg-background-secondary/20'
+						'flex gap-x-5 fixed bottom-0 left-0 py-2 px-4 rounded-b-xl border-t w-full bg-background-secondary/20'
 					)}
 				>
 					{navItems.socialLinks.map((navItem, idx) => (

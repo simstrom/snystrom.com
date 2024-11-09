@@ -31,7 +31,7 @@ export default function Navbar({ className }: { className?: string }) {
 		<header
 			role="menubar"
 			className={cn(
-				'navbar py-2 sm:pt-4 px-3 flex flex-col w-screen max-h-screen items-center fixed top-0 left-0 z-[99] dark:bg-gradient-to-b from-background/50 to-transparent transition-all duration-300',
+				'navbar py-2 sm:pt-4 px-3 flex flex-col w-screen max-h-screen items-center fixed top-0 left-0 z-[99] dark:bg-gradient-to-b from-background/50 to-transparent',
 				'before:absolute before:top-0 before:h-screen before:w-full before:bg-transparent before:invisible before-backdrop-blur-none before:transition-all before:duration-300',
 				(openMobile || openDropdown) &&
 					'before:visible before:backdrop-blur-md before:bg-foreground/10 dark:before:bg-background/50',
@@ -44,9 +44,10 @@ export default function Navbar({ className }: { className?: string }) {
 				aria-hidden="true"
 			/>
 			<nav
+				onMouseLeave={() => setOpenDropdown(null)}
 				aria-label="Main navigation"
 				className={cn(
-					'flex flex-col justify-center w-full sm:max-w-screen-sm max-h-screen border rounded-xl px-4 py-2 sm:py-1 backdrop-blur-md bg-background/80'
+					'flex flex-col gap-y-2 justify-center w-full sm:max-w-screen-sm max-h-screen border rounded-xl px-4 py-2 sm:py-1 backdrop-blur-md bg-background/80'
 				)}
 			>
 				<div className="flex items-center w-full">
