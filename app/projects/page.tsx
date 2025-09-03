@@ -1,6 +1,11 @@
-import ProjectView from '@/components/sections/projectView';
 import PageHeader from '@/components/ui/pageHeader';
+import { Section } from '@/components/ui/section';
+import { projectsData } from '@/lib/data';
+import { IconGithub } from '@/lib/icons';
+import { cn } from '@/lib/utils';
 import { Metadata } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
 	title: 'Projects',
@@ -9,12 +14,62 @@ export const metadata: Metadata = {
 
 export default function Projects() {
 	return (
-		<main className="grow flex flex-col justify-center pt-32 sm:pt-40">
+		<main className="grow">
 			<PageHeader
 				title="All Projects"
 				content="I love building projects and practice my engineering skills, There's an archive of things that I've worked on."
+				className="pt-32 pb-12 bg-background-secondary"
 			/>
-			<ProjectView />
+
+			<Section borderOrigin={'t'} className="pb-0">
+				<div className="grid grid-cols-1 md:grid-cols-2">
+					{projectsData.map((project, idx) => (
+						<Link
+							key={project.title}
+							href={project.githubLink ?? ''}
+							target="_blank"
+							rel="noreferrer"
+							className={cn(
+								'bg-background relative flex flex-col group',
+								idx % 2 === 0 && 'border-r',
+								idx !== projectsData.length - 1 && 'border-b'
+							)}
+						>
+							{project.image && (
+								<div className="relative rounded-3xl overflow-hidden ring-1 ring-border h-[280px]">
+									<Image
+										src={project.image}
+										alt=""
+										width={800}
+										height={400}
+										className="aspect-video w-full object-cover"
+									/>
+
+									<div className="user-select-none pointer-events-none absolute inset-0 z-10 bg-gradient-to-tl from-brand/50 via-brand/20 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+								</div>
+							)}
+							<div className="p-6 flex justify-between items-center border-t bg-background-secondary transition-colors group-hover:bg-foreground group-hover:text-background">
+								<h3 className="text-xl">{project.title}</h3>
+								<div className="flex gap-x-4">
+									{/* <IconArrowRight width={30} height={30} className="group" /> */}
+									<IconGithub
+										width={24}
+										height={24}
+										className="transition-transform group-hover:scale-110"
+									/>
+								</div>
+							</div>
+							<div className="px-6 pt-4 pb-6 border-t">
+								<p className="text-foreground-secondary">{project.description}</p>
+							</div>
+							{idx !== projectsData.length - 1 && (
+								<div className="mt-auto h-12 border-t [background-image:linear-gradient(-45deg,theme(colors.border)_12.50%,transparent_12.50%,transparent_50%,theme(colors.border)_50%,theme(colors.border)_62.50%,transparent_62.50%,transparent_100%)] [background-size:6px_6px]"></div>
+							)}
+						</Link>
+					))}
+				</div>
+			</Section>
+			{/* <ProjectView /> */}
 		</main>
 	);
 }
