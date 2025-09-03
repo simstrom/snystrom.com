@@ -47,15 +47,15 @@ export default function HorizontalScroller({
 		<div
 			ref={containerRef}
 			className={cn(
-				'scroller overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_10%,white_90%,transparent)]',
+				'scroller relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]',
 				className
 			)}
 		>
 			<ul
 				ref={scrollerRef}
 				className={cn(
-					'flex flex-wrap gap-2 sm:gap-3 w-max items-center',
-					start && (speed == 'normal' ? 'animate-scroll' : 'animate-scrollSlow'),
+					'flex w-max gap-2 items-center',
+					start && (speed == 'normal' ? 'animate-loop' : 'animate-loop'),
 					pauseOnHover && 'hover:[animation-play-state:paused]'
 				)}
 			>

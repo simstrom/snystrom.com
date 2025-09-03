@@ -21,7 +21,7 @@ export default function HorizontalImages({ items, className }: Props) {
 	const spring = useSpring(x, { stiffness: 150, damping: 30 });
 
 	return (
-		<div className={cn('flex justify-center overflow-x-clip sm:overflow-x-visible', className)}>
+		<div className={cn('flex justify-center overflow-x-clip', className)}>
 			<motion.div
 				ref={containerRef}
 				style={{ x: spring, rotate: '-3deg' }}
