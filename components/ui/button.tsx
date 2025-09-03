@@ -31,7 +31,7 @@ export default function Button({
 }: ButtonProps) {
 	const variantClasses = {
 		primary:
-			'uppercase button hover:text-brand transition duration-300 ease-in-out after:bg-background/80 z-10 after:-z-[1]',
+			'uppercase button hover:text-brand transition ease-in-out after:bg-background/80 z-10 after:-z-[1]',
 		secondary: '',
 		ghost: '',
 		link: 'items-end font-medium group',

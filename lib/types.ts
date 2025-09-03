@@ -4,7 +4,7 @@ export type Project = {
 	title: string;
 	description: string;
 	stack: Array<string>;
-	githubLink?: string;
+	githubLink: string;
 	deployLink?: string;
 	image?: string | StaticImport;
 };

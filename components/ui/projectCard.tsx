@@ -46,7 +46,7 @@ export default function ProjectCard({
 	const CardFeatured: React.FC<ProjectCardProps> = ({ project, className }) => (
 		<div
 			className={cn(
-				'col-span-12 relative rounded-2xl w-full flex flex-col justify-between lg:min-h-[360px] border bg-background-tertiary',
+				'col-span-12 relative rounded-2xl w-full flex flex-col justify-between lg:min-h-[360px] border bg-background-secondary',
 				className
 			)}
 		>
@@ -99,7 +99,7 @@ export default function ProjectCard({
 				ease: 'easeInOut',
 			}}
 			className={cn(
-				'col-span-12 md:col-span-7 lg:col-span-8 relative rounded-2xl w-full flex flex-col justify-between lg:min-h-[360px] border bg-background-tertiary shadow-shadow',
+				'col-span-12 md:col-span-7 lg:col-span-8 relative rounded-2xl w-full flex flex-col justify-between lg:min-h-[360px] border bg-background-secondary shadow-shadow',
 				className
 			)}
 		>
@@ -181,7 +181,7 @@ export default function ProjectCard({
 				ease: 'easeInOut',
 			}}
 			className={cn(
-				'col-span-12 md:col-span-5 lg:col-span-4 relative rounded-2xl w-full flex flex-col justify-between min-h-[300px] border bg-background-tertiary shadow-shadow',
+				'col-span-12 md:col-span-5 lg:col-span-4 relative rounded-2xl w-full flex flex-col justify-between min-h-[300px] border bg-background-secondary shadow-shadow',
 				className
 			)}
 		>

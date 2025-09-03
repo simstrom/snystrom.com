@@ -29,7 +29,7 @@ export default function ParallaxImage({ scrollY, image, className }: Props) {
 						alt={image.alt ?? ''}
 						placeholder="blur"
 						blurDataURL={image.blurData}
-						className="aspect-[4/5] object-cover object-center opacity-50 dark:opacity-100 group-hover:opacity-100 transition-opacity duration-500"
+						className="rounded-lg aspect-[4/5] object-cover object-center opacity-50 dark:opacity-100 group-hover:opacity-100 transition-opacity duration-500"
 					/>
 				</Link>
 			</Wobble>

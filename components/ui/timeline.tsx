@@ -122,7 +122,7 @@ function TimelineItem({
 					}}
 					transition={{ type: 'spring', stiffness: 250, damping: 20, mass: 1.1 }}
 					className={cn(
-						'relative w-full sm:w-1/2 max-h-5/6 flex flex-col justify-center p-8 border bg-background-secondary dark:bg-background-tertiary rounded-xl',
+						'relative w-full sm:w-1/2 max-h-5/6 flex flex-col justify-center p-8 border bg-background-secondary dark:bg-background-secondary rounded-xl',
 						isIndexUneven || isSmallScreen
 							? 'rounded-l-none border-l-transparent'
 							: 'sm:rounded-r-none border-r-transparent'
