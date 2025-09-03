@@ -42,36 +42,28 @@ const exploreLinks = [
 		name: 'Gallery',
 		description: 'Memorable photography collections from around the globe',
 		path: '/gallery',
-		image: '/images/gallery.avif',
+		image: '/images/gallery.svg',
 		colSpan: 7,
-		rowSpan: 3,
-	},
-	{
-		name: 'Colophon',
-		description: 'Dev & design process',
-		path: '/colophon',
-		image: '/images/design.avif',
-		colSpan: 5,
-		rowSpan: 1,
-		translateX: 20,
-	},
-	{
-		name: 'Activity',
-		description: 'Recent from Strava',
-		path: '/activity',
-		image: '/images/activity.avif',
-		colSpan: 5,
-		rowSpan: 1,
-		translateX: 20,
+		rowSpan: 4,
+		translateX: 60,
 	},
 	{
 		name: 'Components',
 		description: 'Library of interactive elements',
 		path: '',
-		image: '/images/puzzle.avif',
+		image: '/images/components.svg',
 		colSpan: 5,
 		rowSpan: 2,
-		translateX: 40,
+		translateX: 20,
+	},
+	{
+		name: 'Colophon',
+		description: 'Dev & design process',
+		path: '/colophon',
+		image: null,
+		colSpan: 5,
+		rowSpan: 1,
+		translateX: 20,
 	},
 ];
 const connectLinks = [
@@ -79,7 +71,7 @@ const connectLinks = [
 		name: 'Contact',
 		path: `mailto:${SITE_CONTACT}`,
 		icon: <IconEmail />,
-		image: '/images/contact.avif',
+		image: null,
 		colSpan: 5,
 		rowSpan: 2,
 		translateX: 40,
@@ -89,8 +81,8 @@ const connectLinks = [
 		description: 'Summary of my experiences',
 		path: '/cv.pdf',
 		icon: <IconPerson />,
-		image: '/images/resume.avif',
-		colSpan: 7,
+		image: null,
+		colSpan: 5,
 		rowSpan: 1,
 		translateX: 32,
 	},
@@ -271,15 +263,18 @@ export const projectsData = [
 export const galleryDestinations = [
 	{
 		title: 'Australia',
-		description: 'string',
+		description:
+			'Lorem ipsum dolor sit amet, consectetur adipisicing elit. In vel eaque asperiores maiores perferendis eveniet.',
 	},
 	{
 		title: 'Sweden',
-		description: 'string',
+		description:
+			'Lorem ipsum dolor sit amet, consectetur adipisicing elit. In vel eaque asperiores maiores perferendis eveniet.',
 	},
 	{
 		title: 'Norway',
-		description: 'string',
+		description:
+			'Lorem ipsum dolor sit amet, consectetur adipisicing elit. In vel eaque asperiores maiores perferendis eveniet.',
 	},
 ] as Array<GalleryCollection>;
 
