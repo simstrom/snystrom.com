@@ -23,10 +23,7 @@ export default function ThemeSwitcher({ className }: { className?: string }) {
 					animate={{ opacity: 1 }}
 					transition={{ duration: 0.2 }}
 					onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-					className={cn(
-						'p-2 rounded-md overflow-hidden text-foreground/80 hover:text-foreground hover:bg-foreground-secondary/10 dark:hover:bg-foreground/10 transition-colors',
-						className
-					)}
+					className={cn('overflow-hidden', className)}
 					aria-label={theme === 'dark' ? 'Change to light mode' : 'Change to dark mode'}
 				>
 					<div className="relative h-[18px] w-[18px] flex items-center justify-center">

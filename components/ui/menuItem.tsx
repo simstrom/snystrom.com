@@ -26,7 +26,7 @@ const MenuItem: React.FC<MenuItemProps> = ({
 			target={isExternalLink ? '_blank' : ''}
 			rel={isExternalLink ? 'noopener noreferrer' : ''}
 			className={cn(
-				'w-fit text-xl tracking-normal px-2 py-1 font-medium dark:font-[450] text-foreground/80 dark:text-foreground/90',
+				'w-fit text-xl tracking-normal px-2 py-1 font-medium dark:font-[450] text-foreground-secondary',
 				isCurrentPath &&
 					'text-black dark:text-white dark:font-medium underline underline-offset-4 decoration-2 decoration-foreground/30'
 			)}

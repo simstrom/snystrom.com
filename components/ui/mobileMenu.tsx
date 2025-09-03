@@ -103,7 +103,7 @@ export default function MobileMenu({ currentPath, isOpen, setIsOpen, className }
 							href={navItem.path}
 							target="_blank"
 							rel="noopener noreferrer"
-							className="p-2 text-foreground/90"
+							className="p-2 text-foreground-secondary"
 						>
 							{navItem.icon}
 						</a>

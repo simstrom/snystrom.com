@@ -24,15 +24,14 @@ export const NavDropdown = ({ isOpen, onClose, children, className }: NavDropdow
 			exit={{ height: 0 }}
 			transition={{ duration: 0.2, ease: 'easeInOut' }}
 			aria-expanded={isOpen}
-			role="menu"
 			aria-label="Dropdown"
-			className="overflow-hidden"
+			className="overflow-hidden w-full border-t"
 			onMouseLeave={onClose}
 		>
 			<div
 				ref={focusRef}
 				tabIndex={-1}
-				className="pb-2 w-full grid grid-cols-12 auto-rows-fr gap-2 outline-none"
+				className="w-full max-w-screen-lg mx-auto grid grid-cols-12 auto-rows-fr border-x outline-none"
 			>
 				{children}
 			</div>
@@ -71,9 +70,9 @@ export const NavDropDownCard = ({
 			href={href}
 			onClick={!href ? undefined : onClose}
 			className={cn(
-				'relative flex flex-col overflow-hidden text-sm font-medium text-foreground p-4 rounded-xl',
-				'bg-background-secondary dark:bg-background-tertiary',
-				'dark:hover:bg-[#181a20] transition-colors duration-300 group',
+				'relative flex flex-col overflow-hidden text-sm font-medium text-foreground p-4 border',
+				'bg-background-secondary',
+				'dark:hover:bg-[#181a20] transition-colors group',
 				className
 			)}
 			style={{
@@ -86,7 +85,7 @@ export const NavDropDownCard = ({
 				{description && (
 					<span
 						className={cn(
-							'font-[450] text-[13px] text-foreground-secondary',
+							'text-[13px] text-foreground-secondary',
 							rowSpan == 1 ? 'truncate' : 'mt-1',
 							colSpan >= 6 && rowSpan > 1 && 'w-1/2'
 						)}
@@ -94,35 +93,37 @@ export const NavDropDownCard = ({
 						{description}
 					</span>
 				)}
-				{rowSpan >= 2 && (
-					<div className="mt-auto -mb-1 -ml-1 text-xs px-4 py-1 bg-foreground-secondary/5 dark:bg-foreground/10 rounded-full w-fit">
-						{!href ? 'Upcoming' : 'Visit'}
+				{!href && (
+					<div className="absolute top-0 right-0 text-xs rounded-bl-md px-4 py-1 bg-foreground/10 z-10 w-fit">
+						Upcoming
 					</div>
 				)}
 			</div>
-			<Image
-				fill
-				sizes="360px"
-				loading="lazy"
-				src={imageSrc}
-				alt={imageAlt}
-				className={cn(
-					'absolute w-full inset-0 rounded-xl object-cover object-left grayscale',
-					'group-hover:grayscale-0 transition duration-300'
-				)}
-				style={{
-					transform: `translateX(${translateX}px)`,
-					maskImage:
-						'radial-gradient(circle at 100% 100%, rgba(255, 255, 255, 1) -50%, transparent 80%)',
-					WebkitMaskImage:
-						'radial-gradient(circle at 100% 100%, rgba(255, 255, 255, 1) -50%, transparent 80%)',
-				}}
-			/>
+			{imageSrc && (
+				<Image
+					fill
+					sizes="200px"
+					loading="lazy"
+					src={imageSrc}
+					alt={imageAlt}
+					className={cn(
+						'absolute inset-0 object-cover object-right grayscale',
+						'group-hover:grayscale-0 transition'
+					)}
+					style={{
+						transform: `translateX(${translateX}px)`,
+						maskImage:
+							'radial-gradient(circle at 100% 100%, rgba(255, 255, 255, 1) -50%, transparent 80%)',
+						WebkitMaskImage:
+							'radial-gradient(circle at 100% 100%, rgba(255, 255, 255, 1) -50%, transparent 80%)',
+					}}
+				/>
+			)}
 			<div
-				className="z-10 absolute inset-0 rounded-xl pointer-events-none transition-opacity duration-300 opacity-50 group-hover:opacity-0"
+				className="z-10 absolute inset-0 pointer-events-none transition-opacity opacity-50 group-hover:opacity-0"
 				style={{
 					background:
-						'linear-gradient(to bottom right, hsl(var(--background-tertiary)) 0%, rgba(0,0,0,0) 200%)',
+						'linear-gradient(to bottom right, hsl(var(--background-secondary)) 0%, rgba(0,0,0,0) 200%)',
 				}}
 			/>
 		</Component>
