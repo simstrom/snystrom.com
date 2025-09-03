@@ -4,40 +4,30 @@
 
 @layer base {
 	:root {
-		--background: 60 15% 92%;
-		--background-secondary: 60 15% 90%;
-		--background-tertiary: 60 15% 91%;
+		--background: 240 7% 97%;
+		--background-secondary: 240 10% 95%;
 
-		--foreground: 60 1% 13%;
-		--foreground-secondary: 60 5% 35%;
-		--foreground-inverse: var(--background);
+		--foreground: 220 20% 11%;
+		--foreground-secondary: 236 8% 40%;
+		--foreground-tertiary: 215, 16%, 47%;
 
 		--brand: 222 89% 55%;
-		--brand-secondary: 222 89% 65%;
 
-		--border: 60 1% 13%;
-		--border-hue: 60;
-		--border-saturation: 1%;
-		--border-lightness: 13%;
+		--border: 210 11% 85%;
 		--shadow-color: 60deg 10% 66%;
 	}
 
 	.dark {
 		--background: 216 16% 7%;
-		--background-secondary: 220 16% 8%;
-		--background-tertiary: 222 15% 9%;
+		--background-secondary: 220 16% 9%;
 
-		--foreground: 60 15% 93%;
-		--foreground-secondary: 60 3% 65%;
-		--foreground-inverse: var(--background);
+		--foreground: 220 15% 93%;
+		--foreground-secondary: 222 8% 75%;
+		--foreground-tertiary: 215 12% 65%;
 
-		--brand: 222 100% 66%;
-		--brand-secondary: 222 100% 75%;
+		--brand: 222 100% 62%;
 
-		--border: 222 6% 38%;
-		--border-hue: 222;
-		--border-saturation: 6%;
-		--border-lightness: 38%;
+		--border: 222 12% 14%;
 		--shadow-color: 220deg 33% 1%;
 	}
 
@@ -56,11 +46,11 @@
 		min-width: 340px;
 	}
 	* {
-		@apply box-border border-border/10 dark:border-border/20 scroll-smooth;
+		@apply box-border border-border scroll-smooth;
 		text-rendering: optimizeLegibility;
 	}
 	body {
-		@apply bg-background text-foreground font-sans font-[450] tracking-[0.02em] antialiased leading-relaxed overflow-x-clip;
+		@apply bg-background text-foreground font-sans font-[450] tracking-[0.02em] antialiased leading-7 overflow-x-clip;
 	}
 
 	h1,
@@ -77,16 +67,14 @@
 	BLOG STYLES
 	-----------	*/
 .prose {
-	@apply leading-[1.9] tracking-[0.02em] dark:prose-invert text-foreground prose-headings:font-medium prose-headings:text-foreground prose-headings:relative prose-p:text-foreground/80 marker:text-foreground-secondary prose-li:text-foreground/80 prose-ul:text-foreground/80 prose-hr:border-border/10 dark:prose-hr:border-border/20;
+	@apply leading-[1.9] tracking-[0.02em] dark:prose-invert text-foreground-secondary prose-headings:font-medium prose-headings:text-foreground prose-headings:relative marker:text-foreground-secondary prose-hr:border-border;
+	@apply prose-h2:text-3xl prose-h3:text-2xl prose-h4:text-xl;
 }
 .prose strong {
-	@apply font-[550] text-foreground;
-}
-.prose blockquote {
-	@apply border-brand;
+	@apply font-medium text-foreground;
 }
 .prose .c-link {
-	@apply font-[450];
+	@apply font-medium;
 }
 .prose figcaption .c-link {
 	@apply pb-1 text-foreground-secondary hover:text-foreground;
@@ -94,7 +82,7 @@
 
 /* Heading anchorlinks */
 .prose .anchor {
-	@apply absolute w-full no-underline transition duration-150 -left-5 text-foreground-secondary/50 opacity-0;
+	@apply absolute w-fit -left-5 px-2 no-underline transition text-foreground/30 opacity-0;
 	cursor: pointer;
 }
 .prose .anchor:after {
@@ -102,7 +90,7 @@
 }
 .prose .anchor:hover,
 .prose *:hover > .anchor {
-	@apply sm:opacity-100 transition duration-150;
+	@apply sm:opacity-100 transition -translate-x-3;
 }
 
 /* 
@@ -110,46 +98,50 @@
 */
 /* Code block title tab */
 figcaption[data-rehype-pretty-code-title] {
-	@apply flex items-center border-b rounded-t-xl h-10 py-3 px-4 mt-0 text-sm text-foreground/90 font-medium border-border/10 dark:border-border/20 bg-gradient-to-br from-background-tertiary to-background;
+	@apply flex items-center border-b rounded-t-xl h-10 py-3 px-4 mt-0 text-sm text-foreground font-medium bg-background-secondary;
 }
 
 /* Code block body */
 figure[data-rehype-pretty-code-figure] {
-	@apply rounded-xl border border-border/10 dark:border-border/20 shadow-sm;
+	@apply rounded-xl border shadow-sm;
 }
 figure[data-rehype-pretty-code-figure] pre {
-	@apply overflow-x-auto py-4 px-0 text-sm leading-[26px] tracking-normal rounded-b-xl rounded-t-none bg-background-tertiary;
+	@apply overflow-x-auto py-4 px-0 text-sm leading-[26px] tracking-normal rounded-b-xl rounded-t-none bg-background-secondary 
+		[&::-webkit-scrollbar]:h-2
+		[&::-webkit-scrollbar-thumb]:rounded-xl
+		[&::-webkit-scrollbar-thumb]:bg-gray-300
+		dark:[&::-webkit-scrollbar-thumb]:bg-foreground-secondary/80;
 
 	--code-foreground: #445175;
-	--code-token-constant: #c46891;
+	--code-token-constant: #ef3997;
 	--code-token-string: #3e4d75;
 	--code-token-comment: #97a0b5;
-	--code-token-keyword: hsl(var(--brand-secondary));
-	--code-token-parameter: #c46891;
-	--code-token-function: #ac8e4f;
-	--code-token-string-expression: #c46891;
+	--code-token-keyword: hsl(var(--brand));
+	--code-token-parameter: #ef3997;
+	--code-token-function: #e49000;
+	--code-token-string-expression: #ef3997;
 	--code-token-punctuation: #445175;
-	--code-token-link: hsl(var(--brand-secondary));
+	--code-token-link: hsl(var(--brand));
 }
 .dark figure[data-rehype-pretty-code-figure] pre {
 	--code-foreground: #bccae7;
-	--code-token-constant: #e99abe;
+	--code-token-constant: #ff64aa;
 	--code-token-string: #bccae7;
 	--code-token-comment: #7b88a1;
-	--code-token-keyword: hsl(var(--brand-secondary));
-	--code-token-parameter: #e99abe;
-	--code-token-function: #f0d88c;
-	--code-token-string-expression: #e99abe;
+	--code-token-keyword: #6593fe;
+	--code-token-parameter: #ff64aa;
+	--code-token-function: #efcd5d;
+	--code-token-string-expression: #ff64aa;
 	--code-token-punctuation: #bccae7;
-	--code-token-link: hsl(var(--brand-secondary));
+	--code-token-link: #6593fe;
 }
 
 /* Code block lines */
 figure[data-rehype-pretty-code-figure] pre [data-line] {
-	@apply border-l-4 border-transparent px-4;
+	@apply border-l-2 border-transparent px-4;
 }
 figure[data-rehype-pretty-code-figure] pre [data-highlighted-line] {
-	@apply bg-brand-secondary/5 border-brand/80;
+	@apply bg-brand/5 border-brand/80;
 }
 
 /* Code block line numbers */
@@ -164,7 +156,7 @@ code[data-line-numbers] [data-line]::before {
 
 /* Inline code */
 .prose :not(pre) > code {
-	@apply px-1 mx-1 py-0.5 rounded-lg bg-background-tertiary text-[13px] font-[450] border shadow-sm text-brand-secondary;
+	@apply px-1.5 mx-0.5 py-0.5 rounded-md bg-background-secondary text-[13px] font-[450] border shadow-sm text-brand;
 }
 .prose :not(pre) > code::after,
 .prose :not(pre) > code::before {
@@ -182,11 +174,10 @@ code[data-line-numbers] [data-line]::before {
 .callout[data-callout='success'] {
 	--callout: 83, 113, 61;
 }
-.callout[data-callout='warning'] {
-	--callout: 145, 80, 18;
+.callout[data-callout='thought'] {
+	--callout: 95, 56, 202;
 }
-.callout[data-callout='danger'],
-.callout[data-callout='bug'] {
+.callout[data-callout='warning'] {
 	--callout: 165, 63, 71;
 }
 .dark .callout[data-callout='info'] {
@@ -195,11 +186,10 @@ code[data-line-numbers] [data-line]::before {
 .dark .callout[data-callout='success'] {
 	--callout: 152, 195, 121;
 }
-.dark .callout[data-callout='warning'] {
-	--callout: 209, 154, 102;
+.dark .callout[data-callout='thought'] {
+	--callout: 137, 120, 214;
 }
-.dark .callout[data-callout='danger'],
-.dark .callout[data-callout='bug'] {
+.dark .callout[data-callout='warning'] {
 	--callout: 224, 108, 117;
 }
 
@@ -207,12 +197,12 @@ code[data-line-numbers] [data-line]::before {
 	COMPONENTS
 	-----------	*/
 .c-link {
-	@apply relative inline-flex items-center gap-x-0.5 no-underline whitespace-nowrap hover:text-brand transition;
+	@apply relative inline-flex items-center gap-x-0.5 no-underline whitespace-nowrap text-foreground hover:text-brand transition;
 }
 .c-link::before {
 	position: absolute;
 	bottom: 0.2em;
-	height: 2px;
+	height: 1.5px;
 	width: 100%;
 	background-color: hsl(var(--foreground-secondary));
 	opacity: 50%;
@@ -236,7 +226,6 @@ code[data-line-numbers] [data-line]::before {
 	border-radius: 8px;
 	transition: border-color 0.2s ease 0s, background 0.3s ease 0s,
 		transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0s;
-	border: 1px solid hsla(var(--border-hue), var(--border-saturation), var(--border-lightness), 0.2);
 }
 
 .button:hover::after {
@@ -249,6 +238,7 @@ code[data-line-numbers] [data-line]::before {
 
 .opacity-list:hover li,
 .opacity-list:hover a {
+	@apply transition-opacity;
 	opacity: 0.5;
 }
 .opacity-list li:hover,

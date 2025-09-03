@@ -1,8 +1,7 @@
-import { IconCheck, IconInfo, IconWarning, IconX } from '@/lib/icons';
-import { cn } from '@/lib/utils';
+import { IconCheck, IconInfo, IconMessage, IconWarning } from '@/lib/icons';
 
 type CalloutProps = {
-	variant?: 'info' | 'success' | 'warning' | 'danger';
+	variant?: 'info' | 'success' | 'thought' | 'warning';
 	title?: string;
 	children: React.ReactNode;
 };
@@ -10,25 +9,25 @@ type CalloutProps = {
 const variantConfig = {
 	info: IconInfo,
 	success: IconCheck,
+	thought: IconMessage,
 	warning: IconWarning,
-	danger: IconX,
 };
 
 export default function Callout({ variant = 'info', title, children }: CalloutProps) {
 	const Icon = variantConfig[variant];
 
 	return (
-		<aside
+		<blockquote
 			data-callout={variant}
-			className="callout p-4 my-5 rounded-xl text-foreground/90 border-2"
+			className="callout not-prose p-4 my-5 rounded-md text-foreground border shadow-sm"
 		>
-			<div className="callout-title py-2 flex gap-x-3 items-start font-medium tracking-tight">
-				<Icon width={24} height={24} className="flex-shrink-0 mt-1 text-[rgb(var(--callout))]" />
-				<span className={cn('flex-grow not-prose', title && 'text-[rgb(var(--callout))]')}>
-					{title ? title : children}
-				</span>
+			<div className="py-2 flex gap-x-3 items-center font-medium">
+				<Icon width={24} height={24} className="flex-shrink-0 text-[rgb(var(--callout))]" />
+				<div className="flex-grow not-prose text-[rgb(var(--callout))]">
+					{title ? title : variant.charAt(0).toUpperCase() + variant.slice(1)}
+				</div>
 			</div>
-			<div className="callout-content not-prose px-1">{title && children}</div>
-		</aside>
+			<div className="px-1 not-prose text-foreground-secondary">{children}</div>
+		</blockquote>
 	);
 }
