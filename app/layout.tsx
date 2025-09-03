@@ -3,7 +3,6 @@ import '@/styles/globals.css';
 import type { Metadata, Viewport } from 'next';
 import { JetBrains_Mono as FontMono } from 'next/font/google';
 import localFont from 'next/font/local';
-import Script from 'next/script';
 
 import Footer from '@/components/footer';
 import Navbar from '@/components/navbar';
@@ -93,7 +92,7 @@ export default function RootLayout({
 		<html lang="en" suppressHydrationWarning>
 			<body
 				className={cn(
-					'container max-w-screen-lg min-h-screen flex flex-col',
+					'min-h-screen max-w-screen-xl mx-auto container flex flex-col',
 					fontSans.variable,
 					fontMono.variable
 				)}
@@ -103,10 +102,10 @@ export default function RootLayout({
 					{children}
 					<Footer />
 				</Providers>
-				<Script
+				{/* <Script
 					src="https://analytics.eu.umami.is/script.js"
 					data-website-id="0ab801df-b78b-462a-80b5-4630493addc6"
-				/>
+				/> */}
 			</body>
 		</html>
 	);
