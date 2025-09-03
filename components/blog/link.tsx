@@ -3,6 +3,9 @@ import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import React from 'react';
 
+const cLinkBase =
+	'c-link relative inline-flex items-center gap-x-0.5 no-underline whitespace-nowrap text-foreground hover:text-brand transition-colors before:c-link-border hover:before:translate-y-1 hover:before:bg-transparent hover:before:transform-gpu';
+
 interface CustomLinkProps
 	extends React.DetailedHTMLProps<
 		React.AnchorHTMLAttributes<HTMLAnchorElement>,
@@ -16,7 +19,7 @@ export default function CustomLink(props: CustomLinkProps) {
 
 	if (href.startsWith('/')) {
 		return (
-			<Link {...props} href={href} className={cn('c-link', props.className)}>
+			<Link href={href} className={cn(cLinkBase, props.className)}>
 				{props.children}
 			</Link>
 		);
@@ -25,17 +28,17 @@ export default function CustomLink(props: CustomLinkProps) {
 		return <a {...props}>{props.children}</a>;
 	}
 	return (
-		<a
+		<Link
+			href={href}
 			target="_blank"
 			rel="noopener noreferrer"
-			{...props}
-			className={cn('c-link group', props.className)}
+			className={cn(cLinkBase, 'group', props.className)}
 		>
 			{props.children}
 			<span className="overflow-hidden relative">
 				<IconArrowUpRight className="w-4 h-4 group-hover:-translate-y-5 group-hover:translate-x-5 transition-transform" />
 				<IconArrowUpRight className="absolute bottom-0 right-0  w-4 h-4 translate-y-5 -translate-x-5 group-hover:translate-y-0 group-hover:translate-x-0 transition-transform" />
 			</span>
-		</a>
+		</Link>
 	);
 }
