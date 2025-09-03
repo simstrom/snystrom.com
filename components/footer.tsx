@@ -7,73 +7,83 @@ import Copy from './ui/copy';
 
 export default function Footer() {
 	return (
-		<footer className="mt-20 border-t w-full">
-			<div className="max-w-3xl mx-auto w-full pt-10 pb-14 flex flex-col gap-10">
-				<div className="grid grid-cols-12 gap-6 sm:gap-2 gap-x-5">
-					<div className="col-span-12 sm:col-span-6 flex gap-5 items-center sm:items-start sm:flex-col sm:gap-1 mr-2">
-						<Link href="/" className="w-fit hover:rotate-180 transition-transform duration-500">
-							<Logo width={30} height={30} />
-						</Link>
-						<p className="text-foreground-secondary text-sm sm:mb-2 sm:mt-4">
-							Crafted by Simon Nyström.
-							<br /> Thank you for visiting.
-						</p>
+		<>
+			<div className="max-w-screen-lg mx-auto border-x border-t w-full h-32 [background-image:linear-gradient(-45deg,theme(colors.border)_12.50%,transparent_12.50%,transparent_50%,theme(colors.border)_50%,theme(colors.border)_62.50%,transparent_62.50%,transparent_100%)] [background-size:6px_6px]" />
 
-						<Copy
-							toCopy={SITE_CONTACT}
-							successMessage="Email copied!"
-							icon={<IconEmail className="w-4 h-4" />}
-							className="hidden sm:flex mt-2"
-						>
-							{SITE_CONTACT}
-						</Copy>
-					</div>
+			<footer className="border-y">
+				<div className="w-full max-w-screen-lg mx-auto flex flex-col border-x bg-background-secondary">
+					<div className="relative grid grid-cols-2">
+						<div className="flex items-center sm:items-start justify-center sm:flex-col gap-1 p-6">
+							<Link href="/" className="w-fit hover:rotate-180 transition-transform duration-500">
+								<Logo width={30} height={30} />
+							</Link>
+							<p className="text-foreground-secondary text-sm sm:mb-2 sm:mt-4">
+								Crafted by Simon Nyström.
+								<br /> Thank you for visiting.
+							</p>
 
-					<div className="col-span-5 sm:col-span-3 sm:justify-self-end flex flex-col gap-2 text-foreground-secondary">
-						<div className="relative">
-							<IconGlobe className="hidden sm:block w-4 h-4 absolute -left-6 top-1/2 -translate-y-1/2 text-foreground" />
-							<h5 className="text-foreground text-sm tracking-normal">Navigation</h5>
-						</div>
-						{navItems.navigationLinks
-							.filter((item) => item.name !== 'Colophon' && item.name !== 'Home')
-							.map((item) => (
-								<CustomLink
-									key={item.name}
-									href={item.path}
-									className="w-fit text-sm before:content-[] hover:text-foreground transition-colors"
-								>
-									{item.name}
-								</CustomLink>
-							))}
-						{navItems.exploreLinks
-							.filter((item) => item.name === 'Gallery')
-							.map((item) => (
-								<CustomLink
-									key={item.name}
-									href={item.path}
-									className="w-fit text-sm before:content-[] hover:text-foreground transition-colors"
-								>
-									{item.name}
-								</CustomLink>
-							))}
-					</div>
-					<div className="col-span-7 sm:col-span-3 sm:justify-self-end  flex flex-col gap-2 text-foreground-secondary">
-						<div className="relative">
-							<IconAt className="hidden sm:block w-4 h-4 absolute -left-6 top-1/2 -translate-y-1/2 text-foreground" />
-							<h5 className="text-foreground text-sm tracking-normal">Socials</h5>
-						</div>
-						{navItems.socialLinks.map((item) => (
-							<CustomLink
-								key={item.name}
-								href={item.path}
-								className="w-fit text-sm before:content-[] hover:text-foreground transition-colors"
+							<Copy
+								toCopy={SITE_CONTACT}
+								successMessage="Email copied!"
+								icon={<IconEmail className="w-4 h-4" />}
+								className="hidden sm:flex mt-2 w-full text-foreground"
 							>
-								{item.name}
-							</CustomLink>
-						))}
+								{SITE_CONTACT}
+							</Copy>
+							<p className="absolute -bottom-10 left-1/2 -translate-x-1/2 text-xs text-foreground-secondary/80">
+								© 2025 Simon Nyström. All rights reserved.
+							</p>
+						</div>
+
+						<div className="border-l w-full flex">
+							<div className="flex-1 flex flex-col text-foreground-secondary border-r">
+								<div className="border-b p-4 flex items-center gap-x-2">
+									<IconGlobe className="hidden sm:block w-4 h-4 text-foreground" />
+									<h5 className="text-foreground text-sm tracking-normal">Navigation</h5>
+								</div>
+								{navItems.navigationLinks
+									.filter((item) => item.name !== 'Colophon' && item.name !== 'Home')
+									.map((item) => (
+										<CustomLink
+											key={item.name}
+											href={item.path}
+											className="w-full text-sm font-medium before:content-[] px-4 py-2 transition-colors hover:bg-foreground hover:text-background"
+										>
+											{item.name}
+										</CustomLink>
+									))}
+								{navItems.exploreLinks
+									.filter((item) => item.name === 'Gallery')
+									.map((item) => (
+										<CustomLink
+											key={item.name}
+											href={item.path}
+											className="w-full text-sm font-medium before:content-[] px-4 py-2 transition-colors hover:bg-foreground hover:text-background"
+										>
+											{item.name}
+										</CustomLink>
+									))}
+							</div>
+							<div className="flex-1 flex flex-col text-foreground-secondary">
+								<div className="border-b p-4 flex items-center gap-x-2">
+									<IconAt className="hidden sm:block w-4 h-4 text-foreground" />
+									<h5 className="text-foreground text-sm tracking-normal">Socials</h5>
+								</div>
+								{navItems.socialLinks.map((item) => (
+									<CustomLink
+										key={item.name}
+										href={item.path}
+										className="w-full text-sm font-medium before:content-[] px-4 py-2 transition-colors hover:bg-foreground hover:text-background"
+									>
+										{item.name}
+									</CustomLink>
+								))}
+							</div>
+						</div>
 					</div>
 				</div>
-			</div>
-		</footer>
+			</footer>
+			<div className="h-10 mb-5 max-w-screen-lg mx-auto w-full border-x text-center text-xs text-foreground-secondary" />
+		</>
 	);
 }

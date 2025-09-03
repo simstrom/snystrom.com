@@ -44,7 +44,7 @@ const Modal = ({
 								transition={{ duration: 0.2, ease: 'easeOut' }}
 								aria-hidden={!isOpen}
 								className={cn(
-									'fixed inset-0 z-[99] flex items-center justify-center bg-foreground/10 dark:bg-background/50 backdrop-blur-md'
+									'fixed inset-0 z-[99] flex items-center justify-center bg-background-secondary/80 backdrop-blur-md'
 								)}
 								onClick={() => setIsOpen(false)}
 							>
@@ -55,25 +55,33 @@ const Modal = ({
 									transition={{ duration: 0.2, ease: 'easeOut' }}
 									ref={focusRef}
 									tabIndex={-1}
-									role="dialog"
 									aria-expanded={isOpen}
 									className={cn(
-										'fixed z-[100] max-w-md w-[95%] origin-center',
-										'grid rounded-xl p-3 xs:p-6 pt-8 xs:pt-10 border shadow-md',
-										'bg-background/50 bg-gradient-to-br from-background-tertiary to-background/50 bg-clip-padding outline-none',
+										'fixed z-[100] w-full border-y max-w-lg flex items-center justify-center',
+										'outline-none',
 										containerClassName
 									)}
 									onClick={(e) => e.stopPropagation()}
 								>
-									<button
-										className="absolute top-4 right-6 p-2 rounded-md text-foreground/80 hover:text-foreground hover:bg-foreground-secondary/10 dark:hover:bg-foreground/10 transition-colors"
-										type="button"
-										aria-label="Close modal"
-										onClick={() => setIsOpen(false)}
+									<div
+										className={cn(
+											'relative max-w-md w-[95%] origin-center grid',
+											'bg-background-secondary outline-none',
+											containerClassName
+										)}
+										onClick={(e) => e.stopPropagation()}
 									>
-										<IconX />
-									</button>
-									<ModalContent className={className}>{children}</ModalContent>
+										<button
+											className="absolute top-4 right-4 p-2 rounded-xl bg-background transition-colors hover:bg-foreground hover:text-background"
+											type="button"
+											aria-label="Close modal"
+											onClick={() => setIsOpen(false)}
+										>
+											<IconX />
+										</button>
+										<ModalContent className={className}>{children}</ModalContent>
+									</div>
+									<div className="absolute h-[360px] border-x max-w-md w-[95%] origin-center pointer-events-none"></div>
 								</motion.div>
 							</motion.div>
 						)}
