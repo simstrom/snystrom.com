@@ -15,11 +15,18 @@ export const getLatestBlogPost = () => {
 
 export const getRelatedPosts = (post: Post) => {
 	const posts = getBlogPosts();
-	const related = posts
+	let related = posts
 		.filter((p) => p.slug !== post.slug)
-		.filter((p) => p.tags?.some((tag: string) => post.tags?.includes(tag)))
-		.slice(0, 3);
-	return related;
+		.filter((p) => p.tags?.some((tag: string) => post.tags?.includes(tag)));
+
+	if (related.length < 3) {
+		const additional = posts
+			.filter((p) => p.slug !== post.slug && !related.includes(p))
+			.slice(0, 3 - related.length);
+		related = related.concat(additional);
+	}
+
+	return related.slice(0, 3);
 };
 
 export const getPostsByTag = (tag: string) => {

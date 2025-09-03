@@ -9,23 +9,25 @@ type PostListRelatedProps = {
 
 export default function PostListRelated({ posts }: PostListRelatedProps) {
 	return (
-		<ul className="flex flex-col gap-4">
+		<ul className="divide-y">
 			{posts.map((post) => (
 				<Link
 					key={post.slug}
-					className="relative flex gap-x-1 w-full p-5 items-end group transition border shadow-sm rounded-xl bg-gradient-to-br from-background-tertiary to-background-tertiary/20 hover:border-border/20 dark:hover:border-border/30"
+					className="relative flex gap-x-1 w-full items-end px-6 py-4 group transition-colors hover:text-background hover:bg-foreground"
 					href={`/blog/${post.slug}`}
 				>
 					<div>
-						<div className="flex gap-x-2 items-center text-sm font-medium">
-							<time className="text-foreground-secondary">{formatDate(post.date, true)}</time>
-
-							<span className="text-foreground/30">·</span>
-							<p className="text-foreground-secondary">{post.readingTime}</p>
+						<div className="mb-1 flex gap-x-2 items-center text-sm font-medium text-foreground-secondary group-hover:text-background/80 transition-colors">
+							<time>{formatDate(post.date, true)}</time>
+							<span className="text-foreground-tertiary">·</span>
+							<p>{post.readingTime}</p>
 						</div>
-						<h4 className="text-pretty">{post.title}</h4>
+						<h4 className="text-pretty text-lg mb-1">{post.title}</h4>
+						<p className="text-sm text-foreground-secondary line-clamp-2 leading-normal group-hover:text-background/80 transition-colors">
+							{post.summary}
+						</p>
 					</div>
-					<IconArrowRight className="ml-auto min-w-4" />
+					<IconArrowRight className="ml-auto h-6 w-6" />
 				</Link>
 			))}
 		</ul>

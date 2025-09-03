@@ -1,6 +1,7 @@
 'use client';
 
 import { Post } from '@/.content-collections/generated';
+import { IconArrowRight } from '@/lib/icons';
 import { formatDate } from '@/lib/utils';
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
@@ -34,7 +35,7 @@ export default function PostList({ posts, query }: PostListProps) {
 				stiffness: 300,
 				damping: 30,
 			}}
-			className="flex flex-col opacity-list"
+			className="opacity-list flex flex-col divide-y"
 		>
 			<AnimatePresence>
 				{posts.map((post) => (
@@ -47,33 +48,40 @@ export default function PostList({ posts, query }: PostListProps) {
 					>
 						<Link
 							draggable="false"
-							className="flex flex-col items-baseline gap-x-8 sm:flex-row py-5 group transition rounded-xl"
+							className="relative flex flex-col items-baseline gap-x-16 sm:flex-row p-6 group transition-transform"
 							href={`/blog/${post.slug}`}
 						>
-							<div className="w-full sm:w-fit min-w-fit flex items-baseline gap-x-2 sm:block text-sm text-foreground-secondary ">
+							<div className="w-full sm:w-fit min-w-fit flex items-baseline gap-x-2 sm:flex-col text-sm font-medium text-foreground-secondary">
 								<time>{formatDate(post.date, true)}</time>
+								<span className="">{post.readingTime}</span>
 								<span className="sm:hidden">·</span>
-								<span className="sm:hidden min-w-fit">{post.readingTime}</span>
-								{query && (
-									<motion.div
-										initial={{ opacity: 0 }}
-										animate={{ opacity: 1 }}
-										transition={{ duration: 0.15 }}
-										className="ml-auto text-xs text-brand"
-									>
-										{determineMatch(post, query)}
-									</motion.div>
-								)}
 							</div>
 
-							<div>
-								<h3 className="transition-colors text-pretty grow">{post.title}</h3>
-								<p className="text-sm text-foreground/50 line-clamp-2">{post.summary}</p>
+							<div className="flex-1">
+								<h3 className="text-lg text-pretty grow mb-1">{post.title}</h3>
+								<p className="text-sm text-foreground-secondary line-clamp-2 leading-normal">
+									{post.summary}
+								</p>
 							</div>
 
-							<span className="hidden sm:block text-sm text-foreground-secondary ml-auto text-right min-w-fit">
+							<div className="mt-auto">
+								<IconArrowRight className="justify-self-end self-end w-6 h-6" />
+							</div>
+
+							{query && (
+								<motion.div
+									initial={{ opacity: 0 }}
+									animate={{ opacity: 1 }}
+									transition={{ duration: 0.15 }}
+									className="absolute top-6 right-6 text-xs text-brand tracking-normal"
+								>
+									{determineMatch(post, query)}
+								</motion.div>
+							)}
+
+							{/* <span className="hidden sm:block text-sm font-medium text-foreground-secondary ml-auto text-right min-w-fit">
 								{post.readingTime}
-							</span>
+							</span> */}
 						</Link>
 					</motion.li>
 				))}

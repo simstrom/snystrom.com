@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import PostList from '@/components/postList';
 import Button from '@/components/ui/button';
 import PageHeader from '@/components/ui/pageHeader';
+import { Section } from '@/components/ui/section';
 import { getAllTags, getPostsByTag } from '@/lib/blog';
 import { SITE_URL } from '@/lib/constants';
 import { slugify } from '@/lib/utils';
@@ -44,19 +45,27 @@ export default async function TagPage({ params }: Props) {
 	const posts = getPostsByTag(tag);
 
 	return (
-		<main className="grow max-w-2xl w-full mx-auto flex flex-col pt-32 sm:pt-40">
-			<Button
-				variant="link"
-				href="/blog"
-				backLink
-				className="text-foreground-secondary hover:text-foreground transition-colors mb-8"
-			>
-				Blog
-			</Button>
-			<PageHeader title={tag} content={`Explore all articles and tutorials about ${tag}`} />
-			<section className="pt-5 mb-10">
+		<main className="">
+			<div className="relative max-w-screen-lg mx-auto">
+				<Button
+					variant="link"
+					href="/blog"
+					backLink
+					className="top-28 text-foreground-secondary hover:bg-foreground hover:text-background transition-colors pl-6 pr-8 py-4"
+				>
+					Blog
+				</Button>
+
+				<PageHeader
+					title={tag}
+					content={`Explore all articles and tutorials about ${tag}`}
+					className="pt-32 pb-12 bg-background-secondary"
+				/>
+			</div>
+
+			<Section className="pb-0" borderOrigin={'t'}>
 				<PostList posts={posts} />
-			</section>
+			</Section>
 		</main>
 	);
 }
