@@ -70,9 +70,9 @@ export default function ProjectCard({
 								width={600}
 								height={450}
 								draggable={false}
-								className="select-none h-full w-full object-cover rounded-r-xl shadow-xl object-right-bottom lg:object-right"
+								className="select-none h-full w-full object-cover rounded-r-xl shadow-xl object-bottom-right lg:object-right"
 							/>
-							<div className="absolute inset-0 bg-gradient-to-tr from-black/70 to-black/10 rounded-r-xl"></div>
+							<div className="absolute inset-0 bg-linear-to-tr from-black/70 to-black/10 rounded-r-xl"></div>
 						</a>
 					</CursorGlow>
 				</div>
@@ -133,16 +133,16 @@ export default function ProjectCard({
 								className={cn(
 									'select-none h-full w-full object-cover shadow-xl',
 									variant == 'reversed'
-										? 'object-left-bottom lg:object-left rounded-l-xl'
-										: 'object-right-bottom lg:object-right rounded-r-xl'
+										? 'object-bottom-left lg:object-left rounded-l-xl'
+										: 'object-bottom-right lg:object-right rounded-r-xl'
 								)}
 							/>
 							<div
 								className={cn(
 									'absolute inset-0 from-black/70 to-black/10',
 									variant == 'reversed'
-										? 'bg-gradient-to-tl rounded-l-xl'
-										: 'bg-gradient-to-tr rounded-r-xl'
+										? 'bg-linear-to-tl rounded-l-xl'
+										: 'bg-linear-to-tr rounded-r-xl'
 								)}
 							></div>
 						</a>

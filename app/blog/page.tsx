@@ -56,9 +56,9 @@ export default async function Blog() {
 								placeholder="blur"
 								blurDataURL={featured.imageMeta.blur}
 								draggable={false}
-								className="w-full md:aspect-[3/2] object-cover"
+								className="w-full md:aspect-3/2 object-cover"
 							/>
-							<div className="user-select-none pointer-events-none absolute inset-0 z-10 bg-gradient-to-tr from-brand/50 via-brand/20 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+							<div className="user-select-none pointer-events-none absolute inset-0 z-10 bg-linear-to-tr from-brand/50 via-brand/20 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
 						</div>
 					</Link>
 				</Section>

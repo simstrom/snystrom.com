@@ -46,7 +46,7 @@ export default async function TagPage({ params }: Props) {
 
 	return (
 		<main className="">
-			<div className="relative max-w-screen-lg mx-auto">
+			<div className="relative max-w-5xl mx-auto">
 				<Button
 					variant="link"
 					href="/blog"

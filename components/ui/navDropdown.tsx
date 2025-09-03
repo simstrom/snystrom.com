@@ -31,7 +31,7 @@ export const NavDropdown = ({ isOpen, onClose, children, className }: NavDropdow
 			<div
 				ref={focusRef}
 				tabIndex={-1}
-				className="w-full max-w-screen-lg mx-auto grid grid-cols-12 auto-rows-fr border-x outline-none"
+				className="w-full max-w-5xl mx-auto grid grid-cols-12 auto-rows-fr border-x outline-none"
 			>
 				{children}
 			</div>

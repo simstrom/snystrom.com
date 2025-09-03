@@ -34,7 +34,7 @@ export default function Dialog({
 				<motion.div
 					role="dialog"
 					id="overlay"
-					className="fixed top-0 left-0 w-screen min-h-screen bg-background/20 backdrop-blur flex items-center justify-center z-[100]"
+					className="fixed top-0 left-0 w-screen min-h-screen bg-background/20 backdrop-blur flex items-center justify-center z-100"
 					onClick={(e: any) => {
 						e.target.id === 'overlay' && setIsOpen(false);
 					}}

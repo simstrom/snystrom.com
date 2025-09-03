@@ -9,7 +9,7 @@ interface PageHeaderProps {
 export default function PageHeader({ title, content, className }: PageHeaderProps) {
 	return (
 		<>
-			<div className={cn('max-w-screen-lg mx-auto border-x px-6 text-balance', className)}>
+			<div className={cn('max-w-5xl mx-auto border-x px-6 text-balance', className)}>
 				<h1 className="pb-2 text-3xl sm:text-5xl">{title}</h1>
 				{content && <p className="text-lg">{content}</p>}
 			</div>

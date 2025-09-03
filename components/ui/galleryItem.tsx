@@ -41,9 +41,9 @@ export default function GalleryItem({
 						loading={priority ? 'eager' : 'lazy'}
 						placeholder="blur"
 						blurDataURL={item.blurData}
-						className="sm:aspect-[4/5] w-full object-cover object-center group-hover:opacity-80 transition-opacity"
+						className="sm:aspect-4/5 w-full object-cover object-center group-hover:opacity-80 transition-opacity"
 					/>
-					<div className="bg-gradient-to-t from-black/70 to-transparent to-20% flex items-end p-4 justify-between absolute w-full top-0 bottom-0 text-background dark:text-foreground">
+					<div className="bg-linear-to-t from-black/70 to-transparent to-20% flex items-end p-4 justify-between absolute w-full top-0 bottom-0 text-background dark:text-foreground">
 						<h3 className="text-3xl font-medium">{collectionTitle}</h3>
 						<div className="rounded-xl bg-white/10 p-2 transition-transform group-hover:scale-110 origin-center">
 							<IconArrowRight width={24} height={24} />

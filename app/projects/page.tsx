@@ -45,7 +45,7 @@ export default function Projects() {
 										className="aspect-video w-full object-cover"
 									/>
 
-									<div className="user-select-none pointer-events-none absolute inset-0 z-10 bg-gradient-to-tl from-brand/50 via-brand/20 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+									<div className="user-select-none pointer-events-none absolute inset-0 z-10 bg-linear-to-tl from-brand/50 via-brand/20 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
 								</div>
 							)}
 							<div className="p-6 flex justify-between items-center border-t bg-background-secondary transition-colors group-hover:bg-foreground group-hover:text-background">
@@ -63,7 +63,7 @@ export default function Projects() {
 								<p className="text-foreground-secondary">{project.description}</p>
 							</div>
 							{idx !== projectsData.length - 1 && (
-								<div className="mt-auto h-12 border-t [background-image:linear-gradient(-45deg,theme(colors.border)_12.50%,transparent_12.50%,transparent_50%,theme(colors.border)_50%,theme(colors.border)_62.50%,transparent_62.50%,transparent_100%)] [background-size:6px_6px]"></div>
+								<div className="mt-auto h-12 border-t bg-[linear-gradient(-45deg,var(--color-border)_12.50%,transparent_12.50%,transparent_50%,var(--color-border)_50%,var(--color-border)_62.50%,transparent_62.50%,transparent_100%)] bg-size-[6px_6px]"></div>
 							)}
 						</Link>
 					))}

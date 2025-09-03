@@ -66,7 +66,7 @@ export default function Lightbox({
 			{isVisible && (
 				<>
 					<motion.div
-						className="fixed z-[99] top-0 left-0 w-full h-full flex justify-center bg-background/90"
+						className="fixed z-99 top-0 left-0 w-full h-full flex justify-center bg-background/90"
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
 						exit={{ opacity: 0 }}
@@ -86,7 +86,7 @@ export default function Lightbox({
 						onClick={() => onClose()}
 						tabIndex={-1}
 						onKeyDown={handleKeyDown}
-						className="fixed z-[100] top-0 left-0 w-full h-full flex items-center justify-center focus-visible:outline-none p-14 sm:p-20"
+						className="fixed z-100 top-0 left-0 w-full h-full flex items-center justify-center focus-visible:outline-none p-14 sm:p-20"
 					>
 						<motion.div
 							initial={{

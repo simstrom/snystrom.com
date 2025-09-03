@@ -172,7 +172,7 @@ export default async function Activities() {
 	);
 
 	return (
-		<main className="grow max-w-screen-lg mx-auto pt-32 sm:pt-40">
+		<main className="grow max-w-5xl mx-auto pt-32 sm:pt-40">
 			<div className="absolute -translate-y-6 text-sm font-medium text-foreground-secondary">
 				Health
 			</div>
@@ -224,7 +224,7 @@ export default async function Activities() {
 										)}
 									</div>
 								</div>
-								<div className="absolute inset-0 bg-gradient-to-l from-black to-40% to-transparent" />
+								<div className="absolute inset-0 bg-linear-to-l from-black to-40% to-transparent" />
 								<Image
 									priority
 									height={390}

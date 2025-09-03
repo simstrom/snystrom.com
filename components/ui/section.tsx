@@ -38,7 +38,7 @@ export const Section: React.FC<SectionProps> = ({
 			<div className="w-full border-b">
 				<Link
 					href={linkHref}
-					className="max-w-screen-lg mx-auto flex flex-col border-x bg-background-secondary group"
+					className="max-w-5xl mx-auto flex flex-col border-x bg-background-secondary group"
 				>
 					<div className="flex justify-between items-end p-6 transition-colors group-hover:bg-foreground group-hover:text-background">
 						<div>
@@ -52,7 +52,7 @@ export const Section: React.FC<SectionProps> = ({
 				</Link>
 			</div>
 		)}
-		<div className={cn('max-w-screen-lg mx-auto flex flex-col border-x pb-20', className)}>
+		<div className={cn('max-w-5xl mx-auto flex flex-col border-x pb-20', className)}>
 			{children}
 		</div>
 	</section>

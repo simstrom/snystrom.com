@@ -112,7 +112,7 @@ export default async function BlogPost({ params }: Props) {
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 			/>
 			<main className="grow w-full mx-auto">
-				<div className="max-w-screen-lg mx-auto pt-24 border-x">
+				<div className="max-w-5xl mx-auto pt-24 border-x">
 					<Button
 						variant="link"
 						href="/blog"
@@ -123,7 +123,7 @@ export default async function BlogPost({ params }: Props) {
 					</Button>
 				</div>
 
-				<Section className="max-w-screen-lg mx-auto pb-0" borderOrigin="y">
+				<Section className="max-w-5xl mx-auto pb-0" borderOrigin="y">
 					{/* {post.image && post.imageMeta && (
 						<Image
 							priority
@@ -159,7 +159,7 @@ export default async function BlogPost({ params }: Props) {
 						<div
 							className="h-[520px] flex flex-col gap-2 justify-end p-16 rounded-3xl bg-no-repeat bg-cover bg-center ring-1 ring-border text-background dark:text-foreground"
 							style={{
-								backgroundImage: `linear-gradient(to top, hsl(var(--brand)) 0%, rgba(105, 120, 255, 0.1) 50%, transparent 70%), url(${post.image})`,
+								backgroundImage: `linear-gradient(to top, var(--color-brand) 0%, rgba(105, 120, 255, 0.1) 50%, transparent 70%), url(${post.image})`,
 							}}
 						>
 							<ul className="w-fit flex items-center gap-4 flex-wrap pb-2">
@@ -185,9 +185,9 @@ export default async function BlogPost({ params }: Props) {
 						</div>
 					</header>
 				</Section>
-				{/* <div className="max-w-screen-lg mx-auto pt-8 border-x"></div> */}
+				{/* <div className="max-w-5xl mx-auto pt-8 border-x"></div> */}
 				<Section className="pt-16 pb-12">
-					<article className="prose max-w-screen-md mx-auto first:prose-p:text-xl first:prose-p:text-foreground first:prose-p:leading-normal">
+					<article className="prose max-w-3xl mx-auto">
 						<MDXContent code={post.body} components={MDXComponents} />
 
 						<div className="pt-12">
@@ -239,7 +239,7 @@ export default async function BlogPost({ params }: Props) {
 				</Section> */}
 
 				{/* <Section className="p-6 pb-8">
-				<div className="prose max-w-screen-md mx-auto">
+				<div className="prose max-w-3xl mx-auto">
 					<div className="flex items-center gap-x-4">
 						<Image
 							width={64}

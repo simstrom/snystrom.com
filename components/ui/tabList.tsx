@@ -26,7 +26,7 @@ export default function TabList({
 		<LayoutGroup>
 			<div
 				className={cn(
-					'max-w-screen-lg mx-auto flex items-center text-sm font-medium text-foreground-secondary',
+					'max-w-5xl mx-auto flex items-center text-sm font-medium text-foreground-secondary',
 					asLinks ? 'divide-x' : 'border-b',
 					className
 				)}

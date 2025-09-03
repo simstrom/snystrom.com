@@ -29,7 +29,7 @@ export default function GalleryBlock({ images }: Props) {
 	return (
 		<section
 			ref={ref}
-			className="relative w-screen max-w-screen-2xl bg-background-secondary xl:rounded-3xl overflow-x-clip"
+			className="relative w-screen bg-background-secondary xl:rounded-3xl overflow-x-clip"
 		>
 			<div className="p-4 flex flex-col items-center justify-center text-center gap-y-5 min-h-[600px]">
 				<h4 className="font-mono uppercase text-xs tracking-wide z-10 text-foreground/50 dark:mix-blend-luminosity">

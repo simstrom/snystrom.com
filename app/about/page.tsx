@@ -40,7 +40,7 @@ export default async function About() {
 		<main className="grow">
 			{/* <PageHeader title="About Me" className="pt-32 pb-12 bg-background-secondary" /> */}
 
-			<div className="relative max-w-screen-lg mx-auto">
+			<div className="relative max-w-5xl mx-auto">
 				{/* <span className="absolute top-28 px-6 ml-1 -translate-y-1 text-sm font-medium text-brand">
 					Bio
 				</span> */}
@@ -57,7 +57,7 @@ export default async function About() {
 							placeholder="blur"
 							className="rounded-3xl ring-1 ring-border aspect-square sm:aspect-video md:aspect-auto w-full h-full object-cover object-center grayscale"
 						/>
-						<div className="absolute inset-0 z-10 rounded-3xl bg-gradient-to-t from-brand/50 via-brand/20 to-transparent mix-blend-soft-light" />
+						<div className="absolute inset-0 z-10 rounded-3xl bg-linear-to-t from-brand/50 via-brand/20 to-transparent mix-blend-soft-light" />
 						<IconDoodleArrow className="text-brand w-28 h-28 absolute z-10 -top-14 left-6 rotate-12" />
 						<IconDoodleCompass className="text-brand w-20 h-20 absolute z-10 -right-8 -top-8 -rotate-3" />
 						<IconDoodleMountains className="text-brand w-20 h-20 absolute z-10 bottom-40 -left-10 rotate-12" />

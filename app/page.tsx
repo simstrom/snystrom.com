@@ -34,7 +34,7 @@ export default async function Home() {
 		<main className="grow flex flex-col items-center justify-center">
 			{/* <div className="h-screen flex flex-col items-center justify-center p-4 pt-24 sm:px-6 xl:px-16"></div> */}
 			{/* <AuroraBackground showRadialGradient={true}>
-				<div className="max-w-screen-lg relative flex flex-col gap-4 justify-center px-6 lg:px-0">
+				<div className="max-w-5xl relative flex flex-col gap-4 justify-center px-6 lg:px-0">
 					<h1 className="text-5xl sm:text-6xl lg:text-8xl tracking-tight">
 						Background lights are cool you know.
 					</h1>
@@ -45,7 +45,7 @@ export default async function Home() {
 				</div>
 			</AuroraBackground> */}
 			<section className="w-full border-b pt-32">
-				<div className="max-w-screen-lg mx-auto flex flex-col border-x"></div>
+				<div className="max-w-5xl mx-auto flex flex-col border-x"></div>
 			</section>
 
 			<Section className="pb-0">

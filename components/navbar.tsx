@@ -31,7 +31,7 @@ export default function Navbar({ className }: { className?: string }) {
 		<header
 			role="menubar"
 			className={cn(
-				'navbar flex flex-col w-full max-h-screen items-center fixed top-0 left-0 z-[99] shadow-lg',
+				'navbar flex flex-col w-full max-h-screen items-center fixed top-0 left-0 z-99 shadow-lg',
 				// 'before:absolute before:top-0 before:h-screen before:w-full before:bg-transparent before:invisible before-backdrop-blur-none before:transition-all',
 				// (openMobile || openDropdown) &&
 				// 	'before:visible before:backdrop-blur-md before:bg-foreground/10 dark:before:bg-background/50',
@@ -46,7 +46,7 @@ export default function Navbar({ className }: { className?: string }) {
 					'flex flex-col justify-center items-center w-full mx-auto max-h-screen border-b border-foreground dark:border-foreground/50 bg-background'
 				)}
 			>
-				<div className="flex items-center w-full max-w-screen-lg border-x">
+				<div className="flex items-center w-full max-w-5xl border-x">
 					<div className="flex w-full h-full items-center text-foreground-secondary text-sm font-medium tracking-normal">
 						{navItems.navigationLinks.map((navItem, idx) => (
 							<Link

@@ -59,7 +59,7 @@ export default async function GalleryDestination({ params }: Props) {
 
 	return (
 		<main className="grow pb-20">
-			<div className="relative max-w-screen-lg mx-auto">
+			<div className="relative max-w-5xl mx-auto">
 				<span className="absolute top-28 px-6 ml-1 -translate-y-1 text-sm font-medium text-brand">
 					Destination
 				</span>

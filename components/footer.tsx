@@ -8,10 +8,10 @@ import Copy from './ui/copy';
 export default function Footer() {
 	return (
 		<>
-			<div className="max-w-screen-lg mx-auto border-x border-t w-full h-32 [background-image:linear-gradient(-45deg,theme(colors.border)_12.50%,transparent_12.50%,transparent_50%,theme(colors.border)_50%,theme(colors.border)_62.50%,transparent_62.50%,transparent_100%)] [background-size:6px_6px]" />
+			<div className="max-w-5xl mx-auto border-x border-t w-full h-32 bg-[linear-gradient(-45deg,var(--color-border)_12.50%,transparent_12.50%,transparent_50%,var(--color-border)_50%,var(--color-border)_62.50%,transparent_62.50%,transparent_100%)] bg-size-[6px_6px]" />
 
 			<footer className="border-y">
-				<div className="w-full max-w-screen-lg mx-auto flex flex-col border-x bg-background-secondary">
+				<div className="w-full max-w-5xl mx-auto flex flex-col border-x bg-background-secondary">
 					<div className="relative grid grid-cols-2">
 						<div className="flex items-center sm:items-start justify-center sm:flex-col gap-1 p-6">
 							<Link href="/" className="w-fit hover:rotate-180 transition-transform duration-500">
@@ -47,7 +47,7 @@ export default function Footer() {
 										<CustomLink
 											key={item.name}
 											href={item.path}
-											className="w-full text-sm font-medium before:content-[] px-4 py-2 transition-colors hover:bg-foreground hover:text-background"
+											className="before:content-none w-full text-sm font-medium px-4 py-2 hover:bg-foreground hover:text-background"
 										>
 											{item.name}
 										</CustomLink>
@@ -58,7 +58,7 @@ export default function Footer() {
 										<CustomLink
 											key={item.name}
 											href={item.path}
-											className="w-full text-sm font-medium before:content-[] px-4 py-2 transition-colors hover:bg-foreground hover:text-background"
+											className="before:content-none w-full text-sm font-medium px-4 py-2 hover:bg-foreground hover:text-background"
 										>
 											{item.name}
 										</CustomLink>
@@ -73,7 +73,7 @@ export default function Footer() {
 									<CustomLink
 										key={item.name}
 										href={item.path}
-										className="w-full text-sm font-medium before:content-[] px-4 py-2 transition-colors hover:bg-foreground hover:text-background"
+										className="before:content-none w-full text-sm font-medium px-4 py-2 hover:bg-foreground hover:text-background"
 									>
 										{item.name}
 									</CustomLink>
@@ -83,7 +83,7 @@ export default function Footer() {
 					</div>
 				</div>
 			</footer>
-			<div className="h-10 mb-5 max-w-screen-lg mx-auto w-full border-x text-center text-xs text-foreground-secondary" />
+			<div className="h-10 mb-5 max-w-5xl mx-auto w-full border-x text-center text-xs text-foreground-secondary" />
 		</>
 	);
 }

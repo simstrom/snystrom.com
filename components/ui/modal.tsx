@@ -44,7 +44,7 @@ const Modal = ({
 								transition={{ duration: 0.2, ease: 'easeOut' }}
 								aria-hidden={!isOpen}
 								className={cn(
-									'fixed inset-0 z-[99] flex items-center justify-center bg-background-secondary/80 backdrop-blur-md'
+									'fixed inset-0 z-99 flex items-center justify-center bg-background-secondary/80 backdrop-blur-md'
 								)}
 								onClick={() => setIsOpen(false)}
 							>
@@ -57,7 +57,7 @@ const Modal = ({
 									tabIndex={-1}
 									aria-expanded={isOpen}
 									className={cn(
-										'fixed z-[100] w-full border-y max-w-lg flex items-center justify-center',
+										'fixed z-100 w-full border-y max-w-lg flex items-center justify-center',
 										'outline-none',
 										containerClassName
 									)}
