@@ -44,7 +44,7 @@ export default function GalleryBlock({ images }: Props) {
 				</p>
 				<Button
 					href="/gallery/destinations"
-					className="z-10 after:bg-background-tertiary/50 after:backdrop-blur-md after:-z-10 text-xs"
+					className="z-10 after:bg-background-secondary/50 after:backdrop-blur-md after:-z-10 text-xs"
 				>
 					Discover Destinations
 				</Button>

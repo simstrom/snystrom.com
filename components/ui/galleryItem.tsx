@@ -30,7 +30,7 @@ export default function GalleryItem({
 			{isCollection ? (
 				<Link
 					href={`/gallery/${collectionType}/${slugify(collectionTitle)}`}
-					className="relative group hover:scale-[1.03] transition-transform animate-slide"
+					className="relative group rounded-lg overflow-hidden"
 				>
 					<CldImage
 						src={item.src}
@@ -41,12 +41,12 @@ export default function GalleryItem({
 						loading={priority ? 'eager' : 'lazy'}
 						placeholder="blur"
 						blurDataURL={item.blurData}
-						className="rounded-lg sm:aspect-[4/5] w-full object-cover object-center group-hover:opacity-80 transition-opacity"
+						className="sm:aspect-[4/5] w-full object-cover object-center group-hover:opacity-80 transition-opacity"
 					/>
-					<div className="rounded-lg bg-gradient-to-t from-black/70 to-transparent to-20% flex items-end p-4 justify-between absolute w-full top-0 bottom-0 text-foreground-inverse dark:text-foreground transition-all">
-						<h3 className="sm:text-sm tracking-normal">{collectionTitle}</h3>
-						<div className="rounded-full bg-foreground-inverse/20 dark:bg-foreground/20 p-1 transition-all group-hover:scale-110 group-hover:p-2 origin-center">
-							<IconArrowRight />
+					<div className="bg-gradient-to-t from-black/70 to-transparent to-20% flex items-end p-4 justify-between absolute w-full top-0 bottom-0 text-background dark:text-foreground">
+						<h3 className="text-3xl font-medium">{collectionTitle}</h3>
+						<div className="rounded-xl bg-white/10 p-2 transition-transform group-hover:scale-110 origin-center">
+							<IconArrowRight width={24} height={24} />
 						</div>
 					</div>
 				</Link>
@@ -54,7 +54,7 @@ export default function GalleryItem({
 				<div
 					className={cn(
 						'relative hover:cursor-zoom-in',
-						lightboxIndex <= 24 ? 'animate-slide' : 'animate-slideSlow' // Fast animation for images over the fold, slow for scroll loaded.
+						lightboxIndex > 24 && 'animate-slideSlow' // Fast animation for images over the fold, slow for scroll loaded.
 					)}
 					onClick={(e) => handleImageClick(e, lightboxIndex)}
 				>
@@ -67,7 +67,7 @@ export default function GalleryItem({
 						loading={priority ? 'eager' : 'lazy'}
 						placeholder="blur"
 						blurDataURL={item.blurData}
-						className="rounded-lg w-full object-cover object-center"
+						className="w-full object-cover object-center"
 					/>
 				</div>
 			)}

@@ -6,7 +6,7 @@ import { useDebounce } from 'use-debounce';
 
 import { Post } from '@/.content-collections/generated';
 import { motion } from 'framer-motion';
-import CustomLink from '../blog/link';
+import Link from 'next/link';
 import PostList from '../postList';
 
 type PostViewSearchProps = {
@@ -30,20 +30,20 @@ export default function PostViewSearch({ posts }: PostViewSearchProps) {
 	}, [posts, debouncedQuery]);
 
 	return (
-		<section className="max-w-3xl mx-auto min-h-[450px]">
-			<div className="flex items-baseline justify-between">
-				<h3 className="text-2xl mb-5">All Articles</h3>
+		<div>
+			<div className="flex items-baseline justify-between px-6 pt-10 pb-4">
+				<h3 className="text-3xl">All Articles</h3>
 				{posts.length !== 0 && (
-					<CustomLink
+					<Link
 						href="/rss.xml"
-						className="w-fit text-sm font-medium dark:font-[450] p-2 before:content-[] text-foreground/80 hover:text-foreground transition-colors"
+						className="flex gap-x-1 items-center w-fit text-sm font-medium px-4 py-2 text-foreground-secondary hover:text-background hover:bg-foreground transition-colors"
 					>
 						<IconRSS className="mr-1" />
 						RSS
-					</CustomLink>
+					</Link>
 				)}
 			</div>
-			<div className="relative mb-5 flex items-center">
+			<div className="relative flex items-center border-y">
 				<label
 					htmlFor="search"
 					className="text-foreground-secondary absolute left-0 top-1/2 -translate-y-1/2 px-4"
@@ -56,7 +56,7 @@ export default function PostViewSearch({ posts }: PostViewSearchProps) {
 					type="search"
 					autoComplete="off"
 					placeholder="Search for articles or topics ..."
-					className="w-full text-sm text-tertiary border bg-background-tertiary py-4 pl-12 pr-4 rounded-xl placeholder:text-foreground-secondary focus:outline-none focus:ring-2 ring-brand ring-offset-2 ring-offset-background transition"
+					className="w-full text-sm bg-background-secondary py-4 pl-12 pr-4 placeholder:text-foreground-secondary outline-none"
 					value={searchQuery}
 					onChange={handleSearch}
 				/>
@@ -77,7 +77,7 @@ export default function PostViewSearch({ posts }: PostViewSearchProps) {
 						stiffness: 300,
 						damping: 30,
 					}}
-					className="text-center space-y-2 pt-4"
+					className="text-center space-y-2 pt-10"
 				>
 					<p>Sorry, nothing to read here yet...</p>
 					<p className="text-sm text-foreground-secondary">
@@ -89,6 +89,6 @@ export default function PostViewSearch({ posts }: PostViewSearchProps) {
 			) : (
 				<PostList posts={filteredPosts} query={debouncedQuery} />
 			)}
-		</section>
+		</div>
 	);
 }

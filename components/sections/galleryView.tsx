@@ -9,6 +9,7 @@ import { useEffect, useRef, useState } from 'react';
 import Button from '../ui/button';
 import GalleryItem from '../ui/galleryItem';
 import Lightbox from '../ui/lightbox';
+import { Section } from '../ui/section';
 import Skeleton from '../ui/skeleton';
 import TabList from '../ui/tabList';
 
@@ -102,13 +103,13 @@ export default function GalleryView({ content, cursor, backLink, category }: Pro
 
 	return (
 		<>
-			<div className="my-8 sm:pt-12 flex font-medium text-foreground-secondary">
+			<Section className="w-full pb-0 block" borderOrigin={'y'}>
 				{backLink ? (
 					<Button
 						variant="link"
 						backLink
 						href={backLink.path}
-						className="hover:text-foreground transition-colors mt-2"
+						className="hover:text-background hover:bg-foreground transition-colors p-6 pr-8"
 					>
 						Back to all {backLink.name}
 					</Button>
@@ -120,9 +121,9 @@ export default function GalleryView({ content, cursor, backLink, category }: Pro
 						selected={GalleryRoutes.findIndex((route) => route.path === currentPath)}
 					/>
 				)}
-			</div>
+			</Section>
 
-			<div ref={animationRef} className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 h-fit">
+			<section ref={animationRef} className="pt-10 grid sm:grid-cols-2 md:grid-cols-3 gap-4 h-fit">
 				{columns.map((col, colIndex: number) => {
 					return (
 						<motion.div
@@ -151,7 +152,7 @@ export default function GalleryView({ content, cursor, backLink, category }: Pro
 						</motion.div>
 					);
 				})}
-			</div>
+			</section>
 			<div ref={viewRef} />
 
 			{!category && (

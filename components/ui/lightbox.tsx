@@ -59,14 +59,14 @@ export default function Lightbox({
 			window.removeEventListener('scroll', handleScroll);
 			container?.removeEventListener('keydown', handleKeyDown);
 		};
-	}, [isVisible]);
+	}, [handleKeyDown, handleScroll, isVisible]);
 
 	return (
 		<AnimatePresence>
 			{isVisible && (
 				<>
 					<motion.div
-						className="fixed z-[99] top-0 left-0 w-full h-full flex justify-center bg-background-secondary/80"
+						className="fixed z-[99] top-0 left-0 w-full h-full flex justify-center bg-background/90"
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
 						exit={{ opacity: 0 }}

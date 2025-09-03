@@ -1,4 +1,3 @@
-import CustomLink from '@/components/blog/link';
 import GalleryView from '@/components/sections/galleryView';
 import Button from '@/components/ui/button';
 import PageHeader from '@/components/ui/pageHeader';
@@ -7,6 +6,7 @@ import { galleryCollections } from '@/lib/data';
 import { getImagesInCollection } from '@/lib/gallery';
 import { slugify } from '@/lib/utils';
 import { Metadata } from 'next';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
 interface Props {
@@ -58,30 +58,41 @@ export default async function GalleryCollection({ params }: Props) {
 	};
 
 	return (
-		<main className="grow mx-auto w-full pt-32 sm:pt-40">
-			<div className="absolute -translate-y-6 text-sm font-medium text-foreground-secondary">
-				Collection
+		<main className="grow pb-20">
+			<div className="relative max-w-screen-lg mx-auto">
+				<span className="absolute top-28 px-6 ml-1 -translate-y-1 text-sm font-medium text-brand">
+					Collection
+				</span>
+				<PageHeader
+					title={collection.title}
+					content={collection.description}
+					className="pt-32 pb-12 bg-background-secondary"
+				/>
 			</div>
-			<PageHeader title={collection.title} content={collection.description} />
+
 			<GalleryView content={images} cursor={next_cursor} backLink={backLink} />
-			<div className="mt-8 sm:mt-12 w-full flex justify-between items-center sm:gap-4 text-sm font-medium text-foreground-secondary  select-none">
+
+			<div className="mt-8 sm:mt-12 w-full flex justify-between items-center sm:gap-4 text-sm font-medium select-none">
 				<Button
 					variant="link"
 					backLink
-					href={`/gallery/collections/${slugify(previousCollection.title)}`}
-					className="hover:text-foreground transition-colors"
+					href={`${backLink.path}/${slugify(previousCollection.title)}`}
+					className="flex-1 px-6 py-4 text-foreground bg-background-secondary transition-colors hover:bg-foreground hover:text-background"
 				>
 					{previousCollection.title}
 				</Button>
 
-				<CustomLink href="/gallery/collections" className="pb-1 font-medium hover:text-foreground">
+				<Link
+					href={backLink.path}
+					className="text-center flex-1 px-6 py-4 text-foreground bg-background-secondary transition-colors hover:bg-foreground hover:text-background"
+				>
 					Index
-				</CustomLink>
+				</Link>
 
 				<Button
 					variant="link"
-					href={`/gallery/collections/${slugify(nextCollection.title)}`}
-					className="hover:text-foreground transition-colors"
+					href={`${backLink.path}/${slugify(nextCollection.title)}`}
+					className="flex-1 px-6 py-4 text-foreground bg-background-secondary transition-colors hover:bg-foreground hover:text-background"
 				>
 					{nextCollection.title}
 				</Button>

@@ -26,7 +26,8 @@ export default function TabList({
 		<LayoutGroup>
 			<div
 				className={cn(
-					'w-full border-b flex text-foreground-secondary text-sm font-medium',
+					'max-w-screen-lg mx-auto flex items-center text-sm font-medium text-foreground-secondary',
+					asLinks ? 'divide-x' : 'border-b',
 					className
 				)}
 			>
@@ -37,7 +38,7 @@ export default function TabList({
 								animate
 								onClick={() => setSelected(i)}
 								className={cn(
-									'relative px-5 py-2 hover:text-foreground transition',
+									'relative px-5 pb-1 pt-2 hover:text-foreground transition-colors',
 									i === selected && 'text-foreground'
 								)}
 							>
@@ -45,7 +46,7 @@ export default function TabList({
 								{i === selected && (
 									<motion.div
 										layoutId={`underline-${labels}`}
-										className="w-full h-0.5 absolute bottom-0 left-0 bg-foreground"
+										className="w-full h-px absolute -bottom-px left-0 bg-foreground"
 									/>
 								)}
 							</motion.button>
@@ -55,14 +56,11 @@ export default function TabList({
 								key={`tab_${label}`}
 								href={links ? links[i] : '/'}
 								className={cn(
-									'relative px-5 py-2 hover:text-foreground transition',
-									i === selected && 'text-foreground'
+									'flex-1 p-6 hover:bg-foreground hover:text-background transition-colors',
+									i === selected && 'text-background bg-foreground'
 								)}
 							>
 								{label}
-								{i === selected && (
-									<div className="w-full h-0.5 absolute bottom-0 left-0 bg-foreground" />
-								)}
 							</Link>
 					  ))}
 			</div>

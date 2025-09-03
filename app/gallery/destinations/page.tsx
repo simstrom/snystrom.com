@@ -14,11 +14,13 @@ export default async function Destinations() {
 	);
 
 	return (
-		<main className="grow mx-auto w-full  pt-32 sm:pt-40">
+		<main className="grow pb-20">
 			<PageHeader
 				title="Gallery"
 				content="A summary of the technologies, design, workflow and decisions behind my website."
+				className="pt-32 pb-12 bg-background-secondary"
 			/>
+
 			<GalleryView content={collections} category="destinations" />
 		</main>
 	);
