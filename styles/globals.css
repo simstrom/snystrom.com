@@ -89,6 +89,15 @@
 	padding-inline: 1rem;
 }
 
+@layer base {
+	*,
+	::after,
+	::before,
+	::backdrop,
+	::file-selector-button {
+		border-color: var(--color-border, currentcolor);
+	}
+}
 ::selection {
 	background-color: #dbe0f7;
 	color: var(--color-brand);
@@ -102,7 +111,7 @@ html {
 	min-width: 340px;
 }
 * {
-	@apply box-border border-border scroll-smooth;
+	@apply box-border scroll-smooth;
 	text-rendering: optimizeLegibility;
 }
 body {
@@ -216,36 +225,6 @@ code[data-line-numbers] [data-line]::before {
 .prose :not(pre) > code::after,
 .prose :not(pre) > code::before {
 	@apply hidden;
-}
-
-/* Callouts */
-.callout {
-	background-color: rgba(var(--callout), 0.1);
-	border-color: rgba(var(--callout), 0.25);
-}
-.callout[data-callout='info'] {
-	--callout: 46, 104, 239;
-}
-.callout[data-callout='success'] {
-	--callout: 83, 113, 61;
-}
-.callout[data-callout='thought'] {
-	--callout: 95, 56, 202;
-}
-.callout[data-callout='warning'] {
-	--callout: 165, 63, 71;
-}
-.dark .callout[data-callout='info'] {
-	--callout: 102, 148, 255;
-}
-.dark .callout[data-callout='success'] {
-	--callout: 152, 195, 121;
-}
-.dark .callout[data-callout='thought'] {
-	--callout: 137, 120, 214;
-}
-.dark .callout[data-callout='warning'] {
-	--callout: 224, 108, 117;
 }
 
 /* 	------------
