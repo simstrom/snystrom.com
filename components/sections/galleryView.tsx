@@ -103,7 +103,7 @@ export default function GalleryView({ content, cursor, backLink, category }: Pro
 
 	return (
 		<>
-			<Section className="w-full pb-0 block" borderOrigin={'y'}>
+			<Section className="w-full pb-0 block border-x-0" borderOrigin={'y'}>
 				{backLink ? (
 					<Button
 						variant="link"
@@ -123,13 +123,16 @@ export default function GalleryView({ content, cursor, backLink, category }: Pro
 				)}
 			</Section>
 
-			<section ref={animationRef} className="pt-10 grid sm:grid-cols-2 md:grid-cols-3 gap-4 h-fit">
+			<section
+				ref={animationRef}
+				className="pt-2 px-2 grid sm:grid-cols-2 md:grid-cols-3 gap-2 h-fit"
+			>
 				{columns.map((col, colIndex: number) => {
 					return (
 						<motion.div
 							key={colIndex}
 							style={colIndex % 2 == 0 ? { y: animationEvenCol } : { y: animationUnevenCol }}
-							className="flex flex-col gap-4"
+							className="flex flex-col gap-2"
 						>
 							{col.map((item, idx) => (
 								<GalleryItem

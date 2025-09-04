@@ -30,7 +30,7 @@ export default function GalleryItem({
 			{isCollection ? (
 				<Link
 					href={`/gallery/${collectionType}/${slugify(collectionTitle)}`}
-					className="relative group rounded-lg overflow-hidden"
+					className="relative group overflow-hidden"
 				>
 					<CldImage
 						src={item.src}
@@ -41,11 +41,11 @@ export default function GalleryItem({
 						loading={priority ? 'eager' : 'lazy'}
 						placeholder="blur"
 						blurDataURL={item.blurData}
-						className="sm:aspect-4/5 w-full object-cover object-center group-hover:opacity-80 transition-opacity"
+						className="sm:aspect-4/5 w-full object-cover object-center transition-opacity"
 					/>
-					<div className="bg-linear-to-t from-black/70 to-transparent to-20% flex items-end p-4 justify-between absolute w-full top-0 bottom-0 text-background dark:text-foreground">
-						<h3 className="text-3xl font-medium">{collectionTitle}</h3>
-						<div className="rounded-xl bg-white/10 p-2 transition-transform group-hover:scale-110 origin-center">
+					<div className="bg-linear-to-t from-black/70 to-transparent to-20% flex items-end p-4 justify-between absolute w-full top-0 bottom-0 text-background dark:text-foreground transition-all group-hover:bg-black/40">
+						<h3 className="text-2xl font-medium">{collectionTitle}</h3>
+						<div className="rounded-xl border border-transparent group-hover:border-border/20 group-hover:bg-white/20 p-2 transition-colors">
 							<IconArrowRight width={24} height={24} />
 						</div>
 					</div>

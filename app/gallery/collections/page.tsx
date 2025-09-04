@@ -14,14 +14,16 @@ export default async function Destinations() {
 	);
 
 	return (
-		<main className="grow pb-20">
+		<main className="grow">
 			<PageHeader
 				title="Gallery"
 				content="A summary of the technologies, design, workflow and decisions behind my website."
 				className="pt-32 pb-12 bg-background-secondary"
 			/>
 
-			<GalleryView content={collections} category="collections" />
+			<div className="pb-20 border-x">
+				<GalleryView content={collections} category="collections" />
+			</div>
 		</main>
 	);
 }
