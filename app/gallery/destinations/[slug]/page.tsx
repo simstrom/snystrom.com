@@ -10,19 +10,20 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
 interface Props {
-	params: {
+	params: Promise<{
 		slug: string;
-	};
+	}>;
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata | undefined> {
-	const collection = galleryDestinations.find((item) => slugify(item.title) === params.slug);
-	if (!collection) return notFound();
+export async function generateMetadata(props: Props): Promise<Metadata | undefined> {
+    const params = await props.params;
+    const collection = galleryDestinations.find((item) => slugify(item.title) === params.slug);
+    if (!collection) return notFound();
 
-	const { title, description, cover } = collection;
-	const seoImage = cover ? cover.src : '/images/og.webp';
+    const { title, description, cover } = collection;
+    const seoImage = cover ? cover.src : '/images/og.webp';
 
-	return {
+    return {
 		title: `Gallery - ${title}`,
 		description,
 		openGraph: {
@@ -40,24 +41,25 @@ export async function generateMetadata({ params }: Props): Promise<Metadata | un
 	};
 }
 
-export default async function GalleryDestination({ params }: Props) {
-	const index = galleryDestinations.findIndex((item) => slugify(item.title) === params.slug);
-	if (index === -1) return notFound();
+export default async function GalleryDestination(props: Props) {
+    const params = await props.params;
+    const index = galleryDestinations.findIndex((item) => slugify(item.title) === params.slug);
+    if (index === -1) return notFound();
 
-	const collection = galleryDestinations[index];
-	const { images, next_cursor } = await getImagesInCollection('destinations', params.slug, 24);
+    const collection = galleryDestinations[index];
+    const { images, next_cursor } = await getImagesInCollection('destinations', params.slug, 24);
 
-	const previousIndex = (index - 1 + galleryDestinations.length) % galleryDestinations.length;
-	const nextIndex = (index + 1) % galleryDestinations.length;
-	const previousCollection = galleryDestinations[previousIndex];
-	const nextCollection = galleryDestinations[nextIndex];
+    const previousIndex = (index - 1 + galleryDestinations.length) % galleryDestinations.length;
+    const nextIndex = (index + 1) % galleryDestinations.length;
+    const previousCollection = galleryDestinations[previousIndex];
+    const nextCollection = galleryDestinations[nextIndex];
 
-	const backLink = {
+    const backLink = {
 		path: '/gallery/destinations',
 		name: 'Destinations',
 	};
 
-	return (
+    return (
 		<main className="grow pb-20">
 			<div className="relative max-w-5xl mx-auto">
 				<span className="absolute top-28 px-6 ml-1 -translate-y-1 text-sm font-medium text-brand">

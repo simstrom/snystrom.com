@@ -8,7 +8,7 @@ export function useIsMounted() {
 	return isMounted;
 }
 
-export function useMousePosition(ref: React.RefObject<HTMLDivElement>) {
+export function useMousePosition(ref: React.RefObject<HTMLDivElement | null>) {
 	const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
 	useEffect(() => {

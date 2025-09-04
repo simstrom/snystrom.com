@@ -16,7 +16,7 @@ export default function Timeline({ items, title, body, children }: Props) {
 	const { isSmall } = useScreenBreakpoints();
 	const containerRef = useRef<HTMLDivElement>(null);
 	const lineRef = useRef<HTMLDivElement>(null);
-	const [circleRefs, setCircleRefs] = useState<React.RefObject<HTMLDivElement>[]>([]);
+	const [circleRefs, setCircleRefs] = useState<React.RefObject<HTMLDivElement | null>[]>([]);
 	const [touchedCircles, setTouchedCircles] = useState<boolean[]>(
 		Array(timelineData.length).fill(false)
 	);
@@ -87,7 +87,7 @@ export default function Timeline({ items, title, body, children }: Props) {
 type TimelineItemProps = {
 	item: { date: string; title: string; text: string; icon: React.ReactNode };
 	isIndexUneven: boolean;
-	circleRef: React.RefObject<HTMLDivElement>;
+	circleRef: React.RefObject<HTMLDivElement | null>;
 	isTouched: boolean;
 	isSmallScreen: boolean;
 };

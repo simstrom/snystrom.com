@@ -15,18 +15,18 @@ export default function Code({ children, ...props }: CodeProps) {
 	const childrenArray = React.Children.toArray(children);
 
 	// Determine text to be copied
-	const pre = findOrRemoveChildByType<React.ReactElement>(childrenArray, 'pre', 'find');
+	const pre = findOrRemoveChildByType<React.ReactElement<any>>(childrenArray, 'pre', 'find');
 	const codeText = extractText(pre?.props.children);
 
 	// Check for existing title
-	const figcaption = findOrRemoveChildByType<React.ReactElement>(
+	const figcaption = findOrRemoveChildByType<React.ReactElement<any>>(
 		childrenArray,
 		'figcaption',
 		'find'
 	);
 
 	// Filter out existing title to replace with common one
-	const filteredChildren = findOrRemoveChildByType<React.ReactElement>(
+	const filteredChildren = findOrRemoveChildByType<React.ReactElement<any>>(
 		childrenArray,
 		'figcaption',
 		'extract'

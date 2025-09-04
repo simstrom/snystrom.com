@@ -18,6 +18,8 @@ import { cn } from '@/lib/utils';
 import { Metadata } from 'next';
 import Image from 'next/image';
 
+import type { JSX } from "react";
+
 type ActivityStats = {
 	count: number;
 	duration: number;
@@ -172,28 +174,28 @@ export default async function Activities() {
 	);
 
 	return (
-		<main className="grow max-w-5xl mx-auto pt-32 sm:pt-40">
-			<div className="absolute -translate-y-6 text-sm font-medium text-foreground-secondary">
+        <main className="grow max-w-5xl mx-auto pt-32 sm:pt-40">
+            <div className="absolute -translate-y-6 text-sm font-medium text-foreground-secondary">
 				Health
 			</div>
-			<PageHeader
+            <PageHeader
 				title="Activities Dashboard"
 				content="A summary of the technologies, design, workflow and decisions behind my website."
 				className="mb-4 md:mb-8"
 			/>
-			<div className="my-8 pt-4 sm:pt-12 grid lg:grid-cols-12 gap-5 mb-10 animate-slide">
+            <div className="my-8 pt-4 sm:pt-12 grid lg:grid-cols-12 gap-5 mb-10 animate-slide">
 				<div className="lg:col-span-8">
 					<div className="flex flex-col sm:flex-row gap-4">
 						{featuredActivities.map((activity, idx) => (
 							// <ActivityCard key={activity.id} activity={activity} /> // Create ActivityCard component + fetch image
-							<div
+							(<div
 								key={`featured-${idx}`}
 								className={cn(
 									'relative w-full min-h-96 overflow-hidden rounded-xl p-4 flex flex-col border',
 									idx > 0 && 'hidden sm:block'
 								)}
 							>
-								<div className="mt-auto ml-auto flex flex-col gap-2 text-foreground-inverse dark:text-foreground z-10">
+                                <div className="mt-auto ml-auto flex flex-col gap-2 text-foreground-inverse dark:text-foreground z-10">
 									<div className="flex items-center gap-x-3 text-right text-foreground-inverse/70 dark:text-foreground-secondary">
 										{getActivityIcon(activity.type as ActivityTypes)}
 										{formatRelativeDate(activity.start_date)}
@@ -224,8 +226,8 @@ export default async function Activities() {
 										)}
 									</div>
 								</div>
-								<div className="absolute inset-0 bg-linear-to-l from-black to-40% to-transparent" />
-								<Image
+                                <div className="absolute inset-0 bg-linear-to-l from-black to-40% to-transparent" />
+                                <Image
 									priority
 									height={390}
 									width={660}
@@ -233,7 +235,7 @@ export default async function Activities() {
 									alt=""
 									className="absolute inset-0 w-full h-full object-cover object-center -z-10"
 								/>
-							</div>
+                            </div>)
 						))}
 					</div>
 					<div className="mt-5 w-full">
@@ -385,6 +387,6 @@ export default async function Activities() {
 					</div>
 				</aside>
 			</div>
-		</main>
-	);
+        </main>
+    );
 }

@@ -10,20 +10,21 @@ import { SITE_URL } from '@/lib/constants';
 import { slugify } from '@/lib/utils';
 
 interface Props {
-	params: {
+	params: Promise<{
 		slug: string;
-	};
+	}>;
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata | undefined> {
-	const tag = getAllTags().find((t) => slugify(t) == params.slug);
-	if (!tag) return;
+export async function generateMetadata(props: Props): Promise<Metadata | undefined> {
+    const params = await props.params;
+    const tag = getAllTags().find((t) => slugify(t) == params.slug);
+    if (!tag) return;
 
-	const title = `${tag} Blog`;
-	const description = `Articles and tutorials about ${tag}`;
-	const url = `${SITE_URL}/blog/tag/${params.slug}`;
+    const title = `${tag} Blog`;
+    const description = `Articles and tutorials about ${tag}`;
+    const url = `${SITE_URL}/blog/tag/${params.slug}`;
 
-	return {
+    return {
 		title,
 		description,
 		openGraph: {
@@ -38,13 +39,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata | un
 	};
 }
 
-export default async function TagPage({ params }: Props) {
-	const tag = getAllTags().find((t) => slugify(t) == params.slug);
-	if (!tag) return notFound();
+export default async function TagPage(props: Props) {
+    const params = await props.params;
+    const tag = getAllTags().find((t) => slugify(t) == params.slug);
+    if (!tag) return notFound();
 
-	const posts = getPostsByTag(tag);
+    const posts = getPostsByTag(tag);
 
-	return (
+    return (
 		<main className="">
 			<div className="relative max-w-5xl mx-auto">
 				<Button

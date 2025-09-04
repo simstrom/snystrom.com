@@ -19,24 +19,25 @@ import { formatDate } from '@/lib/utils';
 import avatar from '@/public/images/avatar.avif';
 
 interface Props {
-	params: {
+	params: Promise<{
 		slug: string;
-	};
+	}>;
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata | undefined> {
-	const post = getBlogPost(params.slug);
-	if (!post) {
+export async function generateMetadata(props: Props): Promise<Metadata | undefined> {
+    const params = await props.params;
+    const post = getBlogPost(params.slug);
+    if (!post) {
 		return;
 	}
 
-	const { title, summary, date } = post;
-	const seoImage = createOgImage({
+    const { title, summary, date } = post;
+    const seoImage = createOgImage({
 		title: post.title,
 		meta: [formatDate(post.date, true, true), ...post.tags.slice(0, 3)].join(' · '),
 	});
 
-	return {
+    return {
 		title,
 		description: summary,
 		alternates: {
@@ -74,13 +75,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata | un
 	};
 }
 
-export default async function BlogPost({ params }: Props) {
-	const post = getBlogPost(params.slug);
-	if (!post) return notFound();
+export default async function BlogPost(props: Props) {
+    const params = await props.params;
+    const post = getBlogPost(params.slug);
+    if (!post) return notFound();
 
-	const related = getRelatedPosts(post);
+    const related = getRelatedPosts(post);
 
-	const jsonLd = {
+    const jsonLd = {
 		'@type': 'Article',
 		'@context': 'https://schema.org',
 		mainEntityOfPage: {
@@ -104,7 +106,7 @@ export default async function BlogPost({ params }: Props) {
 		isAccessibleForFree: true,
 	};
 
-	return (
+    return (
 		<>
 			<Script
 				type="application/ld+json"
