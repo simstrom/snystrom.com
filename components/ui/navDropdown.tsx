@@ -25,13 +25,13 @@ export const NavDropdown = ({ isOpen, onClose, children, className }: NavDropdow
 			transition={{ duration: 0.2, ease: 'easeInOut' }}
 			aria-expanded={isOpen}
 			aria-label="Dropdown"
-			className="overflow-hidden w-full border-t"
+			className="overflow-hidden w-full border-t shadow-sm"
 			onMouseLeave={onClose}
 		>
 			<div
 				ref={focusRef}
 				tabIndex={-1}
-				className="w-full max-w-5xl mx-auto grid grid-cols-12 auto-rows-fr border-x outline-none"
+				className="w-full max-w-[1088px] mx-auto grid grid-cols-12 auto-rows-fr border-x outline-none bg-background/95 divide-x divide-y"
 			>
 				{children}
 			</div>
@@ -44,7 +44,7 @@ interface NavDropDownCard {
 	description?: string;
 	imageSrc: string;
 	imageAlt?: string;
-	href: string;
+	href?: string;
 	onClose: () => void;
 	colSpan?: number;
 	rowSpan?: number;
@@ -65,13 +65,13 @@ export const NavDropDownCard = ({
 	className,
 }: NavDropDownCard) => {
 	const Component = href ? Link : 'div';
+
 	return (
 		<Component
-			href={href}
+			{...(!href ? {} : { href })}
 			onClick={!href ? undefined : onClose}
 			className={cn(
-				'relative flex flex-col overflow-hidden text-sm font-medium text-foreground p-4 border',
-				'bg-background-secondary',
+				'relative flex flex-col overflow-hidden text-sm font-medium text-foreground p-4',
 				'dark:hover:bg-[#181a20] transition-colors group',
 				className
 			)}
@@ -94,7 +94,7 @@ export const NavDropDownCard = ({
 					</span>
 				)}
 				{!href && (
-					<div className="absolute top-0 right-0 text-xs rounded-bl-md px-4 py-1 bg-foreground/10 z-10 w-fit">
+					<div className="absolute top-0 right-0 text-xs rounded-bl-md px-4 py-1 backdrop-blur-lg border-l border-b border-brand/20 text-brand/80 bg-brand/10 z-10 w-fit">
 						Upcoming
 					</div>
 				)}

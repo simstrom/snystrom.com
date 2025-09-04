@@ -676,7 +676,7 @@ export function IconDoodleCompass(props: React.SVGAttributes<any>) {
 			width="800px"
 			height="800px"
 			viewBox="0 0 48 48"
-			enable-background="new 0 0 48 48"
+			enableBackground="new 0 0 48 48"
 			xmlns="http://www.w3.org/2000/svg"
 			{...props}
 		>

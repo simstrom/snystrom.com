@@ -45,19 +45,19 @@ export default function Navbar({ className }: { className?: string }) {
 				onMouseLeave={() => setOpenDropdown(null)}
 				aria-label="Main navigation"
 				className={cn(
-					'flex flex-col justify-center items-center w-full mx-auto max-h-screen bg-background border-b'
+					'flex flex-col justify-center items-center w-full mx-auto max-h-screen border-b backdrop-blur-xl'
 				)}
 			>
-				<div className="flex items-center justify-between w-full mx-auto border-x">
+				<div className="flex items-center justify-between w-full mx-auto border-x bg-background/90">
 					<div className="border-r transition-colors w-13 h-13 p-1.5 items-center justify-center">
-						<div className="relative">
+						<Link href="/" className="relative">
 							<Image
 								src={Avatar}
 								alt={''}
 								className="aspect-square rounded-full ring-1 ring-border"
 							/>
 							<div className="absolute inset-0 z-10 rounded-full bg-brand/60 mix-blend-multiply transition-colors hover:bg-brand/50" />
-						</div>
+						</Link>
 					</div>
 
 					<div className="flex w-fit h-full justify-center items-center border-x text-foreground-secondary text-sm font-medium tracking-normal">
@@ -121,7 +121,7 @@ export default function Navbar({ className }: { className?: string }) {
 				<AnimatePresence>
 					{openDropdown === 'explore' && (
 						<NavDropdown isOpen={openDropdown === 'explore'} onClose={() => setOpenDropdown(null)}>
-							{dropdownLinks.map((item) => (
+							{dropdownLinks.map((item, idx) => (
 								<NavDropDownCard
 									key={item.name}
 									title={item.name}
@@ -132,6 +132,11 @@ export default function Navbar({ className }: { className?: string }) {
 									rowSpan={item.rowSpan}
 									translateX={item.translateX}
 									onClose={() => setOpenDropdown(null)}
+									className={cn(
+										idx === 0
+											? 'border-b-0'
+											: (idx !== 0 || idx !== dropdownLinks.length - 1) && 'border-r-0'
+									)}
 								/>
 							))}
 						</NavDropdown>
