@@ -63,7 +63,7 @@ export default function Projects() {
 								<p className="text-foreground-secondary">{project.description}</p>
 							</div>
 							{idx !== projectsData.length - 1 && (
-								<div className="mt-auto h-12 border-t bg-[linear-gradient(-45deg,var(--color-border)_12.50%,transparent_12.50%,transparent_50%,var(--color-border)_50%,var(--color-border)_62.50%,transparent_62.50%,transparent_100%)] bg-size-[6px_6px]"></div>
+								<div className="mt-auto h-8 border-t bg-[linear-gradient(-45deg,var(--color-border)_12.50%,transparent_12.50%,transparent_50%,var(--color-border)_50%,var(--color-border)_62.50%,transparent_62.50%,transparent_100%)] bg-size-[6px_6px]"></div>
 							)}
 						</Link>
 					))}

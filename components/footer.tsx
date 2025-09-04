@@ -8,10 +8,8 @@ import Copy from './ui/copy';
 export default function Footer() {
 	return (
 		<>
-			<div className="max-w-5xl mx-auto border-x border-t w-full h-32 bg-[linear-gradient(-45deg,var(--color-border)_12.50%,transparent_12.50%,transparent_50%,var(--color-border)_50%,var(--color-border)_62.50%,transparent_62.50%,transparent_100%)] bg-size-[6px_6px]" />
-
 			<footer className="border-y">
-				<div className="w-full max-w-5xl mx-auto flex flex-col border-x bg-background-secondary">
+				<div className="w-full max-w-[1088px] mx-auto flex flex-col border-x">
 					<div className="relative grid grid-cols-2">
 						<div className="flex items-center sm:items-start justify-center sm:flex-col gap-1 p-6">
 							<Link href="/" className="w-fit hover:rotate-180 transition-transform duration-500">
@@ -30,7 +28,7 @@ export default function Footer() {
 							>
 								{SITE_CONTACT}
 							</Copy>
-							<p className="absolute -bottom-10 left-1/2 -translate-x-1/2 text-xs text-foreground-secondary/80">
+							<p className="absolute z-10 -bottom-8 left-1/2 -translate-x-1/2 text-xs text-foreground-tertiary">
 								© 2025 Simon Nyström. All rights reserved.
 							</p>
 						</div>
@@ -83,7 +81,7 @@ export default function Footer() {
 					</div>
 				</div>
 			</footer>
-			<div className="h-10 mb-5 max-w-5xl mx-auto w-full border-x text-center text-xs text-foreground-secondary" />
+			<div className="max-w-[1088px] opacity-75 mx-auto border-x w-full h-10 bg-[linear-gradient(-45deg,var(--color-border)_12.50%,transparent_12.50%,transparent_50%,var(--color-border)_50%,var(--color-border)_62.50%,transparent_62.50%,transparent_100%)] bg-size-[5px_5px]" />
 		</>
 	);
 }

@@ -139,22 +139,24 @@ export default async function BlogPost({ params }: Props) {
 					)} */}
 
 					<header className="relative">
+						{/* LINES */}
 						<span className="absolute top-6 z-10 h-px w-full bg-zinc-500/75 mix-blend-screen md:top-12" />
 						<span className="absolute bottom-6 z-10 h-px w-full bg-zinc-500/75 mix-blend-screen md:bottom-12" />
 						<span className="absolute left-6 z-10 h-full w-px bg-zinc-500/75 mix-blend-screen md:left-12" />
 						<span className="absolute right-6 z-10 h-full w-px bg-zinc-500/75 mix-blend-screen md:right-12" />
 
-						<span className="absolute left-[44.5px] top-12 z-20 hidden h-px w-2 bg-white md:block" />
-						<span className="absolute left-[48px] top-[44.5px] z-20 hidden h-2 w-px bg-white md:block" />
+						{/* CROSSES */}
+						<span className="absolute left-[40.5px] top-12 z-20 hidden h-px w-4 bg-white md:block" />
+						<span className="absolute left-[48px] top-[40.5px] z-20 hidden h-4 w-px bg-white md:block" />
 
-						<span className="absolute right-[44.5px] top-12 z-20 hidden h-px w-2 bg-white md:block" />
-						<span className="absolute right-[48px] top-[44.5px] z-20 hidden h-2 w-px bg-white md:block" />
+						<span className="absolute right-[40.5px] top-12 z-20 hidden h-px w-4 bg-white md:block" />
+						<span className="absolute right-[48px] top-[40.5px] z-20 hidden h-4 w-px bg-white md:block" />
 
-						<span className="absolute bottom-12 left-[44.5px] z-20 hidden h-px w-2 bg-white md:block" />
-						<span className="absolute bottom-[44.5px] left-[48px] z-20 hidden h-2 w-px bg-white md:block" />
+						<span className="absolute bottom-12 left-[40.5px] z-20 hidden h-px w-4 bg-white md:block" />
+						<span className="absolute bottom-[40.5px] left-[48px] z-20 hidden h-4 w-px bg-white md:block" />
 
-						<span className="absolute bottom-12 right-[44.5px] z-20 hidden h-px w-2 bg-white md:block" />
-						<span className="absolute bottom-[44.5px] right-[48px] z-20 hidden h-2 w-px bg-white md:block" />
+						<span className="absolute bottom-12 right-[40.5px] z-20 hidden h-px w-4 bg-white md:block" />
+						<span className="absolute bottom-[40.5px] right-[48px] z-20 hidden h-4 w-px bg-white md:block" />
 
 						<div
 							className="h-[520px] flex flex-col gap-2 justify-end p-16 rounded-3xl bg-no-repeat bg-cover bg-center ring-1 ring-border text-background dark:text-foreground"

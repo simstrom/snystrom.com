@@ -92,14 +92,18 @@ export default function RootLayout({
 		<html lang="en" suppressHydrationWarning>
 			<body
 				className={cn(
-					'min-h-screen max-w-7xl mx-auto container flex flex-col',
+					'min-h-screen max-w-[1088px] mx-auto flex flex-col',
 					fontSans.variable,
 					fontMono.variable
 				)}
 			>
 				<Providers>
 					<Navbar />
-					{children}
+					<div className="grid flex-1 grid-cols-1 lg:grid-cols-[32px_1fr_32px]">
+						<div className="hidden lg:block w-full border-l opacity-75 bg-[linear-gradient(-45deg,var(--color-border)_12.50%,transparent_12.50%,transparent_50%,var(--color-border)_50%,var(--color-border)_62.50%,transparent_62.50%,transparent_100%)] bg-size-[5px_5px]" />
+						{children}
+						<div className="hidden lg:block w-full border-r opacity-75 bg-[linear-gradient(-45deg,var(--color-border)_12.50%,transparent_12.50%,transparent_50%,var(--color-border)_50%,var(--color-border)_62.50%,transparent_62.50%,transparent_100%)] bg-size-[5px_5px]" />
+					</div>
 					<Footer />
 				</Providers>
 				{/* <Script

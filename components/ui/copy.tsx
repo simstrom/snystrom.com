@@ -33,7 +33,7 @@ export default function Copy({
 		},
 		grow: {
 			mainElement: copied ? 'scale-0' : '',
-			hiddenElement: copied ? 'scale-1' : 'scale-0',
+			hiddenElement: copied ? 'scale-100' : 'scale-0',
 		},
 	};
 

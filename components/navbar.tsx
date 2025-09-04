@@ -8,7 +8,9 @@ import { usePathname } from 'next/navigation';
 import { SITE_CONTACT } from '@/lib/constants';
 import { dropdownLinks, navItems } from '@/lib/data';
 import { useScrollLock } from '@/lib/hooks';
+import Avatar from '@/public/images/avatar.avif';
 import { AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 import { useState } from 'react';
 import Copy from './ui/copy';
 import MobileMenu from './ui/mobileMenu';
@@ -31,7 +33,7 @@ export default function Navbar({ className }: { className?: string }) {
 		<header
 			role="menubar"
 			className={cn(
-				'navbar flex flex-col w-full max-h-screen items-center fixed top-0 left-0 z-99 shadow-lg',
+				'navbar max-w-[1088px] w-full mx-auto flex flex-col max-h-screen items-center fixed top-0 z-99',
 				// 'before:absolute before:top-0 before:h-screen before:w-full before:bg-transparent before:invisible before-backdrop-blur-none before:transition-all',
 				// (openMobile || openDropdown) &&
 				// 	'before:visible before:backdrop-blur-md before:bg-foreground/10 dark:before:bg-background/50',
@@ -43,11 +45,22 @@ export default function Navbar({ className }: { className?: string }) {
 				onMouseLeave={() => setOpenDropdown(null)}
 				aria-label="Main navigation"
 				className={cn(
-					'flex flex-col justify-center items-center w-full mx-auto max-h-screen border-b border-foreground dark:border-foreground/50 bg-background'
+					'flex flex-col justify-center items-center w-full mx-auto max-h-screen bg-background border-b'
 				)}
 			>
-				<div className="flex items-center w-full max-w-5xl border-x">
-					<div className="flex w-full h-full items-center text-foreground-secondary text-sm font-medium tracking-normal">
+				<div className="flex items-center justify-between w-full mx-auto border-x">
+					<div className="border-r transition-colors w-13 h-13 p-1.5 items-center justify-center">
+						<div className="relative">
+							<Image
+								src={Avatar}
+								alt={''}
+								className="aspect-square rounded-full ring-1 ring-border"
+							/>
+							<div className="absolute inset-0 z-10 rounded-full bg-brand/60 mix-blend-multiply transition-colors hover:bg-brand/50" />
+						</div>
+					</div>
+
+					<div className="flex w-fit h-full justify-center items-center border-x text-foreground-secondary text-sm font-medium tracking-normal">
 						{navItems.navigationLinks.map((navItem, idx) => (
 							<Link
 								key={`navItem-${idx}`}
@@ -65,7 +78,7 @@ export default function Navbar({ className }: { className?: string }) {
 							onMouseOver={() => setOpenDropdown('explore')}
 							onClick={() => handleDropdownToggle('explore')}
 							className={cn(
-								'hidden sm:block text-center w-24 relative px-4 py-4 border-r hover:text-background hover:bg-foreground transition-colors',
+								'hidden sm:block text-center w-24 relative px-4 py-4 hover:text-background hover:bg-foreground transition-colors',
 								openDropdown === 'explore' && 'text-background bg-foreground'
 							)}
 						>
@@ -73,14 +86,15 @@ export default function Navbar({ className }: { className?: string }) {
 						</button>
 					</div>
 
-					<div className="ml-auto flex" onMouseOver={() => setOpenDropdown(null)}>
+					<div className="flex" onMouseOver={() => setOpenDropdown(null)}>
 						<Tooltip message="Theme">
-							<ThemeSwitcher className="px-4 py-4 h-[52px] hover:text-background hover:bg-foreground transition-colors border-x" />
+							<ThemeSwitcher className="px-4 py-4 h-[52px] border-l hover:text-background hover:bg-foreground transition-colors" />
 						</Tooltip>
+
 						<Tooltip message="Contact" className="hidden sm:flex">
 							<Modal
 								trigger={<IconAt width={18} height={18} />}
-								triggerClassName="px-4 py-4 h-[52px] hover:text-background hover:bg-foreground transition-colors"
+								triggerClassName="px-4 py-4 h-[52px] border-l hover:text-background hover:bg-foreground transition-colors"
 								className="flex flex-col items-center gap-2"
 							>
 								{ContactModalContent}
