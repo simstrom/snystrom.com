@@ -170,7 +170,7 @@ figure[data-rehype-pretty-code-figure] {
 	@apply rounded-xl border shadow-xs;
 }
 figure[data-rehype-pretty-code-figure] pre {
-	@apply overflow-x-auto py-4 px-0 text-sm leading-[26px] tracking-normal rounded-b-xl rounded-t-none bg-background-secondary 
+	@apply font-mono overflow-x-auto py-4 px-0 text-sm leading-[26px] tracking-normal rounded-b-xl rounded-t-none bg-background-secondary 
 		[&::-webkit-scrollbar]:h-2
 		[&::-webkit-scrollbar-thumb]:rounded-xl
 		[&::-webkit-scrollbar-thumb]:bg-gray-300
@@ -220,7 +220,7 @@ code[data-line-numbers] [data-line]::before {
 
 /* Inline code */
 .prose :not(pre) > code {
-	@apply px-1.5 mx-0.5 py-0.5 rounded-md bg-background-secondary text-[13px] font-[450] border shadow-xs text-brand;
+	@apply font-mono px-1.5 mx-0.5 py-0.5 rounded-md bg-background-secondary text-sm font-[450] border shadow-xs text-brand;
 }
 .prose :not(pre) > code::after,
 .prose :not(pre) > code::before {

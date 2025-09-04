@@ -29,29 +29,35 @@ export default function Colophon() {
 
 			<Section className="pt-10 overflow-y-visible space-y-8 pb-0" borderOrigin={null}>
 				<div className="flex gap-2 px-6">
-					<p className="flex-1 text-lg xs:text-2xl tracking-normal xs:tracking-wide font-medium">
+					<p className="flex-1 text-lg sm:text-2xl tracking-normal sm:tracking-wide font-medium">
 						ABCDEFGHIJKLMNOPQRSTUVWXYZ
 						<br />
 						abcdefghijklmnopqrstuvwxyz
 						<br />
 						1234567890
 					</p>
-					<div className="text-pretty self-end justify-self-end text-sm font-medium text-foreground-secondary text-right">
+					<CustomLink
+						href="https://www.fontshare.com/?q=General%20Sans"
+						className="text-pretty self-end justify-self-end text-sm font-medium text-foreground-secondary text-right"
+					>
 						General Sans
-					</div>
+					</CustomLink>
 				</div>
 
 				<div className="flex gap-2 px-6 font-mono">
-					<p className="flex-1 text-lg xs:text-2xl tracking-normal xs:tracking-wide font-medium">
+					<p className="flex-1 text-lg sm:text-2xl tracking-normal sm:tracking-wide font-medium">
 						ABCDEFGHIJKLMNOPQRSTUVWXYZ
 						<br />
 						abcdefghijklmnopqrstuvwxyz
 						<br />
 						1234567890
 					</p>
-					<div className="text-pretty text-foreground-secondary self-end justify-self-end text-sm font-medium text-right">
-						Jetbrains Mono
-					</div>
+					<CustomLink
+						href={'https://vercel.com/font'}
+						className="text-pretty text-foreground-secondary self-end justify-self-end text-sm font-medium text-right"
+					>
+						Geist Mono
+					</CustomLink>
 				</div>
 
 				{/* COLOR SWATCHES */}

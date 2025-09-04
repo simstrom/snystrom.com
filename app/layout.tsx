@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils';
 import '@/styles/globals.css';
 import type { Metadata, Viewport } from 'next';
-import { JetBrains_Mono as FontMono } from 'next/font/google';
+import { Geist_Mono as FontMono } from 'next/font/google';
 import localFont from 'next/font/local';
 
 import Footer from '@/components/footer';
