@@ -44,7 +44,7 @@ const Modal = ({
 								transition={{ duration: 0.2, ease: 'easeOut' }}
 								aria-hidden={!isOpen}
 								className={cn(
-									'fixed inset-0 z-99 flex items-center justify-center bg-background-secondary/80 backdrop-blur-md'
+									'fixed inset-0 z-99 flex items-center justify-center bg-background/80 backdrop-blur-md'
 								)}
 								onClick={() => setIsOpen(false)}
 							>
@@ -57,22 +57,24 @@ const Modal = ({
 									tabIndex={-1}
 									aria-expanded={isOpen}
 									className={cn(
-										'fixed z-100 w-full border-y max-w-lg flex items-center justify-center',
+										'fixed z-100 w-full max-w-lg grid flex-1 grid-cols-1 lg:grid-cols-[32px_1fr_32px] bg-background-secondary border',
 										'outline-none',
 										containerClassName
 									)}
 									onClick={(e) => e.stopPropagation()}
 								>
+									<div className="hidden lg:block w-full opacity-75 bg-[linear-gradient(-45deg,var(--color-border)_12.50%,transparent_12.50%,transparent_50%,var(--color-border)_50%,var(--color-border)_62.50%,transparent_62.50%,transparent_100%)] bg-size-[5px_5px]" />
+
 									<div
 										className={cn(
-											'relative max-w-md w-[95%] origin-center grid',
-											'bg-background-secondary outline-none',
+											'relative w-full origin-center grid border-x',
+											'outline-none',
 											containerClassName
 										)}
 										onClick={(e) => e.stopPropagation()}
 									>
 										<button
-											className="absolute top-4 right-4 p-2 rounded-xl bg-background transition-colors hover:bg-foreground hover:text-background"
+											className="absolute top-4 right-4 p-2 rounded-xl transition-colors hover:bg-foreground hover:text-background"
 											type="button"
 											aria-label="Close modal"
 											onClick={() => setIsOpen(false)}
@@ -81,7 +83,8 @@ const Modal = ({
 										</button>
 										<ModalContent className={className}>{children}</ModalContent>
 									</div>
-									<div className="absolute h-[360px] border-x max-w-md w-[95%] origin-center pointer-events-none"></div>
+
+									<div className="hidden lg:block w-full opacity-75 bg-[linear-gradient(-45deg,var(--color-border)_12.50%,transparent_12.50%,transparent_50%,var(--color-border)_50%,var(--color-border)_62.50%,transparent_62.50%,transparent_100%)] bg-size-[5px_5px]" />
 								</motion.div>
 							</motion.div>
 						)}

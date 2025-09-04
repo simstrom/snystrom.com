@@ -187,7 +187,7 @@ export const ContactModalContent = (
 					href={link.path}
 					target="_blank"
 					rel="noopener noreferrer"
-					className="bg-background hover:text-background hover:bg-foreground rounded-xl transition-colors p-2"
+					className="hover:text-background hover:bg-foreground rounded-xl transition-colors p-2"
 				>
 					{link.icon}
 				</a>
