@@ -59,6 +59,11 @@ export default function Projects() {
 									/>
 								</div>
 							</div>
+							<div className="px-6 py-2 border-t flex items-center gap-x-4 text-sm text-foreground-tertiary">
+								{project.stack.slice(0, 5).map((item) => (
+									<span key={item}>{item}</span>
+								))}
+							</div>
 							<div className="px-6 pt-4 pb-6 border-t">
 								<p className="text-foreground-secondary">{project.description}</p>
 							</div>
