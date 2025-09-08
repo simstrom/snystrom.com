@@ -9,7 +9,6 @@ import { useEffect, useRef, useState } from 'react';
 import Button from '../ui/button';
 import GalleryItem from '../ui/galleryItem';
 import Lightbox from '../ui/lightbox';
-import { Section } from '../ui/section';
 import Skeleton from '../ui/skeleton';
 import TabList from '../ui/tabList';
 
@@ -103,7 +102,7 @@ export default function GalleryView({ content, cursor, backLink, category }: Pro
 
 	return (
 		<>
-			<Section className="w-full pb-0 block border-x-0" borderOrigin={'y'}>
+			<div className="border-b">
 				{backLink ? (
 					<Button
 						variant="link"
@@ -121,12 +120,9 @@ export default function GalleryView({ content, cursor, backLink, category }: Pro
 						selected={GalleryRoutes.findIndex((route) => route.path === currentPath)}
 					/>
 				)}
-			</Section>
+			</div>
 
-			<section
-				ref={animationRef}
-				className="pt-2 px-2 grid sm:grid-cols-2 md:grid-cols-3 gap-2 h-fit"
-			>
+			<div ref={animationRef} className="pt-2 px-2 grid sm:grid-cols-2 md:grid-cols-3 gap-2 h-fit">
 				{columns.map((col, colIndex: number) => {
 					return (
 						<motion.div
@@ -155,7 +151,7 @@ export default function GalleryView({ content, cursor, backLink, category }: Pro
 						</motion.div>
 					);
 				})}
-			</section>
+			</div>
 			<div ref={viewRef} />
 
 			{!category && (

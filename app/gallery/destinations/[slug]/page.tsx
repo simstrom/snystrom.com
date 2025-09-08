@@ -1,6 +1,7 @@
 import GalleryView from '@/components/sections/galleryView';
 import Button from '@/components/ui/button';
 import PageHeader from '@/components/ui/pageHeader';
+import { Section } from '@/components/ui/section';
 import { SITE_URL } from '@/lib/constants';
 import { galleryDestinations } from '@/lib/data';
 import { getImagesInCollection } from '@/lib/gallery';
@@ -72,9 +73,11 @@ export default async function GalleryDestination(props: Props) {
 				/>
 			</div>
 
-			<GalleryView content={images} cursor={next_cursor} backLink={backLink} />
+			<Section borderOrigin={'t'} className="pb-10">
+				<GalleryView content={images} cursor={next_cursor} backLink={backLink} />
+			</Section>
 
-			<div className="pt-10 pb-20 border-x divide-x w-full flex justify-between items-center text-sm font-medium select-none">
+			<div className="pb-20 divide-x w-full flex justify-between items-center text-sm font-medium select-none">
 				<Button
 					variant="link"
 					backLink

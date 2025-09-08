@@ -114,7 +114,7 @@ export default async function BlogPost(props: Props) {
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 			/>
 			<main className="grow w-full mx-auto">
-				<div className="max-w-5xl mx-auto pt-24 border-x">
+				<div className="max-w-5xl mx-auto pt-24">
 					<Button
 						variant="link"
 						href="/blog"
@@ -268,7 +268,7 @@ export default async function BlogPost(props: Props) {
 				</Section> */}
 
 				{related.length > 0 && (
-					<Section className="pb-0" borderOrigin={null}>
+					<Section borderOrigin={null}>
 						<h3 className="text-3xl p-6 border-b bg-background-secondary">More reading</h3>
 						<PostListRelated posts={related.slice(0, 3)} />
 					</Section>

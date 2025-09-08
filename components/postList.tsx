@@ -35,7 +35,7 @@ export default function PostList({ posts, query }: PostListProps) {
 				stiffness: 300,
 				damping: 30,
 			}}
-			className="opacity-list flex flex-col divide-y"
+			className="opacity-list flex flex-col divide-y border-b"
 		>
 			<AnimatePresence>
 				{posts.map((post) => (

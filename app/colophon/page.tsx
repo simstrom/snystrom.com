@@ -27,7 +27,7 @@ export default function Colophon() {
 				))}
 			</Section>
 
-			<Section className="pt-10 overflow-y-visible space-y-8 pb-0" borderOrigin={null}>
+			<Section className="pt-10 overflow-y-visible space-y-8" borderOrigin={null}>
 				<div className="flex gap-2 px-6">
 					<p className="flex-1 text-lg sm:text-2xl tracking-normal sm:tracking-wide font-medium">
 						ABCDEFGHIJKLMNOPQRSTUVWXYZ
@@ -61,7 +61,7 @@ export default function Colophon() {
 				</div>
 
 				{/* COLOR SWATCHES */}
-				<div className="sm:grid grid-cols-12 pt-2">
+				<div className="sm:grid grid-cols-12 pt-2 border-b">
 					{swatches.map((swatch, i) => (
 						<div
 							key={swatch.key}

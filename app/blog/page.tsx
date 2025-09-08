@@ -64,7 +64,7 @@ export default async function Blog() {
 				</Section>
 			)}
 
-			<Section borderOrigin={featured?.image && featured.imageMeta ? null : 't'} className="pb-0">
+			<Section borderOrigin={featured?.image && featured.imageMeta ? null : 't'}>
 				<PostViewSearch posts={posts} />
 			</Section>
 		</main>

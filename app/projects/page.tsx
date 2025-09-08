@@ -21,8 +21,8 @@ export default function Projects() {
 				className="pt-32 pb-12 bg-background-secondary"
 			/>
 
-			<Section borderOrigin={'t'} className="pb-0">
-				<div className="grid grid-cols-1 md:grid-cols-2">
+			<Section borderOrigin={'t'}>
+				<div className="grid grid-cols-1 md:grid-cols-2 border-b">
 					{projectsData.map((project, idx) => (
 						<Link
 							key={project.title}
@@ -63,7 +63,7 @@ export default function Projects() {
 								<p className="text-foreground-secondary">{project.description}</p>
 							</div>
 							{idx !== projectsData.length - 1 && (
-								<div className="mt-auto h-8 border-t bg-[linear-gradient(-45deg,var(--color-border)_12.50%,transparent_12.50%,transparent_50%,var(--color-border)_50%,var(--color-border)_62.50%,transparent_62.50%,transparent_100%)] bg-size-[6px_6px]"></div>
+								<div className="mt-auto h-8 border-t bg-[linear-gradient(-45deg,var(--color-border)_12.50%,transparent_12.50%,transparent_50%,var(--color-border)_50%,var(--color-border)_62.50%,transparent_62.50%,transparent_100%)] bg-size-[5px_5px]"></div>
 							)}
 						</Link>
 					))}

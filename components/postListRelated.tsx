@@ -9,7 +9,7 @@ type PostListRelatedProps = {
 
 export default function PostListRelated({ posts }: PostListRelatedProps) {
 	return (
-		<ul className="divide-y">
+		<ul className="divide-y border-b">
 			{posts.map((post) => (
 				<Link
 					key={post.slug}

@@ -151,9 +151,8 @@ export default async function Home() {
 				linkHref="/gallery"
 				showHeader
 				borderOrigin={null}
-				className="pb-0"
 			>
-				<div className="flex md:flex-row flex-col">
+				<div className="flex md:flex-row flex-col border-b">
 					{galleryCollections.map((collection, idx) => (
 						<Link
 							href={`/gallery/destinations/${slugify(collection.title)}`}

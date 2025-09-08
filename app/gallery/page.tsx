@@ -1,5 +1,6 @@
 import GalleryView from '@/components/sections/galleryView';
 import PageHeader from '@/components/ui/pageHeader';
+import { Section } from '@/components/ui/section';
 import { getAllImages } from '@/lib/gallery';
 import { Metadata } from 'next';
 
@@ -19,9 +20,9 @@ export default async function Gallery() {
 				className="pt-32 pb-12 bg-background-secondary"
 			/>
 
-			<div className="pb-20 border-x">
+			<Section borderOrigin={'t'}>
 				<GalleryView content={images} cursor={next_cursor} />
-			</div>
+			</Section>
 		</main>
 	);
 }

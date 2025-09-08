@@ -44,8 +44,8 @@ export default function GalleryItem({
 						className="sm:aspect-4/5 w-full object-cover object-center transition-opacity"
 					/>
 					<div className="bg-linear-to-t from-black/70 to-transparent to-20% flex items-end p-4 justify-between absolute w-full top-0 bottom-0 text-background dark:text-foreground transition-all group-hover:bg-black/40">
-						<h3 className="text-2xl font-medium">{collectionTitle}</h3>
-						<div className="rounded-xl border border-transparent group-hover:border-border/20 group-hover:bg-white/20 p-2 transition-colors">
+						<h3 className="text-2xl font-[550]">{collectionTitle}</h3>
+						<div className="rounded-xl border border-transparent group-hover:border-white/20 group-hover:bg-white/20 p-2 transition-colors">
 							<IconArrowRight width={24} height={24} />
 						</div>
 					</div>
