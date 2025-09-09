@@ -35,28 +35,3 @@ export type Navigation = {
 	connectLinks: NavItem[];
 	socialLinks: NavItem[];
 };
-
-export type Activity = {
-	id: number;
-	type: ActivityTypes | string;
-	start_date: Date;
-	name: string;
-	moving_time: number; // in seconds
-	distance: number; // in meters
-	average_speed: number; // in m/s
-	total_photo_count: number;
-	imageUrl?: string;
-};
-
-// Imported from Strava API Docs
-export enum ActivityTypes {
-	Run = 'Run',
-	WeightTraining = 'WeightTraining',
-	Ride = 'Ride',
-	Kayaking = 'Kayaking',
-	Canoeing = 'Canoeing',
-	Hike = 'Hike',
-	NordicSki = 'NordicSki',
-	BackcountrySki = 'BackcountrySki',
-	Workout = 'Workout',
-}

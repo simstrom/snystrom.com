@@ -189,7 +189,7 @@ export default async function BlogPost(props: Props) {
 						</div>
 					</header>
 				</Section>
-				{/* <div className="max-w-5xl mx-auto pt-8 border-x"></div> */}
+
 				<Section className="pt-16 pb-12">
 					<article className="prose max-w-3xl mx-auto">
 						<MDXContent code={post.body} components={MDXComponents} />
@@ -220,52 +220,6 @@ export default async function BlogPost(props: Props) {
 						</div>
 					</article>
 				</Section>
-
-				{/* <Section className="flex-row justify-between items-center pl-6 pb-0 bg-background-secondary">
-					<p className="font-medium text-lg tracking-normal">Like it? Share it</p>
-					<div className="flex items-center text-foreground-secondary">
-						<div className="hover:text-background hover:bg-foreground transition-colors p-4">
-							<IconLinkedin width={28} height={28} />
-						</div>
-						<div className="hover:text-background hover:bg-foreground transition-colors p-4">
-							<IconReact width={28} height={28} />
-						</div>
-						<div className="hover:text-background hover:bg-foreground transition-colors p-4">
-							<IconCheck width={28} height={28} />
-						</div>
-						<div className="hover:text-background hover:bg-foreground transition-colors p-4">
-							<IconGithub width={28} height={28} />
-						</div>
-						<div className="hover:text-background hover:bg-foreground transition-colors p-4">
-							<IconActivity width={28} height={28} />
-						</div>
-					</div>
-				</Section> */}
-
-				{/* <Section className="p-6 pb-8">
-				<div className="prose max-w-3xl mx-auto">
-					<div className="flex items-center gap-x-4">
-						<Image
-							width={64}
-							height={64}
-							src={avatar}
-							alt=""
-							draggable={false}
-							className="rounded-full not-prose border border-border"
-						/>
-						<div className="flex flex-col">
-							<span className="text-sm font-medium text-foreground-secondary">Simon says:</span>
-							<span className="font-medium text-lg">Hey, thanks for reading! 👋</span>
-						</div>
-					</div>
-					<p className="mt-3">
-						If you enjoyed this article, check out some of my other posts below. Have questions,
-						feedback, or just want to connect? Find me on{' '}
-						<CustomLink href={SITE_LINKEDIN_URL}>Github</CustomLink> or drop me a message on{' '}
-						<CustomLink href={SITE_INSTAGRAM_URL}>LinkedIn</CustomLink> and let&apos;s chat.
-					</p>
-				</div>
-				</Section> */}
 
 				{related.length > 0 && (
 					<Section borderOrigin={null}>
