@@ -1,9 +1,10 @@
 import PageHeader from '@/components/layouts/PageHeader';
 import { Section } from '@/components/layouts/Section';
+
 import { projectsData } from '@/data/data';
 import { IconGithub } from '@/data/icons';
-
 import { cn } from '@/lib/utils';
+
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';

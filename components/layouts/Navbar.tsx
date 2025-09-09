@@ -1,12 +1,5 @@
 'use client';
 
-import MobileMenu from '@/components/layouts/MobileMenu';
-import { NavDropdown, NavDropDownCard } from '@/components/layouts/NavDropdown';
-import Copy from '@/components/ui/Copy';
-import Modal from '@/components/ui/Modal';
-import ThemeSwitcher from '@/components/ui/ThemeSwitcher';
-import { Tooltip } from '@/components/ui/Tooltip';
-
 import { SITE_CONTACT } from '@/data/constants';
 import { dropdownLinks, navItems } from '@/data/data';
 import { IconAt, IconCheck, IconCopy, IconEmail, IconMenu } from '@/data/icons';
@@ -19,6 +12,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
+
+import Copy from '../ui/Copy';
+import Modal from '../ui/Modal';
+import ThemeSwitcher from '../ui/ThemeSwitcher';
+import { Tooltip } from '../ui/Tooltip';
+import MobileMenu from './MobileMenu';
+import { NavDropdown, NavDropDownCard } from './NavDropdown';
 
 export default function Navbar({ className }: { className?: string }) {
 	const [openMobile, setOpenMobile] = useState(false);

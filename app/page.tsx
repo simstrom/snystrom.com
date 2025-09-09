@@ -1,6 +1,7 @@
 import { Section } from '@/components/layouts/Section';
 import AnimatedBadge from '@/components/ui/AnimatedBadge';
 import HorizontalScroller from '@/components/ui/HorizontalScroller';
+
 import { SITE_URL } from '@/data/constants';
 import { projectsData } from '@/data/data';
 import { IconArrowRight } from '@/data/icons';
@@ -9,6 +10,7 @@ import { getCoverImages } from '@/lib/gallery';
 import { Project } from '@/lib/types';
 import { cn, formatDate, slugify } from '@/lib/utils';
 import HeroImage from '@/public/images/hero.jpg';
+
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';

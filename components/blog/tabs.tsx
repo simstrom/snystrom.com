@@ -1,7 +1,7 @@
 'use client';
 
-import TabList from '@/components/ui/TabList';
 import React, { useState } from 'react';
+import TabList from '../ui/TabList';
 
 interface TabListProps {
 	labels: string[];

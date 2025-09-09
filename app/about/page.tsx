@@ -3,9 +3,11 @@ import PageHeader from '@/components/layouts/PageHeader';
 import { Section } from '@/components/layouts/Section';
 import HorizontalImages from '@/components/ui/HorizontalImages';
 import HorizontalScroller from '@/components/ui/HorizontalScroller';
+
 import { IconDoodleArrow, IconDoodleCompass, IconDoodleMountains } from '@/data/icons';
 import { getImagesByTag } from '@/lib/gallery';
 import HeroImage from '@/public/images/hero.jpg';
+
 import { Metadata } from 'next';
 import Image from 'next/image';
 

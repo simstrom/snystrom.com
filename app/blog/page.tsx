@@ -1,11 +1,12 @@
-import { Metadata } from 'next';
-
 import PageHeader from '@/components/layouts/PageHeader';
 import { Section } from '@/components/layouts/Section';
 import PostViewSearch from '@/components/sections/PostViewSearch';
+
 import { IconArrowRight, IconCalendar, IconHourglass } from '@/data/icons';
 import { getBlogPosts } from '@/lib/blog';
 import { formatDate } from '@/lib/utils';
+
+import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 

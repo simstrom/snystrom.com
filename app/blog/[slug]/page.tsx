@@ -1,9 +1,3 @@
-import { MDXContent } from '@content-collections/mdx/react';
-import { Metadata } from 'next';
-import Image from 'next/image';
-import { notFound } from 'next/navigation';
-import Script from 'next/script';
-
 import CustomLink from '@/components/blog/Link';
 import MDXComponents from '@/components/blog/MDXcomponents';
 import Tag from '@/components/blog/Tag';
@@ -11,12 +5,19 @@ import PageHeader from '@/components/layouts/PageHeader';
 import { Section } from '@/components/layouts/Section';
 import Button from '@/components/ui/Button';
 import PostListRelated from '@/components/ui/PostListRelated';
+
 import { SITE_INSTAGRAM_URL, SITE_LINKEDIN_URL, SITE_NAME, SITE_URL } from '@/data/constants';
 import { IconCalendar, IconHourglass } from '@/data/icons';
 import { getBlogPost, getBlogPosts, getRelatedPosts } from '@/lib/blog';
 import { createOgImage } from '@/lib/createOgImage';
 import { formatDate } from '@/lib/utils';
 import avatar from '@/public/images/avatar.avif';
+
+import { MDXContent } from '@content-collections/mdx/react';
+import { Metadata } from 'next';
+import Image from 'next/image';
+import { notFound } from 'next/navigation';
+import Script from 'next/script';
 
 interface Props {
 	params: Promise<{

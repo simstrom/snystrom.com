@@ -1,13 +1,14 @@
-import { Metadata } from 'next';
-import { notFound } from 'next/navigation';
-
 import PageHeader from '@/components/layouts/PageHeader';
 import { Section } from '@/components/layouts/Section';
 import Button from '@/components/ui/Button';
 import PostList from '@/components/ui/PostList';
+
 import { SITE_URL } from '@/data/constants';
 import { getAllTags, getPostsByTag } from '@/lib/blog';
 import { slugify } from '@/lib/utils';
+
+import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 
 interface Props {
 	params: Promise<{

@@ -1,8 +1,7 @@
-import Copy from '@/components/ui/Copy';
-import { Tooltip } from '@/components/ui/Tooltip';
-
 import { IconCheck, IconCopy } from '@/data/icons';
 import React from 'react';
+import Copy from '../ui/Copy';
+import { Tooltip } from '../ui/Tooltip';
 
 interface CodeProps {
 	children: React.ReactNode;

@@ -7,6 +7,7 @@ import { SITE_URL } from '@/data/constants';
 import { galleryDestinations } from '@/data/data';
 import { getImagesInCollection } from '@/lib/gallery';
 import { slugify } from '@/lib/utils';
+
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';

@@ -2,10 +2,12 @@ import PageHeader from '@/components/layouts/PageHeader';
 import { Section } from '@/components/layouts/Section';
 import GalleryView from '@/components/sections/GalleryView';
 import Button from '@/components/ui/Button';
+
 import { SITE_URL } from '@/data/constants';
 import { galleryCollections } from '@/data/data';
 import { getImagesInCollection } from '@/lib/gallery';
 import { slugify } from '@/lib/utils';
+
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
