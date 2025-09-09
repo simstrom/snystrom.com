@@ -1,6 +1,6 @@
-import GalleryView from '@/components/sections/galleryView';
-import PageHeader from '@/components/ui/pageHeader';
-import { Section } from '@/components/ui/section';
+import PageHeader from '@/components/layouts/PageHeader';
+import { Section } from '@/components/layouts/Section';
+import GalleryView from '@/components/sections/GalleryView';
 import { getCoverImages } from '@/lib/gallery';
 import { Metadata } from 'next';
 

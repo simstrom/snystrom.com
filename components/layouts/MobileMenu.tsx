@@ -1,9 +1,10 @@
-import { navItems } from '@/lib/data';
+import { ContactModalContent } from '@/components/layouts/Navbar';
+import MenuItem from '@/components/ui/MenuItem';
+import Modal from '@/components/ui/Modal';
+
+import { navItems } from '@/data/data';
 import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
-import { ContactModalContent } from '../navbar';
-import MenuItem from './menuItem';
-import Modal from './modal';
 
 interface MobileMenuProps {
 	className?: string;

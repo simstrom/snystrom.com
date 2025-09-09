@@ -4,7 +4,7 @@ import { v2 as cloudinary } from 'cloudinary';
 import lqip from 'lqip-modern';
 import { getCldImageUrl } from 'next-cloudinary';
 import { cache } from 'react';
-import { galleryCollections, galleryDestinations } from './data';
+import { galleryCollections, galleryDestinations } from '../data/data';
 import { GalleryCollection, GalleryImage } from './types';
 
 async function createBlurDataURL(src: string): Promise<string> {

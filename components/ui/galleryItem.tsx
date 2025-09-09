@@ -1,6 +1,7 @@
-import { IconArrowRight } from '@/lib/icons';
+import { IconArrowRight } from '@/data/icons';
 import { GalleryImage } from '@/lib/types';
 import { cn, slugify } from '@/lib/utils';
+
 import { CldImage } from 'next-cloudinary';
 import Link from 'next/link';
 

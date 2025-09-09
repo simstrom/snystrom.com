@@ -1,10 +1,10 @@
 import { Metadata } from 'next';
 
-import PostViewSearch from '@/components/sections/postViewSearch';
-import PageHeader from '@/components/ui/pageHeader';
-import { Section } from '@/components/ui/section';
+import PageHeader from '@/components/layouts/PageHeader';
+import { Section } from '@/components/layouts/Section';
+import PostViewSearch from '@/components/sections/PostViewSearch';
+import { IconArrowRight, IconCalendar, IconHourglass } from '@/data/icons';
 import { getBlogPosts } from '@/lib/blog';
-import { IconArrowRight, IconCalendar, IconHourglass } from '@/lib/icons';
 import { formatDate } from '@/lib/utils';
 import Image from 'next/image';
 import Link from 'next/link';

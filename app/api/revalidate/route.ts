@@ -1,4 +1,4 @@
-import { galleryCollections, galleryDestinations } from '@/lib/data';
+import { galleryCollections, galleryDestinations } from '@/data/data';
 import { slugify } from '@/lib/utils';
 import { revalidatePath } from 'next/cache';
 import { NextRequest, NextResponse } from 'next/server';

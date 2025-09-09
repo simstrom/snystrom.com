@@ -1,23 +1,24 @@
 'use client';
 
-import { IconAt, IconCheck, IconCopy, IconEmail, IconMenu } from '@/lib/icons';
-import { cn } from '@/lib/utils';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import MobileMenu from '@/components/layouts/MobileMenu';
+import { NavDropdown, NavDropDownCard } from '@/components/layouts/NavDropdown';
+import Copy from '@/components/ui/Copy';
+import Modal from '@/components/ui/Modal';
+import ThemeSwitcher from '@/components/ui/ThemeSwitcher';
+import { Tooltip } from '@/components/ui/Tooltip';
 
-import { SITE_CONTACT } from '@/lib/constants';
-import { dropdownLinks, navItems } from '@/lib/data';
+import { SITE_CONTACT } from '@/data/constants';
+import { dropdownLinks, navItems } from '@/data/data';
+import { IconAt, IconCheck, IconCopy, IconEmail, IconMenu } from '@/data/icons';
 import { useScrollLock } from '@/lib/hooks';
+import { cn } from '@/lib/utils';
 import Avatar from '@/public/images/avatar.avif';
+
 import { AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useState } from 'react';
-import Copy from './ui/copy';
-import MobileMenu from './ui/mobileMenu';
-import Modal from './ui/modal';
-import { NavDropdown, NavDropDownCard } from './ui/navDropdown';
-import ThemeSwitcher from './ui/themeSwitcher';
-import { Tooltip } from './ui/tooltip';
 
 export default function Navbar({ className }: { className?: string }) {
 	const [openMobile, setOpenMobile] = useState(false);

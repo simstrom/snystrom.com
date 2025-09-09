@@ -1,4 +1,4 @@
-import Button from '@/components/ui/button';
+import Button from '@/components/ui/Button';
 import { Metadata } from 'next';
 import Image from 'next/image';
 import moonlight from '../public/images/moonlight.svg';

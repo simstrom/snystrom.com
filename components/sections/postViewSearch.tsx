@@ -1,13 +1,13 @@
 'use client';
 
-import { IconRSS, IconSearch } from '@/lib/icons';
-import { useMemo, useState } from 'react';
-import { useDebounce } from 'use-debounce';
-
 import { Post } from '@/.content-collections/generated';
+import PostList from '@/components/ui/PostList';
+import { IconRSS, IconSearch } from '@/data/icons';
+
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import PostList from '../postList';
+import { useMemo, useState } from 'react';
+import { useDebounce } from 'use-debounce';
 
 type PostViewSearchProps = {
 	posts: Post[];

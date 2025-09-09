@@ -2,6 +2,7 @@
 
 import { GalleryImage } from '@/lib/types';
 import { cn } from '@/lib/utils';
+
 import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
 import { CldImage } from 'next-cloudinary';
 import { useRef } from 'react';

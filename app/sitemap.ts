@@ -1,7 +1,7 @@
 import { allPosts } from '@/.content-collections/generated';
+import { SITE_URL } from '@/data/constants';
+import { galleryCollections, galleryDestinations } from '@/data/data';
 import { getAllTags } from '@/lib/blog';
-import { SITE_URL } from '@/lib/constants';
-import { galleryCollections, galleryDestinations } from '@/lib/data';
 import { slugify } from '@/lib/utils';
 import type { MetadataRoute } from 'next';
 

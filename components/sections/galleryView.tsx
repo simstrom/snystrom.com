@@ -1,16 +1,17 @@
 'use client';
 
+import Button from '@/components/ui/Button';
+import GalleryItem from '@/components/ui/GalleryItem';
+import Lightbox from '@/components/ui/Lightbox';
+import Skeleton from '@/components/ui/Skeleton';
+import TabList from '@/components/ui/TabList';
+
 import { getAllImages } from '@/lib/gallery';
 import { useScreenBreakpoints } from '@/lib/hooks';
 import { GalleryCollection, GalleryImage } from '@/lib/types';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
-import Button from '../ui/button';
-import GalleryItem from '../ui/galleryItem';
-import Lightbox from '../ui/lightbox';
-import Skeleton from '../ui/skeleton';
-import TabList from '../ui/tabList';
 
 type Props = {
 	content: (GalleryImage | GalleryCollection)[];

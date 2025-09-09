@@ -1,12 +1,12 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
-import PostList from '@/components/postList';
-import Button from '@/components/ui/button';
-import PageHeader from '@/components/ui/pageHeader';
-import { Section } from '@/components/ui/section';
+import PageHeader from '@/components/layouts/PageHeader';
+import { Section } from '@/components/layouts/Section';
+import Button from '@/components/ui/Button';
+import PostList from '@/components/ui/PostList';
+import { SITE_URL } from '@/data/constants';
 import { getAllTags, getPostsByTag } from '@/lib/blog';
-import { SITE_URL } from '@/lib/constants';
 import { slugify } from '@/lib/utils';
 
 interface Props {

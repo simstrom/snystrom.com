@@ -1,7 +1,7 @@
 export const dynamic = 'force-static';
 
+import { SITE_DESCRIPTION, SITE_NAME, SITE_TITLE, SITE_URL } from '@/data/constants';
 import { getBlogPosts } from '@/lib/blog';
-import { SITE_DESCRIPTION, SITE_NAME, SITE_TITLE, SITE_URL } from '@/lib/constants';
 import { Feed } from 'feed';
 
 const feed = new Feed({

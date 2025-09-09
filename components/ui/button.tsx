@@ -1,5 +1,6 @@
-import { IconArrowRight } from '@/lib/icons';
+import { IconArrowRight } from '@/data/icons';
 import { cn } from '@/lib/utils';
+
 import { Url } from 'next/dist/shared/lib/router/router';
 import Link from 'next/link';
 import { HTMLAttributes } from 'react';

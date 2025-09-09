@@ -1,10 +1,11 @@
+import Callout from '@/components/blog/Callout';
+import Code from '@/components/blog/Code';
+import CustomImage from '@/components/blog/Image';
+import CustomLink from '@/components/blog/Link';
+import Tabs from '@/components/blog/Tabs';
+
 import { slugify } from '@/lib/utils';
 import React from 'react';
-import Callout from './callout';
-import Code from './code';
-import CustomImage from './image';
-import CustomLink from './link';
-import Tabs from './tabs';
 
 // Creates anchor links for all headings
 const createHeading = (level: number) => {

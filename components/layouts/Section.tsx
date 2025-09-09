@@ -1,5 +1,6 @@
-import { IconArrowRight } from '@/lib/icons';
+import { IconArrowRight } from '@/data/icons';
 import { cn } from '@/lib/utils';
+
 import Link from 'next/link';
 import React, { ReactNode } from 'react';
 

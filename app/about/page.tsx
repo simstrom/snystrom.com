@@ -1,10 +1,10 @@
-import CustomLink from '@/components/blog/link';
-import HorizontalImages from '@/components/ui/horizontalImages';
-import HorizontalScroller from '@/components/ui/horizontalScroller';
-import PageHeader from '@/components/ui/pageHeader';
-import { Section } from '@/components/ui/section';
+import CustomLink from '@/components/blog/Link';
+import PageHeader from '@/components/layouts/PageHeader';
+import { Section } from '@/components/layouts/Section';
+import HorizontalImages from '@/components/ui/HorizontalImages';
+import HorizontalScroller from '@/components/ui/HorizontalScroller';
+import { IconDoodleArrow, IconDoodleCompass, IconDoodleMountains } from '@/data/icons';
 import { getImagesByTag } from '@/lib/gallery';
-import { IconDoodleArrow, IconDoodleCompass, IconDoodleMountains } from '@/lib/icons';
 import HeroImage from '@/public/images/hero.jpg';
 import { Metadata } from 'next';
 import Image from 'next/image';
@@ -109,12 +109,6 @@ export default async function About() {
 					<CustomLink href="/gallery">photography</CustomLink>
 				</p>
 			</Section>
-
-			{/* <Timeline items={timelineData} title="Milestones" body="A timeline of key events">
-				<Button href="/cv.pdf" isExternalLink size="small" className="mt-8 text-xs tracking-wide">
-					Contact
-				</Button>
-			</Timeline> */}
 		</main>
 	);
 }

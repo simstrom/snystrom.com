@@ -1,4 +1,4 @@
-import { IconMoon, IconSun } from '@/lib/icons';
+import { IconMoon, IconSun } from '@/data/icons';
 import { cn } from '@/lib/utils';
 import { useTheme } from 'next-themes';
 

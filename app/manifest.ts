@@ -1,4 +1,4 @@
-import { SITE_DESCRIPTION, SITE_KEYWORDS, SITE_NAME, SITE_TITLE } from '@/lib/constants';
+import { SITE_DESCRIPTION, SITE_KEYWORDS, SITE_NAME, SITE_TITLE } from '@/data/constants';
 import type { MetadataRoute } from 'next';
 
 export default function manifest(): MetadataRoute.Manifest {

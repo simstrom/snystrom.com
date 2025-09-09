@@ -1,4 +1,4 @@
-import { IconCheck, IconInfo, IconMessage, IconWarning } from '@/lib/icons';
+import { IconCheck, IconInfo, IconMessage, IconWarning } from '@/data/icons';
 import { cn } from '@/lib/utils';
 
 type CalloutVariants = 'info' | 'success' | 'thought' | 'warning';

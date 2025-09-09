@@ -24,7 +24,6 @@
 		"reading-time": "^1.5.0",
 		"rehype-pretty-code": "^0.14.0",
 		"sharp": "^0.33.5",
-		"shiki": "^1.22.2",
 		"tailwind-merge": "^2.2.2",
 		"use-debounce": "^10.0.0"
 	},

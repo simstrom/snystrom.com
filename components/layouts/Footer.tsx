@@ -1,9 +1,10 @@
-import { SITE_CONTACT } from '@/lib/constants';
-import { navItems } from '@/lib/data';
-import { IconAt, IconEmail, IconGlobe, Logo } from '@/lib/icons';
+import CustomLink from '@/components/blog/Link';
+import Copy from '@/components/ui/Copy';
+
+import { SITE_CONTACT } from '@/data/constants';
+import { navItems } from '@/data/data';
+import { IconAt, IconEmail, IconGlobe, Logo } from '@/data/icons';
 import Link from 'next/link';
-import CustomLink from './blog/link';
-import Copy from './ui/copy';
 
 export default function Footer() {
 	return (

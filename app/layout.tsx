@@ -1,12 +1,12 @@
+import Footer from '@/components/layouts/Footer';
+import Navbar from '@/components/layouts/Navbar';
+import { SITE_DESCRIPTION, SITE_KEYWORDS, SITE_NAME, SITE_TITLE, SITE_URL } from '@/data/constants';
+
 import { cn } from '@/lib/utils';
 import '@/styles/globals.css';
 import type { Metadata, Viewport } from 'next';
 import { Geist_Mono as FontMono } from 'next/font/google';
 import localFont from 'next/font/local';
-
-import Footer from '@/components/footer';
-import Navbar from '@/components/navbar';
-import { SITE_DESCRIPTION, SITE_KEYWORDS, SITE_NAME, SITE_TITLE, SITE_URL } from '@/lib/constants';
 import Providers from './providers';
 
 const fontSans = localFont({

@@ -1,9 +1,9 @@
-import GalleryView from '@/components/sections/galleryView';
-import Button from '@/components/ui/button';
-import PageHeader from '@/components/ui/pageHeader';
-import { Section } from '@/components/ui/section';
-import { SITE_URL } from '@/lib/constants';
-import { galleryCollections } from '@/lib/data';
+import PageHeader from '@/components/layouts/PageHeader';
+import { Section } from '@/components/layouts/Section';
+import GalleryView from '@/components/sections/GalleryView';
+import Button from '@/components/ui/Button';
+import { SITE_URL } from '@/data/constants';
+import { galleryCollections } from '@/data/data';
 import { getImagesInCollection } from '@/lib/gallery';
 import { slugify } from '@/lib/utils';
 import { Metadata } from 'next';

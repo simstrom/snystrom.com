@@ -1,6 +1,6 @@
+import { GalleryCollection, Navigation, Project } from '../lib/types';
 import { SITE_CONTACT, SITE_GITHUB_URL, SITE_INSTAGRAM_URL, SITE_LINKEDIN_URL } from './constants';
 import { IconEmail, IconGithub, IconInstagram, IconLinkedin, IconPerson, IconRSS } from './icons';
-import { GalleryCollection, Navigation, Project } from './types';
 
 //
 // NAVIGAITON

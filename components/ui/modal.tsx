@@ -1,7 +1,7 @@
 'use client';
 
+import { IconX } from '@/data/icons';
 import { useFocusTrap, useIsMounted, useScrollLock } from '@/lib/hooks';
-import { IconX } from '@/lib/icons';
 import { cn } from '@/lib/utils';
 import { AnimatePresence, motion } from 'framer-motion';
 import React, { useState } from 'react';

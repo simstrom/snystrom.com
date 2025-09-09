@@ -1,6 +1,6 @@
-import CustomLink from '@/components/blog/link';
-import PageHeader from '@/components/ui/pageHeader';
-import { Section } from '@/components/ui/section';
+import CustomLink from '@/components/blog/Link';
+import PageHeader from '@/components/layouts/PageHeader';
+import { Section } from '@/components/layouts/Section';
 import { cn } from '@/lib/utils';
 import { Metadata } from 'next';
 

@@ -1,11 +1,11 @@
-import AnimatedBadge from '@/components/ui/animatedBadge';
-import HorizontalScroller from '@/components/ui/horizontalScroller';
-import { Section } from '@/components/ui/section';
+import { Section } from '@/components/layouts/Section';
+import AnimatedBadge from '@/components/ui/AnimatedBadge';
+import HorizontalScroller from '@/components/ui/HorizontalScroller';
+import { SITE_URL } from '@/data/constants';
+import { projectsData } from '@/data/data';
+import { IconArrowRight } from '@/data/icons';
 import { getAllTags, getBlogPosts, getLatestBlogPost } from '@/lib/blog';
-import { SITE_URL } from '@/lib/constants';
-import { projectsData } from '@/lib/data';
 import { getCoverImages } from '@/lib/gallery';
-import { IconArrowRight } from '@/lib/icons';
 import { Project } from '@/lib/types';
 import { cn, formatDate, slugify } from '@/lib/utils';
 import HeroImage from '@/public/images/hero.jpg';

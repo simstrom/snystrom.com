@@ -4,17 +4,17 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import Script from 'next/script';
 
-import CustomLink from '@/components/blog/link';
+import CustomLink from '@/components/blog/Link';
 import MDXComponents from '@/components/blog/MDXcomponents';
-import Tag from '@/components/blog/tag';
-import PostListRelated from '@/components/postListRelated';
-import Button from '@/components/ui/button';
-import PageHeader from '@/components/ui/pageHeader';
-import { Section } from '@/components/ui/section';
+import Tag from '@/components/blog/Tag';
+import PageHeader from '@/components/layouts/PageHeader';
+import { Section } from '@/components/layouts/Section';
+import Button from '@/components/ui/Button';
+import PostListRelated from '@/components/ui/PostListRelated';
+import { SITE_INSTAGRAM_URL, SITE_LINKEDIN_URL, SITE_NAME, SITE_URL } from '@/data/constants';
+import { IconCalendar, IconHourglass } from '@/data/icons';
 import { getBlogPost, getBlogPosts, getRelatedPosts } from '@/lib/blog';
-import { SITE_INSTAGRAM_URL, SITE_LINKEDIN_URL, SITE_NAME, SITE_URL } from '@/lib/constants';
 import { createOgImage } from '@/lib/createOgImage';
-import { IconCalendar, IconHourglass } from '@/lib/icons';
 import { formatDate } from '@/lib/utils';
 import avatar from '@/public/images/avatar.avif';
 
