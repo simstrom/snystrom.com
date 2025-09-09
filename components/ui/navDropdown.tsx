@@ -58,21 +58,20 @@ export const NavDropDownCard = ({
 	imageSrc,
 	imageAlt = '',
 	onClose,
-	href,
+	href = '',
 	colSpan = 4,
 	rowSpan = 1,
 	translateX = 0,
 	className,
 }: NavDropDownCard) => {
-	const Component = href ? Link : 'div';
-
 	return (
-		<Component
-			{...(!href ? {} : { href })}
+		<Link
+			href={href || ''}
 			onClick={!href ? undefined : onClose}
 			className={cn(
 				'relative flex flex-col overflow-hidden text-sm font-medium text-foreground p-4',
 				'dark:hover:bg-[#181a20] transition-colors group',
+				!href && 'cursor-default',
 				className
 			)}
 			style={{
@@ -126,7 +125,7 @@ export const NavDropDownCard = ({
 						'linear-gradient(to bottom right, hsl(var(--background-secondary)) 0%, rgba(0,0,0,0) 200%)',
 				}}
 			/>
-		</Component>
+		</Link>
 	);
 };
 

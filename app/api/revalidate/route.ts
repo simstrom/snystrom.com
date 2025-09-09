@@ -13,7 +13,7 @@ function getGallerySlugs() {
 	return [...destinationSlugs, ...collectionSlugs];
 }
 
-export async function POST(req: NextRequest, res: NextResponse) {
+export async function POST(req: NextRequest) {
 	// Check for secret to confirm this is a valid request
 	if ((req.nextUrl.searchParams.get('secret') as string) !== process.env.REVALIDATION_SECRET) {
 		return NextResponse.json({ error: 'Invalid token', status: 401 });
