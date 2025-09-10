@@ -1,13 +1,25 @@
 import Footer from '@/components/layouts/Footer';
 import Navbar from '@/components/layouts/Navbar';
 
-import { SITE_DESCRIPTION, SITE_KEYWORDS, SITE_NAME, SITE_TITLE, SITE_URL } from '@/data/constants';
+import {
+	SITE_CONTACT,
+	SITE_DESCRIPTION,
+	SITE_GITHUB_URL,
+	SITE_INSTAGRAM_URL,
+	SITE_KEYWORDS,
+	SITE_LINKEDIN_URL,
+	SITE_NAME,
+	SITE_TITLE,
+	SITE_URL,
+} from '@/data/constants';
 import { cn } from '@/lib/utils';
 import '@/styles/globals.css';
 
 import type { Metadata, Viewport } from 'next';
 import { Geist_Mono as FontMono } from 'next/font/google';
 import localFont from 'next/font/local';
+import Script from 'next/script';
+import { Person, WithContext } from 'schema-dts';
 import Providers from './providers';
 
 const fontSans = localFont({
@@ -89,8 +101,26 @@ export default function RootLayout({
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
+	const jsonLd: WithContext<Person> = {
+		'@type': 'Person',
+		'@context': 'https://schema.org',
+		name: SITE_NAME,
+		description: SITE_DESCRIPTION,
+		email: SITE_CONTACT,
+		url: SITE_URL,
+		image: `${SITE_URL}/images/avatar.jpg`,
+		sameAs: [SITE_GITHUB_URL, SITE_LINKEDIN_URL, SITE_INSTAGRAM_URL],
+		jobTitle: 'Software Developer & Photographer',
+	};
+
 	return (
 		<html lang="en" suppressHydrationWarning>
+			<Script
+				type="application/ld+json"
+				id="global_jsonLd"
+				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+			/>
+
 			<body
 				className={cn(
 					'min-h-screen max-w-[1088px] mx-auto flex flex-col',

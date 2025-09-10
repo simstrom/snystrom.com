@@ -4,12 +4,23 @@ import { Section } from '@/components/layouts/Section';
 import HorizontalImages from '@/components/ui/HorizontalImages';
 import HorizontalScroller from '@/components/ui/HorizontalScroller';
 
+import {
+	SITE_CONTACT,
+	SITE_DESCRIPTION,
+	SITE_GITHUB_URL,
+	SITE_INSTAGRAM_URL,
+	SITE_LINKEDIN_URL,
+	SITE_NAME,
+	SITE_URL,
+} from '@/data/constants';
 import { IconDoodleArrow, IconDoodleCompass, IconDoodleMountains } from '@/data/icons';
 import { getImagesByTag } from '@/lib/gallery';
 import HeroImage from '@/public/images/hero.jpg';
 
 import { Metadata } from 'next';
 import Image from 'next/image';
+import Script from 'next/script';
+import { AboutPage, WithContext } from 'schema-dts';
 
 export const metadata: Metadata = {
 	title: 'About Me',
@@ -38,14 +49,31 @@ export default async function About() {
 	const result = await getImagesByTag('About');
 	const scrollerImages = [...result, ...result, ...result];
 
+	const jsonLd: WithContext<AboutPage> = {
+		'@type': 'AboutPage',
+		'@context': 'https://schema.org',
+		url: SITE_URL,
+		mainEntity: {
+			'@type': 'Person',
+			name: SITE_NAME,
+			description: SITE_DESCRIPTION,
+			email: SITE_CONTACT,
+			url: SITE_URL,
+			image: `${SITE_URL}/images/avatar.jpg`,
+			sameAs: [SITE_GITHUB_URL, SITE_LINKEDIN_URL, SITE_INSTAGRAM_URL],
+			jobTitle: 'Software Developer & Photographer',
+		},
+	};
+
 	return (
 		<main className="grow">
-			{/* <PageHeader title="About Me" className="pt-32 pb-12 bg-background-secondary" /> */}
+			<Script
+				type="application/ld+json"
+				id="about_jsonLd"
+				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+			/>
 
 			<div className="relative max-w-5xl mx-auto">
-				{/* <span className="absolute top-28 px-6 ml-1 -translate-y-1 text-sm font-medium text-brand">
-					Bio
-				</span> */}
 				<PageHeader title="About Me" className="pt-32 pb-12 bg-background-secondary" />
 			</div>
 

@@ -3,9 +3,10 @@ import { Section } from '@/components/layouts/Section';
 import GalleryView from '@/components/sections/GalleryView';
 import { SITE_NAME, SITE_URL } from '@/data/constants';
 import { getCoverImages } from '@/lib/gallery';
+import { slugify } from '@/lib/utils';
 import { Metadata } from 'next';
 import Script from 'next/script';
-import { ImageGallery, WithContext } from 'schema-dts';
+import { CollectionPage, WithContext } from 'schema-dts';
 
 const title = 'Collections - Photo Gallery';
 const description =
@@ -59,18 +60,22 @@ export default async function Collections() {
 		(collection) => collection.cover != null
 	);
 
-	const jsonLd: WithContext<ImageGallery> = {
-		'@type': 'ImageGallery',
+	const jsonLd: WithContext<CollectionPage> = {
+		'@type': 'CollectionPage',
 		'@context': 'https://schema.org',
-		name: 'Simon Nyström Photography - Collections',
+		name: `${SITE_NAME} Photography - Collections`,
 		description,
 		url: `${SITE_URL}/gallery/collections`,
-		author: {
-			'@type': 'Person',
-			name: SITE_NAME,
-			url: SITE_URL,
+		mainEntity: {
+			'@type': 'ItemList',
+			itemListElement: collections.map((collection) => ({
+				'@type': 'ImageGallery',
+				name: collection.title,
+				description: collection.description,
+				url: `${SITE_URL}/gallery/collections/${slugify(collection.title)}`,
+				image: collection.cover!.src,
+			})),
 		},
-		image: collections.slice(0, 3).map((collection) => collection.cover!.src),
 	};
 
 	return (

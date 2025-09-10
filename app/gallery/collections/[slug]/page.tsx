@@ -86,7 +86,7 @@ export default async function GalleryCollection(props: Props) {
 	const jsonLd: WithContext<ImageGallery> = {
 		'@type': 'ImageGallery',
 		'@context': 'https://schema.org',
-		name: `Simon Nyström Photography - ${collection.title}`,
+		name: `${SITE_NAME} Photography - ${collection.title}`,
 		description: collection.description,
 		url: `${SITE_URL}/gallery/collections/${slugify(collection.title)}`,
 		author: {

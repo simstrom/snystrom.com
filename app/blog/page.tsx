@@ -1,6 +1,7 @@
 import PageHeader from '@/components/layouts/PageHeader';
 import { Section } from '@/components/layouts/Section';
 import PostViewSearch from '@/components/sections/PostViewSearch';
+import { SITE_NAME, SITE_URL } from '@/data/constants';
 
 import { IconArrowRight, IconCalendar, IconHourglass } from '@/data/icons';
 import { getBlogPosts } from '@/lib/blog';
@@ -9,6 +10,8 @@ import { formatDate } from '@/lib/utils';
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
+import Script from 'next/script';
+import { Blog as BlogLeaf, WithContext } from 'schema-dts';
 
 export const metadata: Metadata = {
 	title: 'Blog',
@@ -20,8 +23,33 @@ export default async function Blog() {
 	const posts = getBlogPosts();
 	const featured = posts.find((p) => p.image !== undefined && p.imageMeta !== null);
 
+	const jsonLd: WithContext<BlogLeaf> = {
+		'@type': 'Blog',
+		'@context': 'https://schema.org',
+		name: `${SITE_NAME} Blog`,
+		description: metadata.description || '',
+		url: `${SITE_URL}/blog`,
+		publisher: {
+			'@type': 'Person',
+			name: SITE_NAME,
+			url: SITE_URL,
+		},
+		hasPart: posts.slice(0, 5).map((post) => ({
+			'@type': 'BlogPosting',
+			headline: post.title,
+			description: post.summary,
+			url: `${SITE_URL}/blog/${post.slug}`,
+		})),
+	};
+
 	return (
 		<main className="grow">
+			<Script
+				type="application/ld+json"
+				id="blog_jsonLd"
+				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+			/>
+
 			<PageHeader
 				title="Read My Blog"
 				content="This is where I share my thoughts and experiences on all things code and design."

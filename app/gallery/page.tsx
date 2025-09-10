@@ -57,7 +57,7 @@ export default async function Gallery() {
 	const jsonLd: WithContext<ImageGallery> = {
 		'@type': 'ImageGallery',
 		'@context': 'https://schema.org',
-		name: 'Simon Nyström Photography',
+		name: `${SITE_NAME} Photography`,
 		description,
 		url: `${SITE_URL}/gallery`,
 		author: {

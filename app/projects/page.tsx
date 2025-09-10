@@ -1,5 +1,6 @@
 import PageHeader from '@/components/layouts/PageHeader';
 import { Section } from '@/components/layouts/Section';
+import { SITE_NAME, SITE_URL } from '@/data/constants';
 
 import { projectsData } from '@/data/data';
 import { IconGithub } from '@/data/icons';
@@ -8,6 +9,8 @@ import { cn } from '@/lib/utils';
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
+import Script from 'next/script';
+import { CollectionPage, WithContext } from 'schema-dts';
 
 export const metadata: Metadata = {
 	title: 'Projects',
@@ -15,8 +18,32 @@ export const metadata: Metadata = {
 };
 
 export default function Projects() {
+	const jsonLd: WithContext<CollectionPage> = {
+		'@type': 'CollectionPage',
+		'@context': 'https://schema.org',
+		name: `${SITE_NAME} Projects`,
+		description: metadata.description || '',
+		url: `${SITE_URL}/projects`,
+		mainEntity: {
+			'@type': 'ItemList',
+			itemListElement: projectsData.map((project) => ({
+				'@type': 'SoftwareSourceCode',
+				name: project.title,
+				description: project.description,
+				codeRepository: project.githubLink,
+				image: `${SITE_URL}/${project.image}`,
+			})),
+		},
+	};
+
 	return (
 		<main className="grow">
+			<Script
+				type="application/ld+json"
+				id="projects_jsonLd"
+				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+			/>
+
 			<PageHeader
 				title="All Projects"
 				content="I love building projects and practice my engineering skills, There's an archive of things that I've worked on."
