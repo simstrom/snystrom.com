@@ -9,7 +9,6 @@ import PostListRelated from '@/components/ui/PostListRelated';
 import { SITE_INSTAGRAM_URL, SITE_LINKEDIN_URL, SITE_NAME, SITE_URL } from '@/data/constants';
 import { IconCalendar, IconHourglass } from '@/data/icons';
 import { getBlogPost, getBlogPosts, getRelatedPosts } from '@/lib/blog';
-import { createOgImage } from '@/lib/createOgImage';
 import { formatDate } from '@/lib/utils';
 import avatar from '@/public/images/avatar.avif';
 
@@ -37,10 +36,6 @@ export async function generateMetadata(
 
 	const { title, summary, date, image } = post;
 	const previousImages = (await parent)?.openGraph?.images || [];
-	const seoImage = createOgImage({
-		title: post.title,
-		meta: [formatDate(post.date, true, true), ...post.tags.slice(0, 3)].join(' · '),
-	});
 
 	return {
 		title,
@@ -57,7 +52,7 @@ export async function generateMetadata(
 			url: `${SITE_URL}/blog/${post.slug}`,
 			images: [
 				{
-					url: `/api/og?title=${encodeURIComponent(title)}&image=${encodeURIComponent(
+					url: `/api/ogBlog?title=${encodeURIComponent(title)}&image=${encodeURIComponent(
 						image || ''
 					)}&tags=${encodeURIComponent(post.tags.slice(0, 3).join(','))}`,
 					width: 1200,
@@ -74,7 +69,7 @@ export async function generateMetadata(
 			card: 'summary_large_image',
 			images: [
 				{
-					url: `/api/og?title=${encodeURIComponent(title)}&image=${encodeURIComponent(
+					url: `/api/ogBlog?title=${encodeURIComponent(title)}&image=${encodeURIComponent(
 						image || ''
 					)}&tags=${encodeURIComponent(post.tags.slice(0, 3).join(','))}`,
 					width: 1200,
@@ -103,13 +98,15 @@ export default async function BlogPost(props: Props) {
 		},
 		headline: post.title,
 		description: post.summary,
+		keywords: post.tags.join(', '),
 		url: `${SITE_URL}/blog/${post.slug}`,
 		datePublished: post.date.toISOString(),
 		dateModified: post.date.toISOString(),
-		image: createOgImage({
-			title: post.title,
-			meta: [formatDate(post.date, true, true), ...post.tags.slice(0, 3)].join(' · '),
-		}),
+		image: `${SITE_URL}/api/ogBlog?title=${encodeURIComponent(
+			post.title
+		)}&image=${encodeURIComponent(post.image || '')}&tags=${encodeURIComponent(
+			post.tags.slice(0, 3).join(',')
+		)}`,
 		author: {
 			'@type': 'Person',
 			name: SITE_NAME,
@@ -138,21 +135,7 @@ export default async function BlogPost(props: Props) {
 				</div>
 
 				<Section className="max-w-5xl mx-auto pb-0" borderOrigin="y">
-					{/* {post.image && post.imageMeta && (
-						<Image
-							priority
-							src={post.image}
-							alt={`${post.title} post image`}
-							width={post.imageMeta.width}
-							height={post.imageMeta.height}
-							placeholder="blur"
-							blurDataURL={post.imageMeta.blur}
-							draggable={false}
-							className="w-full aspect-video object-cover border-b"
-						/>
-					)} */}
-
-					<header className="relative">
+					<div className="relative">
 						{/* LINES */}
 						<span className="absolute top-6 z-10 h-px w-full bg-zinc-500/75 mix-blend-screen md:top-12" />
 						<span className="absolute bottom-6 z-10 h-px w-full bg-zinc-500/75 mix-blend-screen md:bottom-12" />
@@ -202,7 +185,7 @@ export default async function BlogPost(props: Props) {
 								</div>
 							</div>
 						</div>
-					</header>
+					</div>
 				</Section>
 
 				<Section className="pt-16 pb-12">

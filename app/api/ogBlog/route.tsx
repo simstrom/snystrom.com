@@ -38,7 +38,7 @@ export async function GET(request: NextRequest) {
 						<div
 							tw="absolute w-full h-full"
 							style={{
-								backgroundColor: '#2663f2',
+								backgroundColor: '#102e73',
 							}}
 						/>
 					)}
@@ -68,7 +68,7 @@ export async function GET(request: NextRequest) {
 					<div tw="absolute left-20 bottom-16 w-full h-full flex flex-col justify-end">
 						<div tw="uppercase flex items-center">
 							{tagList.map((tag, index) => (
-								<span key={index} tw="px-6 py-2 mr-5 rounded-sm bg-white text-black">
+								<span key={index} tw="px-6 py-2 mr-5 rounded-lg bg-white/10 text-white">
 									# {tag}
 								</span>
 							))}
