@@ -7,7 +7,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
 	title: 'Colophon',
-	description: 'A summary of the technologies, design, workflow and decisions behind snystrom.com.',
+	description: 'A summary of the technologies, design and decisions behind snystrom.com.',
 };
 
 export default function Colophon() {
@@ -16,7 +16,6 @@ export default function Colophon() {
 			<PageHeader
 				title="Colophon"
 				content="A summary of the technologies, design, workflow and decisions behind my website."
-				className="pt-32 pb-12 bg-background-secondary"
 			/>
 
 			<Section className="overflow-y-visible px-6 py-10 space-y-8" borderOrigin="y">
@@ -100,21 +99,22 @@ const content = [
 		heading: 'Overview',
 		text: (
 			<>
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi nobis incidunt non modi,
-				distinctio ducimus rerum quod{' '}
-				<CustomLink href="https://test.com">officiis magni</CustomLink> similique expedita
-				blanditiis culpa et soluta amet atque quaerat totam laborum?
+				This site is all about being fast, accessible, and easy on the eyes. I built and designed it
+				myself, focusing on clean code, smooth layouts, and a user experience that just feels right.
+				Everything is meant to be modern, simple, and a breeze to use.
 			</>
 		),
 	},
 	{
-		heading: 'Typography',
+		heading: 'Technologies',
 		text: (
 			<>
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi nobis incidunt non modi,
-				distinctio ducimus rerum quod{' '}
-				<CustomLink href="https://test.com">officiis magni</CustomLink> similique expedita
-				blanditiis culpa et soluta amet atque quaerat totam laborum?
+				Under the hood, it runs on <CustomLink href="https://nextjs.org">Next.js</CustomLink> (App
+				Router), <CustomLink href="https://react.dev">React</CustomLink>, and{' '}
+				<CustomLink href="https://typescriptlang.org">TypeScript</CustomLink>. Styling is handled
+				with <CustomLink href="https://tailwindcss.com">Tailwind CSS</CustomLink> and a few custom
+				utilities. Most content is static for speed, but there are dynamic bits powered by server
+				components and edge functions.
 			</>
 		),
 	},
@@ -122,10 +122,26 @@ const content = [
 		heading: 'Design & Colors',
 		text: (
 			<>
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi nobis incidunt non modi,
-				distinctio ducimus rerum quod{' '}
-				<CustomLink href="https://test.com">officiis magni</CustomLink> similique expedita
-				blanditiis culpa et soluta amet atque quaerat totam laborum?
+				The vibe I'm going for is minimal, with neutral colors and blue accents to keep things
+				fresh.{' '}
+				<CustomLink href="https://www.fontshare.com/?q=General%20Sans">General Sans</CustomLink> and{' '}
+				<CustomLink href={'https://vercel.com/font'}>Geist Mono</CustomLink> handle the typography,
+				making everything readable and stylish. Layouts are flexible and responsive, with plenty of
+				space and a grid to keep things tidy.
+			</>
+		),
+	},
+	{
+		heading: 'Inspirations',
+		text: (
+			<>
+				I've taken cues from developer portfolios and design systems like{' '}
+				<CustomLink href="https://tailwindcss.com">Tailwind CSS</CustomLink> and{' '}
+				<CustomLink href="https://vercel.com">Vercel</CustomLink>. I also really admire the work of{' '}
+				<CustomLink href="https://braydoncoyer.dev">Braydon Coyer</CustomLink>,{' '}
+				<CustomLink href="https://maximeheckel.com">Maxime Heckel</CustomLink>, and{' '}
+				<CustomLink href="https://olivierlarose.com">Olivier Larose</CustomLink>. Their focus on
+				clarity, usability, and modern style definitely influenced my own approach.
 			</>
 		),
 	},

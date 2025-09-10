@@ -15,8 +15,7 @@ import { Blog as BlogLeaf, WithContext } from 'schema-dts';
 
 export const metadata: Metadata = {
 	title: 'Blog',
-	description:
-		'Discover my thoughts, insights and learnings on software development, design and beyond.',
+	description: 'Insights, tutorials, and ideas from my journey in tech.',
 };
 
 export default async function Blog() {
@@ -50,11 +49,7 @@ export default async function Blog() {
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 			/>
 
-			<PageHeader
-				title="Read My Blog"
-				content="This is where I share my thoughts and experiences on all things code and design."
-				className="pt-32 pb-12 bg-background-secondary"
-			/>
+			<PageHeader title="Blog" content="Insights, tutorials, and ideas from my journey in tech." />
 
 			{featured?.image && featured.imageMeta && (
 				<Section borderOrigin={'y'} className="pb-0">

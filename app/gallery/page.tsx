@@ -8,8 +8,7 @@ import Script from 'next/script';
 import { ImageGallery, WithContext } from 'schema-dts';
 
 const title = 'Photo Gallery';
-const description =
-	'A summary of the technologies, design, workflow and decisions behind snystrom.com.';
+const description = "Moments, places, and details I've noticed along the way.";
 
 export async function generateMetadata(): Promise<Metadata> {
 	const { images } = await getAllImages(1);
@@ -60,11 +59,6 @@ export default async function Gallery() {
 		name: `${SITE_NAME} Photography`,
 		description,
 		url: `${SITE_URL}/gallery`,
-		author: {
-			'@type': 'Person',
-			name: SITE_NAME,
-			url: SITE_URL,
-		},
 		image: images.slice(0, 3).map((img) => img.src),
 	};
 
@@ -77,9 +71,8 @@ export default async function Gallery() {
 			/>
 
 			<PageHeader
-				title="Gallery"
-				content="A summary of the technologies, design, workflow and decisions behind my website."
-				className="pt-32 pb-12 bg-background-secondary"
+				title="Photo Gallery"
+				content="Moments, places, and details I've noticed along the way."
 			/>
 
 			<Section borderOrigin={'t'}>

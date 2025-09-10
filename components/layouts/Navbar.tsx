@@ -5,7 +5,7 @@ import { dropdownLinks, navItems } from '@/data/data';
 import { IconAt, IconCheck, IconCopy, IconEmail, IconMenu } from '@/data/icons';
 import { useScrollLock } from '@/lib/hooks';
 import { cn } from '@/lib/utils';
-import Avatar from '@/public/images/avatar.avif';
+import Avatar from '@/public/images/avatar.jpg';
 
 import { AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
@@ -55,7 +55,7 @@ export default function Navbar({ className }: { className?: string }) {
 							<Image
 								src={Avatar}
 								alt={''}
-								className="aspect-square rounded-full ring-1 ring-border"
+								className="aspect-square rounded-full ring-1 ring-border grayscale"
 							/>
 							<div className="absolute inset-0 z-10 rounded-full bg-brand/60 mix-blend-multiply transition-colors hover:bg-brand/50" />
 						</Link>

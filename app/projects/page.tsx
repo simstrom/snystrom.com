@@ -14,7 +14,7 @@ import { CollectionPage, WithContext } from 'schema-dts';
 
 export const metadata: Metadata = {
 	title: 'Projects',
-	description: 'A collection of my web projects and engineering work.',
+	description: "Some of the things I've built, tinkered with, or just enjoyed working on.",
 };
 
 export default function Projects() {
@@ -45,9 +45,8 @@ export default function Projects() {
 			/>
 
 			<PageHeader
-				title="All Projects"
-				content="I love building projects and practice my engineering skills, There's an archive of things that I've worked on."
-				className="pt-32 pb-12 bg-background-secondary"
+				title="Projects"
+				content="Some of the things I've built, tinkered with, or just enjoyed working on."
 			/>
 
 			<Section borderOrigin={'t'}>

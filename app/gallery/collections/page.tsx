@@ -9,8 +9,7 @@ import Script from 'next/script';
 import { CollectionPage, WithContext } from 'schema-dts';
 
 const title = 'Collections - Photo Gallery';
-const description =
-	'A summary of the technologies, design, workflow and decisions behind snystrom.com.';
+const description = "Moments, places, and details I've noticed along the way.";
 
 export async function generateMetadata(): Promise<Metadata> {
 	const collections = (await getCoverImages('collections')).filter(
@@ -87,9 +86,9 @@ export default async function Collections() {
 			/>
 
 			<PageHeader
-				title="Gallery"
-				content="A summary of the technologies, design, workflow and decisions behind my website."
-				className="pt-32 pb-12 bg-background-secondary"
+				title="Photo Gallery"
+				subtitle="Collections"
+				content="Moments, places, and details I've noticed along the way."
 			/>
 
 			<Section borderOrigin={'t'}>

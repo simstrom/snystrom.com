@@ -10,7 +10,7 @@ import { SITE_INSTAGRAM_URL, SITE_LINKEDIN_URL, SITE_NAME, SITE_URL } from '@/da
 import { IconCalendar, IconHourglass } from '@/data/icons';
 import { getBlogPost, getBlogPosts, getRelatedPosts } from '@/lib/blog';
 import { formatDate } from '@/lib/utils';
-import avatar from '@/public/images/avatar.avif';
+import avatar from '@/public/images/avatar.jpg';
 
 import { MDXContent } from '@content-collections/mdx/react';
 import { Metadata, ResolvingMetadata } from 'next';
@@ -168,8 +168,7 @@ export default async function BlogPost(props: Props) {
 						className="h-[520px] bg-[#7d9ff0] dark:bg-[#102e73] flex flex-col gap-2 justify-end p-16 rounded-3xl bg-no-repeat bg-cover bg-center ring-1 ring-border text-background dark:text-foreground"
 						style={{
 							backgroundImage: `linear-gradient(to top, var(--color-brand) 0%, transparent 90%),
-									repeating-linear-gradient(0deg, rgba(255,255,255,0.1) 0, rgba(255,255,255,0.1) 1px, transparent 1px, transparent 26px),
-									repeating-linear-gradient(90deg, rgba(255,255,255,0.1) 0, rgba(255,255,255,0.1) 1px, transparent 1px, transparent 26px),
+									
 									url(${post.image ?? ''})`,
 						}}
 					>
@@ -182,7 +181,7 @@ export default async function BlogPost(props: Props) {
 								/>
 							))}
 						</ul>
-						<PageHeader title={post.title} className="border-x-0 p-0 m-0 text-balance" />
+						<PageHeader title={post.title} className="p-0 m-0" />
 						<div className="flex items-center gap-6 text-sm font-medium">
 							<div className="flex items-center gap-x-2">
 								<IconCalendar width={16} height={16} />
@@ -209,7 +208,7 @@ export default async function BlogPost(props: Props) {
 								src={avatar}
 								alt=""
 								draggable={false}
-								className="rounded-full not-prose border"
+								className="rounded-full not-prose border grayscale ring-1 ring-border"
 							/>
 							<div className="flex flex-col">
 								<span className="text-sm font-medium text-foreground-secondary">Simon says:</span>

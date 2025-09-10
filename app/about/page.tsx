@@ -23,8 +23,9 @@ import Script from 'next/script';
 import { AboutPage, WithContext } from 'schema-dts';
 
 export const metadata: Metadata = {
-	title: 'About Me',
-	description: 'A summary of the technologies, design, workflow and decisions behind snystrom.com.',
+	title: 'About',
+	description:
+		"I'm Simon Nyström, a web developer and photographer. Here you'll find a bit about my journey, my work, and what inspires me.",
 };
 
 const skills = [
@@ -74,7 +75,7 @@ export default async function About() {
 			/>
 
 			<div className="relative max-w-5xl mx-auto">
-				<PageHeader title="About Me" className="pt-32 pb-12 bg-background-secondary" />
+				<PageHeader title="About Me" />
 			</div>
 
 			<Section borderOrigin={'y'} className="pb-0">
@@ -87,7 +88,7 @@ export default async function About() {
 							placeholder="blur"
 							className="rounded-3xl ring-1 ring-border aspect-square sm:aspect-video md:aspect-auto w-full h-full object-cover object-center grayscale"
 						/>
-						<div className="absolute inset-0 z-10 rounded-3xl bg-linear-to-t from-brand/60 via-brand/30 to-brand/20 mix-blend-multiply" />
+						<div className="absolute inset-0 z-10 rounded-3xl bg-linear-to-tr from-brand/20 to-brand/10 mix-blend-soft-light" />
 						<IconDoodleArrow className="text-brand w-28 h-28 absolute z-10 -top-14 left-6 rotate-12" />
 						<IconDoodleCompass className="text-brand w-20 h-20 absolute z-10 -right-8 -top-8 -rotate-3" />
 						<IconDoodleMountains className="text-brand w-20 h-20 absolute z-10 bottom-40 -left-10 rotate-12" />
@@ -95,19 +96,28 @@ export default async function About() {
 
 					<div className="col-span-12 md:col-span-8 prose max-w-none prose-p:leading-7 first:prose-p:text-foreground px-6 py-8">
 						<p className="text-lg">
-							As a full-time creative, I prioritize inclusion to create experiences that resonate
-							with diverse audiences. By incorporating different perspectives, experiences, and
-							needs into my creative process, I am able to create effective solutions to complex
-							challenges.
+							Hey, I&apos;m Simon Nyström—a web developer and photographer from Sweden. I got into
+							coding out of curiosity and a love for making things work online, and it&apos;s been a
+							wild ride ever since.
 						</p>
 
 						<p>
-							As a Senior Art Director at Doe-Anderson, I am passionate about utilizing
-							human-centered design principles to tell compelling brand stories. I strongly believe
-							that effective design incorporates user experience and I am dedicated to exploring
-							innovative ways for brands to connect with their audience. Constantly seeking
-							inspiration and techniques to elevate my process, I am committed to delivering
-							exceptional creative solutions that build brand experiences.
+							I spend most of my days working with React, Next.js, and Tailwind CSS, building sites
+							and apps that (hopefully) make people&apos;s lives a little easier or more fun.
+							I&apos;m always tinkering, learning new tricks, and trying out fresh
+							ideas—there&apos;s always something new to explore.
+						</p>
+
+						<p>
+							When I&apos;m not deep in code, you&apos;ll probably find me with a camera in hand.
+							Photography lets me slow down and notice the little things—whether it&apos;s a cool
+							landscape, city vibes, or just everyday moments. It&apos;s my way of capturing stories
+							and memories.
+						</p>
+						<p>
+							Outside of work and photography, I love getting outdoors, traveling, or just kicking
+							back with a good book. If you ever want to chat about tech, photos, or favorite hiking
+							spots, I&apos;m always up for it!
 						</p>
 					</div>
 				</div>

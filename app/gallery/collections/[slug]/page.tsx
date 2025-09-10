@@ -89,11 +89,6 @@ export default async function GalleryCollection(props: Props) {
 		name: `${SITE_NAME} Photography - ${collection.title}`,
 		description: collection.description,
 		url: `${SITE_URL}/gallery/collections/${slugify(collection.title)}`,
-		author: {
-			'@type': 'Person',
-			name: SITE_NAME,
-			url: SITE_URL,
-		},
 		image: images.slice(0, 3).map((img) => img.src),
 	};
 
@@ -105,16 +100,7 @@ export default async function GalleryCollection(props: Props) {
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 			/>
 
-			<div className="relative max-w-5xl mx-auto">
-				<span className="absolute top-28 px-6 ml-1 -translate-y-1 text-sm font-medium text-brand">
-					Collection
-				</span>
-				<PageHeader
-					title={collection.title}
-					content={collection.description}
-					className="pt-32 pb-12 bg-background-secondary"
-				/>
-			</div>
+			<PageHeader title={collection.title} subtitle="Collection" content={collection.description} />
 
 			<Section borderOrigin={'t'} className="pb-10">
 				<GalleryView content={images} cursor={next_cursor} backLink={backLink} />
