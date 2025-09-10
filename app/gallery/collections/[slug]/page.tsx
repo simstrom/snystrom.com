@@ -5,7 +5,7 @@ import Button from '@/components/ui/Button';
 
 import { SITE_URL } from '@/data/constants';
 import { galleryCollections } from '@/data/data';
-import { getImagesInCollection } from '@/lib/gallery';
+import { getImagesByTag, getImagesInCollection } from '@/lib/gallery';
 import { slugify } from '@/lib/utils';
 
 import { Metadata } from 'next';
@@ -23,22 +23,41 @@ export async function generateMetadata(props: Props): Promise<Metadata | undefin
 	const collection = galleryCollections.find((item) => slugify(item.title) === params.slug);
 	if (!collection) return notFound();
 
-	const { title, description, cover } = collection;
-	const seoImage = cover ? cover.src : '/images/og.webp';
+	const { title, description } = collection;
+	const coverImage = (await getImagesByTag(`collections_${collection.title}`)).slice(0, 1);
 
 	return {
-		title: `Gallery - ${title}`,
+		title: `${title} - Photo Gallery`,
 		description,
 		openGraph: {
-			title: `Gallery - ${title}`,
+			title: `${title} - Photo Gallery`,
 			description,
 			url: `${SITE_URL}/gallery/collections/${slugify(collection.title)}`,
-			images: seoImage,
+			images: [
+				{
+					url: `/api/ogGallery?title=${encodeURIComponent(title)}&subtitle=${encodeURIComponent(
+						'Photo Gallery'
+					)}&image=${encodeURIComponent(coverImage[0].src)}`,
+					width: 1200,
+					height: 630,
+					alt: `${title} Photo Gallery cover image`,
+					type: 'image/png',
+				},
+			],
 		},
 		twitter: {
-			title: `Gallery - ${title}`,
+			title: `${title} - Photo Gallery`,
 			description,
-			images: seoImage,
+			images: [
+				{
+					url: `/api/ogGallery?title=${encodeURIComponent(title)}&subtitle=${encodeURIComponent(
+						'Photo Gallery'
+					)}&image=${encodeURIComponent(coverImage[0].src)}`,
+					width: 1200,
+					height: 630,
+					alt: `${title} Photo Gallery cover image`,
+				},
+			],
 			card: 'summary_large_image',
 		},
 	};
