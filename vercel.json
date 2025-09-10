@@ -1,8 +1,0 @@
-{
-	"crons": [
-		{
-			"path": "/api/db-ping",
-			"schedule": "0 0 * * 0,3"
-		}
-	]
-}

@@ -14,7 +14,7 @@ import { formatDate } from '@/lib/utils';
 import avatar from '@/public/images/avatar.avif';
 
 import { MDXContent } from '@content-collections/mdx/react';
-import { Metadata } from 'next';
+import { Metadata, ResolvingMetadata } from 'next';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import Script from 'next/script';
@@ -25,14 +25,18 @@ interface Props {
 	}>;
 }
 
-export async function generateMetadata(props: Props): Promise<Metadata | undefined> {
+export async function generateMetadata(
+	props: Props,
+	parent: ResolvingMetadata
+): Promise<Metadata | undefined> {
 	const params = await props.params;
 	const post = getBlogPost(params.slug);
 	if (!post) {
 		return;
 	}
 
-	const { title, summary, date } = post;
+	const { title, summary, date, image } = post;
+	const previousImages = (await parent)?.openGraph?.images || [];
 	const seoImage = createOgImage({
 		title: post.title,
 		meta: [formatDate(post.date, true, true), ...post.tags.slice(0, 3)].join(' · '),
@@ -49,15 +53,19 @@ export async function generateMetadata(props: Props): Promise<Metadata | undefin
 			description: summary,
 			type: 'article',
 			publishedTime: date.toISOString(),
+			authors: ['Simon Nyström'],
 			url: `${SITE_URL}/blog/${post.slug}`,
 			images: [
 				{
-					url: seoImage,
-					width: 1600,
-					height: 836,
+					url: `/api/og?title=${encodeURIComponent(title)}&image=${encodeURIComponent(
+						image || ''
+					)}&tags=${encodeURIComponent(post.tags.slice(0, 3).join(','))}`,
+					width: 1200,
+					height: 630,
 					alt: title,
 					type: 'image/png',
 				},
+				...previousImages,
 			],
 		},
 		twitter: {
@@ -66,11 +74,14 @@ export async function generateMetadata(props: Props): Promise<Metadata | undefin
 			card: 'summary_large_image',
 			images: [
 				{
-					url: seoImage,
-					width: 1600,
-					height: 836,
+					url: `/api/og?title=${encodeURIComponent(title)}&image=${encodeURIComponent(
+						image || ''
+					)}&tags=${encodeURIComponent(post.tags.slice(0, 3).join(','))}`,
+					width: 1200,
+					height: 630,
 					alt: title,
 				},
+				...previousImages,
 			],
 		},
 	};
@@ -162,9 +173,12 @@ export default async function BlogPost(props: Props) {
 						<span className="absolute bottom-[40.5px] right-[48px] z-20 hidden h-4 w-px bg-white md:block" />
 
 						<div
-							className="h-[520px] flex flex-col gap-2 justify-end p-16 rounded-3xl bg-no-repeat bg-cover bg-center ring-1 ring-border text-background dark:text-foreground"
+							className="h-[520px] bg-[#7d9ff0] dark:bg-[#102e73] flex flex-col gap-2 justify-end p-16 rounded-3xl bg-no-repeat bg-cover bg-center ring-1 ring-border text-background dark:text-foreground"
 							style={{
-								backgroundImage: `linear-gradient(to top, var(--color-brand) 0%, rgba(105, 120, 255, 0.1) 50%, transparent 70%), url(${post.image})`,
+								backgroundImage: `linear-gradient(to top, var(--color-brand) 0%, transparent 90%),
+									repeating-linear-gradient(0deg, rgba(255,255,255,0.1) 0, rgba(255,255,255,0.1) 1px, transparent 1px, transparent 26px),
+									repeating-linear-gradient(90deg, rgba(255,255,255,0.1) 0, rgba(255,255,255,0.1) 1px, transparent 1px, transparent 26px),
+									url(${post.image ?? ''})`,
 							}}
 						>
 							<ul className="w-fit flex items-center gap-4 flex-wrap pb-2">
