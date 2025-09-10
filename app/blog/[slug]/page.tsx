@@ -17,6 +17,7 @@ import { Metadata, ResolvingMetadata } from 'next';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import Script from 'next/script';
+import { BlogPosting, WithContext } from 'schema-dts';
 
 interface Props {
 	params: Promise<{
@@ -89,8 +90,8 @@ export default async function BlogPost(props: Props) {
 
 	const related = getRelatedPosts(post);
 
-	const jsonLd = {
-		'@type': 'Article',
+	const jsonLd: WithContext<BlogPosting> = {
+		'@type': 'BlogPosting',
 		'@context': 'https://schema.org',
 		mainEntityOfPage: {
 			'@type': 'WebPage',
@@ -112,121 +113,128 @@ export default async function BlogPost(props: Props) {
 			name: SITE_NAME,
 			url: SITE_URL,
 		},
+		publisher: {
+			'@type': 'Organization',
+			name: SITE_NAME,
+			logo: {
+				'@type': 'ImageObject',
+				url: `${SITE_URL}/favicon.ico`,
+			},
+		},
 		isAccessibleForFree: true,
 	};
 
 	return (
-		<>
+		<main className="grow w-full mx-auto">
 			<Script
 				type="application/ld+json"
 				id={`${post.slug}_jsonLd`}
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 			/>
-			<main className="grow w-full mx-auto">
-				<div className="max-w-5xl mx-auto pt-24">
-					<Button
-						variant="link"
-						href="/blog"
-						backLink
-						className="rounded-tr-md text-foreground-secondary hover:bg-foreground hover:text-background transition-colors pl-6 pr-8 py-4"
-					>
-						Blog
-					</Button>
-				</div>
 
-				<Section className="max-w-5xl mx-auto pb-0" borderOrigin="y">
-					<div className="relative">
-						{/* LINES */}
-						<span className="absolute top-6 z-10 h-px w-full bg-zinc-500/75 mix-blend-screen md:top-12" />
-						<span className="absolute bottom-6 z-10 h-px w-full bg-zinc-500/75 mix-blend-screen md:bottom-12" />
-						<span className="absolute left-6 z-10 h-full w-px bg-zinc-500/75 mix-blend-screen md:left-12" />
-						<span className="absolute right-6 z-10 h-full w-px bg-zinc-500/75 mix-blend-screen md:right-12" />
+			<div className="max-w-5xl mx-auto pt-24">
+				<Button
+					variant="link"
+					href="/blog"
+					backLink
+					className="rounded-tr-md text-foreground-secondary hover:bg-foreground hover:text-background transition-colors pl-6 pr-8 py-4"
+				>
+					Blog
+				</Button>
+			</div>
 
-						{/* CROSSES */}
-						<span className="absolute left-[40.5px] top-12 z-20 hidden h-px w-4 bg-white md:block" />
-						<span className="absolute left-[48px] top-[40.5px] z-20 hidden h-4 w-px bg-white md:block" />
+			<Section className="max-w-5xl mx-auto pb-0" borderOrigin="y">
+				<div className="relative">
+					{/* LINES */}
+					<span className="absolute top-6 z-10 h-px w-full bg-zinc-500/75 mix-blend-screen md:top-12" />
+					<span className="absolute bottom-6 z-10 h-px w-full bg-zinc-500/75 mix-blend-screen md:bottom-12" />
+					<span className="absolute left-6 z-10 h-full w-px bg-zinc-500/75 mix-blend-screen md:left-12" />
+					<span className="absolute right-6 z-10 h-full w-px bg-zinc-500/75 mix-blend-screen md:right-12" />
 
-						<span className="absolute right-[40.5px] top-12 z-20 hidden h-px w-4 bg-white md:block" />
-						<span className="absolute right-[48px] top-[40.5px] z-20 hidden h-4 w-px bg-white md:block" />
+					{/* CROSSES */}
+					<span className="absolute left-[40.5px] top-12 z-20 hidden h-px w-4 bg-white md:block" />
+					<span className="absolute left-[48px] top-[40.5px] z-20 hidden h-4 w-px bg-white md:block" />
 
-						<span className="absolute bottom-12 left-[40.5px] z-20 hidden h-px w-4 bg-white md:block" />
-						<span className="absolute bottom-[40.5px] left-[48px] z-20 hidden h-4 w-px bg-white md:block" />
+					<span className="absolute right-[40.5px] top-12 z-20 hidden h-px w-4 bg-white md:block" />
+					<span className="absolute right-[48px] top-[40.5px] z-20 hidden h-4 w-px bg-white md:block" />
 
-						<span className="absolute bottom-12 right-[40.5px] z-20 hidden h-px w-4 bg-white md:block" />
-						<span className="absolute bottom-[40.5px] right-[48px] z-20 hidden h-4 w-px bg-white md:block" />
+					<span className="absolute bottom-12 left-[40.5px] z-20 hidden h-px w-4 bg-white md:block" />
+					<span className="absolute bottom-[40.5px] left-[48px] z-20 hidden h-4 w-px bg-white md:block" />
 
-						<div
-							className="h-[520px] bg-[#7d9ff0] dark:bg-[#102e73] flex flex-col gap-2 justify-end p-16 rounded-3xl bg-no-repeat bg-cover bg-center ring-1 ring-border text-background dark:text-foreground"
-							style={{
-								backgroundImage: `linear-gradient(to top, var(--color-brand) 0%, transparent 90%),
+					<span className="absolute bottom-12 right-[40.5px] z-20 hidden h-px w-4 bg-white md:block" />
+					<span className="absolute bottom-[40.5px] right-[48px] z-20 hidden h-4 w-px bg-white md:block" />
+
+					<div
+						className="h-[520px] bg-[#7d9ff0] dark:bg-[#102e73] flex flex-col gap-2 justify-end p-16 rounded-3xl bg-no-repeat bg-cover bg-center ring-1 ring-border text-background dark:text-foreground"
+						style={{
+							backgroundImage: `linear-gradient(to top, var(--color-brand) 0%, transparent 90%),
 									repeating-linear-gradient(0deg, rgba(255,255,255,0.1) 0, rgba(255,255,255,0.1) 1px, transparent 1px, transparent 26px),
 									repeating-linear-gradient(90deg, rgba(255,255,255,0.1) 0, rgba(255,255,255,0.1) 1px, transparent 1px, transparent 26px),
 									url(${post.image ?? ''})`,
-							}}
-						>
-							<ul className="w-fit flex items-center gap-4 flex-wrap pb-2">
-								{post.tags?.map((tag, idx) => (
-									<Tag
-										key={idx}
-										tag={tag}
-										className="text-xs rounded-sm py-0.5 px-2 text-background dark:text-foreground bg-background/10 dark:bg-foreground/10 hover:bg-background hover:text-foreground dark:hover:bg-foreground dark:hover:text-background"
-									/>
-								))}
-							</ul>
-							<PageHeader title={post.title} className="border-x-0 p-0 m-0 text-balance" />
-							<div className="flex items-center gap-6 text-sm font-medium">
-								<div className="flex items-center gap-x-2">
-									<IconCalendar width={16} height={16} />
-									<time>{formatDate(post.date)}</time>
-								</div>
-								<div className="flex items-center gap-x-2">
-									<IconHourglass width={16} height={16} />
-									<p>{post.readingTime}</p>
-								</div>
+						}}
+					>
+						<ul className="w-fit flex items-center gap-4 flex-wrap pb-2">
+							{post.tags?.map((tag, idx) => (
+								<Tag
+									key={idx}
+									tag={tag}
+									className="text-xs rounded-sm py-0.5 px-2 text-background dark:text-foreground bg-background/10 dark:bg-foreground/10 hover:bg-background hover:text-foreground dark:hover:bg-foreground dark:hover:text-background"
+								/>
+							))}
+						</ul>
+						<PageHeader title={post.title} className="border-x-0 p-0 m-0 text-balance" />
+						<div className="flex items-center gap-6 text-sm font-medium">
+							<div className="flex items-center gap-x-2">
+								<IconCalendar width={16} height={16} />
+								<time>{formatDate(post.date)}</time>
+							</div>
+							<div className="flex items-center gap-x-2">
+								<IconHourglass width={16} height={16} />
+								<p>{post.readingTime}</p>
 							</div>
 						</div>
 					</div>
-				</Section>
+				</div>
+			</Section>
 
-				<Section className="pt-16 pb-12">
-					<article className="prose max-w-3xl mx-auto">
-						<MDXContent code={post.body} components={MDXComponents} />
+			<Section className="pt-16 pb-12">
+				<article className="prose max-w-3xl mx-auto">
+					<MDXContent code={post.body} components={MDXComponents} />
 
-						<div className="pt-12">
-							<div className="flex items-center gap-x-4">
-								<Image
-									width={64}
-									height={64}
-									src={avatar}
-									alt=""
-									draggable={false}
-									className="rounded-full not-prose border"
-								/>
-								<div className="flex flex-col">
-									<span className="text-sm font-medium text-foreground-secondary">Simon says:</span>
-									<span className="font-medium text-lg text-foreground">
-										Hey, thanks for reading! 👋
-									</span>
-								</div>
+					<div className="pt-12">
+						<div className="flex items-center gap-x-4">
+							<Image
+								width={64}
+								height={64}
+								src={avatar}
+								alt=""
+								draggable={false}
+								className="rounded-full not-prose border"
+							/>
+							<div className="flex flex-col">
+								<span className="text-sm font-medium text-foreground-secondary">Simon says:</span>
+								<span className="font-medium text-lg text-foreground">
+									Hey, thanks for reading! 👋
+								</span>
 							</div>
-							<p className="mt-3">
-								If you enjoyed this article, check out some of my other posts below. Have questions,
-								feedback, or just want to connect? Find me on{' '}
-								<CustomLink href={SITE_LINKEDIN_URL}>Github</CustomLink> or drop me a message on{' '}
-								<CustomLink href={SITE_INSTAGRAM_URL}>LinkedIn</CustomLink> and let&apos;s chat.
-							</p>
 						</div>
-					</article>
-				</Section>
+						<p className="mt-3">
+							If you enjoyed this article, check out some of my other posts below. Have questions,
+							feedback, or just want to connect? Find me on{' '}
+							<CustomLink href={SITE_LINKEDIN_URL}>Github</CustomLink> or drop me a message on{' '}
+							<CustomLink href={SITE_INSTAGRAM_URL}>LinkedIn</CustomLink> and let&apos;s chat.
+						</p>
+					</div>
+				</article>
+			</Section>
 
-				{related.length > 0 && (
-					<Section borderOrigin={null}>
-						<h3 className="text-3xl p-6 border-b bg-background-secondary">More reading</h3>
-						<PostListRelated posts={related.slice(0, 3)} />
-					</Section>
-				)}
-			</main>
-		</>
+			{related.length > 0 && (
+				<Section borderOrigin={null}>
+					<h3 className="text-3xl p-6 border-b bg-background-secondary">More reading</h3>
+					<PostListRelated posts={related.slice(0, 3)} />
+				</Section>
+			)}
+		</main>
 	);
 }
 

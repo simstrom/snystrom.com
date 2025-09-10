@@ -3,7 +3,7 @@ import { Section } from '@/components/layouts/Section';
 import GalleryView from '@/components/sections/GalleryView';
 import Button from '@/components/ui/Button';
 
-import { SITE_URL } from '@/data/constants';
+import { SITE_NAME, SITE_URL } from '@/data/constants';
 import { galleryCollections } from '@/data/data';
 import { getImagesByTag, getImagesInCollection } from '@/lib/gallery';
 import { slugify } from '@/lib/utils';
@@ -11,6 +11,8 @@ import { slugify } from '@/lib/utils';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import Script from 'next/script';
+import { ImageGallery, WithContext } from 'schema-dts';
 
 interface Props {
 	params: Promise<{
@@ -81,8 +83,28 @@ export default async function GalleryCollection(props: Props) {
 		name: 'Collections',
 	};
 
+	const jsonLd: WithContext<ImageGallery> = {
+		'@type': 'ImageGallery',
+		'@context': 'https://schema.org',
+		name: `Simon Nyström Photography - ${collection.title}`,
+		description: collection.description,
+		url: `${SITE_URL}/gallery/collections/${slugify(collection.title)}`,
+		author: {
+			'@type': 'Person',
+			name: SITE_NAME,
+			url: SITE_URL,
+		},
+		image: images.slice(0, 3).map((img) => img.src),
+	};
+
 	return (
 		<main className="grow">
+			<Script
+				type="application/ld+json"
+				id={`gallery-${slugify(collection.title)}_jsonLd`}
+				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+			/>
+
 			<div className="relative max-w-5xl mx-auto">
 				<span className="absolute top-28 px-6 ml-1 -translate-y-1 text-sm font-medium text-brand">
 					Collection
