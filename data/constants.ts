@@ -3,13 +3,13 @@ export const isProduction = process.env.NODE_ENV === 'production';
 export const SITE_URL = isProduction ? 'https://snystrom.com' : 'http://localhost:3000';
 
 export const SITE_NAME = 'Simon Nyström';
-export const SITE_TITLE = 'Simon Nyström | Web developer and Photographer';
+export const SITE_TITLE = 'Simon Nyström | Front-end Engineer & Photographer';
 export const SITE_DESCRIPTION =
-	'Frontend engineer with a passion for UI/UX design and photography.';
+	"I'm Simon Nyström, a front-end engineer with a passion for UI/UX design and adventure photography. Welcome to my digital home.";
 export const SITE_KEYWORDS = [
 	'simstrom',
 	'simon nyström',
-	'frontend',
+	'front-end',
 	'web developer',
 	'ui design',
 	'adventure photography',

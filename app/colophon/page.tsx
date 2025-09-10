@@ -7,7 +7,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
 	title: 'Colophon',
-	description: 'A summary of the technologies, design and decisions behind snystrom.com.',
+	description: 'A summary of the technologies, design, workflow and decisions behind my website.',
 };
 
 export default function Colophon() {

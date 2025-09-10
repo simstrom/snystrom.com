@@ -24,8 +24,6 @@ import { AboutPage, WithContext } from 'schema-dts';
 
 export const metadata: Metadata = {
 	title: 'About',
-	description:
-		"I'm Simon Nyström, a web developer and photographer. Here you'll find a bit about my journey, my work, and what inspires me.",
 };
 
 const skills = [
@@ -62,7 +60,7 @@ export default async function About() {
 			url: SITE_URL,
 			image: `${SITE_URL}/images/avatar.jpg`,
 			sameAs: [SITE_GITHUB_URL, SITE_LINKEDIN_URL, SITE_INSTAGRAM_URL],
-			jobTitle: 'Software Developer & Photographer',
+			jobTitle: 'Front-end Engineer & Photographer',
 		},
 	};
 
@@ -96,9 +94,9 @@ export default async function About() {
 
 					<div className="col-span-12 md:col-span-8 prose max-w-none prose-p:leading-7 first:prose-p:text-foreground px-6 py-8">
 						<p className="text-lg">
-							Hey, I&apos;m Simon Nyström—a web developer and photographer from Sweden. I got into
-							coding out of curiosity and a love for making things work online, and it&apos;s been a
-							wild ride ever since.
+							Hey, I&apos;m Simon Nyström, a front-end engineer and photographer from Sweden. I got
+							into coding out of curiosity and a love for making things work online, and it&apos;s
+							been a wild ride ever since.
 						</p>
 
 						<p>

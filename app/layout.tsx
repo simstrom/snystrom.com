@@ -58,11 +58,10 @@ export const metadata: Metadata = {
 		description: SITE_DESCRIPTION,
 		url: SITE_URL,
 		images: {
-			url: '/images/og.webp',
-			width: 1600,
-			height: 836,
+			url: `${SITE_URL}/images/og.jpg`,
+			width: 1200,
+			height: 630,
 			alt: SITE_DESCRIPTION,
-			type: 'image/png',
 		},
 		locale: 'en_US',
 		alternateLocale: 'en_SE',
@@ -71,7 +70,7 @@ export const metadata: Metadata = {
 		card: 'summary_large_image',
 		title: SITE_TITLE,
 		description: SITE_DESCRIPTION,
-		images: { url: '/images/og.webp', width: 1600, height: 836, alt: SITE_DESCRIPTION },
+		images: { url: `${SITE_URL}/images/og.jpg`, width: 1200, height: 630, alt: SITE_DESCRIPTION },
 	},
 	robots: {
 		index: true,
@@ -108,9 +107,9 @@ export default function RootLayout({
 		description: SITE_DESCRIPTION,
 		email: SITE_CONTACT,
 		url: SITE_URL,
-		image: `${SITE_URL}/images/avatar.jpg`,
+		image: `${SITE_URL}/images/hero.jpg`,
 		sameAs: [SITE_GITHUB_URL, SITE_LINKEDIN_URL, SITE_INSTAGRAM_URL],
-		jobTitle: 'Software Developer & Photographer',
+		jobTitle: 'Front-end Engineer & Photographer',
 	};
 
 	return (

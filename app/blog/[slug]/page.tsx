@@ -167,9 +167,9 @@ export default async function BlogPost(props: Props) {
 					<div
 						className="h-[520px] bg-[#7d9ff0] dark:bg-[#102e73] flex flex-col gap-2 justify-end p-16 rounded-3xl bg-no-repeat bg-cover bg-center ring-1 ring-border text-background dark:text-foreground"
 						style={{
-							backgroundImage: `linear-gradient(to top, var(--color-brand) 0%, transparent 90%),
-									
-									url(${post.image ?? ''})`,
+							backgroundImage: `linear-gradient(to top, #2663f2 0%, transparent 90%), url(${
+								post.image ?? ''
+							})`,
 						}}
 					>
 						<ul className="w-fit flex items-center gap-4 flex-wrap pb-2">
