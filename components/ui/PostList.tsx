@@ -36,7 +36,7 @@ export default function PostList({ posts, query }: PostListProps) {
 				stiffness: 300,
 				damping: 30,
 			}}
-			className="opacity-list flex flex-col divide-y border-b"
+			className="flex flex-col divide-y border-b"
 		>
 			<AnimatePresence>
 				{posts.map((post) => (
@@ -79,10 +79,6 @@ export default function PostList({ posts, query }: PostListProps) {
 									{determineMatch(post, query)}
 								</motion.div>
 							)}
-
-							{/* <span className="hidden sm:block text-sm font-medium text-foreground-secondary ml-auto text-right min-w-fit">
-								{post.readingTime}
-							</span> */}
 						</Link>
 					</motion.li>
 				))}

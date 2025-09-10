@@ -1,6 +1,7 @@
 import PageHeader from '@/components/layouts/PageHeader';
 import { Section } from '@/components/layouts/Section';
 import PostList from '@/components/ui/PostList';
+import { TagSelector } from '@/components/ui/TagSelector';
 
 import { SITE_URL } from '@/data/constants';
 import { getAllTags, getPostsByTag } from '@/lib/blog';
@@ -41,16 +42,18 @@ export async function generateMetadata(props: Props): Promise<Metadata | undefin
 
 export default async function TagPage(props: Props) {
 	const params = await props.params;
-	const tag = getAllTags().find((t) => slugify(t) == params.slug);
+	const tags = getAllTags();
+	const tag = tags.find((t) => slugify(t) == params.slug);
 	if (!tag) return notFound();
 
 	const posts = getPostsByTag(tag);
 
 	return (
-		<main className="">
+		<main className="grow">
 			<PageHeader title={`Articles about ${tag}`} subtitle="Blog" />
 
-			<Section className="pb-0" borderOrigin={'t'}>
+			<Section borderOrigin={'t'}>
+				<TagSelector tags={tags} activeTag={tag} />
 				<PostList posts={posts} />
 			</Section>
 		</main>

@@ -1,10 +1,11 @@
 import PageHeader from '@/components/layouts/PageHeader';
 import { Section } from '@/components/layouts/Section';
-import PostViewSearch from '@/components/sections/PostViewSearch';
+import PostList from '@/components/ui/PostList';
+import { TagSelector } from '@/components/ui/TagSelector';
 import { SITE_NAME, SITE_URL } from '@/data/constants';
 
 import { IconArrowRight, IconCalendar, IconHourglass } from '@/data/icons';
-import { getBlogPosts } from '@/lib/blog';
+import { getAllTags, getBlogPosts } from '@/lib/blog';
 import { formatDate } from '@/lib/utils';
 
 import { Metadata } from 'next';
@@ -20,6 +21,7 @@ export const metadata: Metadata = {
 
 export default async function Blog() {
 	const posts = getBlogPosts();
+	const tags = getAllTags();
 	const featured = posts.find((p) => p.image !== undefined && p.imageMeta !== null);
 
 	const jsonLd: WithContext<BlogLeaf> = {
@@ -54,10 +56,10 @@ export default async function Blog() {
 			{featured?.image && featured.imageMeta && (
 				<Section borderOrigin={'y'} className="pb-0">
 					<Link href={`/blog/${featured.slug}`} className="flex divide-x group">
-						<div className="relative flex-1 flex flex-col justify-center space-y-2 px-6 py-4 border-r transition-colors group-hover:bg-foreground group-hover:text-background">
+						<div className="relative flex-1 flex flex-col justify-center space-y-2 px-6 py-4 border-r">
 							<h3 className="text-2xl">{featured.title}</h3>
 							<p className="text-[15px] leading-7 line-clamp-3">{featured.summary}</p>
-							<div className="pt-2 flex items-center gap-6 text-sm font-medium text-foreground-secondary transition-colors group-hover:text-background/70">
+							<div className="pt-2 flex items-center gap-6 text-sm font-medium text-foreground-secondary transition-colors">
 								<div className="flex items-center gap-x-2">
 									<IconCalendar width={14} height={14} />
 									<time>{formatDate(featured.date)}</time>
@@ -89,7 +91,8 @@ export default async function Blog() {
 			)}
 
 			<Section borderOrigin={featured?.image && featured.imageMeta ? null : 't'}>
-				<PostViewSearch posts={posts} />
+				<TagSelector tags={tags} activeTag={''} />
+				<PostList posts={posts} />
 			</Section>
 		</main>
 	);

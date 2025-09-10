@@ -85,8 +85,11 @@
 }
 
 @utility container {
-	margin-inline: auto;
-	padding-inline: 1rem;
+	@apply px-4 sm:px-6;
+}
+
+@utility no-scrollbar {
+	@apply [&::-webkit-scrollbar]:hidden;
 }
 
 @layer base {

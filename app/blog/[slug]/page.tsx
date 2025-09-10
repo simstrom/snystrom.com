@@ -181,7 +181,7 @@ export default async function BlogPost(props: Props) {
 								/>
 							))}
 						</ul>
-						<PageHeader title={post.title} className="p-0 m-0" />
+						<PageHeader title={post.title} className="p-0 m-0 bg-transparent" />
 						<div className="flex items-center gap-6 text-sm font-medium">
 							<div className="flex items-center gap-x-2">
 								<IconCalendar width={16} height={16} />

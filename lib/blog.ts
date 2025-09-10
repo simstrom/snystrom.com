@@ -44,6 +44,6 @@ export const getBlogPost = (slug: string) => {
 export const getAllTags = () => {
 	// Extract tags from each post and flatten (take 12)
 	const tags = allPosts.flatMap((post) => post.tags ?? []);
-	// Ensure uniqueness of tags with Set
-	return Array.from(new Set(tags));
+	// Ensure uniqueness of tags with Set and sort alphabetically
+	return Array.from(new Set(tags)).sort((a, b) => a.localeCompare(b));
 };
