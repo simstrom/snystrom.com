@@ -1,3 +1,4 @@
+import Callout from '@/components/blog/Callout';
 import CustomLink from '@/components/blog/Link';
 import MDXComponents from '@/components/blog/MDXcomponents';
 import Tag from '@/components/blog/Tag';
@@ -196,40 +197,42 @@ export default async function BlogPost(props: Props) {
 				</div>
 			</Section>
 
-			<Section className="pt-16 pb-12">
-				<article className="prose max-w-3xl mx-auto">
+			<article className="prose max-w-none mt-8 prose-p:first:text-lg">
+				<div className="wrapper">
 					<MDXContent code={post.body} components={MDXComponents} />
 
-					<div className="pt-12">
-						<div className="flex items-center gap-x-4">
-							<Image
-								width={64}
-								height={64}
-								src={avatar}
-								alt=""
-								draggable={false}
-								className="rounded-full not-prose border grayscale ring-1 ring-border"
-							/>
-							<div className="flex flex-col">
-								<span className="text-sm font-medium text-foreground-secondary">Simon says:</span>
-								<span className="font-medium text-lg text-foreground">
-									Hey, thanks for reading! 👋
-								</span>
+					<Callout variant="ignore">
+						<>
+							<div className="flex items-center gap-x-4">
+								<Image
+									width={64}
+									height={64}
+									src={avatar}
+									alt=""
+									draggable={false}
+									className="rounded-full not-prose border grayscale ring-1 ring-border"
+								/>
+								<div className="flex flex-col">
+									<span className="text-sm font-medium text-foreground-secondary">Simon says:</span>
+									<span className="font-medium text-lg text-foreground">
+										Hey, thanks for reading! 👋
+									</span>
+								</div>
 							</div>
-						</div>
-						<p className="mt-3">
-							If you enjoyed this article, check out some of my other posts below. Have questions,
-							feedback, or just want to connect? Find me on{' '}
-							<CustomLink href={SITE_LINKEDIN_URL}>Github</CustomLink> or drop me a message on{' '}
-							<CustomLink href={SITE_INSTAGRAM_URL}>LinkedIn</CustomLink> and let&apos;s chat.
-						</p>
-					</div>
-				</article>
-			</Section>
+							<p className="mt-3">
+								If you enjoyed this article, check out some of my other posts below. Have questions,
+								feedback, or just want to connect? Find me on{' '}
+								<CustomLink href={SITE_LINKEDIN_URL}>Github</CustomLink> or drop me a message on{' '}
+								<CustomLink href={SITE_INSTAGRAM_URL}>LinkedIn</CustomLink> and let&apos;s chat.
+							</p>
+						</>
+					</Callout>
+				</div>
+			</article>
 
 			{related.length > 0 && (
 				<Section borderOrigin={null}>
-					<h3 className="text-3xl p-6 border-b bg-background-secondary">More reading</h3>
+					<h3 className="text-3xl p-6 border-b bg-background">More reading</h3>
 					<PostListRelated posts={related.slice(0, 3)} />
 				</Section>
 			)}

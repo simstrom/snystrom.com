@@ -25,7 +25,7 @@ export default async function CustomImage({
 				width={result.metadata.originalWidth}
 				height={result.metadata.originalHeight}
 				alt={alt}
-				className="w-full h-auto rounded-xl border"
+				className="w-full h-auto rounded-xl border shadow-xs"
 				priority={priority}
 				placeholder="blur"
 				blurDataURL={result.metadata.dataURIBase64}

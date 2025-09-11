@@ -13,7 +13,12 @@ export default function Tabs({ labels = ['Preview', 'Code'], children, ...props 
 
 	return (
 		<>
-			<TabList labels={labels} selected={activeView} setSelected={setActiveView} className="mt-8" />
+			<TabList
+				labels={labels}
+				selected={activeView}
+				setSelected={setActiveView}
+				className="mt-8 w-full"
+			/>
 			<div className="">
 				{children.map((child, idx) => activeView === idx && <div key={idx}>{child}</div>)}
 			</div>

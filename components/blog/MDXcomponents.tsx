@@ -44,8 +44,8 @@ const MDXComponents = {
 	a: CustomLink,
 	figure: (props: any) => Code(props),
 	Image: CustomImage,
-	Callout: Callout,
-	Tabs: Tabs,
-	Preview: Preview,
+	Tabs,
+	Preview,
+	Callout,
 };
 export default MDXComponents;

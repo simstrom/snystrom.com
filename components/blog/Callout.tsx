@@ -1,7 +1,7 @@
 import { IconCheck, IconInfo, IconMessage, IconWarning } from '@/data/icons';
 import { cn } from '@/lib/utils';
 
-type CalloutVariants = 'info' | 'success' | 'thought' | 'warning';
+type CalloutVariants = 'info' | 'success' | 'thought' | 'warning' | 'ignore';
 interface CalloutProps {
 	variant?: CalloutVariants;
 	title?: string;
@@ -13,6 +13,7 @@ const variantConfig = {
 	success: IconCheck,
 	thought: IconMessage,
 	warning: IconWarning,
+	ignore: undefined,
 };
 
 const variantStyles: Record<CalloutVariants, { border: string; bg: string; text: string }> = {
@@ -36,6 +37,11 @@ const variantStyles: Record<CalloutVariants, { border: string; bg: string; text:
 		bg: 'bg-[#a53f47]/10 dark:bg-[#e06c76]/10',
 		text: 'text-[#a53f47] dark:text-[#e06c76]',
 	},
+	ignore: {
+		border: 'border-border',
+		bg: 'bg-background',
+		text: 'text-foreground-secondary',
+	},
 };
 
 export default function Callout({ variant = 'info', title, children }: CalloutProps) {
@@ -43,21 +49,25 @@ export default function Callout({ variant = 'info', title, children }: CalloutPr
 	const styles = variantStyles[variant];
 
 	return (
-		<blockquote
-			className={cn(
-				'not-prose p-4 my-5 rounded-md border shadow-sm',
-				styles.bg,
-				styles.border,
-				styles.text
-			)}
-		>
-			<div className="py-2 flex gap-x-3 items-center font-medium">
-				<Icon width={24} height={24} className={cn('shrink-0', styles.text)} />
-				<div className="grow not-prose">
-					{title ? title : variant.charAt(0).toUpperCase() + variant.slice(1)}
-				</div>
-			</div>
-			<div className="px-1 not-prose text-foreground-secondary">{children}</div>
-		</blockquote>
+		<div className="w-screen -mx-3 px-4 py-8 my-5 lg:w-full lg:mx-0 lg:px-0 border-y col-span-3 overflow-x-clip bg-[linear-gradient(-45deg,var(--color-border)_12.50%,transparent_12.50%,transparent_50%,var(--color-border)_50%,var(--color-border)_62.50%,transparent_62.50%,transparent_100%)] bg-size-[5px_5px]">
+			<blockquote
+				className={cn(
+					'not-prose relative p-4 rounded-md border shadow-sm max-w-3xl mx-auto w-full bg-background dark:bg-background-secondary',
+					styles.text
+				)}
+			>
+				{variant !== 'ignore' && Icon && (
+					<div className="my-2 flex gap-x-3 items-center font-medium">
+						<div className={cn('p-2 rounded-lg', styles.bg)}>
+							<Icon width={20} height={20} className={cn('shrink-0', styles.text)} />
+						</div>
+						<div className="grow not-prose">
+							{title ? title : variant.charAt(0).toUpperCase() + variant.slice(1)}
+						</div>
+					</div>
+				)}
+				<div className="px-1 not-prose text-foreground-secondary">{children}</div>
+			</blockquote>
+		</div>
 	);
 }

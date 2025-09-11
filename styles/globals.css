@@ -92,6 +92,15 @@
 	@apply [&::-webkit-scrollbar]:hidden;
 }
 
+@utility wrapper {
+	display: grid;
+	grid-template-columns: 1fr min(75ch, 100%) 1fr;
+
+	> * {
+		grid-column: 2;
+	}
+}
+
 @layer base {
 	*,
 	::after,
@@ -165,19 +174,19 @@ h6 {
 */
 /* Code block title tab */
 figcaption[data-rehype-pretty-code-title] {
-	@apply flex items-center border-b rounded-t-xl py-2.5 px-6 mt-0 text-sm text-foreground font-medium bg-background-secondary;
+	@apply flex items-center border-b rounded-t-md py-2.5 px-6 mt-0 text-sm text-foreground font-medium bg-background-secondary;
 }
 
 /* Code block body */
 figure[data-rehype-pretty-code-figure] {
-	@apply rounded-xl border shadow-xs;
+	@apply rounded-md border shadow-xs;
 }
 figure[data-rehype-pretty-code-figure] pre {
-	@apply font-mono overflow-x-auto py-4 px-0 text-sm leading-[26px] tracking-normal rounded-b-xl rounded-t-none bg-background-secondary 
+	@apply font-mono overflow-x-auto py-4 px-0 text-sm leading-[26px] tracking-normal rounded-b-md rounded-t-none bg-background-secondary 
 		[&::-webkit-scrollbar]:h-2
-		[&::-webkit-scrollbar-thumb]:rounded-xl
+		[&::-webkit-scrollbar-thumb]:rounded-none
 		[&::-webkit-scrollbar-thumb]:bg-gray-300
-		dark:[&::-webkit-scrollbar-thumb]:bg-foreground-secondary/80;
+		dark:[&::-webkit-scrollbar-thumb]:bg-gray-700;
 
 	--code-foreground: #445175;
 	--code-token-constant: #ef3997;
