@@ -165,7 +165,7 @@ h6 {
 */
 /* Code block title tab */
 figcaption[data-rehype-pretty-code-title] {
-	@apply flex items-center border-b rounded-t-xl h-10 py-3 px-4 mt-0 text-sm text-foreground font-medium bg-background-secondary;
+	@apply flex items-center border-b rounded-t-xl py-2.5 px-6 mt-0 text-sm text-foreground font-medium bg-background-secondary;
 }
 
 /* Code block body */

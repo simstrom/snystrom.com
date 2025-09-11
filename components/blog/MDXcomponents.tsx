@@ -5,7 +5,13 @@ import Callout from './Callout';
 import Code from './Code';
 import CustomImage from './Image';
 import CustomLink from './Link';
+import Preview from './Preview';
 import Tabs from './Tabs';
+
+// Helper to set displayName on components
+function withDisplayName<T extends React.ComponentType<any>>(Comp: T, name: string): T {
+	return Object.assign(Comp, { displayName: name });
+}
 
 // Creates anchor links for all headings
 const createHeading = (level: number) => {
@@ -40,5 +46,6 @@ const MDXComponents = {
 	Image: CustomImage,
 	Callout: Callout,
 	Tabs: Tabs,
+	Preview: Preview,
 };
 export default MDXComponents;
