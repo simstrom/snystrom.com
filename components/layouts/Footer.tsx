@@ -5,6 +5,8 @@ import Link from 'next/link';
 
 import CustomLink from '../blog/Link';
 import Copy from '../ui/Copy';
+import Modal from '../ui/Modal';
+import { ContactModalContent } from './Navbar';
 
 export default function Footer() {
 	return (
@@ -13,7 +15,7 @@ export default function Footer() {
 				<div className="w-full max-w-[1088px] mx-auto flex flex-col border-x">
 					<div className="relative grid grid-cols-2">
 						<div className="flex items-center sm:items-start justify-center sm:flex-col gap-1 p-6">
-							<Link href="/" className="w-fit hover:rotate-180 transition-transform duration-500">
+							<Link href="/" className="w-fit">
 								<Logo width={30} height={30} />
 							</Link>
 							<p className="text-foreground-secondary text-sm sm:mb-2 sm:mt-4">
@@ -68,15 +70,25 @@ export default function Footer() {
 									<IconAt className="hidden sm:block w-4 h-4 text-foreground" />
 									<h5 className="text-foreground text-sm tracking-normal">Socials</h5>
 								</div>
-								{navItems.socialLinks.map((item) => (
-									<CustomLink
-										key={item.name}
-										href={item.path}
-										className="before:content-none w-full text-sm font-medium px-4 py-2 hover:bg-foreground hover:text-background"
-									>
-										{item.name}
-									</CustomLink>
-								))}
+
+								<Modal
+									trigger={'Contact'}
+									triggerClassName="w-full text-left text-sm font-medium px-4 py-2 text-foreground transition-colors hover:bg-foreground hover:text-background"
+								>
+									{ContactModalContent}
+								</Modal>
+
+								{navItems.socialLinks
+									.filter((item) => item.name !== 'RSS')
+									.map((item) => (
+										<CustomLink
+											key={item.name}
+											href={item.path}
+											className="before:content-none w-full text-sm font-medium px-4 py-2 hover:bg-foreground hover:text-background"
+										>
+											{item.name}
+										</CustomLink>
+									))}
 							</div>
 						</div>
 					</div>

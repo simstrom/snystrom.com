@@ -2,13 +2,11 @@
 
 import { SITE_CONTACT } from '@/data/constants';
 import { dropdownLinks, navItems } from '@/data/data';
-import { IconAt, IconCheck, IconCopy, IconEmail, IconMenu } from '@/data/icons';
+import { IconAt, IconCheck, IconCopy, IconEmail, IconMenu, Logo } from '@/data/icons';
 import { useScrollLock } from '@/lib/hooks';
 import { cn } from '@/lib/utils';
-import Avatar from '@/public/images/avatar.jpg';
 
 import { AnimatePresence } from 'framer-motion';
-import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
@@ -50,16 +48,12 @@ export default function Navbar({ className }: { className?: string }) {
 				)}
 			>
 				<div className="flex items-center justify-between w-full mx-auto border-x bg-background/90">
-					<div className="border-r transition-colors w-13 h-13 p-1.5 items-center justify-center">
-						<Link href="/" className="relative">
-							<Image
-								src={Avatar}
-								alt={''}
-								className="aspect-square rounded-full ring-1 ring-border grayscale"
-							/>
-							<div className="absolute inset-0 z-10 rounded-full bg-brand/60 mix-blend-multiply transition-colors hover:bg-brand/50" />
-						</Link>
-					</div>
+					<Link
+						href="/"
+						className="h-13 w-13 border-r flex items-center justify-center transition-colors hover:text-background hover:bg-foreground"
+					>
+						<Logo width={20} height={20} className="" />
+					</Link>
 
 					<div className="flex w-fit h-full justify-center items-center border-x text-foreground-secondary text-sm font-medium tracking-normal">
 						{navItems.navigationLinks.map((navItem, idx) => (
@@ -96,7 +90,6 @@ export default function Navbar({ className }: { className?: string }) {
 							<Modal
 								trigger={<IconAt width={18} height={18} />}
 								triggerClassName="px-4 py-4 h-[52px] border-l hover:text-background hover:bg-foreground transition-colors"
-								className="flex flex-col items-center gap-2"
 							>
 								{ContactModalContent}
 							</Modal>
@@ -159,8 +152,8 @@ export const ContactModalContent = (
 		<div className="pt-8 pb-6 px-6 sm:px-8">
 			<h3 className="text-3xl mb-2">Get in touch</h3>
 			<p className="text-foreground-secondary">
-				Design engineer with 4+ years of experience in crafting applications, interfaces and
-				experiences.
+				Whether you have a question, want to collaborate, or just want to say hi, my inbox is always
+				open.
 			</p>
 		</div>
 		<div className="flex items-center w-full border-y">

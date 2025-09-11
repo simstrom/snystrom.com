@@ -81,7 +81,9 @@ const Modal = ({
 										>
 											<IconX />
 										</button>
-										<ModalContent className={className}>{children}</ModalContent>
+										<ModalContent className={cn('flex flex-col items-center gap-2', className)}>
+											{children}
+										</ModalContent>
 									</div>
 
 									<div className="hidden lg:block w-full opacity-75 bg-[linear-gradient(-45deg,var(--color-border)_12.50%,transparent_12.50%,transparent_50%,var(--color-border)_50%,var(--color-border)_62.50%,transparent_62.50%,transparent_100%)] bg-size-[5px_5px]" />

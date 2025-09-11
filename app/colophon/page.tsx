@@ -122,7 +122,7 @@ const content = [
 		heading: 'Design & Colors',
 		text: (
 			<>
-				The vibe I'm going for is minimal, with neutral colors and blue accents to keep things
+				The vibe I&apos;m going for is minimal, with neutral colors and blue accents to keep things
 				fresh.{' '}
 				<CustomLink href="https://www.fontshare.com/?q=General%20Sans">General Sans</CustomLink> and{' '}
 				<CustomLink href={'https://vercel.com/font'}>Geist Mono</CustomLink> handle the typography,
@@ -135,7 +135,7 @@ const content = [
 		heading: 'Inspirations',
 		text: (
 			<>
-				I've taken cues from developer portfolios and design systems like{' '}
+				I&apos;ve taken cues from developer portfolios and design systems like{' '}
 				<CustomLink href="https://tailwindcss.com">Tailwind CSS</CustomLink> and{' '}
 				<CustomLink href="https://vercel.com">Vercel</CustomLink>. I also really admire the work of{' '}
 				<CustomLink href="https://braydoncoyer.dev">Braydon Coyer</CustomLink>,{' '}

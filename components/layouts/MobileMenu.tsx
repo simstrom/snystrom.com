@@ -64,7 +64,6 @@ export default function MobileMenu({ currentPath, isOpen, setIsOpen, className }
 						navItem.name === 'Contact' ? (
 							<Modal
 								key={idx}
-								className="flex flex-col items-center gap-2"
 								trigger={
 									<MenuItem
 										as="div"
