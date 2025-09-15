@@ -1,6 +1,17 @@
 import { GalleryCollection, Navigation, Project } from '../lib/types';
 import { SITE_CONTACT, SITE_GITHUB_URL, SITE_INSTAGRAM_URL, SITE_LINKEDIN_URL } from './constants';
-import { IconEmail, IconGithub, IconInstagram, IconLinkedin, IconPerson, IconRSS } from './icons';
+import {
+	IconCode,
+	IconDocument,
+	IconEmail,
+	IconGallery,
+	IconGithub,
+	IconInstagram,
+	IconLinkedin,
+	IconPerson,
+	IconPuzzle,
+	IconRSS,
+} from './icons';
 
 //
 // NAVIGAITON
@@ -28,7 +39,7 @@ const exploreLinks = [
 		name: 'Gallery',
 		description: 'Memorable photography collections from around the globe',
 		path: '/gallery',
-		image: '/images/gallery.svg',
+		image: IconGallery,
 		colSpan: 7,
 		rowSpan: 4,
 		translateX: 60,
@@ -37,7 +48,7 @@ const exploreLinks = [
 		name: 'Components',
 		description: 'Library of interactive elements',
 		path: '',
-		image: '/images/components.svg',
+		image: IconPuzzle,
 		colSpan: 5,
 		rowSpan: 2,
 		translateX: 20,
@@ -46,7 +57,7 @@ const exploreLinks = [
 		name: 'Colophon',
 		description: 'Dev & design process',
 		path: '/colophon',
-		image: null,
+		image: IconCode,
 		colSpan: 5,
 		rowSpan: 1,
 		translateX: 20,
@@ -57,7 +68,7 @@ const connectLinks = [
 		name: 'Contact',
 		path: `mailto:${SITE_CONTACT}`,
 		icon: <IconEmail />,
-		image: null,
+		image: undefined,
 		colSpan: 5,
 		rowSpan: 2,
 		translateX: 40,
@@ -67,7 +78,7 @@ const connectLinks = [
 		description: 'Summary of my experiences',
 		path: '/cv.pdf',
 		icon: <IconPerson />,
-		image: null,
+		image: IconDocument,
 		colSpan: 5,
 		rowSpan: 1,
 		translateX: 32,

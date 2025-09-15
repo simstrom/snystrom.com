@@ -1,12 +1,12 @@
 'use client';
 
+import { IconArrowUpRight } from '@/data/icons';
 import { useFocusTrap } from '@/lib/hooks';
 import { cn } from '@/lib/utils';
 
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import React, { ComponentType, SVGProps } from 'react';
 
 interface NavDropdown {
 	isOpen: boolean;
@@ -43,7 +43,7 @@ export const NavDropdown = ({ isOpen, onClose, children, className }: NavDropdow
 interface NavDropDownCard {
 	title: string;
 	description?: string;
-	imageSrc: string;
+	imageSrc?: ComponentType<SVGProps<SVGSVGElement>>;
 	imageAlt?: string;
 	href?: string;
 	onClose: () => void;
@@ -56,7 +56,7 @@ interface NavDropDownCard {
 export const NavDropDownCard = ({
 	title,
 	description,
-	imageSrc,
+	imageSrc: ImageSrc,
 	imageAlt = '',
 	onClose,
 	href = '',
@@ -70,8 +70,8 @@ export const NavDropDownCard = ({
 			href={href || ''}
 			onClick={!href ? undefined : onClose}
 			className={cn(
-				'relative flex flex-col overflow-hidden text-sm font-medium text-foreground p-4',
-				'dark:hover:bg-[#181a20] transition-colors group',
+				'relative overflow-hidden text-sm font-medium text-foreground p-4',
+				'hover:bg-background-secondary transition-colors group',
 				!href && 'cursor-default',
 				className
 			)}
@@ -80,8 +80,11 @@ export const NavDropDownCard = ({
 				gridRow: `span ${rowSpan}`,
 			}}
 		>
-			<div className={cn('flex gap-x-2', rowSpan > 1 ? 'flex-col h-full' : 'items-baseline')}>
-				<span className="z-20 relative">{title}</span>
+			<div className={cn('flex gap-x-2', rowSpan > 1 ? 'flex-col h-full' : 'items-center')}>
+				<div className="flex items-center gap-2">
+					{ImageSrc && <ImageSrc />}
+					<h3 className="tracking-normal z-20 relative">{title}</h3>
+				</div>
 				{description && (
 					<span
 						className={cn(
@@ -99,33 +102,28 @@ export const NavDropDownCard = ({
 					</div>
 				)}
 			</div>
-			{imageSrc && (
-				<Image
-					fill
-					sizes="200px"
-					loading="lazy"
-					src={imageSrc}
-					alt={imageAlt}
+			{ImageSrc && rowSpan > 1 && (
+				<ImageSrc
 					className={cn(
-						'absolute inset-0 object-cover object-right grayscale',
-						'group-hover:grayscale-0 transition'
+						'w-80 h-80 absolute -bottom-12 -right-12 -rotate-12 text-foreground-secondary/5 dark:text-black/20',
+						'transition-colors duration-300 pointer-events-none select-none'
 					)}
-					style={{
-						transform: `translateX(${translateX}px)`,
-						maskImage:
-							'radial-gradient(circle at 100% 100%, rgba(255, 255, 255, 1) -50%, transparent 80%)',
-						WebkitMaskImage:
-							'radial-gradient(circle at 100% 100%, rgba(255, 255, 255, 1) -50%, transparent 80%)',
-					}}
 				/>
 			)}
 			<div
-				className="z-10 absolute inset-0 pointer-events-none transition-opacity opacity-50 group-hover:opacity-0"
-				style={{
-					background:
-						'linear-gradient(to bottom right, hsl(var(--background-secondary)) 0%, rgba(0,0,0,0) 200%)',
-				}}
+				className={cn(
+					'absolute inset-0 z-10 bg-gradient-to-tl from-brand/20 via-transparent to-transparent',
+					'opacity-0 transition-opacity duration-300 group-hover:opacity-100 user-select-none pointer-events-none '
+				)}
 			/>
+			<div
+				className={cn(
+					'absolute right-4 -bottom-2 z-20 w-fit h-fit rounded-full p-1 text-brand bg-brand/10',
+					'opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:-translate-y-5 user-select-none pointer-events-none '
+				)}
+			>
+				<IconArrowUpRight className="w-5 h-5" />
+			</div>
 		</Link>
 	);
 };

@@ -6,7 +6,7 @@ import { IconAt, IconCheck, IconCopy, IconEmail, IconMenu, Logo } from '@/data/i
 import { useScrollLock } from '@/lib/hooks';
 import { cn } from '@/lib/utils';
 
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
@@ -44,7 +44,7 @@ export default function Navbar({ className }: { className?: string }) {
 				onMouseLeave={() => setOpenDropdown(null)}
 				aria-label="Main navigation"
 				className={cn(
-					'flex flex-col justify-center items-center w-full mx-auto max-h-screen border-b backdrop-blur-xl'
+					'flex flex-col justify-center items-center w-full mx-auto max-h-screen border-b backdrop-blur-xl z-10'
 				)}
 			>
 				<div className="flex items-center justify-between w-full mx-auto border-x bg-background/90">
@@ -114,26 +114,31 @@ export default function Navbar({ className }: { className?: string }) {
 
 				<AnimatePresence>
 					{openDropdown === 'explore' && (
-						<NavDropdown isOpen={openDropdown === 'explore'} onClose={() => setOpenDropdown(null)}>
-							{dropdownLinks.map((item, idx) => (
-								<NavDropDownCard
-									key={item.name}
-									title={item.name}
-									description={item.description}
-									href={item.path}
-									imageSrc={item.image ?? ''}
-									colSpan={item.colSpan}
-									rowSpan={item.rowSpan}
-									translateX={item.translateX}
-									onClose={() => setOpenDropdown(null)}
-									className={cn(
-										idx === 0
-											? 'border-b-0'
-											: (idx !== 0 || idx !== dropdownLinks.length - 1) && 'border-r-0'
-									)}
-								/>
-							))}
-						</NavDropdown>
+						<>
+							<NavDropdown
+								isOpen={openDropdown === 'explore'}
+								onClose={() => setOpenDropdown(null)}
+							>
+								{dropdownLinks.map((item, idx) => (
+									<NavDropDownCard
+										key={item.name}
+										title={item.name}
+										description={item.description}
+										href={item.path}
+										imageSrc={item.image}
+										colSpan={item.colSpan}
+										rowSpan={item.rowSpan}
+										translateX={item.translateX}
+										onClose={() => setOpenDropdown(null)}
+										className={cn(
+											idx === 0
+												? 'border-b-0'
+												: (idx !== 0 || idx !== dropdownLinks.length - 1) && 'border-r-0'
+										)}
+									/>
+								))}
+							</NavDropdown>
+						</>
 					)}
 				</AnimatePresence>
 
@@ -143,6 +148,18 @@ export default function Navbar({ className }: { className?: string }) {
 					)}
 				</AnimatePresence>
 			</nav>
+
+			<AnimatePresence>
+				{openDropdown === 'explore' && (
+					<motion.div
+						initial={{ opacity: 0 }}
+						animate={{ opacity: 1 }}
+						exit={{ opacity: 0 }}
+						transition={{ duration: 0.3, ease: 'easeInOut' }}
+						className="fixed w-screen h-screen z-0 bg-background/50 backdrop-blur-lg"
+					></motion.div>
+				)}
+			</AnimatePresence>
 		</header>
 	);
 }
