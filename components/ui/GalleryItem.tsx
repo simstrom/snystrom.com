@@ -1,3 +1,5 @@
+'use client';
+
 import { IconArrowRight } from '@/data/icons';
 import { GalleryImage } from '@/lib/types';
 import { cn, slugify } from '@/lib/utils';

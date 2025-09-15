@@ -35,19 +35,21 @@ export default function Code({ children, ...props }: CodeProps) {
 	// Codeblocks styled in globals.css
 	return (
 		<figure {...props} className="relative group">
-			<figcaption data-rehype-pretty-code-title>
-				{figcaption?.props.children}
-				<Tooltip message="Copy code" className="ml-auto">
-					<Copy
-						successMessage={<IconCheck width={20} height={20} className="text-brand" />}
-						toCopy={codeText}
-						variant="grow"
-					>
-						<IconCopy width={18} height={18} />
-					</Copy>
-				</Tooltip>
-			</figcaption>
+			{figcaption && (
+				<figcaption data-rehype-pretty-code-title>{figcaption?.props.children}</figcaption>
+			)}
+
 			{filteredChildren}
+
+			<Tooltip message="Copy code" className="absolute top-3 right-4">
+				<Copy
+					successMessage={<IconCheck width={16} height={16} className="text-brand" />}
+					toCopy={codeText}
+					variant="grow"
+				>
+					<IconCopy width={16} height={16} />
+				</Copy>
+			</Tooltip>
 		</figure>
 	);
 }
