@@ -21,7 +21,7 @@
 }
 .dark {
 	--color-background: hsl(216 16% 7%);
-	--color-background-secondary: hsl(220 16% 9%);
+	--color-background-secondary: hsl(220 12% 9%);
 
 	--color-foreground: hsl(220 15% 93%);
 	--color-foreground-secondary: hsl(222 8% 75%);

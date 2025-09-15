@@ -31,7 +31,7 @@ export default function Footer() {
 							>
 								{SITE_CONTACT}
 							</Copy>
-							<p className="absolute z-10 -bottom-8 left-1/2 -translate-x-1/2 text-xs text-foreground-tertiary">
+							<p className="absolute z-10 -bottom-10 left-1/2 -translate-x-1/2 text-xs text-foreground-tertiary">
 								© 2025 Simon Nyström. All rights reserved.
 							</p>
 						</div>
@@ -45,24 +45,12 @@ export default function Footer() {
 								{navItems.navigationLinks
 									.filter((item) => item.name !== 'Colophon' && item.name !== 'Home')
 									.map((item) => (
-										<CustomLink
-											key={item.name}
-											href={item.path}
-											className="before:content-none w-full text-sm font-medium px-4 py-2 hover:bg-foreground hover:text-background"
-										>
-											{item.name}
-										</CustomLink>
+										<NavItem key={item.name} name={item.name} path={item.path} />
 									))}
 								{navItems.exploreLinks
 									.filter((item) => item.name === 'Gallery')
 									.map((item) => (
-										<CustomLink
-											key={item.name}
-											href={item.path}
-											className="before:content-none w-full text-sm font-medium px-4 py-2 hover:bg-foreground hover:text-background"
-										>
-											{item.name}
-										</CustomLink>
+										<NavItem key={item.name} name={item.name} path={item.path} />
 									))}
 							</div>
 							<div className="flex-1 flex flex-col text-foreground-secondary">
@@ -73,7 +61,7 @@ export default function Footer() {
 
 								<Modal
 									trigger={'Contact'}
-									triggerClassName="w-full text-left text-sm font-medium px-4 py-2 text-foreground transition-colors hover:bg-foreground hover:text-background"
+									triggerClassName="w-full text-left text-sm font-medium px-4 py-2.5 text-foreground transition-colors hover:bg-foreground hover:text-background"
 								>
 									<ContactModal />
 								</Modal>
@@ -81,20 +69,26 @@ export default function Footer() {
 								{navItems.socialLinks
 									.filter((item) => item.name !== 'RSS')
 									.map((item) => (
-										<CustomLink
-											key={item.name}
-											href={item.path}
-											className="before:content-none w-full text-sm font-medium px-4 py-2 hover:bg-foreground hover:text-background"
-										>
-											{item.name}
-										</CustomLink>
+										<NavItem key={item.name} name={item.name} path={item.path} />
 									))}
 							</div>
 						</div>
 					</div>
 				</div>
 			</footer>
-			<div className="max-w-[1088px] opacity-75 mx-auto border-x w-full h-10 bg-[linear-gradient(-45deg,var(--color-border)_12.50%,transparent_12.50%,transparent_50%,var(--color-border)_50%,var(--color-border)_62.50%,transparent_62.50%,transparent_100%)] bg-size-[5px_5px]" />
+			<div className="max-w-[1088px] opacity-75 mx-auto border-x w-full h-14 bg-[linear-gradient(-45deg,var(--color-border)_12.50%,transparent_12.50%,transparent_50%,var(--color-border)_50%,var(--color-border)_62.50%,transparent_62.50%,transparent_100%)] bg-size-[5px_5px]" />
 		</>
 	);
 }
+
+const NavItem = ({ name, path }: { name: string; path: string }) => {
+	return (
+		<CustomLink
+			key={name}
+			href={path}
+			className="before:content-none w-full text-sm font-medium px-4 py-2.5 hover:bg-foreground hover:text-background"
+		>
+			{name}
+		</CustomLink>
+	);
+};
