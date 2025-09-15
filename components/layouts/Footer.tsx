@@ -11,7 +11,7 @@ import Modal from '../ui/Modal';
 export default function Footer() {
 	return (
 		<>
-			<footer className="border-y">
+			<footer className="border-y relative z-30">
 				<div className="w-full max-w-[1088px] mx-auto flex flex-col border-x">
 					<div className="relative grid grid-cols-2">
 						<div className="flex items-center sm:items-start justify-center sm:flex-col gap-1 p-6">
@@ -26,12 +26,12 @@ export default function Footer() {
 							<Copy
 								toCopy={SITE_CONTACT}
 								successMessage="Email copied!"
-								icon={<IconEmail className="w-4 h-4" />}
+								icon={<IconEmail className="w-3.5 h-3.5" />}
 								className="hidden sm:flex mt-2 w-full text-foreground"
 							>
 								{SITE_CONTACT}
 							</Copy>
-							<p className="absolute z-10 -bottom-10 left-1/2 -translate-x-1/2 text-xs text-foreground-tertiary">
+							<p className="absolute z-30 -bottom-10 left-1/2 -translate-x-1/2 text-xs text-foreground-tertiary">
 								© 2025 Simon Nyström. All rights reserved.
 							</p>
 						</div>
@@ -39,7 +39,7 @@ export default function Footer() {
 						<div className="border-l w-full flex">
 							<div className="flex-1 flex flex-col text-foreground-secondary border-r">
 								<div className="border-b p-4 flex items-center gap-x-2">
-									<IconGlobe className="hidden sm:block w-4 h-4 text-foreground" />
+									<IconGlobe className="hidden sm:block w-3.5 h-3.5 text-foreground" />
 									<h5 className="text-foreground text-sm tracking-normal">Navigation</h5>
 								</div>
 								{navItems.navigationLinks
@@ -55,7 +55,7 @@ export default function Footer() {
 							</div>
 							<div className="flex-1 flex flex-col text-foreground-secondary">
 								<div className="border-b p-4 flex items-center gap-x-2">
-									<IconAt className="hidden sm:block w-4 h-4 text-foreground" />
+									<IconAt className="hidden sm:block  w-3.5 h-3.5 text-foreground" />
 									<h5 className="text-foreground text-sm tracking-normal">Socials</h5>
 								</div>
 
@@ -76,7 +76,7 @@ export default function Footer() {
 					</div>
 				</div>
 			</footer>
-			<div className="max-w-[1088px] opacity-75 mx-auto border-x w-full h-14 bg-[linear-gradient(-45deg,var(--color-border)_12.50%,transparent_12.50%,transparent_50%,var(--color-border)_50%,var(--color-border)_62.50%,transparent_62.50%,transparent_100%)] bg-size-[5px_5px]" />
+			<div className="z-20 max-w-[1088px] opacity-75 mx-auto border-x w-full h-14 bg-[linear-gradient(-45deg,var(--color-border)_12.50%,transparent_12.50%,transparent_50%,var(--color-border)_50%,var(--color-border)_62.50%,transparent_62.50%,transparent_100%)] bg-size-[5px_5px]" />
 		</>
 	);
 }

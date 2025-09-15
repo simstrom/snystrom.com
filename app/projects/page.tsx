@@ -82,8 +82,8 @@ export default function Projects() {
 								<div className="flex gap-x-4">
 									{/* <IconArrowRight width={30} height={30} className="group" /> */}
 									<IconGithub
-										width={24}
-										height={24}
+										width={18}
+										height={18}
 										className="transition-transform group-hover:scale-110"
 									/>
 								</div>

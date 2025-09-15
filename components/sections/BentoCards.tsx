@@ -139,7 +139,7 @@ function BentoCardBlog({ latestPost }: { latestPost: Post }) {
 				</span>
 				<p className="text-base">{latestPost?.title}</p>
 				<div className="mt-5 flex items-center gap-x-2 text-foreground-secondary">
-					<IconHourglass width={15} height={15} />
+					<IconHourglass width={14} height={14} />
 					<span>{latestPost?.readingTime}</span>
 				</div>
 			</div>
