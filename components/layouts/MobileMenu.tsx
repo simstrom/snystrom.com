@@ -105,7 +105,7 @@ export default function MobileMenu({ currentPath, isOpen, setIsOpen, className }
 							rel="noopener noreferrer"
 							className="p-2 text-foreground-secondary"
 						>
-							{navItem.icon}
+							{navItem.icon ? <navItem.icon /> : null}
 						</a>
 					))}
 				</motion.div>

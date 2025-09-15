@@ -1,12 +1,12 @@
 'use client';
 
-import { IconArrowUpRight } from '@/data/icons';
 import { useFocusTrap } from '@/lib/hooks';
 import { cn } from '@/lib/utils';
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import React, { ComponentType, SVGProps } from 'react';
+import CardOverlay from '../ui/CardOverlay';
 
 interface NavDropdown {
 	isOpen: boolean;
@@ -43,26 +43,22 @@ export const NavDropdown = ({ isOpen, onClose, children, className }: NavDropdow
 interface NavDropDownCard {
 	title: string;
 	description?: string;
-	imageSrc?: ComponentType<SVGProps<SVGSVGElement>>;
-	imageAlt?: string;
+	icon?: ComponentType<SVGProps<SVGSVGElement>>;
 	href?: string;
 	onClose: () => void;
 	colSpan?: number;
 	rowSpan?: number;
-	translateX?: number;
 	className?: string;
 }
 
 export const NavDropDownCard = ({
 	title,
 	description,
-	imageSrc: ImageSrc,
-	imageAlt = '',
+	icon: Icon,
 	onClose,
 	href = '',
 	colSpan = 4,
 	rowSpan = 1,
-	translateX = 0,
 	className,
 }: NavDropDownCard) => {
 	return (
@@ -82,7 +78,7 @@ export const NavDropDownCard = ({
 		>
 			<div className={cn('flex gap-x-2', rowSpan > 1 ? 'flex-col h-full' : 'items-center')}>
 				<div className="flex items-center gap-2">
-					{ImageSrc && <ImageSrc />}
+					{Icon && <Icon />}
 					<h3 className="tracking-normal z-20 relative">{title}</h3>
 				</div>
 				{description && (
@@ -102,28 +98,15 @@ export const NavDropDownCard = ({
 					</div>
 				)}
 			</div>
-			{ImageSrc && rowSpan > 1 && (
-				<ImageSrc
+			{Icon && rowSpan > 1 && (
+				<Icon
 					className={cn(
 						'w-80 h-80 absolute -bottom-12 -right-12 -rotate-12 text-foreground-secondary/5 dark:text-black/20',
 						'transition-colors duration-300 pointer-events-none select-none'
 					)}
 				/>
 			)}
-			<div
-				className={cn(
-					'absolute inset-0 z-10 bg-gradient-to-tl from-brand/20 via-transparent to-transparent',
-					'opacity-0 transition-opacity duration-300 group-hover:opacity-100 user-select-none pointer-events-none '
-				)}
-			/>
-			<div
-				className={cn(
-					'absolute right-4 -bottom-2 z-20 w-fit h-fit rounded-full p-1 text-brand bg-brand/10',
-					'opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:-translate-y-5 user-select-none pointer-events-none '
-				)}
-			>
-				<IconArrowUpRight className="w-5 h-5" />
-			</div>
+			<CardOverlay withIcon />
 		</Link>
 	);
 };

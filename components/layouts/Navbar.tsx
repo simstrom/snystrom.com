@@ -124,10 +124,9 @@ export default function Navbar({ className }: { className?: string }) {
 										title={item.name}
 										description={item.description}
 										href={item.path}
-										imageSrc={item.image}
+										icon={item.icon}
 										colSpan={item.colSpan}
 										rowSpan={item.rowSpan}
-										translateX={item.translateX}
 										onClose={() => setOpenDropdown(null)}
 										className={cn(
 											idx === 0

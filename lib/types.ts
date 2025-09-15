@@ -1,4 +1,5 @@
 import { StaticImport } from 'next/dist/shared/lib/get-img-props';
+import { ComponentType, SVGProps } from 'react';
 
 export type Project = {
 	title: string;
@@ -27,7 +28,7 @@ export type GalleryImage = {
 export type NavItem = {
 	name: string;
 	path: string;
-	icon?: React.ReactNode;
+	icon?: ComponentType<SVGProps<SVGSVGElement>>;
 };
 export type Navigation = {
 	navigationLinks: NavItem[];

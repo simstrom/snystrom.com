@@ -3,12 +3,10 @@ import { SITE_CONTACT, SITE_GITHUB_URL, SITE_INSTAGRAM_URL, SITE_LINKEDIN_URL } 
 import {
 	IconCode,
 	IconDocument,
-	IconEmail,
 	IconGallery,
 	IconGithub,
 	IconInstagram,
 	IconLinkedin,
-	IconPerson,
 	IconPuzzle,
 	IconRSS,
 } from './icons';
@@ -39,71 +37,64 @@ const exploreLinks = [
 		name: 'Gallery',
 		description: 'Memorable photography collections from around the globe',
 		path: '/gallery',
-		image: IconGallery,
+		icon: IconGallery,
 		colSpan: 7,
 		rowSpan: 4,
-		translateX: 60,
 	},
 	{
 		name: 'Components',
 		description: 'Library of interactive elements',
 		path: '',
-		image: IconPuzzle,
+		icon: IconPuzzle,
 		colSpan: 5,
 		rowSpan: 2,
-		translateX: 20,
 	},
 	{
 		name: 'Colophon',
 		description: 'Dev & design process',
 		path: '/colophon',
-		image: IconCode,
+		icon: IconCode,
 		colSpan: 5,
 		rowSpan: 1,
-		translateX: 20,
 	},
 ];
 const connectLinks = [
 	{
 		name: 'Contact',
 		path: `mailto:${SITE_CONTACT}`,
-		icon: <IconEmail />,
-		image: undefined,
+		icon: undefined,
 		colSpan: 5,
 		rowSpan: 2,
-		translateX: 40,
 	},
 	{
 		name: 'Resume',
 		description: 'Summary of my experiences',
 		path: '/cv.pdf',
-		icon: <IconPerson />,
-		image: IconDocument,
+		icon: IconDocument,
 		colSpan: 5,
 		rowSpan: 1,
-		translateX: 32,
 	},
 ];
 const socialLinks = [
 	{
 		name: 'Github',
 		path: SITE_GITHUB_URL,
-		icon: <IconGithub width={20} height={20} />,
+		icon: IconGithub,
 	},
 	{
 		name: 'LinkedIn',
 		path: SITE_LINKEDIN_URL,
-		icon: <IconLinkedin width={20} height={20} />,
+		icon: IconLinkedin,
 	},
 	{
 		name: 'Instagram',
 		path: SITE_INSTAGRAM_URL,
-		icon: <IconInstagram width={20} height={20} />,
+		icon: IconInstagram,
 	},
 	{
 		name: 'RSS',
 		path: '/rss.xml',
-		icon: <IconRSS width={20} height={20} />,
+		icon: IconRSS,
 	},
 ];
 

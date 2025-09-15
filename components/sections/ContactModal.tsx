@@ -42,7 +42,7 @@ export default function ContactModal() {
 						rel="noopener noreferrer"
 						className="hover:text-background hover:bg-foreground rounded-xl transition-colors p-2"
 					>
-						{link.icon}
+						{link.icon ? <link.icon width={20} height={20} /> : null}
 					</a>
 				))}
 			</div>
