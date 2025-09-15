@@ -1,8 +1,7 @@
 'use client';
 
-import { SITE_CONTACT } from '@/data/constants';
 import { dropdownLinks, navItems } from '@/data/data';
-import { IconAt, IconCheck, IconCopy, IconEmail, IconMenu, Logo } from '@/data/icons';
+import { IconAt, IconMenu, Logo } from '@/data/icons';
 import { useScrollLock } from '@/lib/hooks';
 import { cn } from '@/lib/utils';
 
@@ -11,7 +10,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 
-import Copy from '../ui/Copy';
+import ContactModal from '../sections/ContactModal';
 import Modal from '../ui/Modal';
 import ThemeSwitcher from '../ui/ThemeSwitcher';
 import { Tooltip } from '../ui/Tooltip';
@@ -91,7 +90,7 @@ export default function Navbar({ className }: { className?: string }) {
 								trigger={<IconAt width={18} height={18} />}
 								triggerClassName="px-4 py-4 h-[52px] border-l hover:text-background hover:bg-foreground transition-colors"
 							>
-								{ContactModalContent}
+								<ContactModal />
 							</Modal>
 						</Tooltip>
 
@@ -163,46 +162,3 @@ export default function Navbar({ className }: { className?: string }) {
 		</header>
 	);
 }
-
-export const ContactModalContent = (
-	<div className="flex flex-col">
-		<div className="pt-8 pb-6 px-6 sm:px-8">
-			<h3 className="text-3xl mb-2">Get in touch</h3>
-			<p className="text-foreground-secondary">
-				Whether you have a question, want to collaborate, or just want to say hi, my inbox is always
-				open.
-			</p>
-		</div>
-		<div className="flex items-center w-full border-y">
-			<div className="flex flex-col grow text-foreground border-r py-3 px-6 sm:px-8 text-[15px] bg-background">
-				<div className="flex items-center gap-x-2 text-[13px] text-foreground-secondary">
-					<IconEmail width={15} height={15} />
-					Email
-				</div>
-				{SITE_CONTACT}
-			</div>
-			<Copy
-				toCopy={SITE_CONTACT}
-				successMessage={<IconCheck width={28} height={28} />}
-				hiddenClassName="left-auto bottom-auto"
-				variant="grow"
-				className="relative h-full flex items-center justify-center px-6 bg-background text-foreground transition-colors hover:text-background hover:bg-foreground"
-			>
-				<IconCopy width={20} height={20} />
-			</Copy>
-		</div>
-		<div className="mt-auto flex items-center justify-center gap-4 py-4 text-foreground-secondary">
-			{navItems.socialLinks.map((link) => (
-				<a
-					key={link.name}
-					href={link.path}
-					target="_blank"
-					rel="noopener noreferrer"
-					className="hover:text-background hover:bg-foreground rounded-xl transition-colors p-2"
-				>
-					{link.icon}
-				</a>
-			))}
-		</div>
-	</div>
-);

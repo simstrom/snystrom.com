@@ -4,9 +4,9 @@ import { IconAt, IconEmail, IconGlobe, Logo } from '@/data/icons';
 import Link from 'next/link';
 
 import CustomLink from '../blog/Link';
+import ContactModal from '../sections/ContactModal';
 import Copy from '../ui/Copy';
 import Modal from '../ui/Modal';
-import { ContactModalContent } from './Navbar';
 
 export default function Footer() {
 	return (
@@ -75,7 +75,7 @@ export default function Footer() {
 									trigger={'Contact'}
 									triggerClassName="w-full text-left text-sm font-medium px-4 py-2 text-foreground transition-colors hover:bg-foreground hover:text-background"
 								>
-									{ContactModalContent}
+									<ContactModal />
 								</Modal>
 
 								{navItems.socialLinks

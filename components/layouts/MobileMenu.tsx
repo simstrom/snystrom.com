@@ -2,9 +2,9 @@ import { navItems } from '@/data/data';
 import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
 
+import ContactModal from '../sections/ContactModal';
 import MenuItem from '../ui/MenuItem';
 import Modal from '../ui/Modal';
-import { ContactModalContent } from './Navbar';
 
 interface MobileMenuProps {
 	className?: string;
@@ -74,7 +74,7 @@ export default function MobileMenu({ currentPath, isOpen, setIsOpen, className }
 									/>
 								}
 							>
-								{ContactModalContent}
+								<ContactModal />
 							</Modal>
 						) : (
 							<MenuItem
