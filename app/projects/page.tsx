@@ -1,5 +1,6 @@
 import PageHeader from '@/components/layouts/PageHeader';
 import { Section } from '@/components/layouts/Section';
+import CardOverlay from '@/components/ui/CardOverlay';
 import { SITE_NAME, SITE_URL } from '@/data/constants';
 
 import { projectsData } from '@/data/data';
@@ -73,12 +74,7 @@ export default function Projects() {
 										className="w-full h-full object-cover rounded-2xl"
 									/>
 
-									<div
-										className={cn(
-											'absolute inset-0 z-10 bg-gradient-to-tl from-brand/50 via-brand/20 to-transparent',
-											'opacity-0 transition-opacity duration-300 group-hover:opacity-100 user-select-none pointer-events-none '
-										)}
-									/>
+									<CardOverlay className="from-brand/50 via-brand/20 to-transparent" />
 								</div>
 							)}
 							<div className="p-6 flex justify-between items-center border-t bg-background-secondary">

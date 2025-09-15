@@ -1,11 +1,11 @@
 'use client';
 
-import { IconArrowRight } from '@/data/icons';
 import { GalleryImage } from '@/lib/types';
 import { cn, slugify } from '@/lib/utils';
 
 import { CldImage } from 'next-cloudinary';
 import Link from 'next/link';
+import CardOverlay from './CardOverlay';
 
 type Props = {
 	isCollection: boolean;
@@ -46,12 +46,11 @@ export default function GalleryItem({
 						blurDataURL={item.blurData}
 						className="sm:aspect-4/5 w-full object-cover object-center transition-opacity"
 					/>
-					<div className="bg-linear-to-t from-black/70 to-transparent to-20% flex items-end p-4 justify-between absolute w-full top-0 bottom-0 text-background dark:text-foreground transition-all group-hover:bg-black/40">
+					<div className="bg-linear-to-t from-black/80 via-transparent to-transparent flex items-end p-4 justify-between absolute w-full top-0 bottom-0 text-background dark:text-foreground transition-colors duration-300 group-hover:bg-black/20">
 						<h3 className="text-2xl font-[550]">{collectionTitle}</h3>
-						<div className="rounded-xl border border-transparent group-hover:border-white/20 group-hover:bg-white/20 p-2 transition-colors">
-							<IconArrowRight width={24} height={24} />
-						</div>
 					</div>
+
+					<CardOverlay withIcon />
 				</Link>
 			) : (
 				<div

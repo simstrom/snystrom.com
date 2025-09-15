@@ -1,4 +1,5 @@
 import { Section } from '@/components/layouts/Section';
+import CardOverlay from '@/components/ui/CardOverlay';
 
 import { SITE_URL } from '@/data/constants';
 import { projectsData } from '@/data/data';
@@ -65,12 +66,7 @@ export default async function Home() {
 									)}
 								/>
 							</div>
-							<div
-								className={cn(
-									'absolute inset-0 z-10 bg-gradient-to-tl from-brand/20 via-transparent to-transparent',
-									'opacity-0 transition-opacity duration-300 group-hover:opacity-100 user-select-none pointer-events-none '
-								)}
-							/>
+							<CardOverlay />
 						</Link>
 					</div>
 					<div className="col-span-7 row-span-8 border-r-0">
@@ -118,12 +114,7 @@ export default async function Home() {
 								</div>
 							</div>
 
-							<div
-								className={cn(
-									'absolute inset-0 z-30 bg-gradient-to-tl from-brand/20 via-transparent to-transparent',
-									'opacity-0 transition-opacity duration-300 group-hover:opacity-100 user-select-none pointer-events-none '
-								)}
-							/>
+							<CardOverlay />
 						</Link>
 					</div>
 
@@ -165,12 +156,7 @@ export default async function Home() {
 								))}
 							</div>
 
-							<div
-								className={cn(
-									'absolute inset-0 z-10 bg-gradient-to-tl from-brand/20 via-transparent to-transparent',
-									'opacity-0 transition-opacity duration-300 group-hover:opacity-100 user-select-none pointer-events-none '
-								)}
-							/>
+							<CardOverlay />
 						</Link>
 					</div>
 
@@ -219,24 +205,9 @@ export default async function Home() {
 										);
 									})}
 								</div>
-								{/* <Image
-									src={latestPost?.image ?? HeroImage}
-									width={latestPost?.imageMeta?.width ?? 400}
-									height={latestPost?.imageMeta?.height ?? 400}
-									alt=""
-									priority
-									placeholder="blur"
-									blurDataURL={latestPost?.imageMeta?.blur}
-									draggable={false}
-									className="absolute top-4 -right-10 w-80 aspect-video object-cover rounded-xl shadow-sm transition-all duration-300 group-hover:-translate-y-3 group-hover:rotate-3 group-hover:scale-105 group-hover:shadow-xl group-hover:grayscale-0"
-								/> */}
 							</div>
-							<div
-								className={cn(
-									'absolute inset-0 z-10 bg-gradient-to-tl from-brand/20 via-transparent to-transparent',
-									'opacity-0 transition-opacity duration-300 group-hover:opacity-100 user-select-none pointer-events-none '
-								)}
-							/>
+
+							<CardOverlay />
 						</Link>
 					</div>
 				</div>

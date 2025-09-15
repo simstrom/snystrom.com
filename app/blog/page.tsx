@@ -1,12 +1,13 @@
 import PageHeader from '@/components/layouts/PageHeader';
 import { Section } from '@/components/layouts/Section';
+import CardOverlay from '@/components/ui/CardOverlay';
 import PostList from '@/components/ui/PostList';
 import { TagSelector } from '@/components/ui/TagSelector';
 import { SITE_NAME, SITE_URL } from '@/data/constants';
 
 import { IconArrowRight, IconCalendar, IconHourglass } from '@/data/icons';
 import { getAllTags, getBlogPosts } from '@/lib/blog';
-import { cn, formatDate } from '@/lib/utils';
+import { formatDate } from '@/lib/utils';
 
 import { Metadata } from 'next';
 import Image from 'next/image';
@@ -84,12 +85,8 @@ export default async function Blog() {
 								draggable={false}
 								className="w-full md:aspect-3/2 object-cover rounded-2xl ring-1 ring-border ring-offset-4 ring-offset-background transition-all duration-300 group-hover:ring-offset-8 group-hover:ring-brand/80"
 							/>
-							<div
-								className={cn(
-									'absolute inset-0 z-10 bg-gradient-to-tl from-brand/20 via-transparent to-transparent',
-									'opacity-0 transition-opacity duration-300 group-hover:opacity-100 user-select-none pointer-events-none '
-								)}
-							/>
+
+							<CardOverlay />
 						</div>
 					</Link>
 				</Section>
