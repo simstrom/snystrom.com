@@ -6,6 +6,7 @@ import Code from './Code';
 import CustomImage from './Image';
 import CustomLink from './Link';
 import Preview from './Preview';
+import { Step, Steps } from './Steps';
 import Tabs from './Tabs';
 
 // Helper to set displayName on components
@@ -44,8 +45,10 @@ const MDXComponents = {
 	a: CustomLink,
 	figure: (props: any) => Code(props),
 	Image: CustomImage,
-	Tabs,
 	Preview,
+	Tabs,
 	Callout,
+	Steps,
+	Step,
 };
 export default MDXComponents;

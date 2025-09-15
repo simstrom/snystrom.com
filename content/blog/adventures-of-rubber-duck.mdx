@@ -37,10 +37,34 @@ From friendly aliens with tentacles for arms to sentient space rocks with a penc
 
 ## Battles with Space Pirates and Cosmic Con Artists
 
-- They battled space pirates
-  - Outwitted cosmic con artists
-  - This is an indentation test
-- Stumbled upon a hidden planet made entirely of cheese.
+<Steps>
+	<Step title="Space Battles">
+		They battled space pirates
+	</Step>
+	<Step title="Cosmic Con Artists">
+		Outwitted cosmic con artists
+	</Step>
+	<Step title="Indentation Test">
+		Make sure that your [OpenAPI specification](https://swagger.io/specification/) file is valid using the Swagger Editor or Mint CLI.
+	</Step>
+	<Step title="Cheese Planet">
+		Update your `docs.json` to reference your OpenAPI specification. Add an openapi property to any navigation element to auto-populate your docs with pages for each endpoint specified in your OpenAPI document.
+		This example generates a page for each endpoint specified in `openapi.json` and organize them under the “API reference” group in your navigation.
+
+    	```json
+    	"navigation": {
+    		"groups": [
+    			{
+    			"group": "API reference",
+    			"openapi": "openapi.json"
+    			}
+    		]
+    	}
+    	```
+
+    </Step>
+
+</Steps>
 
 <Tabs labels={["example.js", "[slug].js"]}>
 ```tsx showLineNumbers {1,5,8-10} title="example.js"

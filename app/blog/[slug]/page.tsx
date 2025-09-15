@@ -197,7 +197,7 @@ export default async function BlogPost(props: Props) {
 				</div>
 			</Section>
 
-			<article className="prose max-w-none mt-8 prose-p:first:text-lg">
+			<article className="prose max-w-none mt-8">
 				<div className="wrapper">
 					<MDXContent code={post.body} components={MDXComponents} />
 
