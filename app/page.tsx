@@ -1,6 +1,11 @@
 import { Section } from '@/components/layouts/Section';
-import BentoCards from '@/components/sections/BentoCards';
-import Bento from '@/components/ui/Bento';
+import {
+	BentoCardAbout,
+	BentoCardBlog,
+	BentoCardGallery,
+	BentoCardProjects,
+} from '@/components/sections/BentoCards';
+import { BentoGrid } from '@/components/ui/Bento';
 
 import { SITE_URL } from '@/data/constants';
 import { projectsData } from '@/data/data';
@@ -30,12 +35,12 @@ export default async function Home() {
 	return (
 		<main className="grow flex flex-col items-center justify-center">
 			<Section className="pt-32">
-				<Bento.Grid>
-					<BentoCards.About />
-					<BentoCards.Gallery images={galleryImages} />
-					<BentoCards.Projects />
-					{latestPost && <BentoCards.Blog latestPost={latestPost} />}
-				</Bento.Grid>
+				<BentoGrid>
+					<BentoCardAbout />
+					<BentoCardGallery images={galleryImages} />
+					<BentoCardProjects />
+					{latestPost && <BentoCardBlog latestPost={latestPost} />}
+				</BentoGrid>
 			</Section>
 
 			<Section title="Latest Posts" subtitle="Blog" linkHref="/blog" showHeader>

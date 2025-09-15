@@ -5,15 +5,15 @@ import { GalleryImage } from '@/lib/types';
 import { cn } from '@/lib/utils';
 import HeroImage from '@/public/images/hero.jpg';
 import Image from 'next/image';
-import Bento from '../ui/Bento';
+import { BentoCard } from '../ui/Bento';
 
-const About = () => {
+function BentoCardAbout() {
 	return (
-		<Bento.Card href="/about" colSpan={5} rowSpan={6}>
+		<BentoCard href="/about" colSpan={5} rowSpan={6}>
 			<div className="text-balance max-w-1/2 h-full flex flex-col justify-center">
 				<h3 className="mb-2 transition-colors group-hover:text-brand">Learn more about me</h3>
 				<p className="text-foreground-secondary text-base">
-					Hey, I'm Simon.
+					Hey, I&apos;m Simon.
 					<br /> A front-end engineer and photographer.
 				</p>
 			</div>
@@ -33,13 +33,13 @@ const About = () => {
 				/>
 			</div>
 			<CardOverlay />
-		</Bento.Card>
+		</BentoCard>
 	);
-};
+}
 
-const Gallery = ({ images }: { images: GalleryImage[] }) => {
+function BentoCardGallery({ images }: { images: GalleryImage[] }) {
 	return (
-		<Bento.Card
+		<BentoCard
 			href="/gallery"
 			colSpan={7}
 			rowSpan={8}
@@ -49,7 +49,7 @@ const Gallery = ({ images }: { images: GalleryImage[] }) => {
 			<div className="text-balance h-full w-full max-w-1/2 flex flex-col justify-center">
 				<h3 className="transition-colors group-hover:text-brand">Photo gallery</h3>
 				<p className="text-base text-foreground-secondary">
-					Moments, places, and details I've noticed along the way.
+					Moments, places, and details I&apos;ve noticed along the way.
 				</p>
 			</div>
 
@@ -83,13 +83,13 @@ const Gallery = ({ images }: { images: GalleryImage[] }) => {
 			</div>
 
 			<CardOverlay />
-		</Bento.Card>
+		</BentoCard>
 	);
-};
+}
 
-const Projects = () => {
+function BentoCardProjects() {
 	return (
-		<Bento.Card
+		<BentoCard
 			href="/projects"
 			colSpan={5}
 			rowSpan={7}
@@ -99,7 +99,7 @@ const Projects = () => {
 			<div className="text-balance text-center">
 				<h3 className="transition-colors group-hover:text-brand">Projects</h3>
 				<p className="text-foreground-secondary text-base">
-					Some of the things I've built, tinkered with, or just enjoyed working on.
+					Some of the things I&apos;ve built, tinkered with, or just enjoyed working on.
 				</p>
 			</div>
 
@@ -126,13 +126,13 @@ const Projects = () => {
 			</div>
 
 			<CardOverlay />
-		</Bento.Card>
+		</BentoCard>
 	);
-};
+}
 
-const Blog = ({ latestPost }: { latestPost: Post }) => {
+function BentoCardBlog({ latestPost }: { latestPost: Post }) {
 	return (
-		<Bento.Card href={`/blog/${latestPost.slug}`} colSpan={7} rowSpan={5} className="items-center">
+		<BentoCard href={`/blog/${latestPost.slug}`} colSpan={7} rowSpan={5} className="items-center">
 			<div className="text-balance h-full flex-1 max-w-xs flex flex-col justify-center text-sm font-medium">
 				<span className="mb-1 text-foreground-secondary transition-colors group-hover:text-brand">
 					Latest post
@@ -170,8 +170,8 @@ const Blog = ({ latestPost }: { latestPost: Post }) => {
 			</div>
 
 			<CardOverlay />
-		</Bento.Card>
+		</BentoCard>
 	);
-};
+}
 
-export default { About, Gallery, Projects, Blog };
+export { BentoCardAbout, BentoCardBlog, BentoCardGallery, BentoCardProjects };

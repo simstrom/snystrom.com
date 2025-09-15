@@ -7,20 +7,19 @@ interface GridProps {
 	className?: string;
 }
 
-export const Grid = ({ children, className }: GridProps) => {
+function BentoGrid({ className, ...props }: React.ComponentProps<'div'>) {
 	return (
 		<div
 			className={cn(
 				'h-120 grid grid-cols-12 auto-rows-fr outline-none divide-x divide-y border-y',
 				className
 			)}
-		>
-			{children}
-		</div>
+			{...props}
+		></div>
 	);
-};
+}
 
-interface CardProps {
+interface BentoCardProps {
 	href: string;
 	colSpan: number;
 	rowSpan: number;
@@ -29,14 +28,14 @@ interface CardProps {
 	children: React.ReactNode;
 }
 
-export const Card = ({
+const BentoCard = ({
 	href,
 	colSpan,
 	rowSpan,
 	containerClassName,
 	className,
 	children,
-}: CardProps) => {
+}: BentoCardProps) => {
 	return (
 		<div
 			className={containerClassName}
@@ -60,4 +59,4 @@ export const Card = ({
 	);
 };
 
-export default { Grid, Card };
+export { BentoCard, BentoGrid };

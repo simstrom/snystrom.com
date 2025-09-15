@@ -15,7 +15,7 @@ interface NavDropdown {
 	className?: string;
 }
 
-export const NavDropdown = ({ isOpen, onClose, children, className }: NavDropdown) => {
+function NavDropdown({ isOpen, onClose, children, className }: NavDropdown) {
 	const { focusRef } = useFocusTrap(isOpen, onClose, true);
 
 	return (
@@ -38,7 +38,7 @@ export const NavDropdown = ({ isOpen, onClose, children, className }: NavDropdow
 			</div>
 		</motion.div>
 	);
-};
+}
 
 interface NavDropDownCard {
 	title: string;
@@ -51,7 +51,7 @@ interface NavDropDownCard {
 	className?: string;
 }
 
-export const NavDropDownCard = ({
+function NavDropDownCard({
 	title,
 	description,
 	icon: Icon,
@@ -60,7 +60,7 @@ export const NavDropDownCard = ({
 	colSpan = 4,
 	rowSpan = 1,
 	className,
-}: NavDropDownCard) => {
+}: NavDropDownCard) {
 	return (
 		<Link
 			href={href || ''}
@@ -109,6 +109,6 @@ export const NavDropDownCard = ({
 			<CardOverlay withIcon />
 		</Link>
 	);
-};
+}
 
-export default { NavDropdown, NavDropDownCard };
+export { NavDropdown, NavDropDownCard };
