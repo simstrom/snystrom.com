@@ -6,7 +6,7 @@ import { SITE_NAME, SITE_URL } from '@/data/constants';
 
 import { IconArrowRight, IconCalendar, IconHourglass } from '@/data/icons';
 import { getAllTags, getBlogPosts } from '@/lib/blog';
-import { formatDate } from '@/lib/utils';
+import { cn, formatDate } from '@/lib/utils';
 
 import { Metadata } from 'next';
 import Image from 'next/image';
@@ -55,8 +55,8 @@ export default async function Blog() {
 
 			{featured?.image && featured.imageMeta && (
 				<Section borderOrigin={'y'} className="pb-0">
-					<Link href={`/blog/${featured.slug}`} className="flex divide-x group">
-						<div className="relative flex-1 flex flex-col justify-center space-y-2 px-6 py-4 border-r">
+					<Link href={`/blog/${featured.slug}`} className="flex group bg-background">
+						<div className="relative flex-1 flex flex-col justify-center space-y-2 px-6 py-4">
 							<h3 className="text-2xl">{featured.title}</h3>
 							<p className="text-[15px] leading-7 line-clamp-3">{featured.summary}</p>
 							<div className="pt-2 flex items-center gap-6 text-sm font-medium text-foreground-secondary transition-colors">
@@ -72,7 +72,7 @@ export default async function Blog() {
 
 							<IconArrowRight height={30} width={30} className="absolute right-6 bottom-6" />
 						</div>
-						<div className="relative rounded-3xl ring-1 ring-border overflow-hidden">
+						<div className="relative rounded-2xl p-6">
 							<Image
 								priority
 								src={featured.image}
@@ -82,9 +82,14 @@ export default async function Blog() {
 								placeholder="blur"
 								blurDataURL={featured.imageMeta.blur}
 								draggable={false}
-								className="w-full md:aspect-3/2 object-cover"
+								className="w-full md:aspect-3/2 object-cover rounded-2xl ring-1 ring-border ring-offset-4 ring-offset-background transition-all duration-300 group-hover:ring-offset-8 group-hover:ring-brand/80"
 							/>
-							<div className="user-select-none pointer-events-none absolute inset-0 z-10 bg-linear-to-tr from-brand/50 via-brand/20 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+							<div
+								className={cn(
+									'absolute inset-0 z-10 bg-gradient-to-tl from-brand/20 via-transparent to-transparent',
+									'opacity-0 transition-opacity duration-300 group-hover:opacity-100 user-select-none pointer-events-none '
+								)}
+							/>
 						</div>
 					</Link>
 				</Section>

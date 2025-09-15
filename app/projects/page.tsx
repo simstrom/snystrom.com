@@ -64,19 +64,24 @@ export default function Projects() {
 							)}
 						>
 							{project.image && (
-								<div className="relative rounded-3xl overflow-hidden ring-1 ring-border h-[280px]">
+								<div className="relative rounded-2xl overflow-hidden ring-1 ring-border h-[300px]">
 									<Image
 										src={project.image}
 										alt=""
-										width={800}
-										height={400}
-										className="aspect-video w-full object-cover"
+										width={512}
+										height={300}
+										className="w-full h-full object-cover rounded-2xl"
 									/>
 
-									<div className="user-select-none pointer-events-none absolute inset-0 z-10 bg-linear-to-tl from-brand/50 via-brand/20 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+									<div
+										className={cn(
+											'absolute inset-0 z-10 bg-gradient-to-tl from-brand/50 via-brand/20 to-transparent',
+											'opacity-0 transition-opacity duration-300 group-hover:opacity-100 user-select-none pointer-events-none '
+										)}
+									/>
 								</div>
 							)}
-							<div className="p-6 flex justify-between items-center border-t bg-background-secondary transition-colors group-hover:bg-foreground group-hover:text-background">
+							<div className="p-6 flex justify-between items-center border-t bg-background-secondary">
 								<h3 className="text-xl">{project.title}</h3>
 								<div className="flex gap-x-4">
 									{/* <IconArrowRight width={30} height={30} className="group" /> */}
@@ -87,7 +92,7 @@ export default function Projects() {
 									/>
 								</div>
 							</div>
-							<div className="px-6 py-2 border-t flex items-center gap-x-4 text-sm text-foreground-tertiary">
+							<div className="px-6 py-3 border-t flex items-center gap-x-4 text-sm text-foreground-tertiary">
 								{project.stack.slice(0, 5).map((item) => (
 									<span key={item}>{item}</span>
 								))}

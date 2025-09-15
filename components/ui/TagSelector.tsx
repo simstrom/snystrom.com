@@ -10,7 +10,7 @@ export function TagSelector({ tags, activeTag }: TagSelectorProps) {
 	return (
 		<div className="container pt-10 border-b">
 			<nav
-				className="flex space-x-4 font-medium text-sm uppercase tracking-wide overflow-x-auto no-scrollbar mask-[linear-gradient(to_right,white_90%,transparent)]"
+				className="flex font-medium text-sm tracking-normal overflow-x-auto no-scrollbar mask-[linear-gradient(to_right,white_90%,transparent)]"
 				id="blog-tags"
 			>
 				<Link
@@ -20,7 +20,7 @@ export function TagSelector({ tags, activeTag }: TagSelectorProps) {
 						!activeTag
 							? 'border-brand text-brand'
 							: 'border-transparent text-foreground-tertiary transition-colors hover:border-foreground hover:text-foreground',
-						'whitespace-nowrap border-b-2 pb-2'
+						'whitespace-nowrap border-b p-2'
 					)}
 				>
 					All
@@ -34,7 +34,7 @@ export function TagSelector({ tags, activeTag }: TagSelectorProps) {
 							activeTag === tag
 								? 'border-brand text-brand'
 								: 'border-transparent text-foreground-tertiary transition-colors hover:border-foreground hover:text-foreground',
-							'whitespace-nowrap border-b-2 pb-2'
+							'whitespace-nowrap border-b p-2'
 						)}
 					>
 						{tag}

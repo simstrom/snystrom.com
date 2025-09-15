@@ -13,17 +13,17 @@ export default function PostListRelated({ posts }: PostListRelatedProps) {
 			{posts.map((post) => (
 				<Link
 					key={post.slug}
-					className="relative flex gap-x-1 w-full items-end p-6 group transition-colors hover:text-background hover:bg-foreground"
+					className="relative flex gap-x-1 w-full items-end p-6 group"
 					href={`/blog/${post.slug}`}
 				>
 					<div className="">
 						<h4 className="text-pretty text-xl mb-1">{post.title}</h4>
-						<div className="mb-6 flex gap-x-2 items-center text-sm font-medium text-foreground-secondary group-hover:text-background/80 transition-colors">
+						<div className="mb-4 flex gap-x-2 items-center text-sm font-medium text-foreground-secondary">
 							<time>{formatDate(post.date, true)}</time>
 							<span className="text-foreground-tertiary">·</span>
 							<p>{post.readingTime}</p>
 						</div>
-						<p className="text-sm text-foreground-secondary line-clamp-2 leading-relaxed group-hover:text-background/80 transition-colors">
+						<p className="text-sm text-foreground-secondary line-clamp-2 leading-relaxed">
 							{post.summary}
 						</p>
 					</div>

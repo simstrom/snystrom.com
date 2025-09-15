@@ -52,7 +52,7 @@ export default function Callout({ variant = 'info', title, children }: CalloutPr
 		<div className="w-screen -mx-3 px-4 py-8 my-5 lg:w-full lg:mx-0 lg:px-0 border-y col-span-3 overflow-x-clip bg-[linear-gradient(-45deg,var(--color-border)_12.50%,transparent_12.50%,transparent_50%,var(--color-border)_50%,var(--color-border)_62.50%,transparent_62.50%,transparent_100%)] bg-size-[5px_5px]">
 			<blockquote
 				className={cn(
-					'not-prose relative p-4 rounded-md border shadow-sm max-w-3xl mx-auto w-full bg-background dark:bg-background-secondary',
+					'not-prose relative p-4 rounded-md border shadow-sm max-w-3xl mx-auto w-full bg-background',
 					styles.text
 				)}
 			>
