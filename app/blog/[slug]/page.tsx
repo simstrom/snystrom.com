@@ -4,11 +4,10 @@ import MDXComponents from '@/components/blog/MDXcomponents';
 import Tag from '@/components/blog/Tag';
 import PageHeader from '@/components/layouts/PageHeader';
 import { Section } from '@/components/layouts/Section';
-import Button from '@/components/ui/Button';
 import PostListRelated from '@/components/ui/PostListRelated';
 
 import { SITE_GITHUB_URL, SITE_LINKEDIN_URL, SITE_NAME, SITE_URL } from '@/data/constants';
-import { IconCalendar, IconHourglass } from '@/data/icons';
+import { IconBack, IconCalendar, IconHourglass } from '@/data/icons';
 import { getBlogPost, getBlogPosts, getRelatedPosts } from '@/lib/blog';
 import { formatDate } from '@/lib/utils';
 import avatar from '@/public/images/avatar.jpg';
@@ -16,6 +15,7 @@ import avatar from '@/public/images/avatar.jpg';
 import { MDXContent } from '@content-collections/mdx/react';
 import { Metadata, ResolvingMetadata } from 'next';
 import Image from 'next/image';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import Script from 'next/script';
 import { BlogPosting, WithContext } from 'schema-dts';
@@ -134,14 +134,12 @@ export default async function BlogPost(props: Props) {
 			/>
 
 			<div className="max-w-5xl mx-auto pt-24">
-				<Button
-					variant="link"
-					href="/blog"
-					backLink
-					className="rounded-tr-md text-foreground-secondary hover:bg-foreground hover:text-background transition-colors pl-6 pr-8 py-4"
+				<Link
+					href={'/blog'}
+					className="block w-fit p-2 ml-4 mb-4 rounded-full ring-1 ring-border text-foreground-secondary transition-all hover:text-brand hover:ring-brand/20 hover:bg-brand/20"
 				>
-					Blog
-				</Button>
+					<IconBack className="w-5 h-5 rotate-180" />
+				</Link>
 			</div>
 
 			<Section className="max-w-5xl mx-auto pb-0" borderOrigin="y">
@@ -235,8 +233,6 @@ export default async function BlogPost(props: Props) {
 			{related.length > 0 && (
 				<Section borderOrigin={null}>
 					<h3 className="text-3xl p-6 border-b bg-background">More reading</h3>
-					<PostListRelated posts={related.slice(0, 3)} />
-					<PostListRelated posts={related.slice(0, 3)} />
 					<PostListRelated posts={related.slice(0, 3)} />
 				</Section>
 			)}

@@ -12,14 +12,14 @@ export default function PageHeader({ title, content, subtitle, className }: Page
 		<>
 			<div
 				className={cn(
-					'relative max-w-5xl mx-auto px-6 pt-32 pb-12 bg-background-secondary text-balance',
+					'relative max-w-5xl mx-auto px-6 pt-32 pb-6 bg-background text-balance',
 					className
 				)}
 			>
-				<h1 className="pb-2 text-3xl sm:text-5xl">{title}</h1>
-				{content && <p className="text-lg max-w-4xl">{content}</p>}
+				<h1 className="text-xl">{title}</h1>
+				{content && <p className="max-w-4xl">{content}</p>}
 				{subtitle && (
-					<span className="block absolute top-26 left-6 ml-0.5 text-brand text-sm font-medium">
+					<span className="block absolute top-27 left-6 ml-0.5 text-brand text-sm font-medium">
 						{subtitle}
 					</span>
 				)}

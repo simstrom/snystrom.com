@@ -1,13 +1,13 @@
 import { GalleryCollection, Navigation, Project } from '../lib/types';
 import { SITE_CONTACT, SITE_GITHUB_URL, SITE_INSTAGRAM_URL, SITE_LINKEDIN_URL } from './constants';
 import {
-	IconCode,
+	IconComponent,
+	IconDesign,
 	IconDocument,
 	IconGallery,
 	IconGithub,
 	IconInstagram,
 	IconLinkedin,
-	IconPuzzle,
 	IconRSS,
 } from './icons';
 
@@ -45,7 +45,7 @@ const exploreLinks = [
 		name: 'Components',
 		description: 'Library of interactive elements',
 		path: '',
-		icon: IconPuzzle,
+		icon: IconComponent,
 		colSpan: 5,
 		rowSpan: 2,
 	},
@@ -53,7 +53,7 @@ const exploreLinks = [
 		name: 'Colophon',
 		description: 'Dev & design process',
 		path: '/colophon',
-		icon: IconCode,
+		icon: IconDesign,
 		colSpan: 5,
 		rowSpan: 1,
 	},

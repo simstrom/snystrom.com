@@ -2,11 +2,6 @@ import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import React from 'react';
 
-interface GridProps {
-	children: React.ReactNode;
-	className?: string;
-}
-
 function BentoGrid({ className, ...props }: React.ComponentProps<'div'>) {
 	return (
 		<div
@@ -47,9 +42,9 @@ const BentoCard = ({
 			<Link
 				href={href}
 				className={cn(
-					'relative flex h-full w-full p-4 rounded-2xl overflow-hidden group',
-					'bg-background-secondary ring-1 ring-border ',
-					'transition-colors hover:bg-background',
+					'relative flex h-full w-full p-4 rounded-3xl overflow-hidden group',
+					'bg-background-secondary/60 ring-1 ring-border ',
+					'transition-colors hover:bg-background-secondary/20 dark:hover:bg-background-secondary',
 					className
 				)}
 			>

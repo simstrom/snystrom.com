@@ -26,8 +26,8 @@ function BentoCardAbout() {
 					placeholder="blur"
 					draggable={false}
 					className={cn(
-						'absolute top-4 right-2 w-48 aspect-4/5 object-cover rounded-xl shadow-sm rotate-6',
-						'transition-all duration-300 group-hover:-translate-y-3 group-hover:rotate-3 group-hover:scale-105 group-hover:shadow-xl',
+						'absolute top-4 right-2 w-48 aspect-4/5 object-cover rounded-xl shadow-sm rotate-6 grayscale',
+						'transition-all duration-300 group-hover:-translate-y-3 group-hover:rotate-3 group-hover:scale-105 group-hover:shadow-xl group-hover:grayscale-0',
 						'ring-1 ring-border ring-offset-4 ring-offset-background group-hover:ring-offset-8 group-hover:ring-brand/80'
 					)}
 				/>
@@ -72,8 +72,8 @@ function BentoCardGallery({ images }: { images: GalleryImage[] }) {
 							blurDataURL={img.blurData}
 							priority={true}
 							className={cn(
-								'w-42 rounded-lg aspect-square object-cover shadow-md',
-								'transition-all duration-300 group-hover:opacity-100 group-hover:hover:scale-105',
+								'w-42 rounded-lg aspect-square object-cover shadow-md grayscale',
+								'transition-all duration-300 group-hover:opacity-100 group-hover:hover:scale-105 group-hover:grayscale-0',
 								i % 2 === 0 ? '-translate-y-5' : 'translate-y-5',
 								i % 2 === 0 ? 'group-hover:translate-y-5' : 'group-hover:-translate-y-5'
 							)}

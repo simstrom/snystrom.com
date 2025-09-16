@@ -18,18 +18,21 @@ export default function Colophon() {
 				content="A summary of the technologies, design, workflow and decisions behind my website."
 			/>
 
-			<Section className="overflow-y-visible px-6 py-10 space-y-8" borderOrigin="y">
+			<Section
+				className="overflow-y-visible px-6 py-10 space-y-8 max-w-3xl mx-auto w-full"
+				borderOrigin="y"
+			>
 				{content.map((c) => (
 					<div key={c.heading} className="sm:grid grid-cols-12 gap-2">
-						<h2 className="text-xl font-medium col-span-4 pb-2">{c.heading}</h2>
-						<p className="col-span-8 leading-7 text-foreground-secondary">{c.text}</p>
+						<h2 className="col-span-3 pb-2">{c.heading}</h2>
+						<p className="col-span-9 leading-7 text-foreground-secondary">{c.text}</p>
 					</div>
 				))}
 			</Section>
 
 			<Section className="pt-10 overflow-y-visible space-y-8" borderOrigin={null}>
-				<div className="flex gap-2 px-6">
-					<p className="flex-1 text-lg sm:text-2xl tracking-normal sm:tracking-wide font-medium">
+				<div className="flex gap-2 px-6 max-w-3xl mx-auto w-full">
+					<p className="flex-1 text-lg tracking-normal sm:tracking-wide font-medium">
 						ABCDEFGHIJKLMNOPQRSTUVWXYZ
 						<br />
 						abcdefghijklmnopqrstuvwxyz
@@ -44,8 +47,8 @@ export default function Colophon() {
 					</CustomLink>
 				</div>
 
-				<div className="flex gap-2 px-6 font-mono">
-					<p className="flex-1 text-lg sm:text-2xl tracking-normal sm:tracking-wide font-medium">
+				<div className="flex gap-2 px-6 font-mono max-w-3xl mx-auto w-full">
+					<p className="flex-1 text-lg tracking-normal sm:tracking-wide font-medium">
 						ABCDEFGHIJKLMNOPQRSTUVWXYZ
 						<br />
 						abcdefghijklmnopqrstuvwxyz
@@ -135,13 +138,14 @@ const content = [
 		heading: 'Inspirations',
 		text: (
 			<>
-				I&apos;ve taken cues from developer portfolios and design systems like{' '}
+				I&apos;ve taken cues from the design systems of{' '}
 				<CustomLink href="https://tailwindcss.com">Tailwind CSS</CustomLink> and{' '}
-				<CustomLink href="https://vercel.com">Vercel</CustomLink>. I also really admire the work of{' '}
+				<CustomLink href="https://vercel.com">Vercel</CustomLink>. Some developer portfolios that
+				also influenced my own approach are{' '}
 				<CustomLink href="https://braydoncoyer.dev">Braydon Coyer</CustomLink>,{' '}
 				<CustomLink href="https://maximeheckel.com">Maxime Heckel</CustomLink>, and{' '}
-				<CustomLink href="https://olivierlarose.com">Olivier Larose</CustomLink>. Their focus on
-				clarity, usability, and modern style definitely influenced my own approach.
+				<CustomLink href="https://jakub.kr">Jakub Krehel</CustomLink>. Go give them a visit, they
+				have killer sites!
 			</>
 		),
 	},
