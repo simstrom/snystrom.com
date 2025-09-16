@@ -20,11 +20,11 @@ export default function CardOverlay({ withIcon = false, className }: CardOverlay
 			{withIcon && (
 				<div
 					className={cn(
-						'absolute right-4 -bottom-2 z-20 w-fit h-fit rounded-full p-1 text-brand bg-brand/10',
+						'absolute right-4 -bottom-2 z-20 w-fit h-fit rounded-full p-2 text-brand bg-brand/20',
 						'opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:-translate-y-5 user-select-none pointer-events-none '
 					)}
 				>
-					<IconArrowUpRight className="w-5 h-5" />
+					<IconArrowUpRight className="w-4 h-4" />
 				</div>
 			)}
 		</>

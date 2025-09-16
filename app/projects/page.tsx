@@ -1,15 +1,11 @@
 import PageHeader from '@/components/layouts/PageHeader';
-import { Section } from '@/components/layouts/Section';
-import CardOverlay from '@/components/ui/CardOverlay';
+import { Card, CardBody, CardFooter } from '@/components/ui/Card';
 import { SITE_NAME, SITE_URL } from '@/data/constants';
 
 import { projectsData } from '@/data/data';
 import { IconGithub } from '@/data/icons';
-import { cn } from '@/lib/utils';
 
 import { Metadata } from 'next';
-import Image from 'next/image';
-import Link from 'next/link';
 import Script from 'next/script';
 import { CollectionPage, WithContext } from 'schema-dts';
 
@@ -50,59 +46,62 @@ export default function Projects() {
 				content="Some of the things I've built, tinkered with, or just enjoyed working on."
 			/>
 
-			<Section borderOrigin={'t'}>
-				<div className="grid grid-cols-1 md:grid-cols-2 border-b">
-					{projectsData.map((project, idx) => (
-						<Link
-							key={project.title}
-							href={project.githubLink ?? ''}
-							target="_blank"
-							rel="noreferrer"
-							className={cn(
-								'bg-background relative flex flex-col group',
-								idx % 2 === 0 && 'border-r',
-								idx !== projectsData.length - 1 && 'border-b'
-							)}
-						>
-							{project.image && (
-								<div className="relative rounded-2xl overflow-hidden ring-1 ring-border h-[300px]">
-									<Image
-										src={project.image}
-										alt=""
-										width={512}
-										height={300}
-										className="w-full h-full object-cover rounded-2xl"
-									/>
+			<section className="grid grid-cols-2 gap-4 p-4 border-t pb-20">
+				{projectsData.map((project, idx) => (
+					<Card
+						key={project.title}
+						href={project.githubLink ?? ''}
+						image={project.image}
+						imageMeta={{ blur: '', width: 512, height: 300 }}
+						className="h-[260px]"
+					>
+						<CardBody title={project.title} icon={IconGithub} className="line-clamp-none">
+							{project.description}
+						</CardBody>
+						<CardFooter>
+							{project.stack.map((item) => (
+								<span key={item}>{item}</span>
+							))}
+						</CardFooter>
+					</Card>
+					// <Link
+					// 	key={project.title}
+					// 	href={project.githubLink ?? ''}
+					// 	target="_blank"
+					// 	rel="noreferrer"
+					// 	className={cn(
+					// 		'flex flex-col flex-1 group ring-1 ring-border rounded-2xl transition-colors bg-background-secondary/60 hover:bg-background-secondary/20 dark:hover:bg-background-secondary'
+					// 	)}
+					// >
+					// 	<div className="relative h-[260px] m-1.5 rounded-xl border shadow-inner overflow-hidden bg-background">
+					// 		{project.image && (
+					// 			<Image
+					// 				src={project.image}
+					// 				alt={project.title}
+					// 				width={512}
+					// 				height={300}
+					// 				className="object-cover w-full h-full"
+					// 			/>
+					// 		)}
+					// 		<div className="absolute inset-0 w-full h-full z-10 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+					// 		<CardOverlay withIcon />
+					// 	</div>
 
-									<CardOverlay className="from-brand/50 via-brand/20 to-transparent" />
-								</div>
-							)}
-							<div className="p-6 flex justify-between items-center border-t bg-background-secondary">
-								<h3 className="text-xl">{project.title}</h3>
-								<div className="flex gap-x-4">
-									{/* <IconArrowRight width={30} height={30} className="group" /> */}
-									<IconGithub
-										width={18}
-										height={18}
-										className="transition-transform group-hover:scale-110"
-									/>
-								</div>
-							</div>
-							<div className="px-6 py-3 border-t flex items-center gap-x-4 text-sm text-foreground-tertiary">
-								{project.stack.slice(0, 5).map((item) => (
-									<span key={item}>{item}</span>
-								))}
-							</div>
-							<div className="px-6 pt-4 pb-6 border-t">
-								<p className="text-foreground-secondary">{project.description}</p>
-							</div>
-							{idx !== projectsData.length - 1 && (
-								<div className="mt-auto h-8 border-t bg-[linear-gradient(-45deg,var(--color-border)_12.50%,transparent_12.50%,transparent_50%,var(--color-border)_50%,var(--color-border)_62.50%,transparent_62.50%,transparent_100%)] bg-size-[5px_5px]"></div>
-							)}
-						</Link>
-					))}
-				</div>
-			</Section>
+					// 	<div className="px-6 py-2 flex gap-x-2 justify-between items-center">
+					// 		<h3 className="text-balance text-lg">{project.title}</h3>
+					// 		<IconGithub className="w-5 h-5 text-foreground-tertiary" />
+					// 	</div>
+
+					// 	<p className="px-6 mb-4 text-foreground-secondary">{project.description}</p>
+
+					// 	<div className="shadow-inner mt-auto border-t px-6 py-3 flex gap-x-2 items-center text-sm text-foreground-tertiary">
+					// 		{project.stack.map((item) => (
+					// 			<span key={item}>{item}</span>
+					// 		))}
+					// 	</div>
+					// </Link>
+				))}
+			</section>
 		</main>
 	);
 }

@@ -6,14 +6,15 @@ import {
 	BentoCardProjects,
 } from '@/components/sections/BentoCards';
 import { BentoGrid } from '@/components/ui/Bento';
+import { Card, CardBody, CardFooter } from '@/components/ui/Card';
 
 import { SITE_URL } from '@/data/constants';
 import { projectsData } from '@/data/data';
-import { IconArrowRight } from '@/data/icons';
+import { IconArrow, IconDocument } from '@/data/icons';
 import { getAllTags, getBlogPosts, getLatestBlogPost } from '@/lib/blog';
 import { getAllImages } from '@/lib/gallery';
 import { Project } from '@/lib/types';
-import { cn, formatDate } from '@/lib/utils';
+import { formatDate } from '@/lib/utils';
 
 import { Metadata } from 'next';
 import Link from 'next/link';
@@ -34,7 +35,7 @@ export default async function Home() {
 
 	return (
 		<main className="grow flex flex-col items-center justify-center">
-			<Section className="pt-32">
+			<Section className="pt-32" borderOrigin={null}>
 				<BentoGrid>
 					<BentoCardAbout />
 					<BentoCardGallery images={galleryImages} />
@@ -43,34 +44,38 @@ export default async function Home() {
 				</BentoGrid>
 			</Section>
 
-			<Section title="Latest Posts" subtitle="Blog" linkHref="/blog" showHeader>
-				<div className="flex md:flex-row flex-col border-b">
+			<section className="pb-20 w-full">
+				<div className="relative text-center border-y mb-5 pb-1">
+					<span className="text-sm font-medium text-brand">Blog</span>
+					<h2 className="text-xl">Latest Blog Posts</h2>
+
+					<Link
+						href={'/blog'}
+						className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full ring-1 ring-border text-foreground-secondary transition-all hover:text-brand hover:bg-brand/20 hover:ring-brand/20"
+					>
+						<IconArrow className="w-4 h-4" />
+					</Link>
+				</div>
+				<div className="grid grid-cols-2 gap-x-4 px-4 border-y">
 					{blogPosts.slice(0, 3).map((post, idx) => (
-						<Link
+						<Card
 							key={post.slug}
 							href={`/blog/${post.slug}`}
-							className={cn('flex flex-col flex-1 group', idx !== 0 && 'border-l')}
+							image={post.image}
+							imageMeta={post.imageMeta}
 						>
-							<div className="px-6 py-6 flex gap-x-2 justify-between items-end transition-colors group-hover:bg-foreground group-hover:text-background">
-								<h3 className="text-xl text-pretty">{post.title}</h3>
-								<IconArrowRight
-									width={30}
-									height={30}
-									className="group min-w-[30px] min-h-[30px]"
-								/>
-							</div>
-							<div className="px-6 py-4 border-t">
-								<p className="text-foreground leading-7">{post.summary}</p>
-							</div>
-							<div className="mt-auto border-t px-6 py-4 flex gap-x-2 items-center text-sm font-medium">
-								<time className="text-foreground-secondary">{formatDate(post.date, true)}</time>
+							<CardBody title={post.title} icon={IconDocument}>
+								{post.summary}
+							</CardBody>
+							<CardFooter>
+								<time className="text-foreground-tertiary">{formatDate(post.date, true)}</time>
 								<span className="text-foreground-tertiary">·</span>
-								<p className="text-foreground-secondary">{post.readingTime}</p>
-							</div>
-						</Link>
+								<p className="text-foreground-tertiary">{post.readingTime}</p>
+							</CardFooter>
+						</Card>
 					))}
 				</div>
-			</Section>
+			</section>
 		</main>
 	);
 }
