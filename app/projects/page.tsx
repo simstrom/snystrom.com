@@ -55,7 +55,7 @@ export default function Projects() {
 						imageMeta={{ blur: '', width: 512, height: 300 }}
 						className="h-[260px]"
 					>
-						<CardBody title={project.title} icon={IconGithub} className="line-clamp-none">
+						<CardBody title={project.title} icon={IconGithub} className="mt-2 line-clamp-none">
 							{project.description}
 						</CardBody>
 						<CardFooter>

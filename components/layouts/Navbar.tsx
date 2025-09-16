@@ -49,7 +49,7 @@ export default function Navbar({ className }: { className?: string }) {
 				<div className="flex items-center justify-between w-full mx-auto border-x bg-background/90">
 					<Link
 						href="/"
-						className="h-13 w-13 border-r flex items-center justify-center transition-colors hover:text-background hover:bg-foreground"
+						className="h-13 w-13 border-r flex items-center justify-center transition-colors hover:text-foreground hover:bg-white/30 dark:hover:bg-background-secondary"
 					>
 						<Logo width={20} height={20} className="" />
 					</Link>
@@ -61,8 +61,9 @@ export default function Navbar({ className }: { className?: string }) {
 								href={navItem.path}
 								onMouseOver={() => setOpenDropdown(null)}
 								className={cn(
-									'hidden sm:block text-center w-24 relative px-4 py-4 border-r hover:text-background hover:bg-foreground transition-colors',
-									`/${currentPath.split('/')[1]}` == navItem.path && 'text-background bg-foreground'
+									'hidden sm:block text-center w-24 relative px-4 py-4 border-r hover:text-foreground hover:bg-white/30 dark:hover:bg-background-secondary transition-colors',
+									`/${currentPath.split('/')[1]}` == navItem.path &&
+										'text-foreground bg-white/30 dark:bg-background-secondary'
 								)}
 							>
 								{navItem.name}
@@ -72,8 +73,9 @@ export default function Navbar({ className }: { className?: string }) {
 							onMouseOver={() => setOpenDropdown('explore')}
 							onClick={() => handleDropdownToggle('explore')}
 							className={cn(
-								'hidden sm:block text-center w-24 relative px-4 py-4 hover:text-background hover:bg-foreground transition-colors',
-								openDropdown === 'explore' && 'text-background bg-foreground'
+								'hidden sm:block text-center w-24 relative px-4 py-4 hover:text-foreground hover:bg-white/30 dark:hover:bg-background-secondary transition-colors',
+								openDropdown === 'explore' &&
+									'text-foreground bg-white/30 dark:bg-background-secondary'
 							)}
 						>
 							Explore
@@ -82,13 +84,13 @@ export default function Navbar({ className }: { className?: string }) {
 
 					<div className="flex" onMouseOver={() => setOpenDropdown(null)}>
 						<Tooltip message="Theme">
-							<ThemeSwitcher className="px-4 py-4 h-[52px] border-l hover:text-background hover:bg-foreground transition-colors" />
+							<ThemeSwitcher className="px-4 py-4 h-[52px] border-l hover:text-foreground hover:bg-white/30 dark:hover:bg-background-secondary transition-colors" />
 						</Tooltip>
 
 						<Tooltip message="Contact" className="hidden sm:flex">
 							<Modal
 								trigger={<IconAt width={18} height={18} />}
-								triggerClassName="px-4 py-4 h-[52px] border-l hover:text-background hover:bg-foreground transition-colors"
+								triggerClassName="px-4 py-4 h-[52px] border-l hover:text-foreground hover:bg-white/30 dark:hover:bg-background-secondary transition-colors"
 							>
 								<ContactModal />
 							</Modal>

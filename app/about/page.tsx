@@ -87,9 +87,9 @@ export default async function About() {
 							className="rounded-3xl ring-1 ring-border aspect-square sm:aspect-video md:aspect-auto w-full h-full object-cover object-center grayscale"
 						/>
 						<div className="absolute inset-0 z-10 rounded-3xl bg-linear-to-tr from-brand/20 to-brand/10 mix-blend-soft-light" />
-						<IconDoodleArrow className="text-brand w-28 h-28 absolute z-10 -top-14 left-6 rotate-12" />
-						<IconDoodleCompass className="text-brand w-20 h-20 absolute z-10 -right-8 -top-8 -rotate-3" />
-						<IconDoodleMountains className="text-brand w-20 h-20 absolute z-10 bottom-40 -left-10 rotate-12" />
+						<IconDoodleArrow className="text-brand w-24 h-24 absolute z-10 -top-4 left-6 rotate-12" />
+						<IconDoodleCompass className="text-brand w-16 h-16 absolute z-10 -right-4 -top-4 -rotate-3" />
+						<IconDoodleMountains className="text-brand w-16 h-16 absolute z-10 bottom-48 -left-6 rotate-12" />
 					</div>
 
 					<div className="col-span-12 md:col-span-8 prose max-w-none prose-p:leading-7 first:prose-p:text-foreground px-6 py-8">

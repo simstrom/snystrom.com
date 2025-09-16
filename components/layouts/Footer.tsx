@@ -61,7 +61,7 @@ export default function Footer() {
 
 								<Modal
 									trigger={'Contact'}
-									triggerClassName="w-full text-left text-sm font-medium px-4 py-2.5 text-foreground transition-colors hover:bg-foreground hover:text-background"
+									triggerClassName="w-full text-left text-sm font-medium px-4 py-2.5 text-foreground transition-colors text-foreground-secondary hover:text-foreground hover:bg-background-secondary"
 								>
 									<ContactModal />
 								</Modal>
@@ -75,6 +75,19 @@ export default function Footer() {
 						</div>
 					</div>
 				</div>
+
+				{/* CROSSES */}
+				<span className="absolute left-0 -top-px z-20 hidden h-px w-4 bg-black/30 dark:bg-white/20 md:block" />
+				<span className="absolute left-0 -top-0 z-20 hidden h-4 w-px bg-black/30 dark:bg-white/20 md:block" />
+
+				<span className="absolute right-0 -top-px z-20 hidden h-px w-4 bg-black/30 dark:bg-white/20 md:block" />
+				<span className="absolute right-0 -top-0 z-20 hidden h-4 w-px bg-black/30 dark:bg-white/20 md:block" />
+
+				<span className="absolute right-0 -bottom-px z-20 hidden h-px w-4 bg-black/30 dark:bg-white/20 md:block" />
+				<span className="absolute right-0 bottom-0 z-20 hidden h-4 w-px bg-black/30 dark:bg-white/20 md:block" />
+
+				<span className="absolute left-0 -bottom-px z-20 hidden h-px w-4 bg-black/30 dark:bg-white/20 md:block" />
+				<span className="absolute left-0 bottom-0 z-20 hidden h-4 w-px bg-black/30 dark:bg-white/20 md:block" />
 			</footer>
 			<div className="z-20 max-w-[1088px] opacity-75 mx-auto border-x w-full h-14 bg-[linear-gradient(-45deg,var(--color-border)_12.50%,transparent_12.50%,transparent_50%,var(--color-border)_50%,var(--color-border)_62.50%,transparent_62.50%,transparent_100%)] bg-size-[5px_5px]" />
 		</>
@@ -86,7 +99,7 @@ const NavItem = ({ name, path }: { name: string; path: string }) => {
 		<CustomLink
 			key={name}
 			href={path}
-			className="before:content-none w-full text-sm font-medium px-4 py-2.5 hover:bg-foreground hover:text-background"
+			className="before:content-none w-full text-sm font-medium px-4 py-2.5 text-foreground-secondary hover:text-foreground hover:bg-background-secondary"
 		>
 			{name}
 		</CustomLink>

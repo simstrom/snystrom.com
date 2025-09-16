@@ -57,7 +57,7 @@ export default async function Home() {
 					</Link>
 				</div>
 				<div className="grid grid-cols-2 gap-x-4 px-4 border-y">
-					{blogPosts.slice(0, 3).map((post, idx) => (
+					{blogPosts.slice(0, 2).map((post, idx) => (
 						<Card
 							key={post.slug}
 							href={`/blog/${post.slug}`}

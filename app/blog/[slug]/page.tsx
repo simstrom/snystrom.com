@@ -4,7 +4,7 @@ import MDXComponents from '@/components/blog/MDXcomponents';
 import Tag from '@/components/blog/Tag';
 import PageHeader from '@/components/layouts/PageHeader';
 import { Section } from '@/components/layouts/Section';
-import PostListRelated from '@/components/ui/PostListRelated';
+import PostList from '@/components/ui/PostList';
 
 import { SITE_GITHUB_URL, SITE_LINKEDIN_URL, SITE_NAME, SITE_URL } from '@/data/constants';
 import { IconBack, IconCalendar, IconHourglass } from '@/data/icons';
@@ -232,8 +232,11 @@ export default async function BlogPost(props: Props) {
 
 			{related.length > 0 && (
 				<Section borderOrigin={null}>
-					<h3 className="text-3xl p-6 border-b bg-background">More reading</h3>
-					<PostListRelated posts={related.slice(0, 3)} />
+					<div className="relative text-center border-y pb-1 mt-10">
+						<span className="text-sm font-medium text-brand">More reading</span>
+						<h3 className="text-xl">Related Articles</h3>
+					</div>
+					<PostList posts={related.slice(0, 3)} />
 				</Section>
 			)}
 		</main>

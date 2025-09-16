@@ -26,8 +26,8 @@ export default function TabList({
 		<LayoutGroup>
 			<div
 				className={cn(
-					'max-w-5xl mx-auto flex items-center text-sm font-medium text-foreground-secondary',
-					asLinks ? 'divide-x' : 'border-b',
+					'max-w-5xl mx-auto flex gap-x-1 items-center text-sm font-medium tracking-normal text-foreground-secondary',
+					!asLinks && 'border-b',
 					className
 				)}
 			>
@@ -55,9 +55,12 @@ export default function TabList({
 							<Link
 								key={`tab_${label}`}
 								href={links ? links[i] : '/'}
+								aria-current={i === selected ? 'page' : undefined}
 								className={cn(
-									'flex-1 p-6 hover:bg-foreground hover:text-background transition-colors',
-									i === selected && 'text-background bg-foreground'
+									i === selected
+										? 'border-brand text-brand'
+										: 'border-transparent text-foreground-tertiary transition-colors hover:border-foreground hover:text-foreground',
+									'whitespace-nowrap border-b p-2 pt-4'
 								)}
 							>
 								{label}

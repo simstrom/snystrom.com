@@ -1,9 +1,9 @@
 'use client';
 
 import { Post } from '@/.content-collections/generated';
-import { IconArrowRight } from '@/data/icons';
-import { formatDate } from '@/lib/utils';
+import { cn, formatDate } from '@/lib/utils';
 
+import { IconArrowRight } from '@/data/icons';
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
 
@@ -49,24 +49,28 @@ export default function PostList({ posts, query }: PostListProps) {
 					>
 						<Link
 							draggable="false"
-							className="relative flex flex-col items-baseline gap-x-16 sm:flex-row p-6 group transition-transform"
+							className={cn(
+								'relative flex flex-col items-baseline gap-x-16 sm:flex-row p-6',
+								'',
+								'group hover:bg-background-secondary/20'
+							)}
 							href={`/blog/${post.slug}`}
 						>
-							<div className="w-full sm:w-fit min-w-fit flex items-baseline gap-x-2 sm:flex-col text-sm font-medium text-foreground-secondary">
+							<div className="w-full sm:w-fit sm:min-w-20 flex items-baseline gap-x-2 sm:flex-col text-sm text-foreground-tertiary">
 								<time>{formatDate(post.date, true)}</time>
 								<span className="">{post.readingTime}</span>
 								<span className="sm:hidden">·</span>
 							</div>
 
-							<div className="flex-1">
-								<h3 className="text-lg text-pretty grow mb-1">{post.title}</h3>
+							<div className="flex-1 max-w-4/5">
+								<h3 className="text-pretty grow mb-1">{post.title}</h3>
 								<p className="text-sm text-foreground-secondary line-clamp-2 leading-normal">
 									{post.summary}
 								</p>
 							</div>
 
 							<div className="mt-auto">
-								<IconArrowRight className="justify-self-end self-end w-6 h-6" />
+								<IconArrowRight className="justify-self-end self-end w-4 h-4" />
 							</div>
 
 							{query && (

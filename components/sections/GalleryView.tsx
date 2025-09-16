@@ -8,7 +8,8 @@ import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 
-import Button from '../ui/Button';
+import { IconBack } from '@/data/icons';
+import Link from 'next/link';
 import GalleryItem from '../ui/GalleryItem';
 import Lightbox from '../ui/Lightbox';
 import Skeleton from '../ui/Skeleton';
@@ -104,22 +105,21 @@ export default function GalleryView({ content, cursor, backLink, category }: Pro
 
 	return (
 		<>
-			<div className="border-b">
+			<div className="border-b pt-2">
 				{backLink ? (
-					<Button
-						variant="link"
-						backLink
+					<Link
 						href={backLink.path}
-						className="hover:text-background hover:bg-foreground transition-colors p-6 pr-8"
+						className="block w-fit p-2 ml-6 mb-2 rounded-full ring-1 ring-border text-foreground-secondary transition-all hover:text-brand hover:ring-brand/20 hover:bg-brand/20"
 					>
-						Back to all {backLink.name}
-					</Button>
+						<IconBack className="w-5 h-5 rotate-180" />
+					</Link>
 				) : (
 					<TabList
 						labels={GalleryRoutes.map((route) => route.name)}
 						asLinks
 						links={GalleryRoutes.map((route) => route.path)}
 						selected={GalleryRoutes.findIndex((route) => route.path === currentPath)}
+						className="px-6"
 					/>
 				)}
 			</div>

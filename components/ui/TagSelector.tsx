@@ -8,13 +8,13 @@ interface TagSelectorProps {
 
 export function TagSelector({ tags, activeTag }: TagSelectorProps) {
 	return (
-		<div className="container pt-10 border-b">
+		<div className="container pt-4 border-b">
 			<nav
 				className="flex gap-x-1 font-medium text-sm tracking-normal overflow-x-auto no-scrollbar mask-[linear-gradient(to_right,white_90%,transparent)]"
 				id="blog-tags"
 			>
 				<Link
-					href="/blog#blog-tags"
+					href="/blog"
 					aria-current={!activeTag ? 'page' : undefined}
 					className={cn(
 						!activeTag

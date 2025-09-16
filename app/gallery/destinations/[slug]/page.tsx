@@ -1,7 +1,6 @@
 import PageHeader from '@/components/layouts/PageHeader';
 import { Section } from '@/components/layouts/Section';
 import GalleryView from '@/components/sections/GalleryView';
-import Button from '@/components/ui/Button';
 
 import { SITE_NAME, SITE_URL } from '@/data/constants';
 import { galleryDestinations } from '@/data/data';
@@ -110,30 +109,30 @@ export default async function GalleryDestination(props: Props) {
 				<GalleryView content={images} cursor={next_cursor} backLink={backLink} />
 			</Section>
 
-			<div className="pb-20 divide-x w-full flex justify-between items-center text-sm font-medium select-none">
-				<Button
-					variant="link"
-					backLink
+			<div className="pb-20 w-full flex justify-between items-center text-sm font-medium select-none">
+				<Link
 					href={`${backLink.path}/${slugify(previousCollection.title)}`}
-					className="flex-1 px-6 py-4 border-y text-foreground transition-colors hover:bg-foreground hover:text-background"
+					className="flex-1 mx-4 px-6 py-4 rounded-lg text-foreground/80 transition-colors hover:bg-foreground-tertiary/5 hover:text-foreground"
 				>
+					<span className="block text-xs text-foreground-tertiary">Prev</span>
 					{previousCollection.title}
-				</Button>
+				</Link>
 
 				<Link
 					href={backLink.path}
-					className="text-center flex-1 px-6 py-4 border-y text-foreground transition-colors hover:bg-foreground hover:text-background"
+					className="text-center flex-1 mx-4 px-6 py-4 rounded-lg text-foreground/80 transition-colors hover:bg-foreground-tertiary/5 hover:text-foreground"
 				>
+					<span className="block text-xs text-foreground-tertiary">Destinations</span>
 					Index
 				</Link>
 
-				<Button
-					variant="link"
+				<Link
 					href={`${backLink.path}/${slugify(nextCollection.title)}`}
-					className="flex-1 px-6 py-4 border-y text-foreground transition-colors hover:bg-foreground hover:text-background"
+					className="text-right flex-1 mx-4 px-6 py-4 rounded-lg text-foreground/80 transition-colors hover:bg-foreground-tertiary/5 hover:text-foreground"
 				>
+					<span className="block text-xs text-foreground-tertiary">Next</span>
 					{nextCollection.title}
-				</Button>
+				</Link>
 			</div>
 		</main>
 	);

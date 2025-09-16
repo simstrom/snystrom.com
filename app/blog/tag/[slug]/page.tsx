@@ -50,7 +50,11 @@ export default async function TagPage(props: Props) {
 
 	return (
 		<main className="grow">
-			<PageHeader title={`Articles about ${tag}`} subtitle="Blog" />
+			<PageHeader
+				title={`Articles about ${tag}`}
+				subtitle="Blog"
+				content="Insights, tutorials, and ideas from my journey in tech."
+			/>
 
 			<Section borderOrigin={'t'}>
 				<TagSelector tags={tags} activeTag={tag} />
