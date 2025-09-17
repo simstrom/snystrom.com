@@ -1,16 +1,24 @@
-import { galleryCollections, galleryDestinations } from '@/data/data';
+import { GALLERY_COLLECTIONS_TAG_PREFIX } from '@/data/constants';
+import { galleryCollections } from '@/data/data';
 import { slugify } from '@/lib/utils';
 import { revalidatePath } from 'next/cache';
 import { NextRequest, NextResponse } from 'next/server';
 
-function getGallerySlugs() {
-	const destinationSlugs = galleryDestinations.map(
-		(destination) => `/gallery/destinations/${slugify(destination.title)}`
-	);
-	const collectionSlugs = galleryCollections.map(
-		(collection) => `/gallery/collections/${slugify(collection.title)}`
-	);
-	return [...destinationSlugs, ...collectionSlugs];
+function mapTagsToPaths(tags: string[]): string[] {
+	const paths: string[] = [];
+	paths.push('/gallery');
+
+	for (const tag of tags) {
+		const match = galleryCollections.find(
+			(c) => GALLERY_COLLECTIONS_TAG_PREFIX + slugify(c.title) === tag
+		);
+
+		if (match) {
+			paths.push(`/gallery/${slugify(match.title)}`);
+		}
+	}
+
+	return paths;
 }
 
 export async function POST(req: NextRequest) {
@@ -20,16 +28,16 @@ export async function POST(req: NextRequest) {
 	}
 
 	try {
-		const pathsToRevalidate = [
-			'/gallery',
-			'/gallery/destinations',
-			'/gallery/collections',
-			...getGallerySlugs(),
-		];
+		const body = await req.json();
+		const tags: string[] = body.tags || [];
 
-		await Promise.all(pathsToRevalidate.map((path) => revalidatePath(path)));
-		return NextResponse.json({ revalidated: true });
+		const pathsToRevalidate = mapTagsToPaths(tags);
+
+		await Promise.all(pathsToRevalidate.map((path) => revalidatePath(path, 'page')));
+
+		return NextResponse.json({ revalidated: true, paths: pathsToRevalidate });
 	} catch (err) {
+		console.error(err);
 		return NextResponse.json({ error: 'Error revalidating', status: 500 });
 	}
 }
