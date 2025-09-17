@@ -3,7 +3,7 @@ import { Card, CardBody, CardFooter } from '@/components/ui/Card';
 import { SITE_NAME, SITE_URL } from '@/data/constants';
 
 import { projectsData } from '@/data/data';
-import { IconGithub } from '@/data/icons';
+import { IconCode, IconGithub } from '@/data/icons';
 
 import { Metadata } from 'next';
 import Script from 'next/script';
@@ -44,6 +44,7 @@ export default function Projects() {
 			<PageHeader
 				title="Projects"
 				content="Some of the things I've built, tinkered with, or just enjoyed working on."
+				subtitle={{ text: 'Dev', Icon: IconCode }}
 			/>
 
 			<section className="grid grid-cols-2 gap-4 p-4 border-t pb-20">

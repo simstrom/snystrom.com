@@ -3,7 +3,7 @@
 import { Post } from '@/.content-collections/generated';
 import { cn, formatDate } from '@/lib/utils';
 
-import { IconArrowRight } from '@/data/icons';
+import { IconArrow } from '@/data/icons';
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
 
@@ -69,8 +69,8 @@ export default function PostList({ posts, query }: PostListProps) {
 								</p>
 							</div>
 
-							<div className="mt-auto">
-								<IconArrowRight className="justify-self-end self-end w-4 h-4" />
+							<div className="mt-auto p-2 rounded-full text-foreground-secondary ring-1 ring-transparent ring-offset-background transition-all group-hover:text-foreground group-hover:ring-brand group-hover:ring-offset-2">
+								<IconArrow className="justify-self-end self-end w-4 h-4" />
 							</div>
 
 							{query && (

@@ -113,7 +113,7 @@ export default function RootLayout({
 	};
 
 	return (
-		<html lang="en" suppressHydrationWarning>
+		<html lang="en" data-scroll-behavior="smooth" suppressHydrationWarning>
 			<Script
 				type="application/ld+json"
 				id="global_jsonLd"
@@ -133,8 +133,6 @@ export default function RootLayout({
 						<div className="hidden lg:block w-full border-x opacity-75 bg-[linear-gradient(-45deg,var(--color-border)_12.50%,transparent_12.50%,transparent_50%,var(--color-border)_50%,var(--color-border)_62.50%,transparent_62.50%,transparent_100%)] bg-size-[5px_5px]" />
 						<div className="px-3 lg:px-0">{children}</div>
 						<div className="hidden lg:block w-full border-x opacity-75 bg-[linear-gradient(-45deg,var(--color-border)_12.50%,transparent_12.50%,transparent_50%,var(--color-border)_50%,var(--color-border)_62.50%,transparent_62.50%,transparent_100%)] bg-size-[5px_5px]" />
-
-						<div className="w-full h-20 fixed bottom-0 left-0 z-10 bg-gradient-to-t from-background to-transparent select-none pointer-events-none"></div>
 					</div>
 					<Footer />
 				</Providers>

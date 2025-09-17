@@ -13,7 +13,7 @@ import {
 	SITE_NAME,
 	SITE_URL,
 } from '@/data/constants';
-import { IconDoodleArrow, IconDoodleCompass, IconDoodleMountains } from '@/data/icons';
+import { IconDoodleArrow, IconDoodleCompass, IconDoodleMountains, IconUser } from '@/data/icons';
 import { getAllImages } from '@/lib/gallery';
 import HeroImage from '@/public/images/hero.jpg';
 
@@ -72,7 +72,7 @@ export default async function About() {
 			/>
 
 			<div className="relative max-w-5xl mx-auto">
-				<PageHeader title="About Me" />
+				<PageHeader title="About Me" subtitle={{ text: 'Bio', Icon: IconUser }} />
 			</div>
 
 			<Section borderOrigin={'y'} className="pb-0">
@@ -86,7 +86,7 @@ export default async function About() {
 							className="rounded-3xl ring-1 ring-border aspect-square sm:aspect-video md:aspect-auto w-full h-full object-cover object-center grayscale"
 						/>
 						<div className="absolute inset-0 z-10 rounded-3xl bg-linear-to-tr from-brand/20 to-brand/10 mix-blend-soft-light" />
-						<IconDoodleArrow className="text-brand w-24 h-24 absolute z-10 -top-4 left-6 rotate-12" />
+						<IconDoodleArrow className="text-brand w-24 h-24 absolute z-10 -top-6 left-6 rotate-12" />
 						<IconDoodleCompass className="text-brand w-16 h-16 absolute z-10 -right-4 -top-4 -rotate-3" />
 						<IconDoodleMountains className="text-brand w-16 h-16 absolute z-10 bottom-48 -left-6 rotate-12" />
 					</div>

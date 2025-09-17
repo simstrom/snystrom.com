@@ -4,6 +4,7 @@ import PostList from '@/components/ui/PostList';
 import { TagSelector } from '@/components/ui/TagSelector';
 
 import { SITE_URL } from '@/data/constants';
+import { IconDocument } from '@/data/icons';
 import { getAllTags, getPostsByTag } from '@/lib/blog';
 import { slugify } from '@/lib/utils';
 
@@ -51,8 +52,8 @@ export default async function TagPage(props: Props) {
 	return (
 		<main className="grow">
 			<PageHeader
-				title={`Articles about ${tag}`}
-				subtitle="Blog"
+				title={tag}
+				subtitle={{ text: 'Articles', Icon: IconDocument }}
 				content="Insights, tutorials, and ideas from my journey in tech."
 			/>
 

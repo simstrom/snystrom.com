@@ -3,6 +3,7 @@ import { Section } from '@/components/layouts/Section';
 import GalleryView from '@/components/sections/GalleryView';
 import { SITE_NAME, SITE_URL } from '@/data/constants';
 import { galleryCollections } from '@/data/data';
+import { IconGallery } from '@/data/icons';
 import { getAllImages, getCollections } from '@/lib/gallery';
 import { slugify } from '@/lib/utils';
 import { Metadata } from 'next';
@@ -84,6 +85,7 @@ export default async function Gallery() {
 			<PageHeader
 				title="Photo Gallery"
 				content="Moments, places, and details I've noticed along the way."
+				subtitle={{ text: 'Collections', Icon: IconGallery }}
 			/>
 
 			<Section borderOrigin={'t'}>

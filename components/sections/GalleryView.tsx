@@ -6,9 +6,7 @@ import { GalleryCollection, GalleryImage } from '@/lib/types';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 
-import { IconBack } from '@/data/icons';
 import { getCollections, getImagesInCollection } from '@/lib/gallery';
-import Link from 'next/link';
 import GalleryItem from '../ui/GalleryItem';
 import Lightbox from '../ui/Lightbox';
 import Skeleton from '../ui/Skeleton';
@@ -16,12 +14,11 @@ import Skeleton from '../ui/Skeleton';
 type Props = {
 	content: (GalleryImage | GalleryCollection)[];
 	cursor?: string;
-	backLink?: { path: string; name: string };
 	as?: 'images' | 'collections';
 	title?: string;
 };
 
-export default function GalleryView({ content, cursor, backLink, as = 'images', title }: Props) {
+export default function GalleryView({ content, cursor, as = 'images', title }: Props) {
 	const { isSmall, isMedium } = useScreenBreakpoints();
 	const [showLightbox, setShowLightbox] = useState<boolean>(false);
 	const [lightboxIndex, setLightboxIndex] = useState<number>(0);
@@ -96,17 +93,6 @@ export default function GalleryView({ content, cursor, backLink, as = 'images', 
 
 	return (
 		<>
-			<div className="border-b pt-2">
-				{backLink && (
-					<Link
-						href={backLink.path}
-						className="block w-fit p-2 ml-6 mb-2 rounded-full ring-1 ring-border text-foreground-secondary transition-all hover:text-brand hover:ring-brand/20 hover:bg-brand/20"
-					>
-						<IconBack className="w-5 h-5 rotate-180" />
-					</Link>
-				)}
-			</div>
-
 			<div ref={animationRef} className="pt-2 px-2 grid sm:grid-cols-2 md:grid-cols-3 gap-2 h-fit">
 				{columns.map((col, colIndex: number) => {
 					return (

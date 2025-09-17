@@ -1,6 +1,7 @@
 import CustomLink from '@/components/blog/Link';
 import PageHeader from '@/components/layouts/PageHeader';
 import { Section } from '@/components/layouts/Section';
+import { IconDesign } from '@/data/icons';
 
 import { cn } from '@/lib/utils';
 import { Metadata } from 'next';
@@ -16,6 +17,7 @@ export default function Colophon() {
 			<PageHeader
 				title="Colophon"
 				content="A summary of the technologies, design, workflow and decisions behind my website."
+				subtitle={{ text: 'Design', Icon: IconDesign }}
 			/>
 
 			<Section

@@ -3,6 +3,7 @@ import { Section } from '@/components/layouts/Section';
 import PostList from '@/components/ui/PostList';
 import { TagSelector } from '@/components/ui/TagSelector';
 import { SITE_NAME, SITE_URL } from '@/data/constants';
+import { IconDocument } from '@/data/icons';
 
 import { getAllTags, getBlogPosts } from '@/lib/blog';
 
@@ -47,7 +48,11 @@ export default async function Blog() {
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 			/>
 
-			<PageHeader title="Blog" content="Insights, tutorials, and ideas from my journey in tech." />
+			<PageHeader
+				title="Blog"
+				content="Insights, tutorials, and ideas from my journey in tech."
+				subtitle={{ text: 'Articles', Icon: IconDocument }}
+			/>
 
 			<Section borderOrigin={'t'} className="">
 				<TagSelector tags={tags} activeTag={''} />

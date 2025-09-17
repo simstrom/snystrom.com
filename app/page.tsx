@@ -9,11 +9,9 @@ import { BentoGrid } from '@/components/ui/Bento';
 import { Card, CardBody, CardFooter } from '@/components/ui/Card';
 
 import { SITE_URL } from '@/data/constants';
-import { projectsData } from '@/data/data';
 import { IconArrow, IconDocument } from '@/data/icons';
-import { getAllTags, getBlogPosts, getLatestBlogPost } from '@/lib/blog';
+import { getBlogPosts, getLatestBlogPost } from '@/lib/blog';
 import { getAllImages } from '@/lib/gallery';
-import { Project } from '@/lib/types';
 import { formatDate } from '@/lib/utils';
 
 import { Metadata } from 'next';
@@ -26,12 +24,9 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-	// const images = await getImagesByTag('Landing');
 	const galleryImages = (await getAllImages(4)).images;
 	const blogPosts = getBlogPosts();
-	const allUniqueTags = getAllTags();
 	const latestPost = getLatestBlogPost();
-	const snystrom = projectsData.find((project) => project.title === 'Snystrom.com') as Project;
 
 	return (
 		<main className="grow flex flex-col items-center justify-center">
@@ -51,7 +46,7 @@ export default async function Home() {
 
 					<Link
 						href={'/blog'}
-						className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full ring-1 ring-border text-foreground-secondary transition-all hover:text-brand hover:bg-brand/20 hover:ring-brand/20"
+						className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-foreground-secondary/5 text-foreground-secondary ring-1 ring-transparent ring-offset-background transition-all hover:bg-foreground-secondary/10 hover:text-foreground hover:ring-brand hover:ring-offset-2"
 					>
 						<IconArrow className="w-4 h-4" />
 					</Link>

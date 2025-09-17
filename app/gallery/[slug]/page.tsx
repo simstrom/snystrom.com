@@ -4,6 +4,7 @@ import GalleryView from '@/components/sections/GalleryView';
 
 import { SITE_NAME, SITE_URL } from '@/data/constants';
 import { galleryCollections } from '@/data/data';
+import { IconGallery } from '@/data/icons';
 import { getImagesInCollection } from '@/lib/gallery';
 import { slugify } from '@/lib/utils';
 
@@ -77,10 +78,7 @@ export default async function GalleryCollection(props: Props) {
 	const previousCollection = galleryCollections[previousIndex];
 	const nextCollection = galleryCollections[nextIndex];
 
-	const backLink = {
-		path: '/gallery',
-		name: 'Back to Gallery',
-	};
+	const backLink = '/gallery';
 
 	const jsonLd: WithContext<ImageGallery> = {
 		'@type': 'ImageGallery',
@@ -99,21 +97,20 @@ export default async function GalleryCollection(props: Props) {
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 			/>
 
-			<PageHeader title={collection.title} subtitle="Collection" content={collection.description} />
+			<PageHeader
+				title={collection.title}
+				subtitle={{ text: 'Gallery', Icon: IconGallery }}
+				content={collection.description}
+				backlink={backLink}
+			/>
 
-			<Section borderOrigin={'t'} className="pb-10">
-				<GalleryView
-					content={images}
-					as="images"
-					cursor={next_cursor}
-					title={collection.title}
-					backLink={backLink}
-				/>
+			<Section borderOrigin={'t'} className="pb-0">
+				<GalleryView content={images} as="images" cursor={next_cursor} title={collection.title} />
 			</Section>
 
 			<div className="pb-20 w-full flex justify-between items-center text-sm font-medium select-none">
 				<Link
-					href={`${backLink.path}/${slugify(previousCollection.title)}`}
+					href={`${backLink}/${slugify(previousCollection.title)}`}
 					className="flex-1 mx-4 px-6 py-4 rounded-lg text-foreground/80 transition-colors hover:bg-foreground-tertiary/5 hover:text-foreground"
 				>
 					<span className="block text-xs text-foreground-tertiary">Prev</span>
@@ -121,7 +118,7 @@ export default async function GalleryCollection(props: Props) {
 				</Link>
 
 				<Link
-					href={backLink.path}
+					href={backLink}
 					className="text-center flex-1 mx-4 px-6 py-4 rounded-lg text-foreground/80 transition-colors hover:bg-foreground-tertiary/5 hover:text-foreground"
 				>
 					<span className="block text-xs text-foreground-tertiary">Collections</span>
@@ -129,7 +126,7 @@ export default async function GalleryCollection(props: Props) {
 				</Link>
 
 				<Link
-					href={`${backLink.path}/${slugify(nextCollection.title)}`}
+					href={`${backLink}/${slugify(nextCollection.title)}`}
 					className="text-right flex-1 mx-4 px-6 py-4 rounded-lg text-foreground/80 transition-colors hover:bg-foreground-tertiary/5 hover:text-foreground"
 				>
 					<span className="block text-xs text-foreground-tertiary">Next</span>

@@ -123,7 +123,7 @@ html {
 	min-width: 340px;
 }
 * {
-	@apply box-border scroll-smooth;
+	@apply box-border;
 	text-rendering: optimizeLegibility;
 }
 body {

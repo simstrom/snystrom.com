@@ -135,8 +135,8 @@ export default async function BlogPost(props: Props) {
 
 			<div className="max-w-5xl mx-auto pt-24">
 				<Link
-					href={'/blog'}
-					className="block w-fit p-2 ml-4 mb-4 rounded-full ring-1 ring-border text-foreground-secondary transition-all hover:text-brand hover:ring-brand/20 hover:bg-brand/20"
+					href="/blog"
+					className="block w-fit p-2 ml-4 mb-4 rounded-full bg-foreground-secondary/5 text-foreground-secondary ring-1 ring-transparent ring-offset-background transition-all hover:bg-foreground-secondary/10 hover:text-foreground hover:ring-brand hover:ring-offset-2"
 				>
 					<IconBack className="w-5 h-5 rotate-180" />
 				</Link>
@@ -180,7 +180,7 @@ export default async function BlogPost(props: Props) {
 								/>
 							))}
 						</ul>
-						<PageHeader title={post.title} className="p-0 m-0 bg-transparent" />
+						<PageHeader title={post.title} className="p-0 m-0 bg-transparent text-3xl" />
 						<div className="flex items-center gap-6 text-sm font-medium">
 							<div className="flex items-center gap-x-2">
 								<IconCalendar width={16} height={16} />
