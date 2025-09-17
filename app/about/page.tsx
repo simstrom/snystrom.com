@@ -14,7 +14,7 @@ import {
 	SITE_URL,
 } from '@/data/constants';
 import { IconDoodleArrow, IconDoodleCompass, IconDoodleMountains } from '@/data/icons';
-import { getImagesByTag } from '@/lib/gallery';
+import { getAllImages } from '@/lib/gallery';
 import HeroImage from '@/public/images/hero.jpg';
 
 import { Metadata } from 'next';
@@ -45,8 +45,7 @@ const skills = [
 ];
 
 export default async function About() {
-	const result = await getImagesByTag('About');
-	const scrollerImages = [...result, ...result, ...result];
+	const { images } = await getAllImages(10);
 
 	const jsonLd: WithContext<AboutPage> = {
 		'@type': 'AboutPage',
@@ -141,7 +140,7 @@ export default async function About() {
 			</Section>
 
 			<Section borderOrigin={null} className="pt-10 pb-0 relative">
-				<HorizontalImages items={scrollerImages} className="mb-20 pt-10" />
+				<HorizontalImages items={images} className="mb-20 pt-10" />
 				<p className="absolute bottom-20 right-10 -rotate-3 text-sm font-medium text-foreground-secondary">
 					<span className="text-brand">* </span>I also do{' '}
 					<CustomLink href="/gallery">photography</CustomLink>

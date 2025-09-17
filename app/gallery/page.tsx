@@ -2,16 +2,19 @@ import PageHeader from '@/components/layouts/PageHeader';
 import { Section } from '@/components/layouts/Section';
 import GalleryView from '@/components/sections/GalleryView';
 import { SITE_NAME, SITE_URL } from '@/data/constants';
-import { getAllImages } from '@/lib/gallery';
+import { galleryCollections } from '@/data/data';
+import { getAllImages, getCollections } from '@/lib/gallery';
+import { slugify } from '@/lib/utils';
 import { Metadata } from 'next';
 import Script from 'next/script';
-import { ImageGallery, WithContext } from 'schema-dts';
+import { CollectionPage, WithContext } from 'schema-dts';
 
 const title = 'Photo Gallery';
 const description = "Moments, places, and details I've noticed along the way.";
 
 export async function generateMetadata(): Promise<Metadata> {
 	const { images } = await getAllImages(1);
+
 	const ogImage = images.length > 0 && images[0].src;
 
 	return {
@@ -23,8 +26,8 @@ export async function generateMetadata(): Promise<Metadata> {
 			images: [
 				{
 					url: `/api/ogGallery?title=${encodeURIComponent(
-						'Photo Gallery'
-					)}&subtitle=${encodeURIComponent(description)}&image=${encodeURIComponent(ogImage)}`,
+						'Collections'
+					)}&subtitle=${encodeURIComponent('Photo Gallery')}&image=${encodeURIComponent(ogImage)}`,
 					width: 1200,
 					height: 630,
 					alt: `Photo Gallery cover image`,
@@ -38,8 +41,8 @@ export async function generateMetadata(): Promise<Metadata> {
 			images: [
 				{
 					url: `/api/ogGallery?title=${encodeURIComponent(
-						'Photo Gallery'
-					)}&subtitle=${encodeURIComponent(description)}&image=${encodeURIComponent(ogImage)}`,
+						'Collections'
+					)}&subtitle=${encodeURIComponent('Photo Gallery')}&image=${encodeURIComponent(ogImage)}`,
 					width: 1200,
 					height: 630,
 					alt: `Photo Gallery cover image`,
@@ -51,15 +54,23 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Gallery() {
-	const { images, next_cursor } = await getAllImages(24); // Initial images, 8 in each column
+	const { collections, next_cursor } = await getCollections(24);
 
-	const jsonLd: WithContext<ImageGallery> = {
-		'@type': 'ImageGallery',
+	const jsonLd: WithContext<CollectionPage> = {
+		'@type': 'CollectionPage',
 		'@context': 'https://schema.org',
-		name: `${SITE_NAME} Photography`,
+		name: `${SITE_NAME} - Photo Gallery`,
 		description,
 		url: `${SITE_URL}/gallery`,
-		image: images.slice(0, 3).map((img) => img.src),
+		mainEntity: {
+			'@type': 'ItemList',
+			itemListElement: galleryCollections.map((collection) => ({
+				'@type': 'ImageGallery',
+				name: collection.title,
+				description: collection.description,
+				url: `${SITE_URL}/gallery/${slugify(collection.title)}`,
+			})),
+		},
 	};
 
 	return (
@@ -76,7 +87,7 @@ export default async function Gallery() {
 			/>
 
 			<Section borderOrigin={'t'}>
-				<GalleryView content={images} cursor={next_cursor} />
+				<GalleryView as="collections" content={collections} cursor={next_cursor} />
 			</Section>
 		</main>
 	);

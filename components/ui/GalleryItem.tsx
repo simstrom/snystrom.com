@@ -11,7 +11,6 @@ type Props = {
 	isCollection: boolean;
 	item: GalleryImage;
 	collectionTitle: string;
-	collectionType: string;
 	priority: boolean;
 	lightboxIndex: number;
 	handleImageClick: (e: any, lightboxIndex: number) => void;
@@ -21,7 +20,6 @@ export default function GalleryItem({
 	isCollection,
 	item,
 	collectionTitle,
-	collectionType,
 	priority,
 	lightboxIndex,
 	handleImageClick,
@@ -32,7 +30,7 @@ export default function GalleryItem({
 		<>
 			{isCollection ? (
 				<Link
-					href={`/gallery/${collectionType}/${slugify(collectionTitle)}`}
+					href={`/gallery/${slugify(collectionTitle)}`}
 					className="relative group overflow-hidden"
 				>
 					<CldImage

@@ -1,47 +1,30 @@
 'use client';
 
-import { getAllImages } from '@/lib/gallery';
 import { useScreenBreakpoints } from '@/lib/hooks';
 import { GalleryCollection, GalleryImage } from '@/lib/types';
 
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
-import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 
 import { IconBack } from '@/data/icons';
+import { getCollections, getImagesInCollection } from '@/lib/gallery';
 import Link from 'next/link';
 import GalleryItem from '../ui/GalleryItem';
 import Lightbox from '../ui/Lightbox';
 import Skeleton from '../ui/Skeleton';
-import TabList from '../ui/TabList';
 
 type Props = {
 	content: (GalleryImage | GalleryCollection)[];
 	cursor?: string;
 	backLink?: { path: string; name: string };
-	category?: 'destinations' | 'collections';
+	as?: 'images' | 'collections';
+	title?: string;
 };
 
-const GalleryRoutes = [
-	{
-		path: '/gallery',
-		name: 'Images',
-	},
-	{
-		path: '/gallery/destinations',
-		name: 'Destinations',
-	},
-	{
-		path: '/gallery/collections',
-		name: 'Collections',
-	},
-];
-
-export default function GalleryView({ content, cursor, backLink, category }: Props) {
+export default function GalleryView({ content, cursor, backLink, as = 'images', title }: Props) {
 	const { isSmall, isMedium } = useScreenBreakpoints();
 	const [showLightbox, setShowLightbox] = useState<boolean>(false);
 	const [lightboxIndex, setLightboxIndex] = useState<number>(0);
-	const currentPath = usePathname();
 
 	// Column animation properties
 	const { scrollY } = useScroll();
@@ -54,9 +37,7 @@ export default function GalleryView({ content, cursor, backLink, category }: Pro
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const viewRef = useRef<HTMLDivElement>(null);
 	const inView = useInView(viewRef, { margin: '0px 0px 30% 0px' });
-	const [loadedImages, setLoadedImages] = useState<GalleryImage[] | null>(
-		!category ? (content as GalleryImage[]) : null
-	);
+	const [loadedImages, setLoadedImages] = useState<(GalleryImage | GalleryCollection)[]>(content);
 	const [nextCursor, setNextCursor] = useState(cursor);
 
 	const fetchNextImages = async () => {
@@ -64,9 +45,21 @@ export default function GalleryView({ content, cursor, backLink, category }: Pro
 
 		try {
 			setIsLoading(true);
-			const nextImages = await getAllImages(12, nextCursor); // Fetch 4 images per column.
-			setLoadedImages((prevImages) => [...(prevImages as GalleryImage[]), ...nextImages.images]);
-			setNextCursor(nextImages.next_cursor);
+
+			let items: (GalleryImage | GalleryCollection)[] = [];
+			let cursor: string | undefined;
+			if (as === 'collections') {
+				const { collections, next_cursor } = await getCollections(12, nextCursor);
+				items = collections;
+				cursor = next_cursor;
+			} else {
+				const { images, next_cursor } = await getImagesInCollection(title ?? '', 12, nextCursor);
+				items = images;
+				cursor = next_cursor;
+			}
+
+			setLoadedImages((prevImages) => [...prevImages, ...items]);
+			setNextCursor(cursor);
 			setIsLoading(false);
 		} catch (error) {
 			setIsLoading(false);
@@ -87,10 +80,8 @@ export default function GalleryView({ content, cursor, backLink, category }: Pro
 	}, [animationRef]);
 
 	const columns: (GalleryImage | GalleryCollection)[][] = [[], [], []];
-	(!category ? (loadedImages as GalleryImage[]) : content).forEach((item, index) => {
-		columns[index % (isSmall ? 1 : isMedium ? 2 : 3)].push(
-			category ? (item as GalleryCollection) : (item as GalleryImage)
-		);
+	loadedImages?.forEach((item, index) => {
+		columns[index % (isSmall ? 1 : isMedium ? 2 : 3)].push(item);
 	});
 
 	const calculateLightboxIndex = (colIndex: number, n: number) => {
@@ -106,21 +97,13 @@ export default function GalleryView({ content, cursor, backLink, category }: Pro
 	return (
 		<>
 			<div className="border-b pt-2">
-				{backLink ? (
+				{backLink && (
 					<Link
 						href={backLink.path}
 						className="block w-fit p-2 ml-6 mb-2 rounded-full ring-1 ring-border text-foreground-secondary transition-all hover:text-brand hover:ring-brand/20 hover:bg-brand/20"
 					>
 						<IconBack className="w-5 h-5 rotate-180" />
 					</Link>
-				) : (
-					<TabList
-						labels={GalleryRoutes.map((route) => route.name)}
-						asLinks
-						links={GalleryRoutes.map((route) => route.path)}
-						selected={GalleryRoutes.findIndex((route) => route.path === currentPath)}
-						className="px-6"
-					/>
 				)}
 			</div>
 
@@ -135,10 +118,13 @@ export default function GalleryView({ content, cursor, backLink, category }: Pro
 							{col.map((item, idx) => (
 								<GalleryItem
 									key={idx}
-									isCollection={!!category}
-									item={category ? (item as GalleryCollection).cover : (item as GalleryImage)}
-									collectionTitle={category ? (item as GalleryCollection).title : ''}
-									collectionType={category ?? ''}
+									isCollection={as === 'collections'}
+									item={
+										as === 'collections'
+											? (item as GalleryCollection).cover
+											: (item as GalleryImage)
+									}
+									collectionTitle={as === 'collections' ? (item as GalleryCollection).title : ''}
 									priority={idx <= 2 ? true : false}
 									lightboxIndex={calculateLightboxIndex(colIndex, idx)}
 									handleImageClick={handleImageClick}
@@ -156,9 +142,9 @@ export default function GalleryView({ content, cursor, backLink, category }: Pro
 			</div>
 			<div ref={viewRef} />
 
-			{!category && (
+			{as === 'images' && (
 				<Lightbox
-					content={loadedImages ?? (content as GalleryImage[])}
+					content={loadedImages.filter((item): item is GalleryImage => 'src' in item)}
 					current={lightboxIndex}
 					setCurrent={setLightboxIndex}
 					isVisible={showLightbox}

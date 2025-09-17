@@ -3,8 +3,8 @@ import { Section } from '@/components/layouts/Section';
 import GalleryView from '@/components/sections/GalleryView';
 
 import { SITE_NAME, SITE_URL } from '@/data/constants';
-import { galleryDestinations } from '@/data/data';
-import { getImagesByTag, getImagesInCollection } from '@/lib/gallery';
+import { galleryCollections } from '@/data/data';
+import { getImagesInCollection } from '@/lib/gallery';
 import { slugify } from '@/lib/utils';
 
 import { Metadata } from 'next';
@@ -21,24 +21,24 @@ interface Props {
 
 export async function generateMetadata(props: Props): Promise<Metadata | undefined> {
 	const params = await props.params;
-	const collection = galleryDestinations.find((item) => slugify(item.title) === params.slug);
+	const collection = galleryCollections.find((item) => slugify(item.title) === params.slug);
 	if (!collection) return notFound();
 
 	const { title, description } = collection;
-	const coverImage = (await getImagesByTag(`destinations_${collection.title}`)).slice(0, 1);
+	const coverImage = (await getImagesInCollection(collection.title, 1)).images[0];
 
 	return {
-		title: `${title} - Photo Gallery`,
+		title: `${title} Photo Gallery`,
 		description,
 		openGraph: {
-			title: `${title} - Photo Gallery`,
+			title: `${title} Photo Gallery`,
 			description,
-			url: `${SITE_URL}/gallery/destinations/${slugify(collection.title)}`,
+			url: `${SITE_URL}/gallery/${slugify(collection.title)}`,
 			images: [
 				{
 					url: `/api/ogGallery?title=${encodeURIComponent(title)}&subtitle=${encodeURIComponent(
 						'Photo Gallery'
-					)}&image=${encodeURIComponent(coverImage[0].src)}`,
+					)}&image=${encodeURIComponent(coverImage.src)}`,
 					width: 1200,
 					height: 630,
 					alt: `${title} Photo Gallery cover image`,
@@ -47,13 +47,13 @@ export async function generateMetadata(props: Props): Promise<Metadata | undefin
 			],
 		},
 		twitter: {
-			title: `${title} - Photo Gallery`,
+			title: `${title} Photo Gallery`,
 			description,
 			images: [
 				{
 					url: `/api/ogGallery?title=${encodeURIComponent(title)}&subtitle=${encodeURIComponent(
 						'Photo Gallery'
-					)}&image=${encodeURIComponent(coverImage[0].src)}`,
+					)}&image=${encodeURIComponent(coverImage.src)}`,
 					width: 1200,
 					height: 630,
 					alt: `${title} Photo Gallery cover image`,
@@ -64,30 +64,30 @@ export async function generateMetadata(props: Props): Promise<Metadata | undefin
 	};
 }
 
-export default async function GalleryDestination(props: Props) {
+export default async function GalleryCollection(props: Props) {
 	const params = await props.params;
-	const index = galleryDestinations.findIndex((item) => slugify(item.title) === params.slug);
+	const index = galleryCollections.findIndex((item) => slugify(item.title) === params.slug);
 	if (index === -1) return notFound();
 
-	const collection = galleryDestinations[index];
-	const { images, next_cursor } = await getImagesInCollection('destinations', params.slug, 24);
+	const collection = galleryCollections[index];
+	const { images, next_cursor } = await getImagesInCollection(params.slug, 24);
 
-	const previousIndex = (index - 1 + galleryDestinations.length) % galleryDestinations.length;
-	const nextIndex = (index + 1) % galleryDestinations.length;
-	const previousCollection = galleryDestinations[previousIndex];
-	const nextCollection = galleryDestinations[nextIndex];
+	const previousIndex = (index - 1 + galleryCollections.length) % galleryCollections.length;
+	const nextIndex = (index + 1) % galleryCollections.length;
+	const previousCollection = galleryCollections[previousIndex];
+	const nextCollection = galleryCollections[nextIndex];
 
 	const backLink = {
-		path: '/gallery/destinations',
-		name: 'Destinations',
+		path: '/gallery',
+		name: 'Back to Gallery',
 	};
 
 	const jsonLd: WithContext<ImageGallery> = {
 		'@type': 'ImageGallery',
 		'@context': 'https://schema.org',
-		name: `${SITE_NAME} Photography - ${collection.title}`,
+		name: `${SITE_NAME} Photo Gallery - ${collection.title}`,
 		description: collection.description,
-		url: `${SITE_URL}/gallery/destinations/${slugify(collection.title)}`,
+		url: `${SITE_URL}/gallery/${slugify(collection.title)}`,
 		image: images.slice(0, 3).map((img) => img.src),
 	};
 
@@ -99,14 +99,16 @@ export default async function GalleryDestination(props: Props) {
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 			/>
 
-			<PageHeader
-				title={collection.title}
-				subtitle="Destination"
-				content={collection.description}
-			/>
+			<PageHeader title={collection.title} subtitle="Collection" content={collection.description} />
 
 			<Section borderOrigin={'t'} className="pb-10">
-				<GalleryView content={images} cursor={next_cursor} backLink={backLink} />
+				<GalleryView
+					content={images}
+					as="images"
+					cursor={next_cursor}
+					title={collection.title}
+					backLink={backLink}
+				/>
 			</Section>
 
 			<div className="pb-20 w-full flex justify-between items-center text-sm font-medium select-none">
@@ -122,7 +124,7 @@ export default async function GalleryDestination(props: Props) {
 					href={backLink.path}
 					className="text-center flex-1 mx-4 px-6 py-4 rounded-lg text-foreground/80 transition-colors hover:bg-foreground-tertiary/5 hover:text-foreground"
 				>
-					<span className="block text-xs text-foreground-tertiary">Destinations</span>
+					<span className="block text-xs text-foreground-tertiary">Collections</span>
 					Index
 				</Link>
 
@@ -139,5 +141,5 @@ export default async function GalleryDestination(props: Props) {
 }
 
 export async function generateStaticParams() {
-	return galleryDestinations.map((item) => ({ slug: slugify(item.title) }));
+	return galleryCollections.map((item) => ({ slug: slugify(item.title) }));
 }

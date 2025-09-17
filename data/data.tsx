@@ -246,9 +246,14 @@ export const projectsData = [
 ] as Array<Project>;
 
 //
-// GALLERY: Destinations
+// GALLERY
 //
-export const galleryDestinations = [
+export const galleryCollections = [
+	{
+		title: 'Highlands',
+		description:
+			'Lorem ipsum dolor sit amet, consectetur adipisicing elit. In vel eaque asperiores maiores perferendis eveniet.',
+	},
 	{
 		title: 'Australia',
 		description:
@@ -264,12 +269,6 @@ export const galleryDestinations = [
 		description:
 			'Lorem ipsum dolor sit amet, consectetur adipisicing elit. In vel eaque asperiores maiores perferendis eveniet.',
 	},
-] as Array<GalleryCollection>;
-
-//
-// GALLERY: Collections
-//
-export const galleryCollections = [
 	{
 		title: 'Adventure',
 		description: 'string',
