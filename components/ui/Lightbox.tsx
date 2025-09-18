@@ -1,5 +1,6 @@
 'use client';
 
+import { IconArrow } from '@/data/icons';
 import { GalleryImage } from '@/lib/types';
 import { AnimatePresence, motion } from 'framer-motion';
 import { CldImage } from 'next-cloudinary';
@@ -10,18 +11,10 @@ type Props = {
 	current: number;
 	setCurrent: React.Dispatch<React.SetStateAction<number>>;
 	isVisible: boolean;
-	isMobile: boolean;
 	onClose: () => void;
 };
 
-export default function Lightbox({
-	content,
-	current,
-	setCurrent,
-	isVisible,
-	isMobile,
-	onClose,
-}: Props) {
+export default function Lightbox({ content, current, setCurrent, isVisible, onClose }: Props) {
 	const containerRef = useRef<HTMLDivElement>(null);
 	const [isLoading, setIsLoading] = useState(true);
 
@@ -66,62 +59,66 @@ export default function Lightbox({
 			{isVisible && (
 				<>
 					<motion.div
-						className="fixed z-99 top-0 left-0 w-full h-full flex justify-center bg-background/90"
+						className="fixed z-100 top-0 left-0 w-full h-full flex justify-center bg-background/90"
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
 						exit={{ opacity: 0 }}
 					>
-						<motion.div
-							className="absolute bottom-10 font-medium text-sm"
-							initial={{ opacity: 0 }}
-							animate={{ opacity: 1 }}
-							exit={{ opacity: 0 }}
-							transition={{ delay: 0.5 }}
+						<div
+							className="hidden md:block absolute z-110 right-6 bottom-1/2 -translate-y-1/2 w-fit p-2 rounded-full bg-foreground-secondary/5 text-foreground-secondary ring-1 ring-transparent ring-offset-background transition-all hover:bg-foreground-secondary/10 hover:text-foreground hover:ring-brand hover:ring-offset-2 active:scale-95 active:ring-offset-1 cursor-pointer select-none"
+							onClick={(e) => showNext(e)}
 						>
-							{current + 1} / {content.length}
-						</motion.div>
+							<IconArrow className="w-5 h-5" />
+						</div>
+						<div
+							className="hidden md:block absolute z-110 left-6 bottom-1/2 -translate-y-1/2 w-fit p-2 rounded-full bg-foreground-secondary/5 text-foreground-secondary ring-1 ring-transparent ring-offset-background transition-all hover:bg-foreground-secondary/10 hover:text-foreground hover:ring-brand hover:ring-offset-2 active:scale-95 active:ring-offset-1 cursor-pointer select-none"
+							onClick={(e) => showPrev(e)}
+						>
+							<IconArrow className="w-5 h-5 rotate-180" />
+						</div>
+
+						<div
+							ref={containerRef}
+							onClick={() => onClose()}
+							tabIndex={-1}
+							onKeyDown={handleKeyDown}
+							className="fixed z-100 top-0 left-0 w-full h-full flex items-center justify-center focus-visible:outline-none p-10 sm:p-20"
+						>
+							<motion.div
+								initial={{
+									y: '100%',
+									opacity: 0,
+								}}
+								animate={{ y: !isLoading ? 0 : '100%', opacity: !isLoading ? 1 : 0 }}
+								exit={{
+									y: '100%',
+									opacity: 0,
+								}}
+								transition={{ type: 'spring', stiffness: 200, damping: 30 }}
+								drag={'x'}
+								dragConstraints={{ left: 0, right: 0 }}
+								onDragEnd={(event, info) => {
+									if (info.offset.x < -100) {
+										showNext(event);
+									} else if (info.offset.x > 100) {
+										showPrev(event);
+									}
+								}}
+								className="w-full h-full relative"
+							>
+								<CldImage
+									src={content[current].src}
+									alt={content[current].alt ?? ''}
+									width={content[current].width}
+									height={content[current].height}
+									loading="eager"
+									draggable={false}
+									className="h-full w-full object-contain"
+									onLoad={() => setIsLoading(false)}
+								/>
+							</motion.div>
+						</div>
 					</motion.div>
-					<div
-						ref={containerRef}
-						onClick={() => onClose()}
-						tabIndex={-1}
-						onKeyDown={handleKeyDown}
-						className="fixed z-100 top-0 left-0 w-full h-full flex items-center justify-center focus-visible:outline-none p-14 sm:p-20"
-					>
-						<motion.div
-							initial={{
-								y: '100%',
-								opacity: 0,
-							}}
-							animate={{ y: !isLoading ? 0 : '100%', opacity: !isLoading ? 1 : 0 }}
-							exit={{
-								y: '100%',
-								opacity: 0,
-							}}
-							transition={{ type: 'spring', stiffness: 200, damping: 30 }}
-							drag={isMobile ? 'x' : false}
-							dragConstraints={{ left: 0, right: 0 }}
-							onDragEnd={(event, info) => {
-								if (info.offset.x < -100) {
-									showNext(event);
-								} else if (info.offset.x > 100) {
-									showPrev(event);
-								}
-							}}
-							className="w-full h-full relative"
-						>
-							<CldImage
-								src={content[current].src}
-								alt={content[current].alt ?? ''}
-								width={content[current].width}
-								height={content[current].height}
-								loading="eager"
-								draggable={false}
-								className="h-full w-full object-contain"
-								onLoad={() => setIsLoading(false)}
-							/>
-						</motion.div>
-					</div>
 				</>
 			)}
 		</AnimatePresence>
