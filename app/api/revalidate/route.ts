@@ -4,14 +4,25 @@ import { slugify } from '@/lib/utils';
 import { revalidatePath } from 'next/cache';
 import { NextRequest, NextResponse } from 'next/server';
 
-function mapTagsToPaths(tags: string[]): string[] {
+enum NotificationType {
+	tags = 'resource_tags_changed',
+	delete = 'delete',
+}
+
+function mapPaths(resources: any[], type: NotificationType): string[] {
 	const paths: string[] = [];
 	paths.push('/gallery');
 
-	for (const tag of tags) {
-		const match = galleryCollections.find(
-			(c) => GALLERY_COLLECTIONS_TAG_PREFIX + slugify(c.title) === tag
-		);
+	for (const resource of resources) {
+		const match = galleryCollections.find((c) => {
+			if (type === NotificationType.tags) {
+				return resource.added.includes(`${GALLERY_COLLECTIONS_TAG_PREFIX}${slugify(c.title)}`);
+			} else if (type === NotificationType.delete) {
+				return resource.tags.includes(`${GALLERY_COLLECTIONS_TAG_PREFIX}${slugify(c.title)}`);
+			}
+
+			return false;
+		});
 
 		if (match) {
 			paths.push(`/gallery/${slugify(match.title)}`);
@@ -29,9 +40,11 @@ export async function POST(req: NextRequest) {
 
 	try {
 		const body = await req.json();
-		const tags: string[] = body.tags || [];
+		const resources = body.resources || [];
 
-		const pathsToRevalidate = mapTagsToPaths(tags);
+		const pathsToRevalidate = mapPaths(resources, body.notification_type as NotificationType);
+
+		console.log('Revalidating paths:', pathsToRevalidate);
 
 		await Promise.all(pathsToRevalidate.map((path) => revalidatePath(path, 'page')));
 
