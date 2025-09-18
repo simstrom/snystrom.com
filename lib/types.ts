@@ -14,6 +14,7 @@ export type GalleryCollection = {
 	title: string;
 	description: string;
 	cover: GalleryImage;
+	length: number;
 };
 export type GalleryImage = {
 	id: string;

@@ -3,14 +3,15 @@
 import { GalleryImage } from '@/lib/types';
 import { cn, slugify } from '@/lib/utils';
 
+import { IconArrowUpRight, IconGallery } from '@/data/icons';
 import { CldImage } from 'next-cloudinary';
 import Link from 'next/link';
-import CardOverlay from './CardOverlay';
 
 type Props = {
 	isCollection: boolean;
 	item: GalleryImage;
 	collectionTitle: string;
+	collectionSize: number;
 	priority: boolean;
 	lightboxIndex: number;
 	handleImageClick: (e: any, lightboxIndex: number) => void;
@@ -20,6 +21,7 @@ export default function GalleryItem({
 	isCollection,
 	item,
 	collectionTitle,
+	collectionSize,
 	priority,
 	lightboxIndex,
 	handleImageClick,
@@ -42,13 +44,24 @@ export default function GalleryItem({
 						loading={priority ? 'eager' : 'lazy'}
 						placeholder="blur"
 						blurDataURL={item.blurData}
-						className="sm:aspect-4/5 w-full object-cover object-center transition-opacity"
+						className="aspect-square w-full object-cover object-center rounded-xl"
 					/>
-					<div className="bg-linear-to-t from-black/80 via-transparent to-transparent flex items-end p-4 justify-between absolute w-full top-0 bottom-0 text-background dark:text-foreground transition-colors duration-300 group-hover:bg-black/20">
-						<h3 className="text-2xl font-[550]">{collectionTitle}</h3>
+					<div className="rounded-xl bg-linear-to-t from-foreground/80 dark:from-background/80 via-transparent to-transparent flex flex-col items-start justify-end p-4 absolute w-full top-0 bottom-0 text-background dark:text-foreground transition-colors duration-300 group-hover:bg-background/20">
+						<div className="text-xs flex items-center gap-1 opacity-80">
+							<IconGallery />
+							{collectionSize}
+						</div>
+						<h3 className="text-xl">{collectionTitle}</h3>
 					</div>
 
-					<CardOverlay withIcon />
+					<div
+						className={cn(
+							'absolute right-4 -bottom-2 z-20 w-fit h-fit rounded-full p-2 bg-foreground text-background dark:bg-background dark:text-foreground',
+							'opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:-translate-y-6 user-select-none pointer-events-none '
+						)}
+					>
+						<IconArrowUpRight className="w-4 h-4" />
+					</div>
 				</Link>
 			) : (
 				<div

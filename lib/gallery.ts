@@ -89,21 +89,24 @@ export const getImagesInCollection = cache(async (name: string) => {
 export const getCollections = cache(async () => {
 	try {
 		const resources = await getAllImages();
-		const images = resources.filter((img) => img.tags?.includes(GALLERY_COVER_TAG));
+		const covers = resources.filter((img) => img.tags?.includes(GALLERY_COVER_TAG));
 
 		const collections = galleryCollections.map((collection) => {
-			const matchingImages = images.filter((img: any) =>
+			const matchingCovers = covers.filter((img: any) =>
 				img.tags?.includes(`${GALLERY_COLLECTIONS_TAG_PREFIX + slugify(collection.title)}`)
 			);
 
-			if (!matchingImages.length) {
+			if (!matchingCovers.length) {
 				console.warn(`Collection ${collection.title} is missing cover image in Cloudinary`);
 				return;
 			}
 
 			return {
 				...collection,
-				cover: matchingImages[0],
+				cover: matchingCovers[0],
+				length: resources.filter((img) =>
+					img.tags.includes(`${GALLERY_COLLECTIONS_TAG_PREFIX + slugify(collection.title)}`)
+				).length,
 			};
 		});
 

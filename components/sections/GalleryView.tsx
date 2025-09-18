@@ -71,6 +71,7 @@ export default function GalleryView({ content, as = 'images' }: Props) {
 												: (item as GalleryImage)
 										}
 										collectionTitle={as === 'collections' ? (item as GalleryCollection).title : ''}
+										collectionSize={as === 'collections' ? (item as GalleryCollection).length : 0}
 										priority={idx <= 2 ? true : false}
 										lightboxIndex={calculateLightboxIndex(colIndex, idx)}
 										handleImageClick={handleImageClick}
