@@ -46,7 +46,7 @@ const mapGalleryImages = cache(async (result: Array<Object>): Promise<GalleryIma
 
 let cachedResults: GalleryImage[] | null = null;
 export const getAllImages = cache(async () => {
-	if (cachedResults) {
+	if (process.env.NODE_ENV !== 'production' && cachedResults) {
 		return cachedResults;
 	}
 
