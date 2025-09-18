@@ -6,6 +6,7 @@ import { SITE_NAME, SITE_URL } from '@/data/constants';
 import { galleryCollections } from '@/data/data';
 import { IconGallery } from '@/data/icons';
 import { getImagesInCollection } from '@/lib/gallery';
+import { GalleryImage } from '@/lib/types';
 import { slugify } from '@/lib/utils';
 
 import { Metadata } from 'next';
@@ -26,7 +27,7 @@ export async function generateMetadata(props: Props): Promise<Metadata | undefin
 	if (!collection) return notFound();
 
 	const { title, description } = collection;
-	const coverImage = (await getImagesInCollection(collection.title, 1)).images[0];
+	const coverImage = (await getImagesInCollection(collection.title))?.[0];
 
 	return {
 		title: `${title} Photo Gallery`,
@@ -39,7 +40,7 @@ export async function generateMetadata(props: Props): Promise<Metadata | undefin
 				{
 					url: `/api/ogGallery?title=${encodeURIComponent(title)}&subtitle=${encodeURIComponent(
 						'Photo Gallery'
-					)}&image=${encodeURIComponent(coverImage.src)}`,
+					)}&image=${encodeURIComponent(coverImage?.src || '')}`,
 					width: 1200,
 					height: 630,
 					alt: `${title} Photo Gallery cover image`,
@@ -54,7 +55,7 @@ export async function generateMetadata(props: Props): Promise<Metadata | undefin
 				{
 					url: `/api/ogGallery?title=${encodeURIComponent(title)}&subtitle=${encodeURIComponent(
 						'Photo Gallery'
-					)}&image=${encodeURIComponent(coverImage.src)}`,
+					)}&image=${encodeURIComponent(coverImage?.src || '')}`,
 					width: 1200,
 					height: 630,
 					alt: `${title} Photo Gallery cover image`,
@@ -71,7 +72,7 @@ export default async function GalleryCollection(props: Props) {
 	if (index === -1) return notFound();
 
 	const collection = galleryCollections[index];
-	const { images, next_cursor } = await getImagesInCollection(params.slug, 24);
+	const images = (await getImagesInCollection(params.slug)) as GalleryImage[];
 
 	const previousIndex = (index - 1 + galleryCollections.length) % galleryCollections.length;
 	const nextIndex = (index + 1) % galleryCollections.length;
@@ -104,11 +105,11 @@ export default async function GalleryCollection(props: Props) {
 				backlink={backLink}
 			/>
 
-			<Section borderOrigin={'t'} className="pb-0">
-				<GalleryView content={images} as="images" cursor={next_cursor} title={collection.title} />
+			<Section borderOrigin={'t'} className="pb-10">
+				<GalleryView content={images} as="images" />
 			</Section>
 
-			<div className="pb-20 w-full flex justify-between items-center text-sm font-medium select-none">
+			<div className="pb-10 w-full flex justify-between items-center text-sm font-medium select-none">
 				<Link
 					href={`${backLink}/${slugify(previousCollection.title)}`}
 					className="flex-1 mx-4 px-6 py-4 rounded-lg text-foreground/80 transition-colors hover:bg-foreground-tertiary/5 hover:text-foreground"

@@ -11,7 +11,7 @@ import { Card, CardBody, CardFooter } from '@/components/ui/Card';
 import { SITE_URL } from '@/data/constants';
 import { IconArrow, IconDocument } from '@/data/icons';
 import { getBlogPosts, getLatestBlogPost } from '@/lib/blog';
-import { getAllImages } from '@/lib/gallery';
+import { getLimitedImages } from '@/lib/gallery';
 import { formatDate } from '@/lib/utils';
 
 import { Metadata } from 'next';
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-	const galleryImages = (await getAllImages(4)).images;
+	const galleryImages = await getLimitedImages(4);
 	const blogPosts = getBlogPosts();
 	const latestPost = getLatestBlogPost();
 

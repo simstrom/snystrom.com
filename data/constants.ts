@@ -21,6 +21,6 @@ export const SITE_INSTAGRAM_URL = 'https://www.instagram.com/simonnystrom';
 export const SITE_LINKEDIN_URL = 'https://linkedin.com/in/simon-nystrom';
 
 // GALLERY
-export const GALLERY_FOLDER_PATH = 'snystrom/gallery';
+export const GALLERY_FOLDER_PATH = 'gallery';
 export const GALLERY_COVER_TAG = 'role:cover';
 export const GALLERY_COLLECTIONS_TAG_PREFIX = 'collections:';

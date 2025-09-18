@@ -14,7 +14,7 @@ import {
 	SITE_URL,
 } from '@/data/constants';
 import { IconDoodleArrow, IconDoodleCompass, IconDoodleMountains, IconUser } from '@/data/icons';
-import { getAllImages } from '@/lib/gallery';
+import { getLimitedImages } from '@/lib/gallery';
 import HeroImage from '@/public/images/hero.jpg';
 
 import { Metadata } from 'next';
@@ -45,7 +45,7 @@ const skills = [
 ];
 
 export default async function About() {
-	const { images } = await getAllImages(10);
+	const images = await getLimitedImages(10);
 
 	const jsonLd: WithContext<AboutPage> = {
 		'@type': 'AboutPage',
@@ -86,7 +86,7 @@ export default async function About() {
 							className="rounded-3xl ring-1 ring-border aspect-square sm:aspect-video md:aspect-auto w-full h-full object-cover object-center grayscale"
 						/>
 						<div className="absolute inset-0 z-10 rounded-3xl bg-linear-to-tr from-brand/20 to-brand/10 mix-blend-soft-light" />
-						<IconDoodleArrow className="text-brand w-24 h-24 absolute z-10 -top-6 left-6 rotate-12" />
+						<IconDoodleArrow className="text-brand w-28 h-28 absolute z-10 -top-6 left-6 rotate-8" />
 						<IconDoodleCompass className="text-brand w-16 h-16 absolute z-10 -right-4 -top-4 -rotate-3" />
 						<IconDoodleMountains className="text-brand w-16 h-16 absolute z-10 bottom-48 -left-6 rotate-12" />
 					</div>

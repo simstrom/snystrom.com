@@ -1,10 +1,6 @@
 'use server';
 
-import {
-	GALLERY_COLLECTIONS_TAG_PREFIX,
-	GALLERY_COVER_TAG,
-	GALLERY_FOLDER_PATH,
-} from '@/data/constants';
+import { GALLERY_COLLECTIONS_TAG_PREFIX, GALLERY_COVER_TAG } from '@/data/constants';
 import { v2 as cloudinary } from 'cloudinary';
 import lqip from 'lqip-modern';
 import { getCldImageUrl } from 'next-cloudinary';
@@ -48,79 +44,59 @@ const mapGalleryImages = cache(async (result: Array<Object>): Promise<GalleryIma
 	}
 });
 
-export const getAllImages = cache(async (limit?: number, cursor?: string) => {
+let cachedResults: GalleryImage[] | null = null;
+export const getAllImages = cache(async () => {
+	if (cachedResults) {
+		return cachedResults;
+	}
+
 	try {
 		const results = await cloudinary.api.resources({
 			type: 'upload',
 			resource_type: 'image',
-			prefix: GALLERY_FOLDER_PATH,
-			max_results: limit,
-			next_cursor: cursor,
+			max_results: 500,
+			tags: true,
 		});
 
 		if (!results || !Array.isArray(results.resources)) {
 			throw new Error('Invalid response from Cloudinary');
 		}
 
-		const images = await mapGalleryImages(results.resources);
-		const { next_cursor } = results;
+		cachedResults = await mapGalleryImages(results.resources);
 
-		return { images, next_cursor };
+		return cachedResults;
 	} catch (error) {
-		console.error('Error fetching all images:', error);
-		throw new Error('Failed to fetch all images');
+		console.error('Error fetching images:', error);
+		throw new Error('Failed to fetch images');
 	}
 });
 
-export const getImagesInCollection = cache(
-	async (name: string, limit?: number, cursor?: string) => {
-		const tag = `${GALLERY_COLLECTIONS_TAG_PREFIX}${name.toLowerCase()}`;
+export const getLimitedImages = cache(async (limit: number) => {
+	const resources = await getAllImages();
+	return resources.slice(0, limit);
+});
 
-		try {
-			const results = await cloudinary.api.resources_by_tag(tag, {
-				resource_type: 'image',
-				max_results: limit,
-				next_cursor: cursor,
-			});
-
-			if (!results || !Array.isArray(results.resources)) {
-				throw new Error('Invalid response from Cloudinary');
-			}
-
-			const images = await mapGalleryImages(results.resources);
-			const { next_cursor } = results;
-
-			return { images, next_cursor };
-		} catch (error) {
-			console.error(`Error fetching ${name} images:`, error);
-			throw new Error(`Failed to fetch ${name} images:`);
-		}
-	}
-);
-
-export const getCollections = cache(async (limit?: number, cursor?: string) => {
+export const getImagesInCollection = cache(async (name: string) => {
+	const tag = `${GALLERY_COLLECTIONS_TAG_PREFIX}${name.toLowerCase()}`;
 	try {
-		const results = await cloudinary.api.resources_by_tag(GALLERY_COVER_TAG, {
-			resource_type: 'image',
-			tags: true,
-			max_results: limit,
-			next_cursor: cursor,
-		});
+		const resources = await getAllImages();
+		return resources.filter((img) => img.tags.includes(tag));
+	} catch (error) {
+		console.error(`Error fetching ${name} images:`, error);
+	}
+});
 
-		if (!results || !Array.isArray(results.resources)) {
-			throw new Error('Invalid response from Cloudinary');
-		}
-
-		const images = await mapGalleryImages(results.resources);
-		const { next_cursor } = results;
+export const getCollections = cache(async () => {
+	try {
+		const resources = await getAllImages();
+		const images = resources.filter((img) => img.tags?.includes(GALLERY_COVER_TAG));
 
 		const collections = galleryCollections.map((collection) => {
 			const matchingImages = images.filter((img: any) =>
 				img.tags?.includes(`${GALLERY_COLLECTIONS_TAG_PREFIX + slugify(collection.title)}`)
 			);
 
-			// Only log missing cover image if all collections have been fetched (no cursor for more)
-			if (!matchingImages.length && !next_cursor) {
+			if (!matchingImages.length) {
 				console.warn(`Collection ${collection.title} is missing cover image in Cloudinary`);
 				return;
 			}
@@ -132,9 +108,8 @@ export const getCollections = cache(async (limit?: number, cursor?: string) => {
 		});
 
 		const filteredCollections = collections.filter(Boolean);
-		return { collections: filteredCollections as GalleryCollection[], next_cursor };
+		return filteredCollections as GalleryCollection[];
 	} catch (error) {
 		console.error(`Error fetching collection cover images:`, error);
-		throw new Error(`Failed to fetch collection cover images:`);
 	}
 });
