@@ -18,7 +18,7 @@ export default function HorizontalImages({ items, className }: Props) {
 		target: containerRef,
 		offset: ['start end', 'end start'],
 	});
-	const x = useTransform(scrollYProgress, [0, 1], [0, -800]); // Adjust the values as needed
+	const x = useTransform(scrollYProgress, [0, 1], [0, -1200]); // Adjust the values as needed
 	const spring = useSpring(x, { stiffness: 150, damping: 30 });
 
 	return (
