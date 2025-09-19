@@ -49,10 +49,10 @@ export default function Callout({ variant = 'info', title, children }: CalloutPr
 	const styles = variantStyles[variant];
 
 	return (
-		<div className="w-screen -mx-3 px-4 py-8 my-5 lg:w-full lg:mx-0 lg:px-0 border-y col-span-3 overflow-x-clip bg-[linear-gradient(-45deg,var(--color-border)_12.50%,transparent_12.50%,transparent_50%,var(--color-border)_50%,var(--color-border)_62.50%,transparent_62.50%,transparent_100%)] bg-size-[5px_5px]">
+		<div className="relative w-screen -mx-3 px-4 py-8 my-5 lg:w-full lg:mx-0 lg:px-0 border-y col-span-3 overflow-x-clip">
 			<blockquote
 				className={cn(
-					'not-prose relative p-4 rounded-md border shadow-sm max-w-3xl mx-auto w-full bg-background',
+					'not-prose relative z-10 p-4 rounded-xl border shadow-sm max-w-3xl mx-auto w-full bg-background',
 					styles.text
 				)}
 			>
@@ -68,6 +68,15 @@ export default function Callout({ variant = 'info', title, children }: CalloutPr
 				)}
 				<div className="px-1 not-prose text-foreground-secondary">{children}</div>
 			</blockquote>
+
+			<div
+				className={cn(
+					'absolute inset-0 pointer-events-none bg-background-secondary/60',
+					'bg-[linear-gradient(to_right,rgba(0,0,0,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.04)_1px,transparent_1px)] bg-[size:38px_38px]',
+					'dark:bg-[linear-gradient(to_right,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.04)_1px,transparent_1px)]',
+					'mask-[linear-gradient(to_right,transparent,white_10%,white_90%,transparent)]'
+				)}
+			/>
 		</div>
 	);
 }

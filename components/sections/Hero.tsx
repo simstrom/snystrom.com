@@ -14,6 +14,10 @@ export default function Hero() {
 					alt="Profile Picture"
 					width={128}
 					height={128}
+					priority
+					placeholder="blur"
+					draggable={false}
+					contextMenu="false"
 					className="rounded-full ring-2 ring-border ring-offset-4 ring-offset-background shadow-lg transition-all group-hover:ring-brand/80 group-hover:scale-105"
 				/>
 

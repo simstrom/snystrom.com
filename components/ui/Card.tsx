@@ -32,7 +32,7 @@ function Card({ image, imageMeta, href, children, className }: CardProps) {
 		>
 			<div
 				className={cn(
-					'relative h-[180px] m-1.5 rounded-xl border shadow-inner overflow-hidden bg-background',
+					'relative h-[180px] m-1.5 mb-2 rounded-xl border shadow-inner overflow-hidden bg-background',
 					className
 				)}
 			>
@@ -66,14 +66,12 @@ interface CardBodyProps {
 function CardBody({ title, icon: Icon, className, children }: CardBodyProps) {
 	return (
 		<>
-			<div className="px-6 py-2 flex gap-x-2 justify-between items-center">
-				<h3 className="text-balance text-lg">{title}</h3>
-				{Icon && <Icon className="w-5 h-5 text-foreground-tertiary" />}
+			<div className="px-4 py-2 flex gap-x-2 justify-between items-center">
+				<h3 className="text-base text-pretty">{title}</h3>
+				{Icon && <Icon className="w-4 h-4 text-foreground-tertiary/80" />}
 			</div>
 
-			<p className={cn('px-6 mb-4 text-foreground-secondary line-clamp-1', className)}>
-				{children}
-			</p>
+			<p className={cn('px-4 mb-4 text-foreground-secondary', className)}>{children}</p>
 		</>
 	);
 }

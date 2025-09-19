@@ -66,7 +66,7 @@ export default async function Home() {
 							image={post.image}
 							imageMeta={post.imageMeta}
 						>
-							<CardBody title={post.title} icon={IconDocument}>
+							<CardBody title={post.title} icon={IconDocument} className="line-clamp-1 text-base">
 								{post.summary}
 							</CardBody>
 							<CardFooter>
