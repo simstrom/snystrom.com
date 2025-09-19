@@ -1,4 +1,5 @@
 import PageHeader from '@/components/layouts/PageHeader';
+import { Section } from '@/components/layouts/Section';
 import { Card, CardBody, CardFooter } from '@/components/ui/Card';
 import { SITE_NAME, SITE_URL } from '@/data/constants';
 
@@ -45,10 +46,9 @@ export default function Projects() {
 				title="Projects"
 				content="Some of the things I've built, tinkered with, or just enjoyed working on."
 				subtitle={{ text: 'Dev', Icon: IconCode }}
-				className="border-b"
 			/>
 
-			<section className="grid md:grid-cols-2 gap-4 p-4 pb-30">
+			<Section className="grid md:grid-cols-2 gap-4 p-4">
 				{projectsData.map((project, idx) => (
 					<Card
 						key={project.title}
@@ -67,7 +67,7 @@ export default function Projects() {
 						</CardFooter>
 					</Card>
 				))}
-			</section>
+			</Section>
 		</main>
 	);
 }

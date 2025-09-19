@@ -3,7 +3,7 @@ import CustomLink from '@/components/blog/Link';
 import MDXComponents from '@/components/blog/MDXcomponents';
 import Tag from '@/components/blog/Tag';
 import PageHeader from '@/components/layouts/PageHeader';
-import { Section } from '@/components/layouts/Section';
+import { Section, SectionHeader } from '@/components/layouts/Section';
 import PostList from '@/components/ui/PostList';
 
 import { SITE_GITHUB_URL, SITE_LINKEDIN_URL, SITE_NAME, SITE_URL } from '@/data/constants';
@@ -142,7 +142,7 @@ export default async function BlogPost(props: Props) {
 				</Link>
 			</div>
 
-			<Section className="max-w-5xl mx-auto pb-0" borderOrigin="y">
+			<Section className="max-w-5xl mx-auto pb-0 border-y">
 				<div className="relative">
 					{/* LINES */}
 					<span className="absolute top-6 z-10 h-px w-full bg-zinc-500/75 mix-blend-screen md:top-12" />
@@ -195,7 +195,7 @@ export default async function BlogPost(props: Props) {
 				</div>
 			</Section>
 
-			<article className="prose max-w-none mt-8">
+			<article className="prose max-w-none mt-8 pb-20">
 				<div className="wrapper pb-10">
 					<MDXContent code={post.body} components={MDXComponents} />
 				</div>
@@ -231,11 +231,8 @@ export default async function BlogPost(props: Props) {
 			</article>
 
 			{related.length > 0 && (
-				<Section borderOrigin={null}>
-					<div className="relative text-center border-y pb-1 mt-10">
-						<span className="text-sm font-medium text-brand">More reading</span>
-						<h3 className="text-xl">Related Articles</h3>
-					</div>
+				<Section>
+					<SectionHeader title="Related Posts" subtitle="You might also like" className="mb-0" />
 					<PostList posts={related.slice(0, 3)} />
 				</Section>
 			)}

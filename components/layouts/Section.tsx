@@ -1,58 +1,42 @@
-import { IconArrowRight } from '@/data/icons';
+import { IconArrow } from '@/data/icons';
 import { cn } from '@/lib/utils';
-
 import Link from 'next/link';
+
 import React, { ReactNode } from 'react';
 
 interface SectionProps {
-	title?: string;
-	subtitle?: string;
-	linkHref?: string;
 	children: ReactNode;
-	showHeader?: boolean;
 	className?: string;
-	borderOrigin?: 't' | 'b' | 'y' | null;
 }
 
-export const Section: React.FC<SectionProps> = ({
-	title = 'Latest Posts',
-	subtitle = 'Blog',
-	linkHref = '/blog',
-	children,
-	showHeader = false,
-	borderOrigin = 'b',
+export const Section: React.FC<SectionProps> = ({ children, className }) => (
+	<section className={cn('w-full flex flex-col pb-30', className)}>{children}</section>
+);
+
+interface SectionHeaderProps {
+	title: string;
+	subtitle?: string;
+	linkHref?: string;
+	className?: string;
+}
+
+export const SectionHeader: React.FC<SectionHeaderProps> = ({
+	title,
+	subtitle,
+	linkHref,
 	className,
 }) => (
-	<section
-		className={cn(
-			'w-full',
-			borderOrigin === 'y'
-				? 'border-y'
-				: borderOrigin === 'b'
-				? 'border-b'
-				: borderOrigin === 't'
-				? 'border-t'
-				: ''
+	<div className={cn('relative text-center border-y mb-5 pb-1 text-xl', className)}>
+		<span className="text-sm font-medium text-brand">{subtitle}</span>
+		<h2>{title}</h2>
+
+		{linkHref && (
+			<Link
+				href={linkHref}
+				className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-foreground-secondary/5 text-foreground-secondary ring-1 ring-transparent ring-offset-background transition-all hover:bg-foreground-secondary/10 hover:text-foreground hover:ring-brand hover:ring-offset-2"
+			>
+				<IconArrow className="w-4 h-4" />
+			</Link>
 		)}
-	>
-		{showHeader && (
-			<div className="w-full border-b">
-				<Link
-					href={linkHref}
-					className="max-w-5xl mx-auto flex flex-col bg-background-secondary group"
-				>
-					<div className="flex justify-between items-end p-6 transition-colors group-hover:bg-foreground group-hover:text-background">
-						<div>
-							<div className="ml-2 font-medium text-sm text-brand mb-1 transition-colors group-hover:text-background">
-								{subtitle}
-							</div>
-							<h2 className="text-5xl">{title}</h2>
-						</div>
-						<IconArrowRight width={40} height={40} className="group" />
-					</div>
-				</Link>
-			</div>
-		)}
-		<div className={cn('max-w-5xl mx-auto flex flex-col pb-30', className)}>{children}</div>
-	</section>
+	</div>
 );

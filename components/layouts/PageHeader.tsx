@@ -22,7 +22,7 @@ export default function PageHeader({
 		<>
 			<div
 				className={cn(
-					'relative max-w-5xl mx-auto px-6 pt-40 pb-6 bg-background text-xl text-balance',
+					'relative max-w-5xl mx-auto px-6 pt-40 pb-6 border-b bg-background text-xl text-balance',
 					className
 				)}
 			>

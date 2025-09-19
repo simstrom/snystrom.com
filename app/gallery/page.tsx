@@ -88,7 +88,7 @@ export default async function Gallery() {
 				subtitle={{ text: 'Collections', Icon: IconGallery }}
 			/>
 
-			<Section borderOrigin={'t'}>
+			<Section>
 				<GalleryView as="collections" content={collections} />
 			</Section>
 		</main>

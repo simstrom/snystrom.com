@@ -54,7 +54,7 @@ export default async function Blog() {
 				subtitle={{ text: 'Articles', Icon: IconDocument }}
 			/>
 
-			<Section borderOrigin={'t'} className="">
+			<Section>
 				<TagSelector tags={tags} activeTag={''} />
 				<PostList posts={posts} />
 			</Section>

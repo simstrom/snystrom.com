@@ -57,7 +57,7 @@ export default async function TagPage(props: Props) {
 				content="Insights, tutorials, and ideas from my journey in tech."
 			/>
 
-			<Section borderOrigin={'t'}>
+			<Section>
 				<TagSelector tags={tags} activeTag={tag} />
 				<PostList posts={posts} />
 			</Section>

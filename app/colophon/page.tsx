@@ -20,10 +20,7 @@ export default function Colophon() {
 				subtitle={{ text: 'Design', Icon: IconDesign }}
 			/>
 
-			<Section
-				className="overflow-y-visible px-6 py-10 space-y-8 max-w-3xl mx-auto w-full"
-				borderOrigin="y"
-			>
+			<Section className="px-6 py-10 space-y-8 max-w-3xl mx-auto">
 				{content.map((c) => (
 					<div key={c.heading} className="sm:grid grid-cols-12 gap-2">
 						<h2 className="col-span-3 pb-2">{c.heading}</h2>
@@ -32,7 +29,7 @@ export default function Colophon() {
 				))}
 			</Section>
 
-			<Section className="pt-10 overflow-y-visible space-y-8" borderOrigin={null}>
+			<Section className="pt-10 overflow-y-visible space-y-8 border-t">
 				<div className="flex gap-2 px-6 max-w-3xl mx-auto w-full">
 					<p className="flex-1 text-lg tracking-normal sm:tracking-wide font-medium">
 						ABCDEFGHIJKLMNOPQRSTUVWXYZ

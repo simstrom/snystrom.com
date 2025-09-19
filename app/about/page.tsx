@@ -71,11 +71,9 @@ export default async function About() {
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 			/>
 
-			<div className="relative max-w-5xl mx-auto">
-				<PageHeader title="About Me" subtitle={{ text: 'Bio', Icon: IconUser }} />
-			</div>
+			<PageHeader title="About Me" subtitle={{ text: 'Bio', Icon: IconUser }} />
 
-			<Section borderOrigin={'y'} className="pb-0">
+			<Section className="pb-0 border-b">
 				<div className="grid md:grid-cols-12 gap-y-4 divide-x">
 					<div className="relative col-span-12 md:col-span-4">
 						<Image
@@ -120,8 +118,8 @@ export default async function About() {
 				</div>
 			</Section>
 
-			<Section className="py-4 bg-background-secondary">
-				<div className="space-y-2">
+			<Section className="py-4 bg-background-secondary border-b">
+				<div className="max-w-5xl mx-auto space-y-2">
 					<HorizontalScroller
 						items={skills.slice(0, skills.length / 2)}
 						speed="slow"
@@ -139,8 +137,8 @@ export default async function About() {
 				</div>
 			</Section>
 
-			<Section borderOrigin={null} className="pt-10 pb-0 relative">
-				<HorizontalImages items={images} className="mb-20 pt-10" />
+			<Section className="pt-10 pb-0 relative">
+				<HorizontalImages items={images} className="mb-20 pt-10 max-w-5xl mx-auto" />
 				<p className="absolute bottom-20 right-10 -rotate-3 text-sm font-medium text-foreground-secondary">
 					<span className="text-brand">* </span>I also do{' '}
 					<CustomLink href="/gallery">photography</CustomLink>

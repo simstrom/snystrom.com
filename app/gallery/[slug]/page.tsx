@@ -105,7 +105,7 @@ export default async function GalleryCollection(props: Props) {
 				backlink={backLink}
 			/>
 
-			<Section borderOrigin={'t'} className="pb-10">
+			<Section className="pb-10">
 				<GalleryView content={images} as="images" />
 			</Section>
 
