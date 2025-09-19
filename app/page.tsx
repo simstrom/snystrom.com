@@ -13,7 +13,7 @@ import { SITE_URL } from '@/data/constants';
 import { IconDocument } from '@/data/icons';
 import { getBlogPosts, getLatestBlogPost } from '@/lib/blog';
 import { getLimitedImages } from '@/lib/gallery';
-import { formatDate } from '@/lib/utils';
+import { cn, formatDate } from '@/lib/utils';
 
 import { Metadata } from 'next';
 
@@ -29,9 +29,21 @@ export default async function Home() {
 	const latestPost = getLatestBlogPost();
 
 	return (
-		<main className="grow pt-40">
-			<Section className="space-y-8 text-center">
+		<main className="grow">
+			<Section className="pt-40 space-y-8 text-center relative">
 				<Hero />
+				<div
+					className={cn(
+						'absolute inset-0 pointer-events-none -z-10',
+						'bg-[linear-gradient(to_right,rgba(0,0,0,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.04)_1px,transparent_1px)] bg-[size:60px_60px]',
+						'dark:bg-[linear-gradient(to_right,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:60px_60px]'
+					)}
+					style={{
+						WebkitMaskImage: 'radial-gradient(circle at 50% 50%, white 50%, transparent 100%)',
+						maskImage: 'radial-gradient(circle at 50% 50%, white 50%, transparent 100%)',
+					}}
+				/>
+				<div className="absolute inset-0 bg-gradient-to-b from-brand/5 via-transparent to-transparent via-30% pointer-events-none" />
 			</Section>
 
 			<Section>
