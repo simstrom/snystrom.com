@@ -42,8 +42,8 @@ export default function Hero() {
 			<div className="max-w-2xl mx-auto text-balance ">
 				<h1 className="text-xl mb-2">Hey, I&apos;m Simon</h1>
 				<p className="text-foreground-secondary">
-					I'm a software engineer specializing in building exceptional digital experiences.
-					Currently, I'm focused on building accessible, human-centered products at{' '}
+					I&apos;m a software engineer specializing in building exceptional digital experiences.
+					Currently, I&apos;m focused on building accessible, human-centered products at{' '}
 				</p>
 				<div className="mt-10 flex items-center justify-center gap-4 text-sm font-medium">
 					{navItems.socialLinks.map((item) => (
