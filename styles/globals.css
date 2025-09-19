@@ -39,7 +39,8 @@
 	--animate-slide: slide 0.3s ease-out forwards;
 	--animate-slide-slow: slide 0.6s ease-out forwards;
 	--animate-flip: flip 6s infinite steps(2, end);
-	--animate-rotate: rotate 3s linear infinite both;
+	--animate-rotate: rotate 10s linear infinite;
+	--animate-rotate-reverse: rotate 10s infinite linear reverse;
 
 	@keyframes loop {
 		0% {
@@ -79,7 +80,7 @@
 	}
 	@keyframes rotate {
 		to {
-			transform: rotate(90deg);
+			transform: rotate(360deg);
 		}
 	}
 }
