@@ -32,7 +32,7 @@ function Card({ image, imageMeta, href, children, className }: CardProps) {
 		>
 			<div
 				className={cn(
-					'relative h-[200px] m-1.5 rounded-xl border shadow-inner overflow-hidden bg-background',
+					'relative h-[180px] m-1.5 rounded-xl border shadow-inner overflow-hidden bg-background',
 					className
 				)}
 			>
@@ -87,6 +87,7 @@ function CardFooter({ className, children }: CardFooterProps) {
 		<div
 			className={cn(
 				'mt-auto border-t px-6 py-3 flex gap-x-2 items-center text-sm text-foreground-tertiary',
+				'overflow-x-auto whitespace-nowrap no-scrollbar mask-[linear-gradient(to_right,white_90%,transparent)]',
 				className
 			)}
 		>

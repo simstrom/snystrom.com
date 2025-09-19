@@ -53,6 +53,6 @@ export const Section: React.FC<SectionProps> = ({
 				</Link>
 			</div>
 		)}
-		<div className={cn('max-w-5xl mx-auto flex flex-col pb-20', className)}>{children}</div>
+		<div className={cn('max-w-5xl mx-auto flex flex-col pb-30', className)}>{children}</div>
 	</section>
 );

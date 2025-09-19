@@ -3,9 +3,10 @@
 import { GalleryImage } from '@/lib/types';
 import { cn, slugify } from '@/lib/utils';
 
-import { IconArrowUpRight, IconGallery } from '@/data/icons';
+import { IconGallery } from '@/data/icons';
 import { CldImage } from 'next-cloudinary';
 import Link from 'next/link';
+import CardOverlay from './CardOverlay';
 
 type Props = {
 	isCollection: boolean;
@@ -54,21 +55,11 @@ export default function GalleryItem({
 						<h3 className="text-xl">{collectionTitle}</h3>
 					</div>
 
-					<div
-						className={cn(
-							'absolute right-4 -bottom-2 z-20 w-fit h-fit rounded-full p-2 bg-foreground text-background dark:bg-background dark:text-foreground',
-							'opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:-translate-y-6 user-select-none pointer-events-none '
-						)}
-					>
-						<IconArrowUpRight className="w-4 h-4" />
-					</div>
+					<CardOverlay withIcon withOverlay={false} />
 				</Link>
 			) : (
 				<div
-					className={cn(
-						'relative hover:cursor-zoom-in',
-						lightboxIndex > 24 && 'animate-slideSlow' // Fast animation for images over the fold, slow for scroll loaded.
-					)}
+					className={cn('relative hover:cursor-zoom-in')}
 					onClick={(e) => handleImageClick(e, lightboxIndex)}
 				>
 					<CldImage
@@ -80,7 +71,7 @@ export default function GalleryItem({
 						loading={priority ? 'eager' : 'lazy'}
 						placeholder="blur"
 						blurDataURL={item.blurData}
-						className="w-full object-cover object-center"
+						className="w-full h-full object-cover object-center"
 					/>
 				</div>
 			)}

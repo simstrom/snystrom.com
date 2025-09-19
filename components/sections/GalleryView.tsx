@@ -61,7 +61,7 @@ export default function GalleryView({ content, as = 'images' }: Props) {
 										delay: colIndex * 0.1 + idx * 0.05, // Stagger by column and row
 										ease: [0.25, 0.25, 0, 1],
 									}}
-									className="will-change-transform"
+									className="will-change-transform overflow-hidden"
 								>
 									<GalleryItem
 										isCollection={as === 'collections'}

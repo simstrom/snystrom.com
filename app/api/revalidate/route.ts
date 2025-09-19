@@ -37,9 +37,6 @@ export async function POST(req: NextRequest) {
 		const resources = body.resources || [];
 
 		const pathsToRevalidate = mapPaths(resources);
-
-		console.log('Revalidating paths:', pathsToRevalidate);
-
 		await Promise.all(pathsToRevalidate.map((path) => revalidatePath(path)));
 
 		return NextResponse.json({ revalidated: true, paths: pathsToRevalidate });

@@ -32,7 +32,7 @@ function BentoCardAbout() {
 					)}
 				/>
 			</div>
-			<CardOverlay />
+			<CardOverlay withIcon />
 		</BentoCard>
 	);
 }
@@ -82,7 +82,7 @@ function BentoCardGallery({ images }: { images: GalleryImage[] }) {
 				</div>
 			</div>
 
-			<CardOverlay />
+			<CardOverlay withIcon />
 		</BentoCard>
 	);
 }
@@ -125,7 +125,7 @@ function BentoCardProjects() {
 				))}
 			</div>
 
-			<CardOverlay />
+			<CardOverlay withIcon />
 		</BentoCard>
 	);
 }
@@ -169,7 +169,7 @@ function BentoCardBlog({ latestPost }: { latestPost: Post }) {
 				</div>
 			</div>
 
-			<CardOverlay />
+			<CardOverlay withIcon />
 		</BentoCard>
 	);
 }
